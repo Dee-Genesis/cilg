@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>CILG — Professional Standards Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback {
+  font-family: var(--ff-head);
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--forest); letter-spacing: -.01em; line-height: 1;
+}
+.nav-logo-sub {
+  font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--g300); display: block; margin-top: 2px;
+}
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow {
+  width: 0; height: 0;
+  border-left: 3px solid transparent; border-right: 3px solid transparent;
+  border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6;
+}
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover {
+  background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35);
+}
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before {
+  content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px;
+}
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a {
+  display: block; padding: 7px 12px; border-radius: 7px;
+  font-size: .74rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); white-space: nowrap;
+}
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none;
+}
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--g300); padding: 0 4px; margin-bottom: .5rem;
+}
+.mob-link {
+  display: block; padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); border: 1px solid transparent;
+}
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+
+/* HERO */
+.page-hero {
+  padding-top: calc(var(--nav-h) + 5rem);
+  padding-bottom: 5rem;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, #122e22 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,241,53,.12) 0%, transparent 65%);
+}
+.page-hero-inner { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:0 2rem; }
+.page-hero-label {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(200,241,53,.15); border:1px solid rgba(200,241,53,.35);
+  color:var(--lime); padding:4px 16px; border-radius:40px;
+  font-size:.65rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.page-hero-label span { width:5px; height:5px; background:var(--lime); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.page-hero h1 {
+  font-family:var(--ff-head); font-size:clamp(2rem,5vw,3.8rem);
+  font-weight:800; color:#fff; letter-spacing:-.03em; line-height:1.1;
+  margin-bottom:1.2rem;
+}
+.page-hero p {
+  font-size:1rem; color:rgba(255,255,255,.65); line-height:1.8; max-width:600px; margin:0 auto;
+}
+
+/* MAIN */
+main { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+
+section { margin-bottom: 5rem; }
+section h2 {
+  font-family: var(--ff-head);
+  font-size: 1.8rem; font-weight: 800;
+  color: var(--forest);
+  margin: 2rem 0 1.5rem;
+  border-bottom: 2px solid var(--lime);
+  padding-bottom: 0.8rem;
+  letter-spacing: -.02em;
+}
+section h3 {
+  font-family: var(--ff-head);
+  font-size: 1.25rem; color: var(--forest-mid);
+  margin: 2rem 0 1rem; font-weight: 700;
+}
+p { color: var(--text2); line-height: 1.85; margin-bottom: 1.2rem; font-size: 0.97rem; }
+
+.section-intro {
+  margin-bottom: 3rem; padding: 2rem;
+  background: var(--lime-pale); border-radius: 12px;
+  border-left: 4px solid var(--lime-dk);
+}
+.section-intro h2 { border-bottom: none; margin-top: 0; }
+
+/* TABLES */
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border-radius:10px; border:1px solid var(--g200); }
+table { width:100%; border-collapse:collapse; background:var(--white); }
+table thead { background:var(--forest); color:var(--white); }
+table th { padding:1rem; text-align:left; font-weight:600; font-size:.85rem; border-bottom:2px solid var(--lime); }
+table td { padding:.9rem 1rem; border-bottom:1px solid var(--g200); color:var(--text2); font-size:.9rem; }
+table tbody tr:hover { background:var(--g100); }
+
+/* SYLLABUS DOWNLOAD SECTION */
+.syllabi-section {
+  background: var(--forest);
+  padding: 5rem 3rem;
+  margin-left: -2rem; margin-right: -2rem;
+  margin-bottom: 5rem;
+}
+.syllabi-section .sect-label {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:.65rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--lime); margin-bottom:1.2rem;
+}
+.syllabi-section .sect-label::before {
+  content:''; display:inline-block; width:28px; height:2px; background:var(--lime);
+}
+.syllabi-section h2 {
+  font-family:var(--ff-head); font-size:clamp(2rem,4vw,3rem);
+  font-weight:800; color:#fff; letter-spacing:-.03em;
+  border:none; padding:0; margin:0 0 .9rem;
+}
+.syllabi-section > p {
+  color:rgba(255,255,255,.5); max-width:600px; line-height:1.8; margin-bottom:3rem; font-size:.95rem;
+}
+.syllabi-grid {
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2rem;
+  max-width: 1160px;
+}
+.syll-card {
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 1.8rem 1.4rem;
+  display: flex; flex-direction: column;
+  transition: all var(--tr);
+  position: relative; overflow: hidden;
+}
+.syll-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--lime); opacity:0; transition:opacity var(--tr);
+}
+.syll-card:hover { background:rgba(255,255,255,.09); border-color:rgba(200,241,53,.35); transform:translateY(-4px); }
+.syll-card:hover::before { opacity:1; }
+.syll-level-badge {
+  display:inline-block;
+  background:var(--lime); color:var(--forest);
+  font-size:.6rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  padding:4px 12px; border-radius:20px;
+  margin-bottom:1.4rem; width:fit-content;
+}
+.syll-book {
+  width:54px; height:68px;
+  border-radius:5px;
+  margin-bottom:1.5rem;
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:3px 4px 12px rgba(0,0,0,.35);
+}
+.syll-book::after {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:8px; border-radius:5px 0 0 5px;
+  background:rgba(0,0,0,.25);
+}
+.syll-card:nth-child(1) .syll-book { background:linear-gradient(160deg,#64b5f6,#42a5f5); }
+.syll-card:nth-child(2) .syll-book { background:linear-gradient(160deg,#81c784,#4caf50); }
+.syll-card:nth-child(3) .syll-book { background:linear-gradient(160deg,#ef5350,#e53935); }
+.syll-card:nth-child(4) .syll-book { background:linear-gradient(160deg,#ec407a,#e91e63); }
+.syll-card:nth-child(5) .syll-book { background:linear-gradient(160deg,#ffd54f,#ffca28); }
+.syll-book svg { width:22px; height:22px; fill:rgba(255,255,255,.85); z-index:1; }
+.syll-title {
+  font-family:var(--ff-head); font-size:.95rem; font-weight:700;
+  color:#fff; line-height:1.35; margin-bottom:.6rem;
+}
+.syll-desc {
+  font-size:.78rem; color:rgba(255,255,255,.45); line-height:1.7; flex:1; margin-bottom:1.5rem;
+}
+.syll-btn {
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  background:var(--lime); color:var(--forest);
+  padding:11px 14px; border-radius:8px;
+  font-family:var(--ff-head); font-size:.78rem; font-weight:700;
+  transition:all var(--tr); cursor:pointer; border:none; width:100%;
+}
+.syll-btn:hover { background:var(--lime-dk); transform:translateY(-1px); box-shadow:0 6px 18px rgba(200,241,53,.35); }
+.syll-btn svg { width:15px; height:15px; fill:var(--forest); flex-shrink:0; }
+.syll-filename {
+  text-align:center; font-size:.65rem; color:rgba(255,255,255,.2);
+  margin-top:.7rem; letter-spacing:.02em;
+}
+
+/* ALIGN TABLE */
+.align-grid {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:1.2rem; margin:2rem 0;
+}
+.align-card { background:var(--white); border:1.5px solid var(--g200); border-radius:10px; padding:1.4rem; }
+.align-card-head {
+  font-family:var(--ff-head); font-size:.85rem; font-weight:700;
+  color:var(--forest); border-bottom:2px solid var(--lime); padding-bottom:.5rem; margin-bottom:.9rem;
+}
+.align-row2 { display:flex; flex-direction:column; gap:.55rem; }
+.align-item { font-size:.8rem; color:var(--text2); line-height:1.6; padding:.4rem 0; border-bottom:1px solid var(--g200); }
+.align-item:last-child { border-bottom:none; }
+.align-item strong { color:var(--forest-mid); display:block; font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:2px; }
+
+/* FOOTER */
+footer { background:#0a1f15; border-top:1px solid rgba(255,255,255,.12); padding:4rem 3rem 2rem; }
+.footer-inner { max-width:1260px; margin:0 auto; }
+.footer-grid { display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr 1fr; gap:2.5rem; margin-bottom:3rem; }
+.footer-brand h3 { font-family:var(--ff-head); font-size:1.3rem; font-weight:800; color:var(--lime); letter-spacing:-.02em; margin-bottom:.75rem; }
+.footer-brand p { font-size:.78rem; color:rgba(255,255,255,.72); line-height:1.8; margin-bottom:.5rem; }
+.footer-col h4 { font-size:.65rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:1rem; }
+.footer-col a { display:block; font-size:.78rem; color:rgba(255,255,255,.75); padding:3px 0; transition:color var(--tr); }
+.footer-col a:hover { color:var(--lime); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,.12); padding-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; font-size:.72rem; color:rgba(255,255,255,.5); }
+.footer-social { display:flex; gap:.65rem; align-items:center; margin-top:1.4rem; }
+.footer-social a {
+  display:flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:8px;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.45); transition:all var(--tr); text-decoration:none;
+}
+.footer-social a:hover { background:var(--lime); border-color:var(--lime); color:var(--forest); transform:translateY(-2px); box-shadow:0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width:17px; height:17px; fill:currentColor; flex-shrink:0; }
+
+/* RESPONSIVE */
+@media (max-width:1100px) {
+  .syllabi-grid { grid-template-columns:repeat(3,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:768px) {
+  .nav { padding:0 1.5rem; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+  .syllabi-section { padding:3.5rem 1.5rem; margin-left:-1rem; margin-right:-1rem; }
+  .syllabi-grid { grid-template-columns:1fr 1fr; }
+  .page-hero h1 { font-size:2rem; }
+  main { padding:2rem 1rem; }
+  .footer-grid { grid-template-columns:1fr; }
+}
+@media (max-width:480px) {
+  .syllabi-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV (exact from homepage) -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link act">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-label"><span></span> Qualifications</div>
+    <h1>Professional Standards Framework</h1>
+    <p>The comprehensive standards, eligibility requirements, assessment methodology, and delivery policies governing all CILG qualification programmes.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- 1. OVERVIEW & PURPOSE -->
+<section id="overview">
+  <div class="section-intro">
+    <h2>1. Framework Overview &amp; Purpose</h2>
+    <p>The CILG Professional Standards Framework (hereafter "the Framework") articulates the minimum requirements for the design, delivery, and assessment of qualifications offered by the Chartered Institute of Leadership and Governance. These standards apply to all learning programmes regardless of mode of delivery: in-person, online, blended, or distance learning.</p>
+  </div>
+
+  <h3>1.1 Scope of the Framework</h3>
+  <p>This Framework establishes standards for:</p>
+  <ul style="margin-left:2rem;color:var(--text2);line-height:2;">
+    <li><strong>Programme eligibility and entry requirements</strong> — minimum academic and experiential thresholds for entry to programmes at each level</li>
+    <li><strong>Assessment design and methodology</strong> — examination standards, grading criteria, and marking protocols</li>
+    <li><strong>Delivery modes and quality assurance</strong> — pedagogical standards, tutor competency, and learning environment expectations</li>
+    <li><strong>Candidate support and welfare</strong> — duty of care, reasonable adjustments, wellbeing resources</li>
+    <li><strong>Programme completion and time limits</strong> — maximum duration for programme completion from first registration</li>
+    <li><strong>Examiner standards and marking integrity</strong> — qualification and training requirements for examiners; moderation and quality assurance protocols</li>
+    <li><strong>Appeals and feedback mechanisms</strong> — candidate right to review, appeal, and feedback processes</li>
+  </ul>
+
+  <h3>1.2 Core Principles</h3>
+  <p>The Framework is underpinned by the following principles:</p>
+  <ul style="margin-left:2rem;color:var(--text2);line-height:2;">
+    <li><strong>Competency-focused assessment:</strong> Assessments measure demonstrated professional knowledge, skills, and behaviours aligned to defined competency standards</li>
+    <li><strong>Fairness and transparency:</strong> Assessment criteria, grading standards, and candidate rights are clearly published and consistently applied</li>
+    <li><strong>Proportionality:</strong> Entry requirements, assessment load, and time limits are appropriate to qualification level and professional context</li>
+    <li><strong>Accessibility:</strong> Qualifications are delivered and assessed in ways that are accessible to all candidates, with reasonable adjustments provided as needed</li>
+    <li><strong>Continuous improvement:</strong> Assessment design and delivery are regularly reviewed and updated based on candidate feedback and educational research</li>
+  </ul>
+
+  <h3>1.3 Duty of Care &amp; Accessibility</h3>
+  <p>CILG is committed to supporting the success of all candidates. Candidates experiencing personal difficulty, disability, or additional learning needs are encouraged to contact the Accessibility Team (accessibility@cilg.org) as early as possible. Reasonable adjustments will be considered in accordance with the CILG Reasonable Adjustments Policy. Examples include:</p>
+  <ul style="margin-left:2rem;color:var(--text2);line-height:2;">
+    <li>Extended time (up to 50% additional time for written examinations)</li>
+    <li>Separate invigilation room</li>
+    <li>Large print or Braille examination papers</li>
+    <li>Use of assistive technology or reader/scribe support</li>
+    <li>Postponement or deferral of examination to a later window</li>
+  </ul>
+  <p style="margin-top:1rem;"><strong>Requests must be submitted with supporting documentation no later than 8 weeks before the examination date.</strong></p>
+</section>
+
+<!-- 2. THE FOUR PILLARS -->
+<section id="pillars">
+  <h2>2. The Four Pillars of Professional Excellence</h2>
+  <p>CILG's qualifications are structured around four pillars, each defining a discrete competency domain and assessment model:</p>
+
+  <h3>2.1 Pillar 1: Knowledge &amp; Comprehension</h3>
+  <p><strong>Focus:</strong> Conceptual understanding, knowledge retention, and analytical ability.</p>
+  <p><strong>Assessment Method:</strong> Multiple-choice questions (MCQ), short-answer questions, and case study analysis.</p>
+  <p><strong>Grading:</strong> Pass (≥50%), Merit (≥65%), Distinction (≥80%).</p>
+  <p><strong>Duration:</strong> 2–3 hours written examination; 90–180 minutes.</p>
+
+  <h3>2.2 Pillar 2: Professional Skills &amp; Practice</h3>
+  <p><strong>Focus:</strong> Application of knowledge to professional context, decision-making, and practical problem-solving.</p>
+  <p><strong>Assessment Method:</strong> Scenario-based case studies, constructed-response tasks, and integrated case studies (ICS).</p>
+  <p><strong>Grading:</strong> Pass (≥50%), Merit (≥65%), Distinction (≥80%).</p>
+  <p><strong>Duration:</strong> 3–4 hours written examination; extended time permitted for reading comprehension.</p>
+
+  <h3>2.3 Pillar 3: Work-Based &amp; Reflective Practice</h3>
+  <p><strong>Focus:</strong> Evidence of professional competency in the workplace, reflective learning, and continuous development.</p>
+  <p><strong>Assessment Method:</strong> Work-based assignments (WBA), professional portfolios, reflective essays, and workplace observation.</p>
+  <p><strong>Grading:</strong> Pass (≥50%), Merit (≥65%), Distinction (≥80%).</p>
+  <p><strong>Submission Deadline:</strong> Assignments submitted within 30 days of window close; late submission penalties apply (5% deduction per week, max 3 weeks).</p>
+
+  <h3>2.4 Pillar 4: Professional Integration &amp; Capstone</h3>
+  <p><strong>Focus:</strong> Integration of all four pillars; demonstration of professional readiness and strategic thinking.</p>
+  <p><strong>Assessment Method:</strong> Integrated case study (ICS), professional project, or viva voce (professional discussion).</p>
+  <p><strong>Grading:</strong> Pass (≥50%), Merit (≥65%), Distinction (≥80%).</p>
+  <p><strong>Duration:</strong> 4–5 hours for written ICS; 45–60 minutes for viva voce.</p>
+</section>
+
+<!-- 3. QUALIFICATION LEVELS -->
+<section id="levels">
+  <h2>3. Qualification Levels &amp; Eligibility</h2>
+  <p>CILG qualifications are offered at five levels, aligned to the UK Qualifications Framework (CQFW) and international professional standards. Each level has defined entry requirements, assessment models, and professional outcomes.</p>
+
+  <h3>3.1 Level Structure &amp; Entry Requirements</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Level</th><th>Qualification Descriptor</th><th>Entry Requirements</th><th>Professional Outcome</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Level 1</strong></td><td>Foundation (120 GLH*)</td><td>No formal entry requirements; open to all. Some prior experience recommended.</td><td>Foundation knowledge in professional discipline; readiness for supervisory roles</td></tr>
+        <tr><td><strong>Level 2</strong></td><td>Knowledge (180 GLH)</td><td>Level 1 completion or equivalent; 2+ years experience in relevant field; relevant undergraduate degree</td><td>Intermediate professional knowledge and applied skills; readiness for professional membership</td></tr>
+        <tr><td><strong>Level 3</strong></td><td>Skills (240 GLH)</td><td>Level 2 completion or equivalent; 4+ years experience in professional role; degree or L3 qualification</td><td>Advanced professional competency; eligibility for senior professional designation (e.g., Chartered Member)</td></tr>
+        <tr><td><strong>Level 4</strong></td><td>Advanced (300 GLH)</td><td>Level 3 completion or equivalent; 7+ years senior professional practice; degree in cognate discipline</td><td>Executive-level professional competency; eligibility for senior fellowship (e.g., Chartered Fellow)</td></tr>
+        <tr><td><strong>Level 5</strong></td><td>Professional (360 GLH)</td><td>Level 4 completion or equivalent; 10+ years strategic/executive practice; degree and CPD evidence</td><td>Strategic and thought leadership capability; eligibility for fellowship and governance roles (e.g., Fellow, Board Member)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--text2);margin-top:1rem;"><em>*GLH = Guided Learning Hours (approximate notional learning time)</em></p>
+
+  <h3>3.2 Experience Recognition &amp; Exemptions</h3>
+  <p>Candidates with significant prior professional experience, relevant qualifications from recognised international professional bodies, or prior CILG study may be eligible for exemptions from certain modules or assessments. Exemptions are awarded on a case-by-case basis and are subject to:</p>
+  <ul style="margin-left:2rem;color:var(--text2);line-height:2;">
+    <li>Review by the Exemptions Committee within 10 working days of application</li>
+    <li>Equivalence of learning outcomes and assessment standards</li>
+    <li>Submission of certified evidence (qualification certificates, transcripts, professional references)</li>
+    <li>Payment of exemption assessment fee (typically £35–£75 per module)</li>
+  </ul>
+  <p style="margin-top:1rem;">For details, see the CILG Exemptions Policy.</p>
+</section>
+
+<!-- 4. ASSESSMENT STANDARDS -->
+<section id="assessment">
+  <h2>4. Assessment Standards &amp; Candidate Support</h2>
+
+  <h3>4.1 Assessment Design Principles</h3>
+  <p>All assessments are designed in accordance with the following principles:</p>
+  <ul style="margin-left:2rem;color:var(--text2);line-height:2;">
+    <li><strong>Validity:</strong> Assessments measure what they are intended to measure; assessment tasks align directly to learning outcomes and competency standards</li>
+    <li><strong>Reliability:</strong> Assessments are marked consistently using detailed marking guidance; double-marking and moderation protocols ensure consistency across markers and cohorts</li>
+    <li><strong>Fairness:</strong> Assessment conditions are the same for all candidates; reasonable adjustments are provided where needed to remove barriers</li>
+    <li><strong>Sufficiency:</strong> Each level requires multiple assessments across all four pillars; no single assessment determines overall level award</li>
+    <li><strong>Authenticity:</strong> Assessment tasks reflect real professional scenarios; work-based assignments draw on actual workplace experience</li>
+  </ul>
+
+  <h3>4.2 Grading Standards</h3>
+  <div class="table-wrap" style="max-width:700px;">
+    <table>
+      <thead><tr><th>Grade</th><th>Mark Range</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Distinction</strong></td><td>80–100%</td><td>Comprehensive knowledge, sophisticated application, and excellent communication. Demonstrates readiness for advancement.</td></tr>
+        <tr><td><strong>Merit</strong></td><td>65–79%</td><td>Solid knowledge, good application, and clear communication. Meets all learning outcomes with confidence.</td></tr>
+        <tr><td><strong>Pass</strong></td><td>50–64%</td><td>Adequate knowledge and basic application. Meets core learning outcomes.</td></tr>
+        <tr><td><strong>Fail</strong></td><td>0–49%</td><td>Does not meet minimum competency standard. Reassessment required.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.3 Programme Completion Timeframes</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Level</th><th>Recommended Duration</th><th>Maximum Permitted Period</th><th>Extension Policy</th></tr></thead>
+      <tbody>
+        <tr><td>Level 1 — Foundation</td><td>3 – 6 months</td><td>18 months from first module registration</td><td>One (1) extension of 6 months on application; administration fee applies</td></tr>
+        <tr><td>Level 2 — Knowledge</td><td>6 – 9 months</td><td>24 months from first module registration</td><td>One (1) extension of 6 months on application; administration fee applies</td></tr>
+        <tr><td>Level 3 — Skills</td><td>9 – 12 months</td><td>30 months from first module registration</td><td>One (1) extension of 6 months; CPD compliance required for extension approval</td></tr>
+        <tr><td>Level 4 — Advanced</td><td>12 – 18 months</td><td>36 months from first module registration</td><td>Extension by application to Examinations Board only; must demonstrate active senior practice</td></tr>
+        <tr><td>Level 5 — Professional</td><td>18 – 24 months</td><td>48 months from first module registration</td><td>Extension by application to Examinations Board only; must demonstrate active executive practice and CPD compliance</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.4 Candidate Support Services</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Service</th><th>Description</th><th>Contact / Access</th></tr></thead>
+      <tbody>
+        <tr><td>Academic Tutoring</td><td>Module-specific tutoring from a CILG-approved tutor. Asynchronous (48-hour SLA) for all modes; live sessions in virtual classroom and blended modes</td><td>CILG Members' Portal — Tutor Support</td></tr>
+        <tr><td>Peer Learning Community</td><td>Moderated online community for discussion, professional insight sharing, and peer support. Organised by level and module</td><td>CILG Members' Portal — Community</td></tr>
+        <tr><td>Exam Preparation Workshops</td><td>Live online workshops (2 hours each) on examination technique, time management, and mock examination review. Held 6 weeks before each window</td><td>CILG Events Calendar — free for registered candidates</td></tr>
+        <tr><td>Welfare and Wellbeing</td><td>Confidential support for candidates experiencing personal difficulty affecting their studies. Signposting to professional support services</td><td>welfare@cilg.org — confidential</td></tr>
+        <tr><td>Reasonable Adjustments</td><td>Assessment adjustments for candidates with disabilities or additional learning needs — see Section 1.3</td><td>accessibility@cilg.org — 8 weeks before exam</td></tr>
+        <tr><td>Financial Hardship Support</td><td>The CILG Hardship Fund provides fee support for candidates facing financial difficulty. Assessed confidentially by the Secretary-General</td><td>hardship@cilg.org — confidential</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.5 Alignment with International Professional Body Standards</h3>
+  <p>The following demonstrates alignment between CILG's four professional standards pillars and the practices of recognised international professional bodies:</p>
+  <div class="align-grid">
+    <div class="align-card">
+      <div class="align-card-head">CILG Standard</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Open entry at Foundation; experience required at advanced levels</div>
+        <div class="align-item"><strong>Grading</strong>Pass / Merit / Distinction; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>MCQ, case study, integrated case study at Strategic; work-based assignments</div>
+        <div class="align-item"><strong>Mode of Study</strong>Self-study, online, virtual classroom, blended</div>
+      </div>
+    </div>
+    <div class="align-card">
+      <div class="align-card-head">Leading Professional Examination Body 1</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Open entry at Fundamentals; experience required at Professional and Strategic levels</div>
+        <div class="align-item"><strong>Grading</strong>Pass/Fail + Prize for top candidates; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>MCQ, case study, constructed response; Capstone at Strategic</div>
+        <div class="align-item"><strong>Mode of Study</strong>Self-study, approved learning partner, online, blended</div>
+      </div>
+    </div>
+    <div class="align-card">
+      <div class="align-card-head">Leading Professional Examination Body 2</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Open entry; experience required at Management and Strategic</div>
+        <div class="align-item"><strong>Grading</strong>Pass/Merit/Distinction; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>Objective, case study, integrated case study at Strategic</div>
+        <div class="align-item"><strong>Mode of Study</strong>Self-study, approved learning partner, online, blended</div>
+      </div>
+    </div>
+    <div class="align-card">
+      <div class="align-card-head">Leading Professional Examination Body 3</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Open at Foundation; experience required at L5 and L7</div>
+        <div class="align-item"><strong>Grading</strong>Pass/Merit/Distinction; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>Written, work-based assignments, reflective practice at higher levels</div>
+        <div class="align-item"><strong>Mode of Study</strong>Self-study, workplace learning, virtual classroom, blended</div>
+      </div>
+    </div>
+    <div class="align-card">
+      <div class="align-card-head">International Professional Body 1</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Academic threshold + professional experience at each level</div>
+        <div class="align-item"><strong>Grading</strong>Pass/Merit/Distinction; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>Written exams, professional assignments, CS project</div>
+        <div class="align-item"><strong>Mode of Study</strong>Self-study, distance learning, approved centres</div>
+      </div>
+    </div>
+    <div class="align-card">
+      <div class="align-card-head">International Professional Body 2</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Open at Foundation; significant experience required at Chartered Director</div>
+        <div class="align-item"><strong>Grading</strong>Pass/Merit/Distinction; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>Portfolio, written assignments, professional discussion</div>
+        <div class="align-item"><strong>Mode of Study</strong>In-person, online, blended; facilitated professional</div>
+      </div>
+    </div>
+    <div class="align-card">
+      <div class="align-card-head">International Professional Body 3</div>
+      <div class="align-row2">
+        <div class="align-item"><strong>Eligibility</strong>Supervisory experience for L5; managerial for L7</div>
+        <div class="align-item"><strong>Grading</strong>Pass/Merit/Distinction; competency-referenced</div>
+        <div class="align-item"><strong>Assessment</strong>Written assignments, work-based evidence, professional discussion</div>
+        <div class="align-item"><strong>Mode of Study</strong>Online, blended, workplace through approved centres</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYLLABI DOWNLOAD SECTION -->
+<section id="syllabi" class="syllabi-section">
+  <div class="sect-label">Qualification Syllabi</div>
+  <h2>Download the Qualification Syllabi</h2>
+  <p>Access the full syllabus for each of CILG's five qualification levels. Each document outlines learning outcomes, module content, assessment methods, and entry requirements.</p>
+
+  <div class="syllabi-grid">
+    <!-- Level 1 -->
+    <div class="syll-card">
+      <div class="syll-level-badge">Level 1</div>
+      <div class="syll-book">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-1 18H7V4h10v16z"/></svg>
+      </div>
+      <div class="syll-title">Foundation Certificate in Leadership &amp; Governance</div>
+      <div class="syll-desc">Foundational principles of leadership and governance for professionals beginning their governance journey.</div>
+      <a href="assets/documents/CILG_Level1_Syllabus.pdf" class="syll-btn" download>
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
+        Download Syllabus
+      </a>
+      <div class="syll-filename">PDF &middot; CILG_Level1_Syllabus.pdf</div>
+    </div>
+    <!-- Level 2 -->
+    <div class="syll-card">
+      <div class="syll-level-badge">Level 2</div>
+      <div class="syll-book">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-1 18H7V4h10v16z"/></svg>
+      </div>
+      <div class="syll-title">Certificate in Leadership &amp; Governance</div>
+      <div class="syll-desc">Deeper exploration of governance frameworks, board dynamics, stakeholder management, and professional ethics.</div>
+      <a href="assets/documents/CILG_Level2_Syllabus.pdf" class="syll-btn" download>
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
+        Download Syllabus
+      </a>
+      <div class="syll-filename">PDF &middot; CILG_Level2_Syllabus.pdf</div>
+    </div>
+    <!-- Level 3 -->
+    <div class="syll-card">
+      <div class="syll-level-badge">Level 3</div>
+      <div class="syll-book">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-1 18H7V4h10v16z"/></svg>
+      </div>
+      <div class="syll-title">Advanced Certificate in Leadership &amp; Governance</div>
+      <div class="syll-desc">Strategic governance, risk oversight, financial stewardship, and regulatory environments.</div>
+      <a href="assets/documents/CILG_Level3_Syllabus.pdf" class="syll-btn" download>
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
+        Download Syllabus
+      </a>
+      <div class="syll-filename">PDF &middot; CILG_Level3_Syllabus.pdf</div>
+    </div>
+    <!-- Level 4 -->
+    <div class="syll-card">
+      <div class="syll-level-badge">Level 4</div>
+      <div class="syll-book">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-1 18H7V4h10v16z"/></svg>
+      </div>
+      <div class="syll-title">Diploma in Leadership &amp; Governance</div>
+      <div class="syll-desc">Board effectiveness, ESG governance, corporate strategy, and institutional leadership in an integrated diploma.</div>
+      <a href="assets/documents/CILG_Level4_Syllabus.pdf" class="syll-btn" download>
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
+        Download Syllabus
+      </a>
+      <div class="syll-filename">PDF &middot; CILG_Level4_Syllabus.pdf</div>
+    </div>
+    <!-- Level 5 -->
+    <div class="syll-card">
+      <div class="syll-level-badge">Level 5</div>
+      <div class="syll-book">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2zm-1 18H7V4h10v16z"/></svg>
+      </div>
+      <div class="syll-title">Advanced Diploma in Leadership &amp; Governance</div>
+      <div class="syll-desc">Global governance challenges, systemic accountability, and transformational leadership at master-practitioner level.</div>
+      <a href="assets/documents/CILG_Level5_Syllabus.pdf" class="syll-btn" download>
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5v-2z"/></svg>
+        Download Syllabus
+      </a>
+      <div class="syll-filename">PDF &middot; CILG_Level5_Syllabus.pdf</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER (exact from homepage) -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
+        <p>Chartered Institute of Leadership and Governance. A registered professional body dedicated to advancing the highest standards of professional excellence in leadership, corporate governance, organisational management, and public administration.</p>
+        <p style="color:rgba(255,255,255,.35);font-size:.75rem;">United States of America &nbsp;|&nbsp; Professional Standards Framework, Edition 1.0 · 2026</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4> <a href="contact.html">Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:research@cilgglobal.org">research@cilgglobal.org</a>
+        <a href="mailto:media@cilgglobal.org">media@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America<br>
+          <span style="color:rgba(255,255,255,.28);font-size:.68rem">(Correspondence address only)</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+</script>
+</body>
+</html>

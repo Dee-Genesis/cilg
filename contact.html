@@ -1,0 +1,1549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Contact Us | Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET — CILG PALETTE (matches index.html)
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+  --r:           8px;
+  --rl:          14px;
+  --rxl:         22px;
+  --sh0: 0 1px 4px rgba(13,43,31,.06);
+  --sh1: 0 4px 20px rgba(13,43,31,.10);
+  --sh2: 0 12px 48px rgba(13,43,31,.13);
+  --sh3: 0 24px 80px rgba(13,43,31,.17);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION (identical to index.html)
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback {
+  font-family: var(--ff-head);
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--forest); letter-spacing: -.01em; line-height: 1;
+}
+.nav-logo-sub {
+  font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--g300); display: block; margin-top: 2px;
+}
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow {
+  width: 0; height: 0;
+  border-left: 3px solid transparent; border-right: 3px solid transparent;
+  border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6;
+}
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover {
+  background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35);
+}
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a {
+  display: block; padding: 7px 12px; border-radius: 7px;
+  font-size: .74rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); white-space: nowrap;
+}
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none;
+}
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--g300); padding: 0 4px; margin-bottom: .5rem;
+}
+.mob-link {
+  display: block; padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); border: 1px solid transparent;
+}
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta {
+  display: block; width: 100%; padding: 14px; margin-top: 1rem;
+  background: var(--lime); color: var(--forest);
+  font-weight: 700; font-size: .9rem; letter-spacing: .02em;
+  border-radius: 10px; text-align: center; transition: all var(--tr);
+}
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 52vh;
+  padding: calc(var(--nav-h) + 5rem) 3rem 5rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; text-align: center;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 100%, rgba(45,99,71,.15), transparent 62%),
+    radial-gradient(ellipse 35% 40% at 85% 10%, rgba(200,241,53,.08), transparent 55%),
+    linear-gradient(168deg, #0B2218 0%, #0D2B1F 55%, #081A12 100%);
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.005) 0, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.005) 0, transparent 1px, transparent 80px);
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,241,53,.1); border: 1px solid rgba(200,241,53,.28);
+  color: var(--lime); padding: 5px 18px; border-radius: 40px;
+  font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: 1.5rem; animation: heroUp .8s ease both; position: relative;
+}
+.hero-eyebrow::before { content: ''; width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.25} }
+.hero-icon {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200,241,53,.18), rgba(200,241,53,.05));
+  border: 2px solid rgba(200,241,53,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; margin: 0 auto 1.5rem; animation: heroUp .9s .1s ease both;
+  box-shadow: 0 8px 32px rgba(200,241,53,.12);
+  position: relative;
+}
+.hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800;
+  color: var(--white); line-height: 1.1; margin-bottom: .6rem;
+  animation: heroUp 1s .2s ease both; position: relative;
+}
+.hero-sub {
+  font-size: clamp(.9rem, 1.8vw, 1.1rem); color: rgba(200,241,53,.75);
+  font-style: italic; margin-bottom: 1.25rem;
+  animation: heroUp 1s .3s ease both; position: relative;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.hero-sub::before, .hero-sub::after {
+  content: ''; width: 36px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,241,53,.4));
+}
+.hero-sub::after { transform: scaleX(-1); }
+.hero-desc {
+  font-size: .93rem; color: rgba(255,255,255,.5); max-width: 620px;
+  line-height: 1.9; animation: heroUp 1s .4s ease both; position: relative;
+}
+.hero-pills {
+  display: flex; gap: .75rem; margin-top: 1.75rem;
+  flex-wrap: wrap; justify-content: center;
+  animation: heroUp 1s .5s ease both; position: relative;
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.8); padding: .5rem 1.1rem; border-radius: 8px;
+  font-size: .82rem; font-weight: 500; transition: all var(--tr);
+}
+.hero-pill:hover { background: rgba(200,241,53,.12); border-color: rgba(200,241,53,.4); color: var(--lime); }
+.hero-rule {
+  width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--lime), transparent);
+  margin: 2rem auto 0; animation: heroUp 1s .6s ease both; position: relative;
+}
+@keyframes heroUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══════════════════════════════════════════
+   PAGE WRAPPER
+═══════════════════════════════════════════ */
+.page { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* ═══════════════════════════════════════════
+   SECTION BANDS
+═══════════════════════════════════════════ */
+.sec-band {
+  display: flex; align-items: stretch; border-radius: var(--rxl);
+  overflow: hidden; margin: 5rem 0 3rem; box-shadow: var(--sh3);
+}
+.sec-stripe { width: 7px; flex-shrink: 0; background: linear-gradient(180deg, var(--lime), var(--lime-dk)); }
+.sec-main { flex: 1; background: var(--forest); padding: 2.25rem 3rem; }
+.sec-ey { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .4rem; }
+.sec-main h2 { font-family: var(--ff-head); font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--white); font-weight: 800; line-height: 1.15; margin-bottom: .65rem; }
+.sec-main p { font-size: .9rem; color: rgba(255,255,255,.55); line-height: 1.85; max-width: 700px; }
+.sec-num { display: flex; align-items: center; justify-content: center; background: rgba(200,241,53,.04); border-left: 1px solid rgba(255,255,255,.05); padding: 2rem 3rem; min-width: 120px; }
+.sec-dig { font-family: var(--ff-head); font-size: 5.5rem; font-weight: 800; color: rgba(255,255,255,.07); line-height: 1; }
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY HELPERS
+═══════════════════════════════════════════ */
+.h2 {
+  font-family: var(--ff-head); font-size: 1.65rem; font-weight: 700;
+  color: var(--forest); margin-bottom: .4rem; padding-bottom: .5rem;
+  border-bottom: 2px solid var(--g200); position: relative;
+}
+.h2::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 50px; height: 2px; background: var(--lime-dk); }
+.h3 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--forest-mid); margin: 2rem 0 .6rem; display: flex; align-items: center; gap: .6rem; }
+.h3::before { content: ''; width: 4px; height: 18px; background: var(--lime-dk); border-radius: 2px; flex-shrink: 0; }
+.sub { font-size: .9rem; color: var(--g500); margin-bottom: 1.75rem; line-height: 1.7; }
+.prose { font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.1rem; }
+.prose strong { color: var(--forest); font-weight: 600; }
+.prose a { color: var(--forest-lt); font-weight: 500; }
+.prose a:hover { color: var(--forest); }
+.divider { height: 1px; background: var(--g200); margin: 3rem 0; }
+
+/* ═══════════════════════════════════════════
+   PRIMARY CONTACT CARD
+═══════════════════════════════════════════ */
+.primary-contact {
+  background: linear-gradient(135deg, var(--forest), var(--forest-mid));
+  border-radius: var(--rxl); box-shadow: var(--sh3);
+  padding: 3rem; margin: 2rem 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  border: 1px solid rgba(200,241,53,.1);
+}
+.pct-label { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .75rem; }
+.pct-org { font-family: var(--ff-head); font-size: 1.9rem; font-weight: 800; color: var(--white); margin-bottom: .25rem; line-height: 1.15; }
+.pct-tagline { font-size: .88rem; color: var(--lime); font-style: italic; margin-bottom: 2rem; }
+.pct-items { display: flex; flex-direction: column; gap: 1rem; }
+.pct-item { display: flex; align-items: flex-start; gap: .85rem; }
+.pct-item-icon {
+  width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+}
+.pct-item-label { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .15rem; }
+.pct-item-value { font-size: .92rem; font-weight: 500; color: var(--white); line-height: 1.5; }
+.pct-item-value a { color: var(--lime); text-decoration: none; transition: color var(--tr); }
+.pct-item-value a:hover { color: var(--lime-dk); }
+.pct-item-note { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: .15rem; line-height: 1.5; }
+.pct-right { border-left: 1px solid rgba(255,255,255,.08); padding-left: 3rem; }
+.pct-right-label { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 1rem; }
+.pct-hours-table { width: 100%; }
+.pct-hours-table tr td { padding: .35rem 0; font-size: .87rem; color: rgba(255,255,255,.65); line-height: 1.6; border-bottom: 1px solid rgba(255,255,255,.06); }
+.pct-hours-table tr:last-child td { border-bottom: none; }
+.pct-hours-table td:first-child { font-weight: 600; color: rgba(255,255,255,.88); width: 120px; }
+.pct-note {
+  background: rgba(200,241,53,.08); border: 1px solid rgba(200,241,53,.2);
+  border-radius: var(--r); padding: .85rem 1rem; margin-top: 1.5rem;
+  display: flex; gap: .65rem; align-items: flex-start;
+}
+.pct-note p { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.65; }
+.pct-note strong { color: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   MAP + ADDRESS SECTION
+═══════════════════════════════════════════ */
+.map-address-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: start;
+}
+.map-wrap {
+  border-radius: var(--rxl); overflow: hidden;
+  box-shadow: var(--sh2); border: 1px solid var(--g200);
+  height: 400px;
+}
+.map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+.address-card {
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: var(--rxl); box-shadow: var(--sh1); padding: 2.5rem;
+}
+.addr-icon-col {
+  width: 60px; height: 60px; border-radius: var(--rl);
+  background: linear-gradient(135deg, var(--forest), var(--forest-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; margin-bottom: 1.1rem; box-shadow: var(--sh0);
+}
+.addr-eyebrow { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--lime-dk); margin-bottom: .3rem; }
+.addr-title { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--forest); margin-bottom: .15rem; }
+.addr-sub { font-size: .83rem; color: var(--g500); margin-bottom: 1.1rem; font-style: italic; }
+.addr-lines { margin-bottom: 1.1rem; }
+.addr-line { font-size: .97rem; font-weight: 500; color: var(--forest); line-height: 1.7; font-family: monospace; }
+.addr-line.indent { padding-left: .1rem; color: var(--text2); }
+.addr-warning {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: #FFF3CD; border: 1px solid rgba(146,64,14,.2);
+  border-radius: var(--r); padding: .55rem 1rem;
+  font-size: .82rem; color: #92400E; font-weight: 600;
+}
+.addr-detail {
+  font-size: .84rem; color: var(--text2); margin-top: 1rem; line-height: 1.75;
+}
+
+/* ═══════════════════════════════════════════
+   IMPORTANT NOTICE
+═══════════════════════════════════════════ */
+.important-notice {
+  background: linear-gradient(135deg, rgba(146,64,14,.08), rgba(146,64,14,.02));
+  border: 1px solid rgba(146,64,14,.22); border-radius: var(--rxl);
+  padding: 2rem 2.5rem; margin: 2.5rem 0;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+}
+.in-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+.in-title { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700; color: #92400E; margin-bottom: .35rem; }
+.in-text { font-size: .9rem; color: var(--text2); line-height: 1.85; }
+.in-text strong { color: var(--forest); }
+
+/* ═══════════════════════════════════════════
+   DEPARTMENT GRID
+═══════════════════════════════════════════ */
+.dept-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem; margin: 2rem 0; }
+.dept-card {
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: var(--rl); box-shadow: var(--sh0);
+  overflow: hidden; transition: all var(--tr);
+}
+.dept-card:hover { box-shadow: var(--sh1); transform: translateY(-3px); }
+.dept-card::before { content: ''; display: block; height: 4px; background: var(--dc, var(--lime-dk)); }
+.dept-head { padding: 1.4rem 1.6rem 1rem; }
+.dept-icon { font-size: 1.7rem; margin-bottom: .5rem; }
+.dept-name { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .2rem; }
+.dept-desc { font-size: .8rem; color: var(--g500); line-height: 1.6; }
+.dept-body { padding: .75rem 1.6rem 1.4rem; border-top: 1px solid var(--g100); }
+.dept-contact { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+.dept-contact:last-of-type { margin-bottom: 0; }
+.dc-type { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--g300); width: 50px; flex-shrink: 0; }
+.dc-val { font-size: .85rem; color: var(--forest); text-decoration: none; font-weight: 500; word-break: break-all; }
+.dc-val:hover { color: var(--forest-lt); }
+.dept-topics { margin-top: .75rem; display: flex; flex-wrap: wrap; gap: .35rem; }
+.dt-tag { font-size: .7rem; padding: 2px 8px; border-radius: 4px; background: var(--g100); color: var(--g500); font-weight: 500; }
+
+/* ═══════════════════════════════════════════
+   RESPONSE TIME TABLE
+═══════════════════════════════════════════ */
+.resp-table { width: 100%; border-collapse: collapse; border-radius: var(--rl); overflow: hidden; border: 1px solid var(--g200); margin: 1.5rem 0; box-shadow: var(--sh0); }
+.resp-table th { background: var(--forest); color: var(--white); padding: 11px 16px; text-align: left; font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.resp-table td { padding: 10px 16px; border-bottom: 1px solid var(--g100); font-size: .87rem; color: var(--text2); vertical-align: middle; line-height: 1.65; }
+.resp-table tr:last-child td { border-bottom: none; }
+.resp-table tr:nth-child(even) td { background: var(--g100); }
+.resp-table td:first-child { font-weight: 600; color: var(--forest); }
+.badge-time { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+.bt-fast { background: #EBF5F0; color: #1A5E3A; }
+.bt-med { background: #FEF9E8; color: #92400E; }
+.bt-slow { background: #EEF3FB; color: #1A3A8A; }
+
+/* ═══════════════════════════════════════════
+   INFO BOXES
+═══════════════════════════════════════════ */
+.info-box { border-radius: var(--rl); padding: 1.4rem 1.7rem; margin: 1.5rem 0; }
+.info-box.lime { background: var(--lime-pale); border: 1px solid rgba(174,219,26,.3); border-left: 5px solid var(--lime-dk); }
+.info-box.forest { background: var(--g100); border: 1px solid var(--g200); border-left: 5px solid var(--forest-mid); }
+.info-box.green { background: #EBF5F0; border: 1px solid rgba(26,94,58,.18); border-left: 5px solid #1A5E3A; }
+.info-box.amber { background: #FEF3E6; border: 1px solid rgba(146,64,14,.18); border-left: 5px solid #92400E; }
+.info-box.red { background: #FAE8E8; border: 1px solid rgba(139,26,26,.15); border-left: 5px solid #8B1A1A; }
+.info-box.teal { background: #E6F2FA; border: 1px solid rgba(11,74,92,.15); border-left: 5px solid #0B4A5C; }
+.ib-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .6rem; display: flex; align-items: center; gap: 7px; }
+.info-box.lime .ib-title { color: var(--forest); }
+.info-box.forest .ib-title { color: var(--forest-mid); }
+.info-box.green .ib-title { color: #1A5E3A; }
+.info-box.amber .ib-title { color: #92400E; }
+.info-box.red .ib-title { color: #8B1A1A; }
+.info-box.teal .ib-title { color: #0B4A5C; }
+.info-box ul { list-style: none; }
+.info-box ul li { font-size: .89rem; color: var(--text2); padding: .3rem 0 .3rem 14px; position: relative; line-height: 1.65; }
+.info-box ul li::before { content: '›'; position: absolute; left: 0; color: var(--lime-dk); font-weight: 700; }
+.info-box p { font-size: .9rem; color: var(--text2); line-height: 1.8; }
+.info-box a { color: var(--forest-lt); font-weight: 500; }
+.info-box a:hover { color: var(--forest); }
+
+/* ═══════════════════════════════════════════
+   HOURS GRID
+═══════════════════════════════════════════ */
+.hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.hours-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); padding: 1.75rem; box-shadow: var(--sh0); }
+.hours-card-title { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .2rem; display: flex; align-items: center; gap: .6rem; }
+.hours-card-sub { font-size: .8rem; color: var(--g500); margin-bottom: 1rem; }
+.hours-row { display: flex; justify-content: space-between; align-items: center; padding: .4rem 0; border-bottom: 1px solid var(--g100); font-size: .87rem; }
+.hours-row:last-child { border-bottom: none; }
+.hours-day { color: var(--text2); font-weight: 500; }
+.hours-time { font-family: monospace; color: var(--forest); font-weight: 600; font-size: .82rem; }
+.hours-closed { color: var(--g300); font-style: italic; }
+.tz-note { font-size: .78rem; color: var(--g500); margin-top: .75rem; padding-top: .6rem; border-top: 1px solid var(--g100); display: flex; align-items: flex-start; gap: .4rem; line-height: 1.65; }
+
+/* ═══════════════════════════════════════════
+   INTERNATIONAL GRID
+═══════════════════════════════════════════ */
+.intl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.25rem; margin: 2rem 0; }
+.intl-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); padding: 1.4rem; box-shadow: var(--sh0); transition: all var(--tr); }
+.intl-card:hover { box-shadow: var(--sh1); transform: translateY(-2px); }
+.intl-flag { font-size: 1.6rem; margin-bottom: .5rem; }
+.intl-region { font-family: var(--ff-head); font-size: .97rem; font-weight: 700; color: var(--forest); margin-bottom: .2rem; }
+.intl-type { font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--lime-dk); margin-bottom: .4rem; }
+.intl-contact { font-size: .84rem; color: var(--text2); line-height: 1.65; }
+.intl-contact a { color: var(--forest-lt); text-decoration: none; transition: color var(--tr); }
+.intl-contact a:hover { color: var(--forest); }
+
+/* ═══════════════════════════════════════════
+   COMPLAINTS ESCALATION
+═══════════════════════════════════════════ */
+.escalation { display: flex; flex-direction: column; gap: .8rem; margin: 1.5rem 0; }
+.esc-step { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem 1.25rem; background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); box-shadow: var(--sh0); }
+.esc-num { width: 32px; height: 32px; border-radius: 50%; background: var(--forest); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--ff-head); font-size: .9rem; font-weight: 700; flex-shrink: 0; }
+.esc-body h4 { font-size: .9rem; font-weight: 600; color: var(--forest); margin-bottom: .2rem; }
+.esc-body p { font-size: .85rem; color: var(--text2); line-height: 1.65; }
+.esc-body a { color: var(--forest-lt); text-decoration: none; }
+.esc-body a:hover { color: var(--forest); }
+
+/* ═══════════════════════════════════════════
+   SOCIAL GRID
+═══════════════════════════════════════════ */
+.social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; margin: 2rem 0; }
+.social-card {
+  background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl);
+  padding: 1.25rem 1.4rem; box-shadow: var(--sh0);
+  display: flex; align-items: center; gap: .9rem;
+  text-decoration: none; transition: all var(--tr);
+}
+.social-card:hover { box-shadow: var(--sh1); transform: translateY(-2px); }
+.sc-icon { width: 42px; height: 42px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+.sc-platform { font-size: .78rem; font-weight: 700; color: var(--forest); margin-bottom: .1rem; }
+.sc-handle { font-family: monospace; font-size: .75rem; color: var(--g500); }
+
+/* ═══════════════════════════════════════════
+   QUICK DIRECTORY
+═══════════════════════════════════════════ */
+.quick-dir {
+  background: var(--forest); border-radius: var(--rxl);
+  padding: 3rem; margin: 3rem 0; box-shadow: var(--sh2);
+}
+.qd-title { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: .3rem; }
+.qd-sub { font-size: .85rem; color: rgba(255,255,255,.4); margin-bottom: 2rem; }
+.qd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: .75rem; }
+.qd-row {
+  display: flex; align-items: center; gap: .85rem;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--r); padding: .7rem 1rem; transition: all var(--tr); text-decoration: none;
+}
+.qd-row:hover { background: rgba(255,255,255,.08); border-color: rgba(200,241,53,.25); }
+.qd-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--qdc, var(--lime-dk)); flex-shrink: 0; }
+.qd-dept { font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.75); flex: 1; line-height: 1.3; }
+.qd-email { font-family: monospace; font-size: .72rem; color: rgba(255,255,255,.38); }
+
+/* ═══════════════════════════════════════════
+   CONTACT FORM
+═══════════════════════════════════════════ */
+.contact-form-wrap {
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: var(--rxl); box-shadow: var(--sh2); padding: 3rem;
+  margin: 2rem 0;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text2); }
+.form-input, .form-select, .form-textarea {
+  padding: .65rem 1rem; border: 1.5px solid var(--g200); border-radius: var(--r);
+  font-family: var(--ff-body); font-size: .9rem; color: var(--text);
+  background: var(--bg); transition: border-color var(--tr), box-shadow var(--tr);
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--lime-dk); box-shadow: 0 0 0 3px rgba(200,241,53,.18);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9rem 2.5rem; background: var(--forest); color: var(--white);
+  border: none; border-radius: 10px; cursor: pointer;
+  font-family: var(--ff-head); font-size: .9rem; font-weight: 700; letter-spacing: .02em;
+  transition: all var(--tr);
+}
+.form-submit:hover { background: var(--forest-lt); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,43,31,.2); }
+.form-submit-lime {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9rem 2.5rem; background: var(--lime); color: var(--forest);
+  border: none; border-radius: 10px; cursor: pointer;
+  font-family: var(--ff-head); font-size: .9rem; font-weight: 700; letter-spacing: .02em;
+  transition: all var(--tr); margin-left: .75rem;
+}
+.form-submit-lime:hover { background: var(--lime-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(174,219,26,.3); }
+.form-note { font-size: .78rem; color: var(--g500); margin-top: .5rem; }
+
+/* ═══════════════════════════════════════════
+   FOOTER (identical to index.html)
+═══════════════════════════════════════════ */
+footer {
+  background: var(--forest);
+  border-top: 2px solid rgba(200,241,53,.12);
+  padding: 4rem 3rem 2.5rem; margin-top: 7rem;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.7rem; font-weight: 800; color: var(--lime); margin-bottom: .4rem; }
+.footer-brand p { font-size: .82rem; color: rgba(255,255,255,.35); line-height: 1.85; }
+.footer-col h4 { font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); margin-bottom: .85rem; }
+.footer-col a, .footer-col p { display: block; font-size: .82rem; color: rgba(255,255,255,.38); line-height: 1.9; text-decoration: none; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { padding-top: 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
+.footer-bottom span { font-size: .75rem; color: rgba(255,255,255,.2); }
+.footer-bottom a { color: rgba(255,255,255,.3); font-size: .72rem; transition: color .25s; text-decoration: none; }
+.footer-bottom a:hover { color: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   SCROLL TO TOP
+═══════════════════════════════════════════ */
+.st {
+  position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 100;
+  width: 42px; height: 42px; background: var(--lime); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--forest); font-size: .95rem; text-decoration: none;
+  box-shadow: var(--sh1); transition: all var(--tr);
+  opacity: 0; visibility: hidden;
+}
+.st.show { opacity: 1; visibility: visible; }
+.st:hover { background: var(--lime-dk); transform: translateY(-3px); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .sec-num { display: none; }
+  .primary-contact { grid-template-columns: 1fr; }
+  .pct-right { border-left: none; border-top: 1px solid rgba(255,255,255,.08); padding-left: 0; padding-top: 1.5rem; }
+  .map-address-grid { grid-template-columns: 1fr; }
+  .hours-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: 1; }
+}
+@media (max-width: 640px) {
+  .hero { padding: calc(var(--nav-h) + 3rem) 1.5rem 3rem; }
+  .hero-pills { flex-direction: column; align-items: center; }
+  .page { padding: 0 1.25rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .contact-form-wrap { padding: 1.75rem; }
+  .primary-contact { padding: 1.75rem; }
+  .quick-dir { padding: 1.75rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link act">Home</a>
+
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+    <a href="index.html" class="mob-link">Home</a>
+
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qualifications.html#professional" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero-eyebrow">Chartered Institute of Leadership and Governance</div>
+  <div class="hero-icon">📬</div>
+  <h1>Get in Touch with CILG</h1>
+  <div class="hero-sub">We are here to serve you</div>
+  <p class="hero-desc">Whether you are a prospective student, a current member, an employer, a partner institution, or a member of the public — the CILG team is ready to assist. Find the right contact channel below for the fastest, most accurate response to your enquiry.</p>
+  <div class="hero-pills">
+    <a href="tel:+15753298396" class="hero-pill">📞 +1 (575) 329-8396</a>
+    <a href="mailto:info@cilgglobal.org" class="hero-pill">✉️ info@cilgglobal.org</a>
+    <a href="https://www.cilgglobal.org" target="_blank" rel="noopener" class="hero-pill">🌐 www.cilgglobal.org</a>
+  </div>
+  <div class="hero-rule"></div>
+</section>
+
+<main>
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1 — PRIMARY CONTACT
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="contact">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section One</div>
+      <h2>Primary Contact Information</h2>
+      <p>All general enquiries about CILG programmes, membership, qualifications, and services should be directed through the channels below. Our team is committed to responding promptly, professionally, and helpfully to every enquiry we receive.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">1</div></div>
+  </div>
+
+  <!-- PRIMARY CONTACT CARD -->
+  <div class="primary-contact">
+    <div class="pct-left">
+      <div class="pct-label">Primary Contact Details</div>
+      <div class="pct-org">Chartered Institute of Leadership and Governance</div>
+      <div class="pct-tagline">Excellence in Leadership. Integrity in Governance.</div>
+      <div class="pct-items">
+        <div class="pct-item">
+          <div class="pct-item-icon">🌐</div>
+          <div class="pct-item-body">
+            <div class="pct-item-label">Website</div>
+            <div class="pct-item-value"><a href="https://www.cilgglobal.org" target="_blank" rel="noopener">www.cilgglobal.org</a></div>
+            <div class="pct-item-note">Official website — qualifications, membership, news, research, and member portal</div>
+          </div>
+        </div>
+        <div class="pct-item">
+          <div class="pct-item-icon">✉️</div>
+          <div class="pct-item-body">
+            <div class="pct-item-label">General Email</div>
+            <div class="pct-item-value"><a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a></div>
+            <div class="pct-item-note">For general enquiries, programme information, and first-contact communications</div>
+          </div>
+        </div>
+        <div class="pct-item">
+          <div class="pct-item-icon">📞</div>
+          <div class="pct-item-body">
+            <div class="pct-item-label">Telephone</div>
+            <div class="pct-item-value"><a href="tel:+15753298396">+1 (575) 329-8396</a></div>
+            <div class="pct-item-note">Monday – Friday, 9:00 AM – 5:00 PM (Eastern Time). International callers welcome.</div>
+          </div>
+        </div>
+        <div class="pct-item">
+          <div class="pct-item-icon">📮</div>
+          <div class="pct-item-body">
+            <div class="pct-item-label">Postal Address</div>
+            <div class="pct-item-value">2222 W. Grand River Ave STE A<br>Okemos, MI 48864<br>United States of America</div>
+            <div class="pct-item-note">For correspondence and mail only — not a walk-in or visitor address</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pct-right">
+      <div class="pct-right-label">Office Hours — Eastern Time (ET)</div>
+      <table class="pct-hours-table">
+        <tr><td>Monday</td><td>9:00 AM – 5:00 PM</td></tr>
+        <tr><td>Tuesday</td><td>9:00 AM – 5:00 PM</td></tr>
+        <tr><td>Wednesday</td><td>9:00 AM – 5:00 PM</td></tr>
+        <tr><td>Thursday</td><td>9:00 AM – 5:00 PM</td></tr>
+        <tr><td>Friday</td><td>9:00 AM – 5:00 PM</td></tr>
+        <tr><td>Saturday</td><td style="color:rgba(255,255,255,.35);font-style:italic">Closed</td></tr>
+        <tr><td>Sunday</td><td style="color:rgba(255,255,255,.35);font-style:italic">Closed</td></tr>
+      </table>
+      <div style="margin-top:.75rem;font-size:.78rem;color:rgba(255,255,255,.38);line-height:1.65">All times are Eastern Time (ET). CILG observes US federal public holidays. The <strong style="color:rgba(255,255,255,.55)">online portal and email</strong> remain available 24/7. Telephone lines are staffed during office hours only.</div>
+      <div class="pct-note">
+        <span style="flex-shrink:0;margin-top:1px">💡</span>
+        <p><strong>Best response tip:</strong> Email is the fastest and most reliable way to reach the right CILG team member. Include your full name, membership number (if applicable), and a clear description of your query for the quickest response.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       POSTAL ADDRESS + MAP
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="address">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Registered Address</div>
+      <h2>Our Location</h2>
+      <p>CILG's registered correspondence address is located in Okemos, Michigan, USA. The map below shows the exact location. Please note this is a postal and correspondence address only.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">📍</div></div>
+  </div>
+
+  <div class="important-notice">
+    <div class="in-icon">📫</div>
+    <div class="in-body">
+      <div class="in-title">Important Notice — Postal Address Only</div>
+      <div class="in-text">CILG's address at <strong>2222 W. Grand River Ave STE A, Okemos, MI 48864</strong> is a <strong>registered correspondence address</strong> for the receipt of official mail, legal correspondence, and formal written communications only. <strong>CILG does not operate a public walk-in office at this location.</strong> Visitors, students, and members should not attend in person. All in-person meetings and events are arranged separately by appointment at specified locations communicated directly to participants. For all enquiries, please use the telephone, email, or website contact channels listed on this page.</div>
+    </div>
+  </div>
+
+  <div class="map-address-grid">
+    <!-- EMBEDDED MAP — 2222 W. Grand River Ave STE A, Okemos, MI 48864 -->
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.0!2d-84.4196!3d42.7278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8822e9b7c8b8b8b7%3A0x1234567890abcdef!2s2222+W+Grand+River+Ave+STE+A%2C+Okemos%2C+MI+48864%2C+USA!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus"
+        width="100%" height="400" style="border:0;" allowfullscreen=""
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="CILG Office Location — 2222 W. Grand River Ave STE A, Okemos, MI 48864">
+      </iframe>
+    </div>
+
+    <!-- ADDRESS CARD -->
+    <div class="address-card">
+      <div class="addr-icon-col">🏢</div>
+      <div class="addr-eyebrow">Official Registered Postal Address</div>
+      <div class="addr-title">Chartered Institute of Leadership and Governance</div>
+      <div class="addr-sub">For all official correspondence, legal communications, and formal written submissions</div>
+      <div class="addr-lines">
+        <div class="addr-line">Chartered Institute of Leadership</div>
+        <div class="addr-line">and Governance</div>
+        <div class="addr-line indent">2222 W. Grand River Ave STE A</div>
+        <div class="addr-line indent">Okemos, MI 48864</div>
+        <div class="addr-line indent">United States of America</div>
+      </div>
+      <div class="addr-warning">⚠️ Mail and correspondence only — no visitor access.</div>
+      <p class="addr-detail">This address is maintained for the receipt of official correspondence including legal notices, regulatory communications, formal membership documentation, and other written communications requiring a physical mailing address. All correspondence is processed by the CILG Secretariat. CILG recommends using tracked or signed-for postal services for important correspondence.</p>
+      <div style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap">
+        <a href="https://maps.google.com/?q=2222+W+Grand+River+Ave+STE+A,+Okemos,+MI+48864" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;background:var(--forest);color:var(--white);border-radius:8px;font-size:.82rem;font-weight:600;transition:all var(--tr);"
+           onmouseover="this.style.background='var(--forest-lt)'" onmouseout="this.style.background='var(--forest)'">
+          📍 Open in Google Maps
+        </a>
+        <a href="https://maps.apple.com/?q=2222+W+Grand+River+Ave,+Okemos,+MI+48864" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;background:var(--lime);color:var(--forest);border-radius:8px;font-size:.82rem;font-weight:600;transition:all var(--tr);"
+           onmouseover="this.style.background='var(--lime-dk)'" onmouseout="this.style.background='var(--lime)'">
+          🗺 Apple Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2 — DEPARTMENTAL CONTACTS
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="departments">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Two</div>
+      <h2>Departmental Contact Directory</h2>
+      <p>For the fastest and most accurate response, contact the CILG department directly responsible for your area of enquiry. Each department is staffed by specialists who can provide expert, targeted assistance.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">2</div></div>
+  </div>
+
+  <p class="prose">CILG's operations are organised across eight specialist departments, each with dedicated contact channels. If you are unsure which department to contact, email <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a> and the Secretariat will direct your enquiry to the right team.</p>
+
+  <div class="dept-grid">
+    <!-- ADMISSIONS -->
+    <div class="dept-card" style="--dc:#1A4778">
+      <div class="dept-head">
+        <div class="dept-icon">🎓</div>
+        <div class="dept-name">Admissions and Student Services</div>
+        <div class="dept-desc">Programme enrolment, application processing, entry requirements, study materials, and student support throughout the qualification journey.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Phone</span><a class="dc-val" href="tel:+15753298396">+1 (575) 329-8396</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Programme enrolment</span>
+          <span class="dt-tag">Entry requirements</span>
+          <span class="dt-tag">Study modes</span>
+          <span class="dt-tag">Exemptions</span>
+          <span class="dt-tag">Deferral requests</span>
+        </div>
+      </div>
+    </div>
+    <!-- MEMBERSHIP -->
+    <div class="dept-card" style="--dc:var(--lime-dk)">
+      <div class="dept-head">
+        <div class="dept-icon">🏅</div>
+        <div class="dept-name">Membership Services</div>
+        <div class="dept-desc">Membership applications, grade upgrades, CPD compliance, post-nominal queries, membership certificates, and general member account management.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Phone</span><a class="dc-val" href="tel:+15753298396">+1 (575) 329-8396</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Grade upgrades</span>
+          <span class="dt-tag">CPD returns</span>
+          <span class="dt-tag">Subscriptions</span>
+          <span class="dt-tag">Post-nominals</span>
+          <span class="dt-tag">Reinstatement</span>
+        </div>
+      </div>
+    </div>
+    <!-- EXAMS -->
+    <div class="dept-card" style="--dc:#1A5E3A">
+      <div class="dept-head">
+        <div class="dept-icon">📝</div>
+        <div class="dept-name">Examinations and Assessments</div>
+        <div class="dept-desc">Examination registration, scheduling, results, PPA and case study submission, special assessment arrangements, and re-sit applications.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:exams@cilgglobal.org">exams@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Phone</span><a class="dc-val" href="tel:+15753298396">+1 (575) 329-8396</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Exam registration</span>
+          <span class="dt-tag">Results queries</span>
+          <span class="dt-tag">Special arrangements</span>
+          <span class="dt-tag">Re-sits</span>
+          <span class="dt-tag">PPA submission</span>
+        </div>
+      </div>
+    </div>
+    <!-- CREDENTIALS -->
+    <div class="dept-card" style="--dc:#0B4A5C">
+      <div class="dept-head">
+        <div class="dept-icon">🛡️</div>
+        <div class="dept-name">Credentials and Verification</div>
+        <div class="dept-desc">Certificate verification, manual verification requests, replacement certificates, fraud reporting, and official Verification Certificates for legal or institutional use.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:verify@certificate@cilgglobal.org">verify@certificate@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Portal</span><a class="dc-val" href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">cilgglobal.org/cilg/user/</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Certificate verification</span>
+          <span class="dt-tag">Fraud reports</span>
+          <span class="dt-tag">Replacement certs</span>
+          <span class="dt-tag">Formal verification</span>
+        </div>
+      </div>
+    </div>
+    <!-- CORPORATE -->
+    <div class="dept-card" style="--dc:#3A1060">
+      <div class="dept-head">
+        <div class="dept-icon">🏛️</div>
+        <div class="dept-name">Corporate and Institutional Partnerships</div>
+        <div class="dept-desc">Corporate membership enquiries, employer partnerships, ALP accreditation, institutional training programmes, and bulk enrolment arrangements.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:corporate@cilgglobal.org">corporate@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Phone</span><a class="dc-val" href="tel:+15753298396">+1 (575) 329-8396</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Corporate membership</span>
+          <span class="dt-tag">ALP accreditation</span>
+          <span class="dt-tag">Bulk enrolment</span>
+          <span class="dt-tag">Institutional training</span>
+        </div>
+      </div>
+    </div>
+    <!-- FINANCE -->
+    <div class="dept-card" style="--dc:#92400E">
+      <div class="dept-head">
+        <div class="dept-icon">💳</div>
+        <div class="dept-name">Finance and Payments</div>
+        <div class="dept-desc">Payment enquiries, invoices, receipts, fee concessions, hardship fund applications, refunds, and financial administration matters.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:finance@cilgglobal.org">finance@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Hardship</span><a class="dc-val" href="mailto:hardship@cilgglobal.org">hardship@cilgglobal.org</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Payments</span>
+          <span class="dt-tag">Invoices</span>
+          <span class="dt-tag">Concessions</span>
+          <span class="dt-tag">Hardship fund</span>
+          <span class="dt-tag">Refunds</span>
+        </div>
+      </div>
+    </div>
+    <!-- RESEARCH -->
+    <div class="dept-card" style="--dc:var(--forest)">
+      <div class="dept-head">
+        <div class="dept-icon">🔬</div>
+        <div class="dept-name">Research, Policy and Advocacy</div>
+        <div class="dept-desc">Research programme enquiries, journal submissions, publication requests, policy engagement, thought leadership, and media and academic partnerships.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:research@cilgglobal.org">research@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Media</span><a class="dc-val" href="mailto:media@cilgglobal.org">media@cilgglobal.org</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Journal submissions</span>
+          <span class="dt-tag">Policy enquiries</span>
+          <span class="dt-tag">Publications</span>
+          <span class="dt-tag">Media requests</span>
+        </div>
+      </div>
+    </div>
+    <!-- FELLOWSHIP -->
+    <div class="dept-card" style="--dc:#8B1A1A">
+      <div class="dept-head">
+        <div class="dept-icon">🏆</div>
+        <div class="dept-name">Fellowship and Governance Secretariat</div>
+        <div class="dept-desc">Fellowship applications, Professional Entry Interviews, Honorary Fellowship nominations, Board of Governors matters, and constitutional governance queries.</div>
+      </div>
+      <div class="dept-body">
+        <div class="dept-contact"><span class="dc-type">Email</span><a class="dc-val" href="mailto:fellowship@cilgglobal.org">fellowship@cilgglobal.org</a></div>
+        <div class="dept-contact"><span class="dc-type">Secretariat</span><a class="dc-val" href="mailto:secretariat@cilgglobal.org">secretariat@cilgglobal.org</a></div>
+        <div class="dept-topics">
+          <span class="dt-tag">Fellowship applications</span>
+          <span class="dt-tag">Entry interviews</span>
+          <span class="dt-tag">Board matters</span>
+          <span class="dt-tag">Constitutional queries</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONSE TIMES -->
+  <h2 class="h2" style="margin-top:3rem">2.1 Expected Response Times by Enquiry Type</h2>
+  <p class="sub">CILG is committed to responding to all enquiries within the timeframes below. These targets apply during standard office hours on working days.</p>
+  <table class="resp-table">
+    <thead><tr><th>Enquiry Type / Channel</th><th>Response Target</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>General email enquiry (info@)</td><td><span class="badge-time bt-med">1–2 business days</span></td><td>General enquiries are triaged and forwarded to the relevant department. Complex queries may take slightly longer.</td></tr>
+      <tr><td>Admissions and enrolment enquiries</td><td><span class="badge-time bt-fast">1–2 business days</span></td><td>Application processing timelines are specified separately in the Admissions Policy and may extend to 5–10 days for full application review.</td></tr>
+      <tr><td>Membership upgrade applications</td><td><span class="badge-time bt-med">15–20 business days</span></td><td>Full review of all submitted documentation required. Incomplete applications are returned and restarted on resubmission.</td></tr>
+      <tr><td>Examination results queries</td><td><span class="badge-time bt-med">2–3 business days</span></td><td>Results queries require access to moderated scripts and may involve the Examinations Board — allow up to 5 days for complex queries.</td></tr>
+      <tr><td>Certificate verification (online portal)</td><td><span class="badge-time bt-fast">Instant</span></td><td>Available 24/7. No business day constraint. Results returned in 2–3 seconds.</td></tr>
+      <tr><td>Manual verification — standard</td><td><span class="badge-time bt-med">3–5 business days</span></td><td>Formal written Verification Certificate issued within 5–7 business days. Urgent requests (USD 25 fee) processed in 24–48 hours.</td></tr>
+      <tr><td>Finance and payment queries</td><td><span class="badge-time bt-fast">1–2 business days</span></td><td>Invoice and receipt requests are typically fulfilled same day. Refund processing requires up to 10 business days depending on payment method.</td></tr>
+      <tr><td>Corporate membership enquiries</td><td><span class="badge-time bt-med">2–3 business days</span></td><td>Senior relationship managers handle corporate enquiries. Proposals for Strategic Partnerships require a scheduled call — expect 3–5 days to schedule.</td></tr>
+      <tr><td>Media and press enquiries</td><td><span class="badge-time bt-fast">Same day (urgent) / 1–2 days</span></td><td>For time-sensitive media requests, clearly mark the email subject "URGENT — MEDIA REQUEST" and include your publication deadline.</td></tr>
+      <tr><td>Telephone enquiries (office hours)</td><td><span class="badge-time bt-fast">Immediate (staffed hours)</span></td><td>Calls answered Monday–Friday, 9:00 AM – 5:00 PM ET. Voicemail outside hours — expect a callback within 1 business day.</td></tr>
+      <tr><td>Complaints and formal appeals</td><td><span class="badge-time bt-slow">5–15 business days</span></td><td>Formal acknowledgement within 3 business days. Full response timelines governed by the CILG Appeals Process — see Section 5 below.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3 — OFFICE HOURS
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="hours">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Three</div>
+      <h2>Office Hours and Service Availability</h2>
+      <p>CILG's staffed telephone and in-person service hours, combined with round-the-clock digital service availability, ensure that members and enquirers can access CILG support whenever they need it.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">3</div></div>
+  </div>
+
+  <div class="hours-grid">
+    <div class="hours-card">
+      <div class="hours-card-title">📞 Telephone and Staffed Services</div>
+      <div class="hours-card-sub">Hours when live staff are available to answer calls and respond to urgent enquiries</div>
+      <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">9:00 AM – 5:00 PM ET</span></div>
+      <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">9:00 AM – 5:00 PM ET</span></div>
+      <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">9:00 AM – 5:00 PM ET</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">9:00 AM – 5:00 PM ET</span></div>
+      <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">9:00 AM – 5:00 PM ET</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-closed">Closed</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-closed">Closed</span></div>
+      <div class="tz-note">🕐 All times are <strong>Eastern Time (ET)</strong> — UTC–5 (standard) / UTC–4 (daylight saving). CILG observes all US federal public holidays.</div>
+    </div>
+    <div class="hours-card">
+      <div class="hours-card-title">🌐 Digital Services — Always Available</div>
+      <div class="hours-card-sub">Online services accessible around the clock from any device or location worldwide</div>
+      <div class="hours-row"><span class="hours-day">Website</span><span class="hours-time">24 / 7 / 365</span></div>
+      <div class="hours-row"><span class="hours-day">Members' Portal</span><span class="hours-time">24 / 7 / 365</span></div>
+      <div class="hours-row"><span class="hours-day">LMS (Learning)</span><span class="hours-time">24 / 7 / 365</span></div>
+      <div class="hours-row"><span class="hours-day">Verification Portal</span><span class="hours-time">24 / 7 / 365</span></div>
+      <div class="hours-row"><span class="hours-day">Email (receipt)</span><span class="hours-time">24 / 7 (replied in hours)</span></div>
+      <div class="hours-row"><span class="hours-day">CPD Recording</span><span class="hours-time">24 / 7 / 365</span></div>
+      <div class="hours-row"><span class="hours-day">Certificate Downloads</span><span class="hours-time">24 / 7 / 365</span></div>
+      <div class="tz-note">📧 Emails received outside staffed hours are queued and actioned on the next business morning. The online portal and LMS are hosted on high-availability infrastructure with 99.9% uptime.</div>
+    </div>
+  </div>
+
+  <div class="info-box lime">
+    <div class="ib-title">💡 Time Zone Guidance for International Enquirers</div>
+    <ul>
+      <li><strong>Eastern Time (ET)</strong> — UTC-5 in winter (November–March), UTC-4 in summer (March–November, during US Daylight Saving Time)</li>
+      <li><strong>West Africa (WAT):</strong> ET + 6 hours (standard) / ET + 5 hours (US summer). CILG's peak international call window for West African callers is 3:00 PM – 5:00 PM ET (9:00 PM – 11:00 PM WAT)</li>
+      <li><strong>East Africa (EAT):</strong> ET + 8 hours (standard). Peak call window: 9:00 AM – 11:00 AM ET (5:00 PM – 7:00 PM EAT)</li>
+      <li><strong>UK and Ireland (GMT/BST):</strong> ET + 5/6 hours. Peak call window: 9:00 AM – 12:00 PM ET (2:00 PM – 5:00 PM GMT)</li>
+      <li><strong>South Asia (IST):</strong> ET + 10:30/9:30 hours. Peak call window: 9:00 AM – 10:30 AM ET (7:30 PM – 9:00 PM IST)</li>
+      <li>CILG recommends email for most international communications to avoid time zone difficulty — our email response targets apply regardless of your location or time zone</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4 — INTERNATIONAL CONTACTS
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="international">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Four</div>
+      <h2>International and Regional Contacts</h2>
+      <p>CILG serves members and prospective students in over 40 countries. While all operations are coordinated centrally from the United States, CILG maintains regional contact points and designated liaison arrangements for several key international regions.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">4</div></div>
+  </div>
+
+  <p class="prose">CILG's global community of members spans Africa, Asia, Europe, the Americas, and beyond. To ensure that members and prospective students everywhere receive responsive, locally contextualised support, CILG has established the following regional contact arrangements. All regional enquiries may also be directed to the central team at <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a> — specifying your country or region in the email subject line ensures efficient routing.</p>
+
+  <div class="intl-grid">
+    <div class="intl-card">
+      <div class="intl-flag">🇺🇸</div>
+      <div class="intl-region">United States</div>
+      <div class="intl-type">Headquarters &amp; Primary Contact</div>
+      <div class="intl-contact">
+        Tel: <a href="tel:+15753298396">+1 (575) 329-8396</a><br>
+        Email: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a><br>
+        Web: <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">www.cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌍</div>
+      <div class="intl-region">West Africa</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: Nigeria, Ghana, Senegal, Côte d'Ivoire, Sierra Leone, and the wider West Africa sub-region.<br><br>
+        Email: <a href="mailto:westafrica@cilgglobal.org">westafrica@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌍</div>
+      <div class="intl-region">East and Southern Africa</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: Kenya, Tanzania, Uganda, Rwanda, Ethiopia, South Africa, Zimbabwe, Zambia, and neighbouring countries.<br><br>
+        Email: <a href="mailto:africa@cilgglobal.org">africa@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌍</div>
+      <div class="intl-region">North Africa and Middle East</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: Egypt, Morocco, Tunisia, UAE, Saudi Arabia, Jordan, and the broader MENA region.<br><br>
+        Email: <a href="mailto:mena@cilgglobal.org">mena@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌏</div>
+      <div class="intl-region">Asia and South Asia</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: India, Pakistan, Bangladesh, Sri Lanka, Singapore, Malaysia, Philippines, and neighbouring countries.<br><br>
+        Email: <a href="mailto:asia@cilgglobal.org">asia@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌍</div>
+      <div class="intl-region">United Kingdom and Europe</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: United Kingdom, Ireland, continental Europe, and the Commonwealth of Independent States (CIS).<br><br>
+        Email: <a href="mailto:europe@cilgglobal.org">europe@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌎</div>
+      <div class="intl-region">Latin America and Caribbean</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: Brazil, Mexico, Colombia, Jamaica, Trinidad and Tobago, and the wider Latin American and Caribbean region.<br><br>
+        Email: <a href="mailto:latam@cilgglobal.org">latam@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+    <div class="intl-card">
+      <div class="intl-flag">🌏</div>
+      <div class="intl-region">Australia and Pacific</div>
+      <div class="intl-type">Regional Liaison</div>
+      <div class="intl-contact">
+        Covers: Australia, New Zealand, Papua New Guinea, and Pacific Island nations.<br><br>
+        Email: <a href="mailto:pacific@cilgglobal.org">pacific@cilgglobal.org</a><br>
+        General: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box forest">
+    <div class="ib-title">📋 Important Note for International Enquirers</div>
+    <ul>
+      <li>All regional contact email addresses are monitored by the CILG central team and routed to the appropriate specialists. Response times are the same as for direct central email enquiries</li>
+      <li>CILG's qualifications, membership standards, fees, and policies are uniform globally — there are no regional variations in the CILG professional framework. Regional contacts provide local context and language support only</li>
+      <li>International candidates applying for CILG qualifications are subject to the same entry requirements and assessment standards as US-based candidates. CILG's LMIC fee concession (50% reduction for residents of World Bank-designated low and middle income countries) is automatically available — mention your country of residence in your application</li>
+      <li>CILG issues digital certificates by default for international students. Physical certificates can be requested — international delivery fees apply and are charged at cost</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SEND A MESSAGE (CONTACT FORM)
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="message">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Send a Message</div>
+      <h2>Write to Us Directly</h2>
+      <p>Complete the form below and your message will be forwarded to the most appropriate CILG team. We aim to respond within 1–2 business days.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">✉</div></div>
+  </div>
+
+  <div class="contact-form-wrap">
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label" for="fname">First Name *</label>
+        <input class="form-input" type="text" id="fname" name="fname" placeholder="Your first name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="lname">Last Name *</label>
+        <input class="form-input" type="text" id="lname" name="lname" placeholder="Your last name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address *</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone Number</label>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="+1 (000) 000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="country">Country of Residence *</label>
+        <input class="form-input" type="text" id="country" name="country" placeholder="e.g. Nigeria, United Kingdom, USA" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="membership">Membership Number (if applicable)</label>
+        <input class="form-input" type="text" id="membership" name="membership" placeholder="e.g. CILG-00000">
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="department">Department / Enquiry Category *</label>
+        <select class="form-select" id="department" name="department" required>
+          <option value="">— Select the most relevant department —</option>
+          <option value="general">General Enquiry (info@cilgglobal.org)</option>
+          <option value="admissions">Admissions and Enrolment</option>
+          <option value="membership">Membership Services</option>
+          <option value="exams">Examinations and Assessments</option>
+          <option value="verification">Certificate Verification</option>
+          <option value="corporate">Corporate and Partnerships</option>
+          <option value="finance">Finance and Payments</option>
+          <option value="hardship">Hardship Fund</option>
+          <option value="research">Research and Publications</option>
+          <option value="media">Media and Press</option>
+          <option value="fellowship">Fellowship Applications</option>
+          <option value="complaints">Complaints and Appeals</option>
+          <option value="cpd">CPD Queries</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="subject">Subject *</label>
+        <input class="form-input" type="text" id="subject" name="subject" placeholder="Brief summary of your enquiry" required>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="message-body">Your Message *</label>
+        <textarea class="form-textarea" id="message-body" name="message" rows="6" placeholder="Please provide full details of your enquiry. Include any relevant reference numbers, membership grades, or programme details to help us respond accurately." required></textarea>
+      </div>
+      <div class="form-group full">
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <button type="button" class="form-submit" onclick="submitContactForm()">📨 Send Message</button>
+          <button type="button" class="form-submit-lime" onclick="document.getElementById('fname').form ? document.getElementById('fname').form.reset() : document.querySelectorAll('.form-input,.form-select,.form-textarea').forEach(el=>el.value='')">↺ Reset Form</button>
+        </div>
+        <p class="form-note">* Required fields. Your information is processed in accordance with CILG's Privacy Policy. We will never share your data with third parties for marketing purposes.</p>
+        <div id="form-feedback" style="display:none;margin-top:1rem;padding:.85rem 1rem;border-radius:8px;background:var(--lime-pale);border:1px solid rgba(174,219,26,.3);font-size:.9rem;color:var(--forest);font-weight:600"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5 — COMPLAINTS
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="complaints">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Five</div>
+      <h2>Complaints, Concerns, and Escalation</h2>
+      <p>CILG is committed to providing a consistently high standard of service. When that standard is not met, we want to hear about it — so we can put it right and improve our service. We take all complaints seriously and handle them with fairness, confidentiality, and professionalism.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">5</div></div>
+  </div>
+
+  <p class="prose">If you are dissatisfied with any aspect of CILG's service — including the conduct of CILG staff, the handling of your application or examination, the quality of CILG's programmes, or any administrative decision that affects you — CILG's Complaints Process provides a clear, structured, and fair mechanism for raising and resolving concerns.</p>
+
+  <div class="escalation">
+    <div class="esc-step">
+      <div class="esc-num">1</div>
+      <div class="esc-body">
+        <h4>Stage 1 — Direct Service Team Contact</h4>
+        <p>Raise your concern directly with the CILG department responsible for the service in question (see departmental contacts in Section 2). Provide full details of your concern, the service period, and the outcome you are seeking. Most concerns are resolved at this stage within 2–5 business days. Email: <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a> or the relevant departmental email address.</p>
+      </div>
+    </div>
+    <div class="esc-step">
+      <div class="esc-num">2</div>
+      <div class="esc-body">
+        <h4>Stage 2 — Formal Complaint to the Secretary-General</h4>
+        <p>If Stage 1 does not resolve your concern to your satisfaction, you may escalate to a formal complaint addressed to the CILG Secretary-General. Submit by email to <a href="mailto:complaints@cilgglobal.org">complaints@cilgglobal.org</a>, marked "FORMAL COMPLAINT." Include a summary of the Stage 1 response and why it was unsatisfactory. Formal acknowledgement within 3 business days; full written response within 10 business days.</p>
+      </div>
+    </div>
+    <div class="esc-step">
+      <div class="esc-num">3</div>
+      <div class="esc-body">
+        <h4>Stage 3 — Membership Committee or Board Review</h4>
+        <p>For complaints about membership decisions, examination decisions, or disciplinary matters, the relevant CILG Committee reviews the complaint de novo. For general service complaints, the Board of Governors may exercise oversight. Submit written escalation to <a href="mailto:appeals@cilgglobal.org">appeals@cilgglobal.org</a>. Decision within 20–30 business days.</p>
+      </div>
+    </div>
+    <div class="esc-step">
+      <div class="esc-num">4</div>
+      <div class="esc-body">
+        <h4>Stage 4 — External Arbitration (if applicable)</h4>
+        <p>For matters involving alleged breach of legal rights, parties may refer to binding arbitration under the American Arbitration Association rules. CILG is bound by the arbitrator's decision. Contact <a href="mailto:secretariat@cilgglobal.org">secretariat@cilgglobal.org</a> to initiate this process.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box amber">
+    <div class="ib-title">⚠️ Academic Integrity and Conduct Concerns</div>
+    <p>Concerns about academic integrity — including allegations of examination misconduct, plagiarism, or unauthorised AI-assisted work — should be reported to <a href="mailto:exams@cilgglobal.org">exams@cilgglobal.org</a> in the first instance. Reports about the professional conduct of CILG members (as distinct from service complaints) should be directed to <a href="mailto:conduct@cilgglobal.org">conduct@cilgglobal.org</a> — these are handled under the CILG Code of Professional Conduct investigation framework, which is entirely separate from the general complaints process.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 6 — SOCIAL MEDIA
+  ═══════════════════════════════════════════ -->
+  <div class="sec-band" id="social">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Six</div>
+      <h2>Social Media and Digital Channels</h2>
+      <p>CILG maintains an active and growing presence across the major professional social networks — sharing governance insights, programme updates, research findings, and professional community news.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">6</div></div>
+  </div>
+
+  <p class="prose">CILG's social media channels are official communications platforms — maintained and monitored by the CILG Communications team. They are a primary channel for sharing governance news, CPD opportunities, programme updates, research highlights, and member stories. CILG welcomes engagement, comments, and professional discussion on all its social platforms.</p>
+
+  <div class="social-grid">
+    <a href="https://www.linkedin.com/company/cilg" target="_blank" rel="noopener" class="social-card">
+      <div class="sc-icon" style="background:#EEF3FB">💼</div>
+      <div><div class="sc-platform">LinkedIn</div><div class="sc-handle">CILG — Official Page</div></div>
+    </a>
+    <a href="https://www.twitter.com/cilgglobal" target="_blank" rel="noopener" class="social-card">
+      <div class="sc-icon" style="background:#EFF8FF">𝕏</div>
+      <div><div class="sc-platform">X (formerly Twitter)</div><div class="sc-handle">@cilgglobal</div></div>
+    </a>
+    <a href="https://www.facebook.com/cilgglobal" target="_blank" rel="noopener" class="social-card">
+      <div class="sc-icon" style="background:#EEF3FB">📘</div>
+      <div><div class="sc-platform">Facebook</div><div class="sc-handle">CILG Global</div></div>
+    </a>
+    <a href="https://www.youtube.com/@cilgglobal" target="_blank" rel="noopener" class="social-card">
+      <div class="sc-icon" style="background:#FAE8E8">▶️</div>
+      <div><div class="sc-platform">YouTube</div><div class="sc-handle">CILG Global</div></div>
+    </a>
+    <a href="https://www.instagram.com/cilgglobal" target="_blank" rel="noopener" class="social-card">
+      <div class="sc-icon" style="background:#FEF0E6">📸</div>
+      <div><div class="sc-platform">Instagram</div><div class="sc-handle">@cilgglobal</div></div>
+    </a>
+    <a href="https://www.cilgglobal.org" target="_blank" rel="noopener" class="social-card">
+      <div class="sc-icon" style="background:var(--lime-pale)">🌐</div>
+      <div><div class="sc-platform">Official Website</div><div class="sc-handle">www.cilgglobal.org</div></div>
+    </a>
+  </div>
+
+  <div class="info-box forest">
+    <div class="ib-title">📢 Social Media Engagement Policy</div>
+    <ul>
+      <li><strong>CILG monitors all official social media channels</strong> during business hours and aims to respond to direct messages and comments within 1–2 business days</li>
+      <li><strong>Social media is not appropriate</strong> for urgent, confidential, or detailed enquiries — membership queries, examination concerns, and personal data matters should always be directed to the relevant email address rather than social media</li>
+      <li><strong>Professional community standards apply</strong> on all CILG social media channels. Harassment, discrimination, misinformation, and abusive conduct will not be tolerated — CILG reserves the right to remove comments and block accounts that breach these standards</li>
+      <li><strong>CILG will never ask</strong> for personal information, payment details, or membership credentials through social media direct messages. If you receive such a request from an account claiming to be CILG, report it as fraudulent and do not respond</li>
+      <li>All official CILG social media accounts are verified and linked from the CILG website. Unofficial accounts purporting to represent CILG should be reported to <a href="mailto:media@cilgglobal.org">media@cilgglobal.org</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 7 — QUICK DIRECTORY
+  ═══════════════════════════════════════════ -->
+  <div class="quick-dir" id="directory">
+    <div class="qd-title">Quick Contact Directory</div>
+    <div class="qd-sub">At-a-glance reference for all CILG contact channels — find the right email for your query in seconds</div>
+    <div class="qd-grid">
+      <a class="qd-row" href="mailto:info@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--lime-dk)"></div><div class="qd-dept">General Enquiries</div><div class="qd-email">info@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:admissions@cilgglobal.org"><div class="qd-dot" style="--qdc:#1A4778"></div><div class="qd-dept">Admissions and Enrolment</div><div class="qd-email">admissions@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:membership@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--lime-dk)"></div><div class="qd-dept">Membership Services</div><div class="qd-email">membership@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:exams@cilgglobal.org"><div class="qd-dot" style="--qdc:#1A5E3A"></div><div class="qd-dept">Examinations and Assessments</div><div class="qd-email">exams@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:verify@certificate@cilgglobal.org"><div class="qd-dot" style="--qdc:#0B4A5C"></div><div class="qd-dept">Certificate Verification</div><div class="qd-email">verify@certificate@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:corporate@cilgglobal.org"><div class="qd-dot" style="--qdc:#3A1060"></div><div class="qd-dept">Corporate and Partnerships</div><div class="qd-email">corporate@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:finance@cilgglobal.org"><div class="qd-dot" style="--qdc:#92400E"></div><div class="qd-dept">Finance and Payments</div><div class="qd-email">finance@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:hardship@cilgglobal.org"><div class="qd-dot" style="--qdc:#92400E"></div><div class="qd-dept">Hardship Fund Applications</div><div class="qd-email">hardship@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:research@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--forest)"></div><div class="qd-dept">Research and Publications</div><div class="qd-email">research@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:media@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--forest)"></div><div class="qd-dept">Media and Press Enquiries</div><div class="qd-email">media@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:fellowship@cilgglobal.org"><div class="qd-dot" style="--qdc:#8B1A1A"></div><div class="qd-dept">Fellowship Applications</div><div class="qd-email">fellowship@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:secretariat@cilgglobal.org"><div class="qd-dot" style="--qdc:#8B1A1A"></div><div class="qd-dept">Governance Secretariat</div><div class="qd-email">secretariat@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:complaints@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--g500)"></div><div class="qd-dept">Formal Complaints</div><div class="qd-email">complaints@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:appeals@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--g500)"></div><div class="qd-dept">Appeals and Disputes</div><div class="qd-email">appeals@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:conduct@cilgglobal.org"><div class="qd-dot" style="--qdc:var(--g500)"></div><div class="qd-dept">Professional Conduct Reports</div><div class="qd-email">conduct@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:cpd@cilgglobal.org"><div class="qd-dot" style="--qdc:#1A5E3A"></div><div class="qd-dept">CPD Queries and Returns</div><div class="qd-email">cpd@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:partnerships@cilgglobal.org"><div class="qd-dot" style="--qdc:#3A1060"></div><div class="qd-dept">Strategic Partnerships</div><div class="qd-email">partnerships@cilgglobal.org</div></a>
+      <a class="qd-row" href="mailto:capstone@cilgglobal.org"><div class="qd-dot" style="--qdc:#8B1A1A"></div><div class="qd-dept">Level 5 Capstone and Oral Defence</div><div class="qd-email">capstone@cilgglobal.org</div></a>
+    </div>
+  </div>
+
+  <!-- DATA PROTECTION -->
+  <div class="info-box teal" style="margin-top:2.5rem">
+    <div class="ib-title">🔒 Data Protection and Privacy</div>
+    <p>All personal information provided to CILG through any contact channel — including name, contact details, membership information, and the content of enquiries — is processed in accordance with CILG's Privacy Policy and applicable US and state data protection laws. CILG will use your contact information only to respond to your enquiry and, where you have consented, to send you CILG communications. CILG will never sell, rent, or share your personal information with third parties for marketing purposes. To view CILG's full Privacy Policy, or to exercise your data protection rights (including the right to access, correct, or delete your information), visit <a href="https://www.cilgglobal.org/privacy" target="_blank" rel="noopener">www.cilgglobal.org/privacy</a> or email <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>.</p>
+  </div>
+
+</div><!-- /page -->
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="assets/icons/cilg-global.jpg" height="95" width="95" alt="CILG" onerror="this.style.display='none'"></h3>
+        <p>Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.6rem;font-family:monospace;font-size:.75rem;color:rgba(255,255,255,.3)">2222 W. Grand River Ave STE A, Okemos, MI 48864</p>
+        <p style="color:rgba(255,255,255,.2);font-size:.72rem;margin-top:.25rem">Postal and correspondence address only — not a walk-in office</p>
+        <p style="margin-top:.75rem;color:rgba(255,255,255,.18);font-size:.72rem">© 2026 CILG. All Rights Reserved &nbsp;·&nbsp; www.cilgglobal.org</p>
+      </div>
+      <div class="footer-col">
+        <h4>About CILG</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="governance.html">Governance Structure</a>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Contact</h4>
+        <a href="tel:+15753298396">+1 (575) 329-8396</a>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:exams@cilgglobal.org">exams@cilgglobal.org</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">www.cilgglobal.org</a>
+      </div>
+      <div class="footer-col">
+        <h4>Departments</h4>
+        <a href="mailto:corporate@cilgglobal.org">Corporate Partnerships</a>
+        <a href="mailto:research@cilgglobal.org">Research &amp; Policy</a>
+        <a href="mailto:media@cilgglobal.org">Media &amp; Press</a>
+        <a href="mailto:fellowship@cilgglobal.org">Fellowship</a>
+        <a href="mailto:complaints@cilgglobal.org">Complaints</a>
+        <a href="mailto:privacy@cilgglobal.org">Privacy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.12);">·</span>
+        <a href="terms.html">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="st" id="st">↑</a>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL TO TOP
+const st = document.getElementById('st');
+window.addEventListener('scroll', () => st.classList.toggle('show', window.scrollY > 500));
+
+// ACTIVE SECTION TRACKING
+window.addEventListener('scroll', () => {
+  const ids = ['contact','address','departments','hours','international','message','complaints','social','directory'];
+  let cur = '';
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 100) cur = id;
+  });
+});
+
+// FORM SUBMIT SIMULATION
+function submitContactForm() {
+  const req = ['fname','lname','email','country','department','subject','message-body'];
+  let valid = true;
+  req.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.style.borderColor = '#e53e3e';
+      valid = false;
+    } else {
+      el.style.borderColor = '';
+    }
+  });
+  if (!valid) {
+    const fb = document.getElementById('form-feedback');
+    fb.style.display = 'block';
+    fb.style.background = '#FAE8E8';
+    fb.style.borderColor = 'rgba(139,26,26,.2)';
+    fb.style.color = '#8B1A1A';
+    fb.textContent = '⚠ Please complete all required fields marked with *.';
+    return;
+  }
+  const fb = document.getElementById('form-feedback');
+  fb.style.display = 'block';
+  fb.style.background = 'var(--lime-pale)';
+  fb.style.borderColor = 'rgba(174,219,26,.3)';
+  fb.style.color = 'var(--forest)';
+  fb.textContent = '✅ Thank you — your message has been received. A member of the CILG team will respond within 1–2 business days.';
+  document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => el.value = '');
+}
+</script>
+</body>
+</html>

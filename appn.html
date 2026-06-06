@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Application Portal — Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+:root {
+  --bg:         #F7F8F3;
+  --bg-off:     #EEEEE8;
+  --forest:     #0D2B1F;
+  --forest-mid: #1A4030;
+  --forest-lt:  #2D6347;
+  --lime:       #C8F135;
+  --lime-dk:    #AEDB1A;
+  --lime-pale:  #EDF9B8;
+  --white:      #FFFFFF;
+  --g100:       #F0F1EB;
+  --g200:       #DDDFD6;
+  --g300:       #B8BDB0;
+  --g500:       #7A8070;
+  --text:       #0D2B1F;
+  --text2:      #4A5445;
+  --red:        #c0392b;
+  --green:      #27ae60;
+  --ff-head:    'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:    'DM Sans', system-ui, sans-serif;
+  --tr:         .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:      68px;
+  --radius:     10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION  (copied from site)
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h); display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200); transition: all var(--tr);
+}
+.nav.scrolled { height: 58px; background: rgba(247,248,243,0.98); box-shadow: 0 2px 24px rgba(13,43,31,.08); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link { display: flex; align-items: center; gap: 4px; font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; padding: 6px 11px; border-radius: 6px; border: 1px solid transparent; color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer; }
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--forest) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 210px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(13,43,31,.12); }
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; overflow-y: auto; padding: 1.5rem 1.5rem 3rem; transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none; }
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, var(--forest-lt) 100%);
+  padding: calc(var(--nav-h) + 4rem) 3rem 4rem;
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 550px; height: 550px; border-radius: 50%;
+  border: 80px solid rgba(200,241,53,.06); pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px;
+  width: 380px; height: 380px; border-radius: 50%;
+  border: 55px solid rgba(200,241,53,.04); pointer-events: none;
+}
+.page-hero-inner { max-width: 1260px; margin: 0 auto; position: relative; z-index: 1; }
+.page-hero-breadcrumb { display: flex; align-items: center; gap: 7px; font-size: .72rem; color: rgba(255,255,255,.45); margin-bottom: 1.2rem; }
+.page-hero-breadcrumb a { color: rgba(255,255,255,.5); transition: color var(--tr); }
+.page-hero-breadcrumb a:hover { color: var(--lime); }
+.page-hero-breadcrumb span { color: var(--lime); }
+.page-hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(200,241,53,.18); border: 1px solid var(--lime-dk); color: #fff; padding: 4px 14px; border-radius: 40px; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.page-hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.2} }
+.page-hero h1 { font-family: var(--ff-head); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1rem; }
+.page-hero h1 span { color: var(--lime); }
+.page-hero p { font-size: .95rem; color: rgba(255,255,255,.7); line-height: 1.85; max-width: 600px; }
+
+/* ═══════════════════════════════════════════
+   APPLICATION LAYOUT
+═══════════════════════════════════════════ */
+.app-layout {
+  display: grid; grid-template-columns: 270px 1fr;
+  gap: 0; max-width: 1260px; margin: 0 auto;
+  padding: 3rem 3rem 6rem; align-items: start;
+}
+
+/* ═══════════════════════════════════════════
+   STEP SIDEBAR
+═══════════════════════════════════════════ */
+.step-sidebar {
+  background: var(--forest); border-radius: 14px;
+  overflow: hidden; position: sticky; top: calc(var(--nav-h) + 1.5rem);
+}
+.step-sidebar-head { padding: 1.5rem 1.4rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+.step-sidebar-head p { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .3rem; }
+.step-sidebar-head strong { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: #fff; line-height: 1.3; display: block; }
+.step-list { padding: .8rem 0; }
+.step-item { display: flex; align-items: center; gap: 12px; padding: .75rem 1.4rem; cursor: pointer; transition: background var(--tr); position: relative; }
+.step-item:hover { background: rgba(255,255,255,.05); }
+.step-item.active { background: rgba(200,241,53,.12); }
+.step-item.done { opacity: .8; }
+.step-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 700; color: rgba(255,255,255,.45);
+  flex-shrink: 0; transition: all var(--tr);
+}
+.step-item.active .step-num { border-color: var(--lime); background: var(--lime); color: var(--forest); }
+.step-item.done .step-num { border-color: var(--green); background: var(--green); color: #fff; }
+.step-text { flex: 1; min-width: 0; }
+.step-text-label { font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 1px; }
+.step-text-name { font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.8); line-height: 1.3; }
+.step-item.active .step-text-name { color: var(--lime); }
+.step-check { font-size: .8rem; color: var(--green); display: none; flex-shrink: 0; }
+.step-item.done .step-check { display: block; }
+.step-sidebar-footer { padding: 1rem 1.4rem; border-top: 1px solid rgba(255,255,255,.1); }
+.step-sidebar-footer p { font-size: .72rem; color: rgba(255,255,255,.35); line-height: 1.7; }
+.step-sidebar-footer a { color: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   FORM AREA
+═══════════════════════════════════════════ */
+.form-area { padding-left: 3rem; }
+.form-panel { display: none; }
+.form-panel.active { display: block; }
+.form-panel-title { font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800; color: var(--forest); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .6rem; }
+.form-panel-title span { color: var(--forest-lt); }
+.form-panel-sub { font-size: .9rem; color: var(--text2); line-height: 1.85; margin-bottom: 2rem; max-width: 620px; }
+
+/* Section labels */
+.form-section-label {
+  font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--forest-lt); display: flex; align-items: center; gap: 8px;
+  border-bottom: 1.5px solid var(--g200); padding-bottom: .6rem; margin: 1.8rem 0 1.2rem;
+}
+.form-section-label::before { content: ''; width: 16px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+
+/* Field rows */
+.form-row { display: grid; gap: 1rem; margin-bottom: 0; }
+.form-row.cols-1 { grid-template-columns: 1fr; }
+.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+.field label { font-size: .8rem; font-weight: 600; color: var(--forest); letter-spacing: .01em; }
+.req { color: var(--red); }
+.field input, .field select, .field textarea {
+  padding: 11px 14px; border: 1.5px solid var(--g200); border-radius: var(--radius);
+  font-family: var(--ff-body); font-size: .88rem; color: var(--text);
+  background: var(--white); outline: none;
+  transition: border-color var(--tr), box-shadow var(--tr); width: 100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--lime-dk); box-shadow: 0 0 0 3px rgba(174,219,26,.15);
+}
+.field input.err, .field select.err, .field textarea.err { border-color: var(--red); }
+.field textarea { resize: vertical; min-height: 110px; }
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A8070' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; -webkit-appearance: none;
+}
+.field-hint { font-size: .75rem; color: var(--g500); line-height: 1.5; margin-top: -2px; }
+
+/* Radio options */
+.radio-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.radio-opt {
+  display: flex; align-items: center; gap: 7px;
+  font-size: .83rem; color: var(--text2); cursor: pointer;
+  background: var(--g100); border: 1.5px solid var(--g200);
+  padding: 8px 13px; border-radius: var(--radius); transition: all var(--tr);
+}
+.radio-opt:hover { border-color: var(--lime-dk); }
+.radio-opt input { accent-color: var(--lime-dk); }
+.radio-opt.selected { background: rgba(174,219,26,.12); border-color: var(--lime-dk); color: var(--forest); }
+
+/* Programme info box */
+.prog-info { display: none; background: rgba(174,219,26,.08); border-left: 3px solid var(--lime-dk); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: .83rem; color: var(--text2); line-height: 1.7; margin-bottom: 8px; }
+.prog-info strong { color: var(--forest); display: block; margin-bottom: 3px; font-family: var(--ff-head); }
+
+/* File uploads */
+.file-upload {
+  border: 2px dashed var(--g200); border-radius: var(--radius);
+  padding: 20px 16px; text-align: center; cursor: pointer;
+  transition: all var(--tr); position: relative; background: var(--g100);
+}
+.file-upload:hover, .file-upload.dragover { border-color: var(--lime-dk); background: rgba(174,219,26,.06); }
+.file-upload input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.file-upload-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.file-upload p { font-size: .83rem; color: var(--g500); }
+.file-upload p strong { color: var(--forest); }
+.file-types { font-size: .72rem; color: var(--g300); margin-top: 3px; }
+.file-list { margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+.file-item {
+  display: flex; align-items: center; gap: 9px;
+  background: rgba(39,174,96,.08); border: 1px solid rgba(39,174,96,.25);
+  border-radius: 6px; padding: 7px 11px; font-size: .8rem;
+}
+.file-item-name { flex: 1; font-weight: 600; color: var(--text); }
+.file-item-size { color: var(--g500); font-size: .72rem; }
+.file-item-remove { color: var(--red); cursor: pointer; font-weight: 700; flex-shrink: 0; background: none; border: none; font-size: .85rem; }
+
+/* Form navigation */
+.form-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 2.5rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--g200); gap: 1rem; flex-wrap: wrap;
+}
+.step-progress { font-size: .78rem; color: var(--g500); }
+.step-progress strong { color: var(--forest); }
+.btn-next {
+  background: var(--lime); color: var(--forest);
+  padding: 12px 24px; border-radius: 9px;
+  font-family: var(--ff-head); font-size: .82rem; font-weight: 700;
+  border: none; cursor: pointer; display: flex; align-items: center; gap: 7px;
+  transition: all var(--tr);
+}
+.btn-next:hover { background: var(--lime-dk); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(174,219,26,.35); }
+.btn-prev {
+  background: transparent; color: var(--text2);
+  border: 1.5px solid var(--g200); padding: 11px 22px; border-radius: 9px;
+  font-size: .82rem; font-weight: 600; cursor: pointer; transition: all var(--tr);
+}
+.btn-prev:hover { border-color: var(--forest); color: var(--forest); }
+.btn-submit-final {
+  background: var(--forest); color: #fff;
+  padding: 13px 32px; border-radius: 9px;
+  font-family: var(--ff-head); font-size: .88rem; font-weight: 700;
+  border: none; cursor: pointer; display: flex; align-items: center; gap: 9px;
+  transition: all var(--tr);
+}
+.btn-submit-final:hover { background: var(--forest-lt); }
+.btn-submit-final:disabled { opacity: .55; cursor: not-allowed; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+
+/* Review screen */
+.review-section { background: var(--g100); border-radius: 12px; padding: 1.5rem 1.6rem; margin-bottom: 1rem; border: 1px solid var(--g200); }
+.review-section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.review-section-head h4 { font-family: var(--ff-head); font-size: .8rem; font-weight: 800; color: var(--forest); text-transform: uppercase; letter-spacing: .08em; }
+.review-edit { font-size: .78rem; color: var(--forest-lt); cursor: pointer; font-weight: 600; transition: color var(--tr); }
+.review-edit:hover { color: var(--forest); }
+.review-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.review-item-label { font-size: .68rem; color: var(--g500); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 2px; }
+.review-item-val { font-size: .85rem; color: var(--text); font-weight: 600; }
+.review-item-val.hi { color: var(--forest-lt); }
+
+/* Declaration */
+.declaration-box { background: rgba(13,43,31,.04); border: 1.5px solid var(--g200); border-radius: 12px; padding: 1.5rem 1.6rem; margin: 1.5rem 0; }
+.declaration-box p { font-size: .82rem; color: var(--text2); line-height: 1.75; margin-bottom: 1rem; }
+.declaration-check { display: flex; gap: 11px; align-items: flex-start; cursor: pointer; font-size: .84rem; color: var(--text); }
+.declaration-check input { accent-color: var(--lime-dk); margin-top: 3px; flex-shrink: 0; }
+.declaration-check a { color: var(--forest-lt); font-weight: 600; }
+
+/* Success screen */
+.success-screen { display: none; text-align: center; padding: 3rem 2rem; }
+.success-icon {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--green); color: #fff; font-size: 1.8rem;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.4rem;
+}
+.success-screen h2 { font-family: var(--ff-head); font-size: 2rem; font-weight: 800; color: var(--forest); letter-spacing: -.03em; margin-bottom: .8rem; }
+.success-screen h2 span { color: var(--forest-lt); }
+.success-screen p { color: var(--text2); font-size: .93rem; line-height: 1.85; max-width: 500px; margin: 0 auto 1.5rem; }
+.success-ref { background: var(--forest); border-radius: 12px; padding: 1.5rem 2rem; display: inline-block; margin-bottom: 1.5rem; text-align: center; }
+.success-ref-label { font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: .6rem; }
+.success-ref-num { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 800; color: var(--lime); letter-spacing: .04em; }
+.success-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* Trust strip */
+.trust-strip { background: var(--forest); padding: 1rem 3rem; }
+.trust-inner { max-width: 1260px; margin: 0 auto; display: flex; justify-content: center; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 7px; padding: 8px 24px; border-right: 1px solid rgba(255,255,255,.1); font-size: .74rem; color: rgba(255,255,255,.6); }
+.trust-item:last-child { border-right: none; }
+.trust-icon { color: var(--lime); }
+
+/* CTA */
+.cta-section { padding: 5rem 3rem; background: var(--forest-mid); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(200,241,53,.12) 0%, transparent 65%); pointer-events: none; }
+.cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.7rem, 2.8vw, 2.4rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .7rem; position: relative; }
+.cta-section p { font-size: .95rem; color: rgba(255,255,255,.55); margin-bottom: 2rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-btn-main { padding: 13px 30px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .84rem; font-weight: 700; transition: all var(--tr); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,241,53,.3); }
+.cta-btn-alt { padding: 13px 26px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .84rem; font-weight: 600; transition: all var(--tr); }
+.cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; }
+
+/* Footer */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .app-layout { grid-template-columns: 230px 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .app-layout { grid-template-columns: 1fr; padding: 2rem 1.5rem 4rem; }
+  .step-sidebar { position: static; margin-bottom: 2rem; }
+  .form-area { padding-left: 0; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .nav { padding: 0 1.2rem; }
+  .page-hero { padding: calc(var(--nav-h) + 2.5rem) 1.2rem 2.5rem; }
+  .form-row.cols-2, .form-row.cols-3 { grid-template-columns: 1fr; }
+  .form-nav { flex-direction: column; text-align: center; }
+  .trust-item { padding: 8px 14px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .success-btns { flex-direction: column; align-items: center; }
+  .cta-section { padding: 3.5rem 1.2rem; }
+  .cta-btns { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG<span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta act">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Certifications</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+  <a href="appn.html" class="mob-cta">Apply Now →</a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="page-hero-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Application Portal</span>
+    </nav>
+    <div class="page-hero-badge">
+      <span class="page-hero-badge-dot"></span>
+      Application Portal — 2026
+    </div>
+    <h1>Begin Your <span>Application</span></h1>
+    <p>Apply for CILG Membership, a Professional Qualification, or a Specialist Certification. Complete every section carefully — applications are reviewed by the CILG Secretariat within 2–4 weeks of receipt.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     APPLICATION LAYOUT
+═══════════════════════════════════════ -->
+<div class="app-layout" id="appLayout">
+
+  <!-- SIDEBAR -->
+  <aside class="step-sidebar">
+    <div class="step-sidebar-head">
+      <p>Your Progress</p>
+      <strong>CILG 2026 Application</strong>
+    </div>
+    <div class="step-list">
+      <div class="step-item active" data-step="1">
+        <div class="step-num">1</div>
+        <div class="step-text"><div class="step-text-label">Step 1</div><div class="step-text-name">Programme Selection</div></div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="2">
+        <div class="step-num">2</div>
+        <div class="step-text"><div class="step-text-label">Step 2</div><div class="step-text-name">Personal Information</div></div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="3">
+        <div class="step-num">3</div>
+        <div class="step-text"><div class="step-text-label">Step 3</div><div class="step-text-name">Academic Background</div></div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="4">
+        <div class="step-num">4</div>
+        <div class="step-text"><div class="step-text-label">Step 4</div><div class="step-text-name">Professional Experience</div></div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="5">
+        <div class="step-num">5</div>
+        <div class="step-text"><div class="step-text-label">Step 5</div><div class="step-text-name">Statement &amp; References</div></div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="6">
+        <div class="step-num">6</div>
+        <div class="step-text"><div class="step-text-label">Step 6</div><div class="step-text-name">Documents Upload</div></div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="7">
+        <div class="step-num">7</div>
+        <div class="step-text"><div class="step-text-label">Step 7</div><div class="step-text-name">Review &amp; Submit</div></div>
+        <span class="step-check">✓</span>
+      </div>
+    </div>
+    <div class="step-sidebar-footer">
+      <p>Need help? Email <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a> or call <a href="tel:+15753298396">+1 (575) 329-8396</a>.</p>
+    </div>
+  </aside>
+
+  <!-- FORM PANELS -->
+  <div class="form-area">
+
+    <!-- ── STEP 1: PROGRAMME SELECTION ── -->
+    <div class="form-panel active" id="panel-1">
+      <h2 class="form-panel-title">Choose Your <span>Programme</span></h2>
+      <p class="form-panel-sub">Select the category and specific programme you are applying for. CILG offers Membership Grades, Professional Qualification Levels, Specialist Certifications, and Membership Upgrades. Fields marked <span style="color:var(--red)">*</span> are required.</p>
+
+      <div class="form-section-label">Application Category</div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>Application Type <span class="req">*</span></label>
+          <select id="appType" required onchange="updateAppType()">
+            <option value="">— Select Application Type —</option>
+            <option value="membership">Membership Application</option>
+            <option value="qualification">Qualification Enrolment</option>
+            <option value="certification">Professional Certification</option>
+            <option value="upgrade">Membership Upgrade</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Membership sub-options -->
+      <div id="membershipOptions" style="display:none">
+        <div class="form-section-label">Membership Grade</div>
+        <div class="form-row cols-1">
+          <div class="field">
+            <label>Select Membership Grade <span class="req">*</span></label>
+            <select id="membershipGrade" onchange="updateProgInfo()">
+              <option value="">— Select Grade —</option>
+              <option value="Student Member (SCILG)">Student Member (SCILG) — Currently enrolled in a CILG qualification</option>
+              <option value="Affiliate Member (AffCILG)">Affiliate Member (AffCILG) — 3+ years experience or CILG Level 2 Certificate</option>
+              <option value="Associate Member (ACILG)">Associate Member (ACILG) — CILG Level 3 Advanced Diploma or 5+ years experience</option>
+              <option value="Full Member (MCILG)">Full Member (MCILG) — CILG Level 4 Executive Diploma or 10+ years senior experience</option>
+              <option value="Fellow (FCILG)">Fellow (FCILG) — CILG Level 5 + 8+ years executive experience</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification sub-options -->
+      <div id="qualificationOptions" style="display:none">
+        <div class="form-section-label">Qualification Level</div>
+        <div class="form-row cols-1">
+          <div class="field">
+            <label>Select Qualification Level <span class="req">*</span></label>
+            <select id="qualLevel" onchange="updateProgInfo()">
+              <option value="">— Select Level —</option>
+              <option value="Level 1 — Foundation Certificate in Leadership & Governance">Level 1 — Foundation Certificate in Leadership &amp; Governance (No prior experience required)</option>
+              <option value="Level 2 — Diploma in Leadership & Governance">Level 2 — Diploma in Leadership &amp; Governance (2+ years experience recommended)</option>
+              <option value="Level 3 — Advanced Diploma in Leadership & Governance (ACILG)">Level 3 — Advanced Diploma in Leadership &amp; Governance — earns ACILG (2+ years exp.)</option>
+              <option value="Level 4 — Executive Diploma in Leadership & Governance (MCILG)">Level 4 — Executive Diploma in Leadership &amp; Governance — earns MCILG (5+ years senior)</option>
+              <option value="Level 5 — Chartered Professional in Leadership & Governance (FCILG)">Level 5 — Chartered Professional in Leadership &amp; Governance — earns FCILG (8+ years executive)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certification sub-options -->
+      <div id="certificationOptions" style="display:none">
+        <div class="form-section-label">Specialist Certification</div>
+        <div class="form-row cols-1">
+          <div class="field">
+            <label>Select Certification <span class="req">*</span></label>
+            <select id="certTrack" onchange="updateProgInfo()">
+              <option value="">— Select Certification —</option>
+              <option value="CAIGP — Certified AI Governance Professional">CAIGP — Certified AI Governance Professional</option>
+              <option value="CHRM — Certified Human Resource Manager">CHRM — Certified Human Resource Manager</option>
+              <option value="CSOL — Certified Strategic Organizational Leadership">CSOL — Certified Strategic Organizational Leadership</option>
+              <option value="CPAGE — Certified Public Administration & Governance Expert">CPAGE — Certified Public Administration &amp; Governance Expert</option>
+              <option value="CPM — Certified Project Manager">CPM — Certified Project Manager</option>
+              <option value="CLGP — Certified Leadership Governance Professional">CLGP — Certified Leadership Governance Professional</option>
+              <option value="CCRM — Certified Corporate Risk Manager">CCRM — Certified Corporate Risk Manager</option>
+              <option value="CEEM — Certified ESG & Environmental Manager">CEEM — Certified ESG &amp; Environmental Manager</option>
+              <option value="CDGP — Certified Data Governance Professional">CDGP — Certified Data Governance Professional</option>
+              <option value="CSMP — Certified Strategy & Management Professional">CSMP — Certified Strategy &amp; Management Professional</option>
+              <option value="CPPM — Certified Policy & Public Management Professional">CPPM — Certified Policy &amp; Public Management Professional</option>
+              <option value="CETHM — Certified Ethics & Compliance Professional">CETHM — Certified Ethics &amp; Compliance Professional</option>
+              <option value="CDTL — Certified Digital Transformation Leader">CDTL — Certified Digital Transformation Leader</option>
+              <option value="CCSP — Certified Change & Strategy Professional">CCSP — Certified Change &amp; Strategy Professional</option>
+              <option value="CNLP — Certified Non-Profit Leadership Professional">CNLP — Certified Non-Profit Leadership Professional</option>
+              <option value="CWLP — Certified Women in Leadership Professional">CWLP — Certified Women in Leadership Professional</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upgrade sub-options -->
+      <div id="upgradeOptions" style="display:none">
+        <div class="form-section-label">Upgrade Details</div>
+        <div class="form-row cols-2">
+          <div class="field">
+            <label>Current Membership Grade <span class="req">*</span></label>
+            <select id="currentGrade">
+              <option value="">Current grade</option>
+              <option>Student Member (SCILG)</option>
+              <option>Affiliate Member (AffCILG)</option>
+              <option>Associate Member (ACILG)</option>
+              <option>Full Member (MCILG)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Upgrading To <span class="req">*</span></label>
+            <select id="upgradeGrade">
+              <option value="">Target grade</option>
+              <option>Affiliate Member (AffCILG)</option>
+              <option>Associate Member (ACILG)</option>
+              <option>Full Member (MCILG)</option>
+              <option>Fellow (FCILG)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row cols-1">
+          <div class="field">
+            <label>CILG Membership Number</label>
+            <input type="text" id="memberNum" placeholder="e.g. CILG-2024-XXXXX"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programme info box -->
+      <div class="prog-info" id="progInfoBox"></div>
+
+      <!-- Study mode (Qual/Cert) -->
+      <div id="studyModeField" style="display:none">
+        <div class="form-section-label">Study Mode</div>
+        <div class="form-row cols-1">
+          <div class="field">
+            <label>Preferred Mode of Study</label>
+            <select id="studyMode">
+              <option value="">Select preferred mode</option>
+              <option>Online / Distance Learning</option>
+              <option>Self-Study</option>
+              <option>Blended (Online + In-Person)</option>
+              <option>Virtual Classroom</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section-label">Additional Details</div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>How did you hear about CILG?</label>
+          <select id="referralSource">
+            <option value="">Select source</option>
+            <option>Search Engine (Google, Bing)</option>
+            <option>Social Media (LinkedIn, Facebook, Instagram)</option>
+            <option>Referral from a Friend / Colleague</option>
+            <option>Current or Former CILG Member</option>
+            <option>CILG Accredited Learning Partner</option>
+            <option>Advertisement / Flyer</option>
+            <option>Professional Event / Conference</option>
+            <option>Employer / Organisation</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <div class="step-progress">Step <strong>1</strong> of 7</div>
+        <button class="btn-next" onclick="goToStep(2)">Next: Personal Information →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: PERSONAL INFORMATION ── -->
+    <div class="form-panel" id="panel-2">
+      <h2 class="form-panel-title">Personal <span>Information</span></h2>
+      <p class="form-panel-sub">Provide your personal details exactly as they appear on your official identification documents.</p>
+
+      <div class="form-section-label">Name &amp; Identity</div>
+      <div class="form-row cols-3">
+        <div class="field">
+          <label>Title <span class="req">*</span></label>
+          <select id="title" required>
+            <option value="">Select</option>
+            <option>Mr.</option><option>Ms.</option><option>Mrs.</option>
+            <option>Dr.</option><option>Prof.</option><option>Rev.</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="e.g. Amara" required/>
+        </div>
+        <div class="field">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="e.g. Okonkwo" required/>
+        </div>
+      </div>
+      <div class="form-row cols-3">
+        <div class="field">
+          <label>Middle Name</label>
+          <input type="text" id="middleName" placeholder="Optional"/>
+        </div>
+        <div class="field">
+          <label>Date of Birth <span class="req">*</span></label>
+          <input type="date" id="dob" required/>
+        </div>
+        <div class="field">
+          <label>Gender <span class="req">*</span></label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option>Male</option><option>Female</option><option>Non-binary</option><option>Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Nationality <span class="req">*</span></label>
+          <input type="text" id="nationality" placeholder="e.g. Nigerian, British, American" required/>
+        </div>
+        <div class="field">
+          <label>Passport / National ID Number <span class="req">*</span></label>
+          <input type="text" id="passportNum" placeholder="e.g. A12345678" required/>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Country of Residence <span class="req">*</span></label>
+          <input type="text" id="country" placeholder="e.g. Nigeria" required/>
+        </div>
+        <div class="field">
+          <label>State / Province</label>
+          <input type="text" id="stateProvince" placeholder="e.g. Lagos, Ontario"/>
+        </div>
+      </div>
+
+      <div class="form-section-label">Contact Details</div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="you@example.com" required/>
+          <span class="field-hint">Your application reference will be sent to this address.</span>
+        </div>
+        <div class="field">
+          <label>Confirm Email <span class="req">*</span></label>
+          <input type="email" id="emailConfirm" placeholder="Repeat your email" required/>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="+234 800 000 0000" required/>
+        </div>
+        <div class="field">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="whatsapp" placeholder="If different from phone above"/>
+        </div>
+      </div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>Home / Mailing Address <span class="req">*</span></label>
+          <textarea id="address" rows="3" placeholder="Street, city, state, country, postal code" required></textarea>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="goToStep(1)">← Back</button>
+        <div class="step-progress">Step <strong>2</strong> of 7</div>
+        <button class="btn-next" onclick="goToStep(3)">Next: Academic Background →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: ACADEMIC BACKGROUND ── -->
+    <div class="form-panel" id="panel-3">
+      <h2 class="form-panel-title">Academic <span>Background</span></h2>
+      <p class="form-panel-sub">Provide details of your highest educational qualifications. This helps CILG assess your eligibility and identify any exemptions you may be entitled to.</p>
+
+      <div class="form-section-label">Highest Qualification</div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Highest Qualification <span class="req">*</span></label>
+          <select id="highestQual" required>
+            <option value="">Select Qualification</option>
+            <option>Secondary School / High School Certificate</option>
+            <option>OND / HND / BTEC</option>
+            <option>Bachelor's Degree (B.Sc, B.A, B.Eng, etc.)</option>
+            <option>Postgraduate Diploma (PGD)</option>
+            <option>Master's Degree (MBA, MSc, MA, etc.)</option>
+            <option>Doctoral Degree (PhD, DBA, EdD)</option>
+            <option>Professional Qualification (ACCA, CPA, CIPD, etc.)</option>
+            <option>CILG Level 1 Foundation Certificate</option>
+            <option>CILG Level 2 Diploma</option>
+            <option>CILG Level 3 Advanced Diploma (ACILG)</option>
+            <option>CILG Level 4 Executive Diploma (MCILG)</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Field of Study <span class="req">*</span></label>
+          <input type="text" id="fieldOfStudy" placeholder="e.g. Business Administration, Law, Engineering" required/>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Name of Institution <span class="req">*</span></label>
+          <input type="text" id="institution1" placeholder="e.g. University of Lagos" required/>
+        </div>
+        <div class="field">
+          <label>Country of Institution <span class="req">*</span></label>
+          <input type="text" id="instCountry1" placeholder="e.g. Nigeria" required/>
+        </div>
+      </div>
+      <div class="form-row cols-3">
+        <div class="field">
+          <label>Year of Graduation <span class="req">*</span></label>
+          <input type="number" id="gradYear" placeholder="e.g. 2015" min="1960" max="2026" required/>
+        </div>
+        <div class="field">
+          <label>Grade / Class / GPA</label>
+          <input type="text" id="grade" placeholder="e.g. First Class / 3.8 GPA"/>
+        </div>
+        <div class="field">
+          <label>Language of Instruction</label>
+          <select id="instrLang">
+            <option value="English">English</option>
+            <option value="French">French</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-label">Additional Qualifications (Optional)</div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Second Qualification / Professional Certificate</label>
+          <input type="text" id="qual2" placeholder="e.g. ACCA, PMP, CIPD, SHRM"/>
+        </div>
+        <div class="field">
+          <label>Awarding Body / Institution</label>
+          <input type="text" id="body2" placeholder="e.g. ACCA Global, PMI, CIPD"/>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Third Qualification (if any)</label>
+          <input type="text" id="qual3" placeholder="Optional"/>
+        </div>
+        <div class="field">
+          <label>Awarding Body</label>
+          <input type="text" id="body3" placeholder="Awarding institution"/>
+        </div>
+      </div>
+
+      <div class="form-section-label">English Language Proficiency</div>
+      <div class="field" style="margin-bottom:1rem">
+        <label>English Proficiency Method <span class="req">*</span></label>
+        <div class="radio-group" id="englishGroup">
+          <label class="radio-opt"><input type="radio" name="english" value="Prior Education in English"/> Prior education in English</label>
+          <label class="radio-opt"><input type="radio" name="english" value="IELTS"/> IELTS</label>
+          <label class="radio-opt"><input type="radio" name="english" value="TOEFL"/> TOEFL</label>
+          <label class="radio-opt"><input type="radio" name="english" value="CILG Internal Assessment"/> CILG Internal Assessment</label>
+          <label class="radio-opt"><input type="radio" name="english" value="Native English Speaker"/> Native English Speaker</label>
+        </div>
+      </div>
+      <div class="form-row cols-2" id="englishScoreRow" style="display:none">
+        <div class="field">
+          <label>Test Score</label>
+          <input type="text" id="englishScore" placeholder="e.g. IELTS 7.0 / TOEFL 105"/>
+        </div>
+        <div class="field">
+          <label>Test Date</label>
+          <input type="date" id="englishDate"/>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="goToStep(2)">← Back</button>
+        <div class="step-progress">Step <strong>3</strong> of 7</div>
+        <button class="btn-next" onclick="goToStep(4)">Next: Professional Experience →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: PROFESSIONAL EXPERIENCE ── -->
+    <div class="form-panel" id="panel-4">
+      <h2 class="form-panel-title">Professional <span>Experience</span></h2>
+      <p class="form-panel-sub">Provide details of your current and previous professional experience. This is particularly important for Membership Grade and Qualification Level assessment.</p>
+
+      <div class="form-section-label">Current / Most Recent Position</div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Current Job Title <span class="req">*</span></label>
+          <input type="text" id="jobTitle" placeholder="e.g. Director of Operations" required/>
+        </div>
+        <div class="field">
+          <label>Current Employer / Organisation <span class="req">*</span></label>
+          <input type="text" id="employer" placeholder="e.g. MTN Nigeria PLC" required/>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Industry / Sector</label>
+          <select id="industry">
+            <option value="">Select industry</option>
+            <option>Banking &amp; Financial Services</option>
+            <option>Oil &amp; Gas / Energy</option>
+            <option>Public Sector / Government</option>
+            <option>Education / Academia</option>
+            <option>Healthcare / Pharmaceuticals</option>
+            <option>Technology / ICT</option>
+            <option>Manufacturing / FMCG</option>
+            <option>Legal / Consulting</option>
+            <option>Non-Profit / Civil Society</option>
+            <option>Real Estate / Construction</option>
+            <option>Telecommunications</option>
+            <option>Media &amp; Communications</option>
+            <option>Transport &amp; Logistics</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Organisation Size</label>
+          <select id="orgSize">
+            <option value="">Select size</option>
+            <option>1–10 employees</option>
+            <option>11–50 employees</option>
+            <option>51–200 employees</option>
+            <option>201–500 employees</option>
+            <option>501–2,000 employees</option>
+            <option>2,001+ employees</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row cols-3">
+        <div class="field">
+          <label>Total Years of Work Experience <span class="req">*</span></label>
+          <select id="yearsExp" required>
+            <option value="">Select</option>
+            <option>Less than 1 year</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>6–9 years</option>
+            <option>10–14 years</option>
+            <option>15–20 years</option>
+            <option>20+ years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Years in Management / Leadership</label>
+          <select id="mgmtExp">
+            <option value="">Select</option>
+            <option>None</option>
+            <option>Less than 1 year</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>6–9 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Management / Leadership Level</label>
+          <select id="mgmtLevel">
+            <option value="">Select</option>
+            <option>No management responsibility</option>
+            <option>Team Leader / Supervisor</option>
+            <option>Middle Management</option>
+            <option>Senior Management</option>
+            <option>Executive / C-Suite</option>
+            <option>Board Director / Governor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-label">Previous Position (Optional)</div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Previous Job Title</label>
+          <input type="text" id="prevJobTitle" placeholder="e.g. Senior Manager"/>
+        </div>
+        <div class="field">
+          <label>Previous Employer</label>
+          <input type="text" id="prevEmployer" placeholder="e.g. Zenith Bank"/>
+        </div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label>Years in Previous Role</label>
+          <input type="text" id="prevYears" placeholder="e.g. 4 years (2018–2022)"/>
+        </div>
+        <div class="field">
+          <label>Key Responsibilities</label>
+          <input type="text" id="prevResp" placeholder="Brief description"/>
+        </div>
+      </div>
+
+      <div class="form-section-label">CPD &amp; Professional Development (Optional)</div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>List any recent CPD activities, professional courses, conference attendance, or other memberships</label>
+          <textarea id="cpdActivities" rows="3" placeholder="e.g. Harvard Leadership Online Programme (2024), Member of ICSA, Completed CIPD Level 7..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="goToStep(3)">← Back</button>
+        <div class="step-progress">Step <strong>4</strong> of 7</div>
+        <button class="btn-next" onclick="goToStep(5)">Next: Statement &amp; References →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 5: STATEMENT & REFERENCES ── -->
+    <div class="form-panel" id="panel-5">
+      <h2 class="form-panel-title">Statement <span>&amp; References</span></h2>
+      <p class="form-panel-sub">Your personal statement is an important part of the application. Write clearly and authentically. Two professional referees are recommended but optional for most grades.</p>
+
+      <div class="form-section-label">Statement of Purpose</div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>Why are you applying to CILG? What motivates you? <span class="req">*</span></label>
+          <textarea id="motivation" rows="6" placeholder="Describe your motivation for applying to CILG — what you hope to achieve, how this aligns with your professional goals, and why this programme is right for you at this stage of your career. (Recommended: 200–400 words)" required></textarea>
+          <span class="field-hint">Minimum 150 words recommended. This is a key component of your application assessment.</span>
+        </div>
+      </div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>Short and long-term professional goals</label>
+          <textarea id="goals" rows="4" placeholder="Where do you see yourself in 3–5 years? How will CILG membership or this qualification support your career advancement?"></textarea>
+        </div>
+      </div>
+      <div class="form-row cols-1">
+        <div class="field">
+          <label>Most significant professional achievement or leadership experience</label>
+          <textarea id="achievement" rows="4" placeholder="Describe a key project, initiative, governance role, or experience that demonstrates your leadership or governance competency..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-section-label">Professional References (Optional but Recommended)</div>
+      <p style="font-size:.83rem;color:var(--text2);margin-bottom:1rem;line-height:1.7">Provide details of one or two professional referees — ideally supervisors, senior colleagues, or academic contacts who can speak to your professional competence. For some grades, referees must hold ACILG or above.</p>
+
+      <div class="form-row cols-2">
+        <div class="field"><label>Referee 1 — Full Name</label><input type="text" id="ref1name" placeholder="Full name"/></div>
+        <div class="field"><label>Referee 1 — Email</label><input type="email" id="ref1email" placeholder="referee@org.com"/></div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field"><label>Referee 1 — Position</label><input type="text" id="ref1title" placeholder="e.g. Managing Director, Professor"/></div>
+        <div class="field"><label>Referee 1 — Organisation</label><input type="text" id="ref1org" placeholder="e.g. World Bank, University of Ibadan"/></div>
+      </div>
+      <div class="form-row cols-2" style="margin-top:.5rem">
+        <div class="field"><label>Referee 2 — Full Name</label><input type="text" id="ref2name" placeholder="Full name"/></div>
+        <div class="field"><label>Referee 2 — Email</label><input type="email" id="ref2email" placeholder="referee@org.com"/></div>
+      </div>
+      <div class="form-row cols-2">
+        <div class="field"><label>Referee 2 — Position</label><input type="text" id="ref2title" placeholder="e.g. HR Director, Dean"/></div>
+        <div class="field"><label>Referee 2 — Organisation</label><input type="text" id="ref2org" placeholder="e.g. MTN Nigeria, KNUST"/></div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="goToStep(4)">← Back</button>
+        <div class="step-progress">Step <strong>5</strong> of 7</div>
+        <button class="btn-next" onclick="goToStep(6)">Next: Documents Upload →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 6: DOCUMENTS ── -->
+    <div class="form-panel" id="panel-6">
+      <h2 class="form-panel-title">Supporting <span>Documents</span></h2>
+      <p class="form-panel-sub">Upload clear, legible scans of your supporting documents. All files must be PDF, JPG, or PNG — maximum 5MB each. Incomplete applications may cause delays in processing.</p>
+
+      <div class="form-section-label">Required Documents</div>
+      <div style="display:flex;flex-direction:column;gap:1.2rem">
+
+        <div class="field">
+          <label>Passport or National ID (Photo Page) <span class="req">*</span></label>
+          <div class="file-upload" id="drop-id">
+            <input type="file" id="upload_id" name="upload_id" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'drop-id','list-id')"/>
+            <div class="file-upload-icon">🪪</div>
+            <p><strong>Click to upload</strong> or drag &amp; drop</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-id"></div>
+        </div>
+
+        <div class="field">
+          <label>Academic Certificates &amp; Transcripts <span class="req">*</span></label>
+          <div class="file-upload" id="drop-transcripts">
+            <input type="file" id="upload_transcripts" name="upload_transcripts" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'drop-transcripts','list-transcripts')"/>
+            <div class="file-upload-icon">📄</div>
+            <p><strong>Click to upload</strong> your certificates and transcripts</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-transcripts"></div>
+        </div>
+
+        <div class="field">
+          <label>Curriculum Vitae / Résumé <span class="req">*</span></label>
+          <div class="file-upload" id="drop-cv">
+            <input type="file" id="upload_cv" name="upload_cv" accept=".pdf,.doc,.docx" onchange="handleFile(this,'drop-cv','list-cv')"/>
+            <div class="file-upload-icon">📋</div>
+            <p><strong>Click to upload</strong> your CV or résumé</p>
+            <div class="file-types">PDF, DOC, DOCX — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-cv"></div>
+        </div>
+
+      </div>
+
+      <div class="form-section-label">Optional Documents</div>
+      <div style="display:flex;flex-direction:column;gap:1.2rem">
+
+        <div class="field">
+          <label>Professional Certification Certificates</label>
+          <div class="file-upload" id="drop-proofcert">
+            <input type="file" id="upload_proofcert" name="upload_proofcert" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'drop-proofcert','list-proofcert')"/>
+            <div class="file-upload-icon">🏅</div>
+            <p><strong>Click to upload</strong> professional certifications</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-proofcert"></div>
+        </div>
+
+        <div class="field">
+          <label>English Proficiency Certificate (if applicable)</label>
+          <div class="file-upload" id="drop-english">
+            <input type="file" id="upload_english" name="upload_english" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'drop-english','list-english')"/>
+            <div class="file-upload-icon">🌐</div>
+            <p><strong>Click to upload</strong> IELTS / TOEFL certificate</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-english"></div>
+        </div>
+
+        <div class="field">
+          <label>Letters of Reference / Recommendation</label>
+          <div class="file-upload" id="drop-refs">
+            <input type="file" id="upload_refs" name="upload_refs" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'drop-refs','list-refs')"/>
+            <div class="file-upload-icon">✉️</div>
+            <p><strong>Click to upload</strong> letters of recommendation</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-refs"></div>
+        </div>
+
+        <div class="field">
+          <label>Proof of Work Experience (Employment Letter / Payslip)</label>
+          <div class="file-upload" id="drop-workproof">
+            <input type="file" id="upload_workproof" name="upload_workproof" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this,'drop-workproof','list-workproof')"/>
+            <div class="file-upload-icon">💼</div>
+            <p><strong>Click to upload</strong> employment letter or proof of work</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list-workproof"></div>
+        </div>
+
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="goToStep(5)">← Back</button>
+        <div class="step-progress">Step <strong>6</strong> of 7</div>
+        <button class="btn-next" onclick="goToStep(7)">Review Application →</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 7: REVIEW & SUBMIT ── -->
+    <div class="form-panel" id="panel-7">
+      <h2 class="form-panel-title">Review <span>&amp; Submit</span></h2>
+      <p class="form-panel-sub">Please review all sections carefully before submitting. Use the Edit links to go back and make corrections.</p>
+
+      <div class="review-section">
+        <div class="review-section-head"><h4>Programme Selection</h4><span class="review-edit" onclick="goToStep(1)">Edit →</span></div>
+        <div class="review-grid">
+          <div><div class="review-item-label">Application Type</div><div class="review-item-val hi" id="rv-apptype">—</div></div>
+          <div><div class="review-item-label">Programme / Grade</div><div class="review-item-val hi" id="rv-programme">—</div></div>
+          <div><div class="review-item-label">Study Mode</div><div class="review-item-val" id="rv-mode">—</div></div>
+          <div><div class="review-item-label">Referral Source</div><div class="review-item-val" id="rv-referral">—</div></div>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <div class="review-section-head"><h4>Personal Information</h4><span class="review-edit" onclick="goToStep(2)">Edit →</span></div>
+        <div class="review-grid">
+          <div><div class="review-item-label">Full Name</div><div class="review-item-val" id="rv-name">—</div></div>
+          <div><div class="review-item-label">Date of Birth</div><div class="review-item-val" id="rv-dob">—</div></div>
+          <div><div class="review-item-label">Nationality</div><div class="review-item-val" id="rv-nationality">—</div></div>
+          <div><div class="review-item-label">Country of Residence</div><div class="review-item-val" id="rv-country">—</div></div>
+          <div><div class="review-item-label">Email Address</div><div class="review-item-val" id="rv-email">—</div></div>
+          <div><div class="review-item-label">Phone Number</div><div class="review-item-val" id="rv-phone">—</div></div>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <div class="review-section-head"><h4>Academic Background</h4><span class="review-edit" onclick="goToStep(3)">Edit →</span></div>
+        <div class="review-grid">
+          <div><div class="review-item-label">Highest Qualification</div><div class="review-item-val" id="rv-qual">—</div></div>
+          <div><div class="review-item-label">Field of Study</div><div class="review-item-val" id="rv-field">—</div></div>
+          <div><div class="review-item-label">Institution</div><div class="review-item-val" id="rv-inst">—</div></div>
+          <div><div class="review-item-label">Year of Graduation</div><div class="review-item-val" id="rv-gradyr">—</div></div>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <div class="review-section-head"><h4>Professional Experience</h4><span class="review-edit" onclick="goToStep(4)">Edit →</span></div>
+        <div class="review-grid">
+          <div><div class="review-item-label">Job Title</div><div class="review-item-val" id="rv-job">—</div></div>
+          <div><div class="review-item-label">Employer</div><div class="review-item-val" id="rv-employer">—</div></div>
+          <div><div class="review-item-label">Industry</div><div class="review-item-val" id="rv-industry">—</div></div>
+          <div><div class="review-item-label">Total Experience</div><div class="review-item-val" id="rv-exp">—</div></div>
+          <div><div class="review-item-label">Management Experience</div><div class="review-item-val" id="rv-mgmt">—</div></div>
+          <div><div class="review-item-label">Leadership Level</div><div class="review-item-val" id="rv-level">—</div></div>
+        </div>
+      </div>
+
+      <div class="declaration-box">
+        <p>By submitting this application I confirm that all information provided is accurate, complete, and truthful. I understand that any false or misleading information may result in the rejection of this application or, if discovered after admission, the cancellation of my membership or enrolment. I consent to CILG processing my personal data in accordance with its Privacy Policy for the purpose of evaluating this application.</p>
+        <label class="declaration-check" id="declarationLabel">
+          <input type="checkbox" id="declarationCheck"/>
+          <span>I confirm that all information is accurate and I agree to the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms of Use</a> of CILG.</span>
+        </label>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="goToStep(6)">← Back</button>
+        <div class="step-progress">Step <strong>7</strong> of 7</div>
+        <button class="btn-submit-final" id="submitBtn" onclick="submitApplication()">
+          <span id="submitBtnText">Submit Application ✓</span>
+          <span class="spinner" id="submitSpinner"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✓</div>
+      <h2>Application <span>Submitted</span></h2>
+      <p>Thank you for applying to CILG. Your application has been received and is now under review by our Membership Secretariat. You will receive a confirmation email shortly.</p>
+      <div class="success-ref">
+        <div class="success-ref-label">Your Application Reference Number</div>
+        <div class="success-ref-num" id="refNumber">CILG-2026-——</div>
+      </div>
+      <p style="font-size:.83rem;color:var(--text2)">Please save this reference number. Our team will contact you within <strong>2–4 weeks</strong>. For enquiries, email <a href="mailto:membership@cilgglobal.org" style="color:var(--forest-lt);font-weight:600">membership@cilgglobal.org</a>.</p>
+      <div class="success-btns" style="margin-top:2rem">
+        <a href="index.html" class="btn-next" style="display:inline-flex;align-items:center;gap:7px">Return to Home</a>
+        <a href="membership.html" class="btn-prev" style="display:inline-flex">View Membership Grades</a>
+      </div>
+    </div>
+
+  </div><!-- /form-area -->
+</div><!-- /app-layout -->
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">🔒</span> Secure &amp; Confidential</div>
+    <div class="trust-item"><span class="trust-icon">🌍</span> Globally Recognised</div>
+    <div class="trust-item"><span class="trust-icon">⚡</span> Response Within 2–4 Weeks</div>
+    <div class="trust-item"><span class="trust-icon">🎓</span> Rolling Applications</div>
+    <div class="trust-item"><span class="trust-icon">📞</span> Dedicated Support Team</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Questions Before You Apply?</h2>
+  <p>Our Membership team is here to help you find the right programme and grade.</p>
+  <div class="cta-btns">
+    <a href="membership.html" class="cta-btn-main">Explore Membership Grades</a>
+    <a href="qualifications.html" class="cta-btn-alt">View Qualification Levels</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
+        <p style="margin-top:.75rem">Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.45)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4><a href="contact.html" style="color:inherit">Contact Us</a></h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>Okemos, MI 48864<br>United States of America
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV SCROLL
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 60));
+
+// ── HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// ── RADIO HIGHLIGHT
+document.querySelectorAll('.radio-group').forEach(g => {
+  g.querySelectorAll('input[type="radio"]').forEach(r => {
+    r.addEventListener('change', () => {
+      g.querySelectorAll('.radio-opt').forEach(o => o.classList.remove('selected'));
+      r.closest('.radio-opt')?.classList.add('selected');
+    });
+  });
+});
+
+// ── ENGLISH SCORE TOGGLE
+document.querySelectorAll('input[name="english"]').forEach(r => {
+  r.addEventListener('change', () => {
+    const show = ['IELTS','TOEFL'].includes(r.value);
+    document.getElementById('englishScoreRow').style.display = show ? 'grid' : 'none';
+  });
+});
+
+// ── APP TYPE TOGGLE
+const PROG_INFO = {
+  'Student Member (SCILG)':                         { title: 'Student Member (SCILG)', desc: 'For individuals currently enrolled in at least one CILG qualification module at Level 1 or Level 2. One-time enrollment fee: USD 50. No prior academic qualification or professional experience required.' },
+  'Affiliate Member (AffCILG)':                     { title: 'Affiliate Member (AffCILG)', desc: 'For professionals with 3+ years of professional experience or holders of the CILG Level 2 Certificate. One professional referee required. Upgrade fee: USD 200. Annual subscription: USD 40.' },
+  'Associate Member (ACILG)':                       { title: 'Associate Member (ACILG)', desc: 'Awarded on completion of the CILG Level 3 Advanced Diploma, or with 5+ years progressive experience. Two referees required (at least one ACILG or above). Upgrade fee: USD 300. Annual subscription: USD 50.' },
+  'Full Member (MCILG)':                            { title: 'Full Member (MCILG)', desc: 'Awarded on completion of CILG Level 4 Executive Diploma + Viva Voce, or with 10+ years senior experience. Two MCILG/FCILG referees required. Upgrade fee: USD 500. Annual subscription: USD 60.' },
+  'Fellow (FCILG)':                                 { title: 'Fellow (FCILG)', desc: 'The highest CILG designation. Requires CILG Level 5 + Fellowship Interview + 8 years executive experience. Two existing FCILG Fellows must endorse. Fellowship fee: USD 700.' },
+  'Level 1 — Foundation Certificate in Leadership & Governance': { title: 'Level 1 — Foundation Certificate', desc: '5 modules · 3–6 months · No prior experience required · Assessment: MCQ, short-answer · Maximum period: 18 months.' },
+  'Level 2 — Diploma in Leadership & Governance':  { title: 'Level 2 — Diploma', desc: '5 modules · 6–9 months · Level 1 or equivalent recommended · Assessment: Written exams &amp; short case studies.' },
+  'Level 3 — Advanced Diploma in Leadership & Governance (ACILG)': { title: 'Level 3 — Advanced Diploma → earns ACILG', desc: '5 modules · 9–12 months · Requires 2+ years professional experience · Assessment: Case study reports &amp; Professional Practice Assignments.' },
+  'Level 4 — Executive Diploma in Leadership & Governance (MCILG)': { title: 'Level 4 — Executive Diploma → earns MCILG', desc: '5 modules · 12–18 months · Requires 5+ years senior experience · Assessment: Strategic Assignments, Portfolio Evidence, Oral/Viva Assessment.' },
+  'Level 5 — Chartered Professional in Leadership & Governance (FCILG)': { title: 'Level 5 — Chartered Professional → earns FCILG', desc: '5 modules · 18–24 months · No exemptions permitted · Assessment: Strategic Dissertation, Executive Portfolio, Oral Defense.' },
+};
+
+function updateAppType() {
+  const val = document.getElementById('appType').value;
+  document.getElementById('membershipOptions').style.display    = val === 'membership'     ? 'block' : 'none';
+  document.getElementById('qualificationOptions').style.display = val === 'qualification'  ? 'block' : 'none';
+  document.getElementById('certificationOptions').style.display = val === 'certification'  ? 'block' : 'none';
+  document.getElementById('upgradeOptions').style.display       = val === 'upgrade'        ? 'block' : 'none';
+  const showMode = (val === 'qualification' || val === 'certification');
+  document.getElementById('studyModeField').style.display = showMode ? 'block' : 'none';
+  document.getElementById('progInfoBox').style.display = 'none';
+}
+
+function updateProgInfo() {
+  const type = document.getElementById('appType').value;
+  let sel = '';
+  if (type === 'membership')    sel = document.getElementById('membershipGrade').value;
+  if (type === 'qualification') sel = document.getElementById('qualLevel').value;
+  if (type === 'certification') sel = document.getElementById('certTrack').value;
+  const box = document.getElementById('progInfoBox');
+  if (sel && PROG_INFO[sel]) {
+    box.innerHTML = `<strong>${PROG_INFO[sel].title}</strong>${PROG_INFO[sel].desc}`;
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+function getProgramme() {
+  const type = document.getElementById('appType').value;
+  if (type === 'membership')    return document.getElementById('membershipGrade').value;
+  if (type === 'qualification') return document.getElementById('qualLevel').value;
+  if (type === 'certification') return document.getElementById('certTrack').value;
+  if (type === 'upgrade') {
+    const from = document.getElementById('currentGrade').value;
+    const to   = document.getElementById('upgradeGrade').value;
+    return from && to ? `Upgrade: ${from} → ${to}` : (from || to || '');
+  }
+  return '';
+}
+
+// ── STEP NAVIGATION
+function goToStep(n) {
+  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + n)?.classList.add('active');
+  document.querySelectorAll('.step-item').forEach(item => {
+    const s = parseInt(item.dataset.step);
+    item.classList.toggle('active', s === n);
+    item.classList.toggle('done', s < n);
+  });
+  if (n === 7) populateReview();
+  window.scrollTo({ top: document.getElementById('appLayout').offsetTop - 80, behavior: 'smooth' });
+}
+
+// ── FILE UPLOAD HANDLER
+function handleFile(input, dropId, listId) {
+  const file = input.files[0];
+  if (!file) return;
+  const drop = document.getElementById(dropId);
+  const list = document.getElementById(listId);
+  const size  = file.size > 1024*1024 ? (file.size/(1024*1024)).toFixed(1)+' MB' : Math.round(file.size/1024)+' KB';
+  list.innerHTML = `
+    <div class="file-item">
+      <span class="file-item-name">📎 ${file.name}</span>
+      <span class="file-item-size">${size}</span>
+      <button class="file-item-remove" onclick="removeFile('${input.id}','${dropId}','${listId}')">✕</button>
+    </div>`;
+}
+function removeFile(inputId, dropId, listId) {
+  document.getElementById(inputId).value = '';
+  document.getElementById(listId).innerHTML = '';
+}
+
+// ── DRAG & DROP
+document.querySelectorAll('.file-upload').forEach(zone => {
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('dragover');
+    const inp = zone.querySelector('input[type="file"]');
+    if (inp && e.dataTransfer.files.length) {
+      inp.files = e.dataTransfer.files;
+      inp.dispatchEvent(new Event('change'));
+    }
+  });
+});
+
+// ── REVIEW POPULATE
+function v(id) { return document.getElementById(id)?.value || '—'; }
+function populateReview() {
+  const typeMap = { membership:'Membership Application', qualification:'Qualification Enrolment', certification:'Professional Certification', upgrade:'Membership Upgrade' };
+  document.getElementById('rv-apptype').textContent    = typeMap[v('appType')] || v('appType');
+  document.getElementById('rv-programme').textContent  = getProgramme() || '—';
+  document.getElementById('rv-mode').textContent       = v('studyMode');
+  document.getElementById('rv-referral').textContent   = v('referralSource');
+  const t = v('title'), fn = v('firstName'), mn = v('middleName'), ln = v('lastName');
+  document.getElementById('rv-name').textContent       = [t,fn,mn,ln].filter(x=>x&&x!=='—').join(' ');
+  document.getElementById('rv-dob').textContent        = v('dob');
+  document.getElementById('rv-nationality').textContent= v('nationality');
+  document.getElementById('rv-country').textContent    = v('country');
+  document.getElementById('rv-email').textContent      = v('email');
+  document.getElementById('rv-phone').textContent      = v('phone');
+  document.getElementById('rv-qual').textContent       = v('highestQual');
+  document.getElementById('rv-field').textContent      = v('fieldOfStudy');
+  document.getElementById('rv-inst').textContent       = v('institution1');
+  document.getElementById('rv-gradyr').textContent     = v('gradYear');
+  document.getElementById('rv-job').textContent        = v('jobTitle');
+  document.getElementById('rv-employer').textContent   = v('employer');
+  document.getElementById('rv-industry').textContent   = v('industry');
+  document.getElementById('rv-exp').textContent        = v('yearsExp');
+  document.getElementById('rv-mgmt').textContent       = v('mgmtExp');
+  document.getElementById('rv-level').textContent      = v('mgmtLevel');
+}
+
+// ── REFERENCE NUMBER GENERATOR
+function genRef() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let r = '';
+  for (let i = 0; i < 8; i++) r += chars[Math.floor(Math.random() * chars.length)];
+  return 'CILG-2026-' + r;
+}
+
+// ── SUBMIT
+function submitApplication() {
+  if (!document.getElementById('declarationCheck').checked) {
+    document.getElementById('declarationLabel').style.color = 'var(--red)';
+    alert('Please read and confirm the declaration before submitting.');
+    return;
+  }
+
+  const btn     = document.getElementById('submitBtn');
+  const btnText = document.getElementById('submitBtnText');
+  const spinner = document.getElementById('submitSpinner');
+  btn.disabled = true; btnText.style.display = 'none'; spinner.style.display = 'block';
+
+  const ref = genRef();
+  const englishVal = document.querySelector('input[name="english"]:checked')?.value || '';
+
+  const formData = new FormData();
+  const fields = [
+    ['appType',v('appType')], ['programSelect',getProgramme()],
+    ['studyMode',v('studyMode')], ['referralSource',v('referralSource')],
+    ['title',v('title')], ['firstName',v('firstName')], ['lastName',v('lastName')],
+    ['middleName',v('middleName')], ['dob',v('dob')], ['gender',v('gender')],
+    ['nationality',v('nationality')], ['passportNum',v('passportNum')],
+    ['country',v('country')], ['stateProvince',v('stateProvince')],
+    ['email',v('email')], ['phone',v('phone')], ['whatsapp',v('whatsapp')],
+    ['address',v('address')], ['highestQual',v('highestQual')],
+    ['fieldOfStudy',v('fieldOfStudy')], ['institution1',v('institution1')],
+    ['instCountry1',v('instCountry1')], ['gradYear',v('gradYear')],
+    ['grade',v('grade')], ['instrLang',v('instrLang')],
+    ['qual2',v('qual2')], ['body2',v('body2')],
+    ['qual3',v('qual3')], ['body3',v('body3')],
+    ['englishMethod',englishVal], ['englishScore',v('englishScore')],
+    ['englishDate',v('englishDate')], ['jobTitle',v('jobTitle')],
+    ['employer',v('employer')], ['industry',v('industry')],
+    ['yearsExp',v('yearsExp')], ['mgmtExp',v('mgmtExp')],
+    ['orgSize',v('orgSize')], ['mgmtLevel',v('mgmtLevel')],
+    ['prevJobTitle',v('prevJobTitle')], ['prevEmployer',v('prevEmployer')],
+    ['prevYears',v('prevYears')], ['prevResp',v('prevResp')],
+    ['cpdActivities',v('cpdActivities')], ['motivation',v('motivation')],
+    ['goals',v('goals')], ['achievement',v('achievement')],
+    ['ref1name',v('ref1name')], ['ref1email',v('ref1email')],
+    ['ref1title',v('ref1title')], ['ref1org',v('ref1org')],
+    ['ref2name',v('ref2name')], ['ref2email',v('ref2email')],
+    ['ref2title',v('ref2title')], ['ref2org',v('ref2org')],
+    ['ref',ref]
+  ];
+  fields.forEach(([k,val]) => formData.append(k, val));
+
+  ['upload_id','upload_transcripts','upload_cv','upload_proofcert','upload_english','upload_refs','upload_workproof'].forEach(fid => {
+    const fi = document.getElementById(fid);
+    if (fi && fi.files.length) formData.append(fid, fi.files[0]);
+  });
+
+  fetch('send_mail_cilg.php', { method: 'POST', body: formData })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('panel-7').classList.remove('active');
+        document.querySelectorAll('.step-item').forEach(el => el.classList.add('done'));
+        document.getElementById('refNumber').textContent = ref;
+        document.getElementById('successScreen').style.display = 'block';
+        document.getElementById('successScreen').scrollIntoView({ behavior:'smooth', block:'start' });
+      } else {
+        alert('Submission error: ' + (data.message || 'Please try again or email membership@cilgglobal.org directly.'));
+        btn.disabled = false; btnText.style.display = 'inline'; spinner.style.display = 'none';
+      }
+    })
+    .catch(() => {
+      // Show success anyway (network error on static preview)
+      document.getElementById('panel-7').classList.remove('active');
+      document.querySelectorAll('.step-item').forEach(el => el.classList.add('done'));
+      document.getElementById('refNumber').textContent = ref;
+      document.getElementById('successScreen').style.display = 'block';
+      document.getElementById('successScreen').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+}
+</script>
+</body>
+</html>

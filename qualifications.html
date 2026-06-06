@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Professional Qualification Framework — CILG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET — FINZO PALETTE
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback {
+  font-family: var(--ff-head);
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--forest); letter-spacing: -.01em; line-height: 1;
+}
+.nav-logo-sub {
+  font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--g300); display: block; margin-top: 2px;
+}
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow {
+  width: 0; height: 0;
+  border-left: 3px solid transparent; border-right: 3px solid transparent;
+  border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6;
+}
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover {
+  background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35);
+}
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before {
+  content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px;
+}
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a {
+  display: block; padding: 7px 12px; border-radius: 7px;
+  font-size: .74rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); white-space: nowrap;
+}
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none;
+}
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--g300); padding: 0 4px; margin-bottom: .5rem;
+}
+.mob-link {
+  display: block; padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); border: 1px solid transparent;
+}
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta {
+  display: block; width: 100%; padding: 14px; margin-top: 1rem;
+  background: var(--lime); color: var(--forest);
+  font-weight: 700; font-size: .9rem; letter-spacing: .02em;
+  border-radius: 10px; text-align: center; transition: all var(--tr);
+}
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO BANNER
+═══════════════════════════════════════════ */
+.page-hero {
+  background: linear-gradient(135deg, rgba(13,43,31,.92) 0%, rgba(45,99,71,.88) 100%),
+              url('assets/images/hero3.jpg') center/cover no-repeat;
+  padding: calc(var(--nav-h) + 4rem) 3rem 4.5rem;
+  position: relative; overflow: hidden;
+}
+.page-hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--lime-dk), var(--lime));
+}
+.page-hero-inner { max-width: 1260px; margin: 0 auto; }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(200,241,53,.15); border: 1px solid rgba(200,241,53,.4);
+  padding: 4px 14px; border-radius: 40px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 1.2rem;
+}
+.page-hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.page-hero h1 {
+  font-family: var(--ff-head); font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 800; color: #fff; line-height: 1.07; letter-spacing: -.03em;
+  margin-bottom: .9rem; max-width: 760px;
+}
+.page-hero p {
+  font-size: 1rem; color: rgba(255,255,255,.75); max-width: 640px; line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.page-hero-meta {
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+}
+.hero-meta-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .78rem; color: rgba(255,255,255,.6);
+}
+.hero-meta-item strong { color: var(--lime); font-weight: 700; }
+
+/* ═══════════════════════════════════════════
+   SHARED SECTION SCAFFOLDING
+═══════════════════════════════════════════ */
+.section { padding: 5.5rem 3rem; background: var(--bg); }
+.section-inner { max-width: 1260px; margin: 0 auto; }
+.section-label {
+  font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--forest-lt); margin-bottom: .7rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+.section-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 800; color: var(--forest); line-height: 1.1; letter-spacing: -.03em; margin-bottom: .9rem; }
+.section-lead { font-size: .95rem; color: var(--text2); max-width: 700px; line-height: 1.85; }
+
+/* ═══════════════════════════════════════════
+   FRAMEWORK OVERVIEW TABLE
+═══════════════════════════════════════════ */
+.framework-table-wrap {
+  margin-top: 2.5rem; overflow-x: auto; border-radius: 16px;
+  border: 1.5px solid var(--g200); box-shadow: 0 4px 24px rgba(13,43,31,.06);
+}
+.framework-table {
+  width: 100%; border-collapse: collapse; background: var(--white);
+  font-size: .82rem;
+}
+.framework-table thead tr { background: var(--forest); }
+.framework-table thead th {
+  padding: 14px 18px; text-align: left;
+  font-family: var(--ff-head); font-size: .68rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--lime);
+  white-space: nowrap;
+}
+.framework-table tbody tr { border-bottom: 1px solid var(--g100); transition: background var(--tr); }
+.framework-table tbody tr:last-child { border-bottom: none; }
+.framework-table tbody tr:hover { background: var(--g100); }
+.framework-table tbody td { padding: 13px 18px; color: var(--text2); vertical-align: middle; }
+.framework-table tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var(--forest); }
+.table-badge {
+  display: inline-block; padding: 2px 9px; border-radius: 5px;
+  font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+}
+.badge-green { background: var(--lime-pale); color: #3a6e00; }
+.badge-forest { background: var(--forest); color: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   LEVEL SECTION BLOCKS
+═══════════════════════════════════════════ */
+.levels-section { padding: 0 3rem 5.5rem; background: var(--bg); }
+.level-block {
+  max-width: 1260px; margin: 0 auto 4rem;
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 4px 28px rgba(13,43,31,.05);
+  transition: box-shadow var(--tr);
+}
+.level-block:hover { box-shadow: 0 8px 40px rgba(13,43,31,.10); }
+.level-header {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 2rem 2.5rem; border-bottom: 1.5px solid var(--g100);
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+  position: relative; overflow: hidden;
+}
+.level-header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--lime-dk), var(--lime));
+}
+.level-number {
+  font-family: var(--ff-head); font-size: 3rem; font-weight: 800;
+  color: rgba(200,241,53,.15); line-height: 1; letter-spacing: -.04em;
+  flex-shrink: 0; min-width: 60px;
+}
+.level-header-text { flex: 1; }
+.level-tag {
+  font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: .3rem;
+}
+.level-title {
+  font-family: var(--ff-head); font-size: 1.4rem; font-weight: 800;
+  color: #fff; line-height: 1.2; letter-spacing: -.02em;
+}
+.level-sub { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: .3rem; }
+.level-milestone {
+  background: rgba(200,241,53,.12); border: 1px solid rgba(200,241,53,.3);
+  border-radius: 10px; padding: .7rem 1.1rem; flex-shrink: 0;
+  text-align: center; min-width: 130px;
+}
+.level-milestone-title { font-size: .58rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(200,241,53,.7); margin-bottom: .25rem; }
+.level-milestone-val { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 800; color: var(--lime); line-height: 1.1; }
+.level-milestone-sub { font-size: .6rem; color: rgba(255,255,255,.4); margin-top: .15rem; }
+
+.level-body { padding: 2rem 2.5rem; }
+.level-overview {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; margin-bottom: 2rem;
+}
+.level-desc { font-size: .9rem; color: var(--text2); line-height: 1.9; }
+.level-attrs {
+  background: var(--g100); border-radius: 12px;
+  padding: 1.2rem 1.4rem; align-self: start;
+}
+.level-attr-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: .45rem 0; border-bottom: 1px solid var(--g200); gap: 1rem;
+}
+.level-attr-row:last-child { border-bottom: none; }
+.level-attr-label { font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--g300); flex-shrink: 0; }
+.level-attr-val { font-size: .78rem; font-weight: 500; color: var(--text); text-align: right; line-height: 1.4; }
+
+/* Entry requirements box */
+.entry-box {
+  background: var(--lime-pale); border: 1.5px solid var(--lime-dk);
+  border-radius: 12px; padding: 1.2rem 1.6rem; margin-bottom: 2rem;
+}
+.entry-box-title {
+  font-family: var(--ff-head); font-size: .78rem; font-weight: 700;
+  color: var(--forest); letter-spacing: .04em; text-transform: uppercase;
+  margin-bottom: .8rem; display: flex; align-items: center; gap: 7px;
+}
+.entry-box ul { list-style: none; padding: 0; }
+.entry-box ul li {
+  font-size: .83rem; color: var(--text); padding: .28rem 0;
+  padding-left: 1.1rem; position: relative; line-height: 1.65;
+}
+.entry-box ul li::before {
+  content: '›'; position: absolute; left: 0;
+  color: var(--forest-lt); font-weight: 700;
+}
+
+/* Modules grid */
+.modules-title {
+  font-family: var(--ff-head); font-size: .82rem; font-weight: 700;
+  color: var(--forest); text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+}
+.modules-title::before { content: ''; width: 14px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+.modules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.module-card {
+  background: var(--bg); border: 1.5px solid var(--g200); border-radius: 12px;
+  padding: 1.3rem 1.4rem; transition: all var(--tr);
+}
+.module-card:hover { border-color: var(--lime-dk); background: var(--white); box-shadow: 0 4px 18px rgba(13,43,31,.07); transform: translateY(-2px); }
+.module-num { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--lime-dk); margin-bottom: .4rem; }
+.module-name { font-family: var(--ff-head); font-size: .9rem; font-weight: 700; color: var(--forest); line-height: 1.3; margin-bottom: .5rem; }
+.module-desc { font-size: .78rem; color: var(--text2); line-height: 1.7; margin-bottom: .8rem; }
+.module-topics { display: flex; flex-direction: column; gap: .2rem; }
+.module-topic {
+  font-size: .72rem; color: var(--text2); padding: .15rem 0;
+  padding-left: .9rem; position: relative; line-height: 1.55;
+}
+.module-topic::before { content: '•'; position: absolute; left: 0; color: var(--forest-lt); }
+
+/* Progression box */
+.progression-box {
+  background: var(--forest); border-radius: 12px;
+  padding: 1.5rem 1.8rem; margin-top: .5rem;
+}
+.prog-box-title {
+  font-family: var(--ff-head); font-size: .78rem; font-weight: 700;
+  color: var(--lime); text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 7px;
+}
+.prog-box-title::before { content: ''; width: 14px; height: 2px; background: var(--lime); border-radius: 2px; }
+.prog-steps { list-style: none; padding: 0; counter-reset: step-counter; }
+.prog-step {
+  font-size: .83rem; color: rgba(255,255,255,.8); padding: .35rem 0;
+  padding-left: 1.8rem; position: relative; line-height: 1.65;
+  counter-increment: step-counter; border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.prog-step:last-child { border-bottom: none; }
+.prog-step::before {
+  content: counter(step-counter);
+  position: absolute; left: 0; top: .38rem;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(200,241,53,.2); border: 1px solid var(--lime-dk);
+  color: var(--lime); font-size: .6rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1; font-family: var(--ff-head);
+}
+.prog-milestone-tag {
+  display: inline-block; margin-top: .8rem;
+  background: rgba(200,241,53,.15); border: 1px solid rgba(200,241,53,.35);
+  padding: 5px 14px; border-radius: 30px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lime);
+}
+
+/* ═══════════════════════════════════════════
+   DARK FOREST SECTIONS
+═══════════════════════════════════════════ */
+.forest-section { background: var(--forest); padding: 5.5rem 3rem; }
+.forest-section .section-label { color: var(--lime); }
+.forest-section .section-label::before { background: var(--lime); }
+.forest-section .section-h2 { color: #fff; }
+.forest-section .section-lead { color: rgba(255,255,255,.55); }
+
+/* ═══════════════════════════════════════════
+   ASSESSMENT PHILOSOPHY
+═══════════════════════════════════════════ */
+.assess-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem;
+  margin-top: 2.5rem;
+}
+.assess-card {
+  background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 1.5rem 1.6rem; transition: all var(--tr);
+  position: relative; overflow: hidden;
+}
+.assess-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--lime); opacity: 0; transition: opacity var(--tr);
+}
+.assess-card:hover { border-color: rgba(200,241,53,.3); background: rgba(255,255,255,.08); transform: translateY(-3px); }
+.assess-card:hover::after { opacity: 1; }
+.assess-icon { font-size: 1.6rem; margin-bottom: .7rem; }
+.assess-title { font-family: var(--ff-head); font-size: .92rem; font-weight: 700; color: #fff; margin-bottom: .4rem; }
+.assess-desc { font-size: .8rem; color: rgba(255,255,255,.5); line-height: 1.75; }
+
+/* ═══════════════════════════════════════════
+   GRADING TABLE
+═══════════════════════════════════════════ */
+.grading-table-wrap { margin-top: 2.5rem; border-radius: 14px; overflow: hidden; border: 1.5px solid rgba(255,255,255,.12); }
+.grading-table { width: 100%; border-collapse: collapse; }
+.grading-table thead tr { background: rgba(255,255,255,.07); }
+.grading-table thead th {
+  padding: 13px 18px; text-align: left;
+  font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--lime);
+}
+.grading-table tbody tr { border-bottom: 1px solid rgba(255,255,255,.06); transition: background var(--tr); }
+.grading-table tbody tr:last-child { border-bottom: none; }
+.grading-table tbody tr:hover { background: rgba(255,255,255,.04); }
+.grading-table tbody td { padding: 12px 18px; font-size: .82rem; color: rgba(255,255,255,.7); vertical-align: middle; }
+.grading-table tbody td:first-child { font-weight: 700; }
+.grade-dist { color: var(--lime) !important; }
+.grade-merit { color: #8ecfff !important; }
+.grade-pass { color: rgba(255,255,255,.9) !important; }
+
+/* ═══════════════════════════════════════════
+   POLICIES SECTION
+═══════════════════════════════════════════ */
+.policies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
+.policy-card {
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px;
+  padding: 1.6rem 1.7rem; transition: all var(--tr);
+}
+.policy-card:hover { border-color: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,43,31,.08); }
+.policy-icon { font-size: 1.5rem; margin-bottom: .7rem; }
+.policy-title { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: var(--forest); margin-bottom: .5rem; }
+.policy-body { font-size: .82rem; color: var(--text2); line-height: 1.8; }
+.policy-sub {
+  margin-top: .8rem; padding-top: .8rem; border-top: 1px solid var(--g100);
+}
+.policy-sub-title { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--forest-lt); margin-bottom: .5rem; }
+.policy-sub ul { list-style: none; padding: 0; }
+.policy-sub ul li { font-size: .78rem; color: var(--text2); padding: .2rem 0 .2rem 1rem; position: relative; line-height: 1.55; }
+.policy-sub ul li::before { content: '›'; position: absolute; left: 0; color: var(--lime-dk); font-weight: 700; }
+
+/* ═══════════════════════════════════════════
+   CPD TABLE
+═══════════════════════════════════════════ */
+.cpd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.cpd-card {
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px;
+  padding: 1.4rem 1.5rem; text-align: center; transition: all var(--tr);
+}
+.cpd-card:hover { border-color: var(--lime-dk); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(13,43,31,.08); }
+.cpd-card.featured { background: var(--forest); border-color: var(--lime); }
+.cpd-grade { font-family: var(--ff-head); font-size: .85rem; font-weight: 700; color: var(--forest); margin-bottom: .3rem; }
+.cpd-card.featured .cpd-grade { color: var(--lime); }
+.cpd-desig { display: inline-block; background: var(--g100); color: var(--forest); font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: .7rem; }
+.cpd-card.featured .cpd-desig { background: rgba(200,241,53,.15); color: var(--lime); }
+.cpd-hours { font-family: var(--ff-head); font-size: 2rem; font-weight: 800; color: var(--lime-dk); line-height: 1; letter-spacing: -.04em; }
+.cpd-card.featured .cpd-hours { color: var(--lime); }
+.cpd-unit { font-size: .68rem; color: var(--text2); margin-top: .15rem; }
+.cpd-card.featured .cpd-unit { color: rgba(255,255,255,.5); }
+.cpd-method { font-size: .74rem; color: var(--text2); margin-top: .6rem; line-height: 1.5; }
+.cpd-card.featured .cpd-method { color: rgba(255,255,255,.55); }
+
+/* CPD activities */
+.cpd-activities { margin-top: 2rem; background: var(--g100); border-radius: 14px; padding: 1.5rem 1.8rem; }
+.cpd-activities-title { font-family: var(--ff-head); font-size: .8rem; font-weight: 700; color: var(--forest); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+.cpd-acts-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.cpd-act { padding: 5px 13px; background: var(--white); border: 1.5px solid var(--g200); border-radius: 20px; font-size: .73rem; font-weight: 500; color: var(--text2); transition: all var(--tr); }
+.cpd-act:hover { border-color: var(--lime-dk); background: var(--lime-pale); }
+
+/* ═══════════════════════════════════════════
+   STUDY MODES
+═══════════════════════════════════════════ */
+.modes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; margin-top: 2.5rem; }
+.mode-card {
+  background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 1.5rem 1.7rem; display: flex; gap: 1.2rem;
+  transition: all var(--tr);
+}
+.mode-card:hover { border-color: rgba(200,241,53,.3); background: rgba(255,255,255,.08); transform: translateY(-2px); }
+.mode-icon { font-size: 1.8rem; flex-shrink: 0; }
+.mode-title { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: .3rem; }
+.mode-desc { font-size: .81rem; color: rgba(255,255,255,.5); line-height: 1.75; }
+
+/* ═══════════════════════════════════════════
+   EXEMPTIONS TABLE
+═══════════════════════════════════════════ */
+.exempt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin-top: 2rem; }
+.exempt-card {
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 12px;
+  padding: 1.3rem 1.5rem; transition: all var(--tr);
+}
+.exempt-card:hover { border-color: var(--lime-dk); box-shadow: 0 4px 18px rgba(13,43,31,.07); }
+.exempt-type { font-size: .6rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--lime-dk); margin-bottom: .4rem; }
+.exempt-title { font-family: var(--ff-head); font-size: .88rem; font-weight: 700; color: var(--forest); margin-bottom: .4rem; }
+.exempt-body { font-size: .8rem; color: var(--text2); line-height: 1.75; }
+
+.exempt-caps {
+  margin-top: 2rem; background: var(--forest); border-radius: 14px; padding: 1.5rem 1.8rem;
+}
+.exempt-caps-title {
+  font-family: var(--ff-head); font-size: .8rem; font-weight: 700; color: var(--lime);
+  text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem;
+}
+.exempt-caps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: .7rem; }
+.exempt-cap-item { text-align: center; }
+.exempt-cap-level { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: .25rem; }
+.exempt-cap-val { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 800; color: var(--lime); line-height: 1; }
+.exempt-cap-sub { font-size: .65rem; color: rgba(255,255,255,.4); margin-top: .15rem; }
+.exempt-note {
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.1);
+  font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+.cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(200,241,53,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .8rem; position: relative; }
+.cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-btn-main { padding: 14px 32px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .84rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,241,53,.35); }
+.cta-btn-alt { padding: 14px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .84rem; font-weight: 600; transition: all var(--tr); }
+.cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   STICKY NAV TABS
+═══════════════════════════════════════════ */
+.level-tabs {
+  position: sticky; top: var(--nav-h); z-index: 90;
+  background: rgba(247,248,243,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--g200); padding: 0 3rem;
+  box-shadow: 0 2px 12px rgba(13,43,31,.05);
+}
+.level-tabs-inner { max-width: 1260px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; }
+.level-tab {
+  padding: 1rem 1.2rem; white-space: nowrap; cursor: pointer;
+  font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+  color: var(--text2); border: none; background: none;
+  border-bottom: 2.5px solid transparent; transition: all var(--tr);
+  display: flex; align-items: center; gap: 5px;
+}
+.level-tab:hover { color: var(--forest); }
+.level-tab.act { color: var(--forest); border-bottom-color: var(--lime-dk); }
+.level-tab-num {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--g200); color: var(--forest);
+  font-size: .6rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+  transition: all var(--tr); flex-shrink: 0;
+}
+.level-tab.act .level-tab-num { background: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .nav-links { gap: .02rem; }
+  .nav-link { font-size: .67rem; padding: 5px 8px; }
+  .assess-grid { grid-template-columns: repeat(2, 1fr); }
+  .policies-grid { grid-template-columns: repeat(2, 1fr); }
+  .cpd-grid { grid-template-columns: repeat(2, 1fr); }
+  .exempt-grid { grid-template-columns: repeat(2, 1fr); }
+  .modes-grid { grid-template-columns: 1fr; }
+  .exempt-caps-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .level-overview { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+  .level-header { flex-wrap: wrap; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .nav { padding: 0 1.2rem; }
+  .section, .forest-section, .levels-section, .cta-section { padding: 3.5rem 1.2rem; }
+  .level-tabs { padding: 0 1.2rem; }
+  .level-body { padding: 1.4rem 1.2rem; }
+  .level-header { padding: 1.4rem 1.2rem; }
+  .assess-grid { grid-template-columns: 1fr; }
+  .policies-grid { grid-template-columns: 1fr; }
+  .cpd-grid { grid-template-columns: 1fr 1fr; }
+  .exempt-grid { grid-template-columns: 1fr; }
+  .exempt-caps-grid { grid-template-columns: repeat(2, 1fr); }
+  .modules-grid { grid-template-columns: 1fr; }
+  .framework-table { font-size: .75rem; }
+  .framework-table thead th, .framework-table tbody td { padding: 10px 12px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .page-hero { padding: calc(var(--nav-h) + 2.5rem) 1.2rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link act">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span> Official Framework Document — Edition 1.0, 2024</div>
+    <h1>CILG Professional<br>Qualification Framework</h1>
+    <p>A competency-based, five-level qualification pathway advancing professional excellence in leadership, corporate governance, organizational management, and public administration — aligned to internationally recognised best practices.</p>
+    <div class="page-hero-meta">
+      <div class="hero-meta-item">🎓 <strong>5</strong> Progressive Levels</div>
+      <div class="hero-meta-item">📚 <strong>25</strong> Core Modules</div>
+      <div class="hero-meta-item">🌍 <strong>International</strong> Standard</div>
+      <div class="hero-meta-item">⭐ <strong>FCILG</strong> Chartered Designation</div>
+      <div class="hero-meta-item">📌 Registered in the <strong>USA</strong></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STICKY LEVEL TABS -->
+<div class="level-tabs" id="levelTabs">
+  <div class="level-tabs-inner">
+    <button class="level-tab" onclick="scrollToSection('section-overview')">Overview</button>
+    <button class="level-tab" onclick="scrollToSection('level1')"><span class="level-tab-num">1</span> Foundation</button>
+    <button class="level-tab" onclick="scrollToSection('level2')"><span class="level-tab-num">2</span> Knowledge</button>
+    <button class="level-tab" onclick="scrollToSection('level3')"><span class="level-tab-num">3</span> Skills</button>
+    <button class="level-tab" onclick="scrollToSection('level4')"><span class="level-tab-num">4</span> Professional</button>
+    <button class="level-tab" onclick="scrollToSection('level5')"><span class="level-tab-num">5</span> Expert</button>
+    <button class="level-tab" onclick="scrollToSection('section-assessment')">Assessment</button>
+    <button class="level-tab" onclick="scrollToSection('section-policies')">Policies</button>
+    <button class="level-tab" onclick="scrollToSection('section-cpd')">CPD</button>
+  </div>
+</div>
+
+
+<!-- SECTION 1: OVERVIEW -->
+<section class="section" id="section-overview">
+  <div class="section-inner">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-h2">Overview of the CILG<br>Qualification Framework</h2>
+    <p class="section-lead">The CILG Professional Qualification Framework (PQF) is designed to develop and certify professionals who demonstrate mastery in leadership theory and practice, governance structures and compliance, organizational strategy, ethical decision-making, and executive management. The framework is built on a competency-based model rather than an academic credits model, meaning progression is determined by demonstrated professional knowledge, practical application, and real-world competence.</p>
+    <p style="font-size:.9rem;color:var(--text2);line-height:1.85;margin-top:1rem;max-width:780px">The CILG PQF draws conceptual alignment from internationally respected professional qualification structures, including those of ACCA, CIMA, CIPD, and the Institute of Directors (IoD), while maintaining a unique identity rooted in leadership and governance practice.</p>
+
+    <div class="framework-table-wrap">
+      <table class="framework-table">
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Title</th>
+            <th>Qualification Award</th>
+            <th>Membership Outcome</th>
+            <th>Post-nominal</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Level 1</td>
+            <td>Foundation</td>
+            <td>Certificate in Leadership and Governance</td>
+            <td>Student Member</td>
+            <td><span class="table-badge badge-green">None</span></td>
+            <td>3–6 months</td>
+          </tr>
+          <tr>
+            <td>Level 2</td>
+            <td>Knowledge</td>
+            <td>Diploma in Leadership and Governance</td>
+            <td>None at this level</td>
+            <td><span class="table-badge badge-green">AfCILG</span></td>
+            <td>6–9 months</td>
+          </tr>
+          <tr>
+            <td>Level 3</td>
+            <td>Skills</td>
+            <td>Advanced Diploma in Leadership and Governance</td>
+            <td>Associate Member (ACILG)</td>
+            <td><span class="table-badge badge-green">ACILG</span></td>
+            <td>9–12 months</td>
+          </tr>
+          <tr>
+            <td>Level 4</td>
+            <td>Professional</td>
+            <td>Executive Diploma in Leadership and Governance</td>
+            <td>Full Member (MCILG)</td>
+            <td><span class="table-badge badge-green">MCILG</span></td>
+            <td>12–18 months</td>
+          </tr>
+          <tr>
+            <td>Level 5</td>
+            <td>Expert</td>
+            <td>Chartered Professional in Leadership and Governance</td>
+            <td>Fellow (FCILG)</td>
+            <td><span class="table-badge badge-forest">FCILG ★</span></td>
+            <td>18–24 months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- General Eligibility -->
+    <div style="margin-top:2.5rem">
+      <h3 style="font-family:var(--ff-head);font-size:1.15rem;font-weight:800;color:var(--forest);margin-bottom:.5rem;letter-spacing:-.02em">1.3 General Eligibility for the Framework</h3>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.85;max-width:780px;margin-bottom:1.3rem">The CILG qualification framework is open to all individuals who satisfy the minimum entry requirement for their respective level. The framework is professionally oriented; therefore, academic qualifications alone do not guarantee advancement. Professional experience, professional development activities, and demonstrated competence carry significant weight in progression decisions.</p>
+      <div class="entry-box" style="max-width:640px">
+        <div class="entry-box-title">📋 Minimum Entry Requirements — Level 1 (Foundation)</div>
+        <ul>
+          <li><strong>Age:</strong> 18 years and above</li>
+          <li><strong>Academic:</strong> High school diploma, GED, or equivalent secondary qualification</li>
+          <li><strong>Professional:</strong> No prior professional experience required</li>
+          <li><strong>Language:</strong> Proficiency in English (written and spoken)</li>
+          <li><strong>Other:</strong> Completion of CILG enrollment form and payment of applicable registration fees</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LEVEL BLOCKS -->
+<div class="levels-section">
+
+  <!-- ── LEVEL 1 ── -->
+  <div class="level-block" id="level1">
+    <div class="level-header">
+      <div class="level-number">01</div>
+      <div class="level-header-text">
+        <div class="level-tag">Foundation Level</div>
+        <div class="level-title">CILG Certificate in Leadership and Governance</div>
+        <div class="level-sub">Entry point to the CILG Qualification Framework</div>
+      </div>
+      <div class="level-milestone">
+        <div class="level-milestone-title">Award</div>
+        <div class="level-milestone-val">Certificate</div>
+        <div class="level-milestone-sub">L&amp;G</div>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <div class="level-overview">
+        <div>
+          <p class="level-desc">The Foundation Level is the entry point to the CILG Qualification Framework. This level is designed to introduce candidates to the core concepts, principles, and vocabulary of leadership, governance, and organizational management. It is appropriate for early-career professionals, administrators, supervisors, and individuals seeking to transition into leadership roles.</p>
+        </div>
+        <div class="level-attrs">
+          <div class="level-attr-row"><span class="level-attr-label">Level</span><span class="level-attr-val">Level 1 — Foundation</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Duration</span><span class="level-attr-val">3–6 months</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Modules</span><span class="level-attr-val">5 modules</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Assessment</span><span class="level-attr-val">Written Exams (MCQ &amp; Short Answer)</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Pass Mark</span><span class="level-attr-val">50% per module</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Membership</span><span class="level-attr-val">None</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Award</span><span class="level-attr-val">Certificate in Leadership &amp; Governance</span></div>
+        </div>
+      </div>
+
+      <div class="entry-box">
+        <div class="entry-box-title">📋 Entry Requirements — Level 1</div>
+        <ul>
+          <li>Minimum age of 18 years</li>
+          <li>High school diploma, GED, or equivalent secondary leaving certificate</li>
+          <li>No prior professional experience required</li>
+          <li>Completion of CILG Enrollment and Registration Form</li>
+          <li>Payment of Level 1 registration and examination fees</li>
+        </ul>
+      </div>
+
+      <div class="modules-title">Level 1 Modules (5 Modules)</div>
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-num">Module 1.1</div>
+          <div class="module-name">Fundamentals of Leadership</div>
+          <div class="module-desc">Introduces foundational theories and models of leadership, exploring the evolution of leadership thought from classical trait theory to contemporary transformational and servant leadership models.</div>
+          <div class="module-topics">
+            <div class="module-topic">Evolution of leadership theory: trait, behavioral, contingency, transformational and servant leadership</div>
+            <div class="module-topic">Leadership versus management — key distinctions and complementary roles</div>
+            <div class="module-topic">Self-awareness and emotional intelligence as leadership foundations</div>
+            <div class="module-topic">Communication, motivation, and team dynamics</div>
+            <div class="module-topic">Ethical leadership and personal integrity</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 1.2</div>
+          <div class="module-name">Introduction to Corporate Governance</div>
+          <div class="module-desc">Provides a foundational understanding of corporate governance principles, structures, and frameworks. Examines the roles of directors and boards, and the importance of transparency and accountability.</div>
+          <div class="module-topics">
+            <div class="module-topic">Definition, purpose, and importance of corporate governance</div>
+            <div class="module-topic">Historical development of governance frameworks</div>
+            <div class="module-topic">The board of directors: roles, composition, and responsibilities</div>
+            <div class="module-topic">Shareholder rights and stakeholder theory</div>
+            <div class="module-topic">Introduction to governance codes and regulations (US governance standards)</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 1.3</div>
+          <div class="module-name">Organizational Behavior and Culture</div>
+          <div class="module-desc">Examines how individuals and groups behave within organizational settings and how culture shapes organizational performance, decision-making, and change.</div>
+          <div class="module-topics">
+            <div class="module-topic">Perception, attitudes, personality, and their impact on workplace behavior</div>
+            <div class="module-topic">Group dynamics, team formation, and team effectiveness</div>
+            <div class="module-topic">Organizational culture: models, typologies, and culture change</div>
+            <div class="module-topic">Conflict, negotiation, and resolution in organizational settings</div>
+            <div class="module-topic">Diversity, inclusion, and the role of leadership in fostering belonging</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 1.4</div>
+          <div class="module-name">Business Communication and Professional Ethics</div>
+          <div class="module-desc">Develops candidates' ability to communicate professionally and ethically in diverse organizational contexts, while laying the groundwork for ethical professional conduct.</div>
+          <div class="module-topics">
+            <div class="module-topic">Principles of effective professional written and oral communication</div>
+            <div class="module-topic">Report writing, presentation, and professional correspondence</div>
+            <div class="module-topic">Business ethics: frameworks, dilemmas, and decision-making models</div>
+            <div class="module-topic">Whistleblowing, codes of conduct, and professional integrity</div>
+            <div class="module-topic">Digital communication and social media responsibilities</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 1.5</div>
+          <div class="module-name">Introduction to Strategy and Organizations</div>
+          <div class="module-desc">Equips candidates with an understanding of how organizations operate strategically and the basics of organizational management.</div>
+          <div class="module-topics">
+            <div class="module-topic">What is strategy? Strategic intent, mission, vision, and values</div>
+            <div class="module-topic">The external environment: PESTLE analysis and competitive forces</div>
+            <div class="module-topic">Organizational structures and their implications for leadership</div>
+            <div class="module-topic">Basic resource management: people, finance, and operations</div>
+            <div class="module-topic">Introduction to organizational performance measurement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progression-box">
+        <div class="prog-box-title">Progression Requirements to Level 2</div>
+        <ol class="prog-steps">
+          <li class="prog-step">Pass all 5 modules at Level 1 (minimum 50% per module)</li>
+          <li class="prog-step">Upgrade CILG membership to Student Member upon enrollment</li>
+          <li class="prog-step">Complete the Level 1 Professional Orientation Program (online, 4 hours)</li>
+          <li class="prog-step">No minimum work experience required for progression to Level 2</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 2 ── -->
+  <div class="level-block" id="level2">
+    <div class="level-header">
+      <div class="level-number">02</div>
+      <div class="level-header-text">
+        <div class="level-tag">Knowledge Level</div>
+        <div class="level-title">CILG Diploma in Leadership and Governance</div>
+        <div class="level-sub">Expanding theoretical and applied knowledge across key governance domains</div>
+      </div>
+      <div class="level-milestone">
+        <div class="level-milestone-title">Award</div>
+        <div class="level-milestone-val">Diploma</div>
+        <div class="level-milestone-sub">L&amp;G</div>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <div class="level-overview">
+        <div>
+          <p class="level-desc">The Knowledge Level builds on the foundations established at Level 1, expanding candidates' theoretical and applied knowledge across the key domains of leadership, governance, financial management, law, and organizational strategy. At this level, candidates begin engaging with more complex professional scenarios and are expected to demonstrate analytical thinking and professional judgment.</p>
+        </div>
+        <div class="level-attrs">
+          <div class="level-attr-row"><span class="level-attr-label">Level</span><span class="level-attr-val">Level 2 — Knowledge</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Duration</span><span class="level-attr-val">6–9 months</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Modules</span><span class="level-attr-val">5 modules</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Assessment</span><span class="level-attr-val">Written exams &amp; short case study responses</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Pass Mark</span><span class="level-attr-val">50% per module</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Membership</span><span class="level-attr-val">None at this level</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Award</span><span class="level-attr-val">Diploma in Leadership &amp; Governance</span></div>
+        </div>
+      </div>
+
+      <div class="entry-box">
+        <div class="entry-box-title">📋 Entry Requirements — Level 2</div>
+        <ul>
+          <li>Completion of CILG Level 1 Foundation Certificate, OR</li>
+          <li>Recognised prior learning equivalent to Level 1 (subject to exemption approval)</li>
+          <li>OR: Minimum of two (2) years' relevant professional experience combined with a recognised post-secondary certificate</li>
+          <li>Registration as a CILG Student Member (SCILG)</li>
+        </ul>
+      </div>
+
+      <div class="modules-title">Level 2 Modules (5 Modules)</div>
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-num">Module 2.1</div>
+          <div class="module-name">Advanced Leadership Theories and Practice</div>
+          <div class="module-desc">Deepens candidates' understanding of leadership in complex and dynamic environments, examining leadership in contexts of change, crisis, cultural diversity, and digital transformation.</div>
+          <div class="module-topics">
+            <div class="module-topic">Adaptive leadership: navigating uncertainty and organizational disruption</div>
+            <div class="module-topic">Authentic and ethical leadership in diverse professional contexts</div>
+            <div class="module-topic">Leading virtual and hybrid teams</div>
+            <div class="module-topic">Coaching and mentoring as leadership tools</div>
+            <div class="module-topic">Leadership in public sector and non-profit organizations</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 2.2</div>
+          <div class="module-name">Corporate Law and Regulatory Compliance</div>
+          <div class="module-desc">Introduces candidates to the legal and regulatory frameworks within which organizations operate, with particular attention to US corporate law, directors' duties, and governance-related regulations.</div>
+          <div class="module-topics">
+            <div class="module-topic">Formation, structure, and dissolution of corporations and other entities</div>
+            <div class="module-topic">Directors' duties: fiduciary duties, duty of care, loyalty, and obedience</div>
+            <div class="module-topic">Shareholder rights, derivative suits, and corporate democracy</div>
+            <div class="module-topic">Securities regulation and disclosure requirements</div>
+            <div class="module-topic">Employment law fundamentals and workplace governance</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 2.3</div>
+          <div class="module-name">Financial Management for Leaders</div>
+          <div class="module-desc">Equips non-financial leaders with the financial literacy necessary to make informed governance and strategic decisions, including reading, interpreting, and interrogating financial statements.</div>
+          <div class="module-topics">
+            <div class="module-topic">Understanding financial statements: income statement, balance sheet, and cash flow</div>
+            <div class="module-topic">Budgeting, forecasting, and financial planning</div>
+            <div class="module-topic">Ratio analysis and financial performance indicators</div>
+            <div class="module-topic">Cost management and working capital management</div>
+            <div class="module-topic">Introduction to capital structure and investment decision-making</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 2.4</div>
+          <div class="module-name">Human Resource Management and Talent Leadership</div>
+          <div class="module-desc">Addresses the strategic management of human capital, exploring how organizations attract, develop, engage, and retain talent in alignment with organizational goals.</div>
+          <div class="module-topics">
+            <div class="module-topic">Strategic HRM vs. operational HR</div>
+            <div class="module-topic">Workforce planning, talent acquisition, and succession planning</div>
+            <div class="module-topic">Performance management systems and appraisal frameworks</div>
+            <div class="module-topic">Employee engagement, well-being, and retention</div>
+            <div class="module-topic">Labor relations and the legal framework of employment</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 2.5</div>
+          <div class="module-name">Organizational Strategy and Competitive Analysis</div>
+          <div class="module-desc">Provides a rigorous framework for understanding how organizations formulate, implement, and evaluate strategic decisions in competitive environments.</div>
+          <div class="module-topics">
+            <div class="module-topic">Strategic management process: analysis, formulation, implementation, and evaluation</div>
+            <div class="module-topic">Competitive analysis tools: Porter's Five Forces, VRIO, and value chain analysis</div>
+            <div class="module-topic">Corporate, business, and functional level strategies</div>
+            <div class="module-topic">Strategic alliances, mergers, and acquisitions</div>
+            <div class="module-topic">Balanced Scorecard and strategy execution frameworks</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progression-box">
+        <div class="prog-box-title">Progression Requirements to Level 3</div>
+        <ol class="prog-steps">
+          <li class="prog-step">Pass all 5 modules at Level 2 (minimum 50% per module)</li>
+          <li class="prog-step">Submit a brief Professional Development Reflection (500 words) evidencing application of learning</li>
+          <li class="prog-step">Minimum 1 year of relevant professional employment is strongly recommended before progressing</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 3 ── -->
+  <div class="level-block" id="level3">
+    <div class="level-header">
+      <div class="level-number">03</div>
+      <div class="level-header-text">
+        <div class="level-tag">Skills Level — First Professional Designation</div>
+        <div class="level-title">CILG Advanced Diploma in Leadership and Governance</div>
+        <div class="level-sub">Applied professional competence — earns the ACILG designation</div>
+      </div>
+      <div class="level-milestone">
+        <div class="level-milestone-title">Designation</div>
+        <div class="level-milestone-val">ACILG</div>
+        <div class="level-milestone-sub">Associate Member</div>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <div style="background:rgba(200,241,53,.08);border:1.5px solid var(--lime-dk);border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.8rem;display:flex;align-items:flex-start;gap:.9rem">
+        <span style="font-size:1.3rem">🏅</span>
+        <div>
+          <div style="font-family:var(--ff-head);font-size:.82rem;font-weight:700;color:var(--forest);margin-bottom:.25rem">MILESTONE: Completion of Level 3 awards the designation Associate Member of CILG (ACILG)</div>
+          <div style="font-size:.8rem;color:var(--text2);line-height:1.7">Post-nominal: <strong>ACILG</strong> · Membership Grade: Associate Member · Holder is recognised as a qualified professional in leadership and governance</div>
+        </div>
+      </div>
+
+      <div class="level-overview">
+        <div>
+          <p class="level-desc">The Skills Level represents a significant milestone in the CILG qualification journey. At this level, candidates move beyond theoretical understanding to demonstrate applied professional competence. The Advanced Diploma in Leadership and Governance is a practice-oriented qualification that requires candidates to apply frameworks and concepts to realistic professional scenarios. Successful completion of Level 3 confers the designation of Associate Member of the Chartered Institute of Leadership and Governance (ACILG).</p>
+        </div>
+        <div class="level-attrs">
+          <div class="level-attr-row"><span class="level-attr-label">Level</span><span class="level-attr-val">Level 3 — Skills</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Duration</span><span class="level-attr-val">9–12 months</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Modules</span><span class="level-attr-val">5 modules</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Assessment</span><span class="level-attr-val">Case study reports, Professional Practice Assignments, Examination</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Pass Mark</span><span class="level-attr-val">50% per module</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Membership</span><span class="level-attr-val">Associate Member (ACILG)</span></div>
+        </div>
+      </div>
+
+      <div class="entry-box">
+        <div class="entry-box-title">📋 Entry Requirements — Level 3</div>
+        <ul>
+          <li>Completion of CILG Level 2 Certificate (Knowledge Level), OR</li>
+          <li>Recognised equivalent qualification with approved exemption from the CILG Exemptions Committee</li>
+          <li>Minimum two (2) years of relevant professional experience in a leadership, management, governance, or administrative role</li>
+          <li>Current CILG Student membership</li>
+          <li>Submission of a Current Professional Experience Statement (one page)</li>
+        </ul>
+      </div>
+
+      <div class="modules-title">Level 3 Modules (5 Modules)</div>
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-num">Module 3.1</div>
+          <div class="module-name">Strategic Leadership in Practice</div>
+          <div class="module-desc">Bridges strategic theory with leadership execution, developing the ability to lead organizational strategy processes, inspire strategic alignment across teams, and manage strategic performance.</div>
+          <div class="module-topics">
+            <div class="module-topic">Translating organizational strategy into leadership action plans</div>
+            <div class="module-topic">Change leadership: leading transformation in complex organizations</div>
+            <div class="module-topic">Strategic communication and influencing stakeholders</div>
+            <div class="module-topic">Building high-performance cultures aligned to strategy</div>
+            <div class="module-topic">Leading through ambiguity: scenario planning and adaptive decision-making</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 3.2</div>
+          <div class="module-name">Corporate Governance in Practice</div>
+          <div class="module-desc">Takes governance from theory to professional application, examining real-world governance failures, board effectiveness, and the practical mechanics of governance systems.</div>
+          <div class="module-topics">
+            <div class="module-topic">Board governance frameworks: governance models and comparative structures</div>
+            <div class="module-topic">Board evaluation, effectiveness, and renewal</div>
+            <div class="module-topic">Internal controls and risk oversight at board level</div>
+            <div class="module-topic">Executive compensation governance and remuneration committees</div>
+            <div class="module-topic">Case studies in governance failures and lessons learned</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 3.3</div>
+          <div class="module-name">Risk Management and Organizational Resilience</div>
+          <div class="module-desc">Equips candidates to identify, assess, and govern risk within complex organizational environments, including enterprise risk frameworks and crisis leadership.</div>
+          <div class="module-topics">
+            <div class="module-topic">Enterprise risk management (ERM) frameworks (COSO ERM, ISO 31000)</div>
+            <div class="module-topic">Risk appetite, risk tolerance, and risk culture</div>
+            <div class="module-topic">Operational, financial, reputational, and strategic risk categories</div>
+            <div class="module-topic">Business continuity planning and crisis leadership</div>
+            <div class="module-topic">Integrated risk reporting to boards and governance committees</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 3.4</div>
+          <div class="module-name">Stakeholder Management and Organizational Communication</div>
+          <div class="module-desc">Develops advanced skills in managing relationships with diverse stakeholders and designing communication strategies that reinforce organizational governance and leadership.</div>
+          <div class="module-topics">
+            <div class="module-topic">Stakeholder mapping, analysis, and engagement strategies</div>
+            <div class="module-topic">Managing board-level and executive-level communications</div>
+            <div class="module-topic">Public affairs, investor relations, and media engagement</div>
+            <div class="module-topic">Crisis communications and reputation management</div>
+            <div class="module-topic">Developing organizational communication frameworks</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 3.5</div>
+          <div class="module-name">Project and Programme Leadership</div>
+          <div class="module-desc">Develops project leadership skills with a governance and strategic management lens, equipping leaders to deliver complex programs of strategic value.</div>
+          <div class="module-topics">
+            <div class="module-topic">Project governance and the role of the project sponsor</div>
+            <div class="module-topic">Programme management frameworks (PMI, PRINCE2 governance)</div>
+            <div class="module-topic">Resource leadership, budget oversight, and milestone governance</div>
+            <div class="module-topic">Managing project risk and stakeholder expectations</div>
+            <div class="module-topic">Post-project review, lessons learned, and organizational learning</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progression-box">
+        <div class="prog-box-title">Progression to Associate Membership (ACILG)</div>
+        <ol class="prog-steps">
+          <li class="prog-step">Pass all 5 modules at Level 3 (minimum 50% per module)</li>
+          <li class="prog-step">Submit a 2,000-word Professional Competency Reflection linking Level 3 learning to real workplace experience</li>
+          <li class="prog-step">Provide verification from a current employer or professional referee confirming 2+ years of relevant experience</li>
+          <li class="prog-step">Pay Associate Membership application fee</li>
+          <li class="prog-step">Sign CILG Code of Professional Conduct</li>
+        </ol>
+        <div class="prog-milestone-tag">🏅 Upon approval, the candidate is conferred the designation Associate Member of CILG (ACILG)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 4 ── -->
+  <div class="level-block" id="level4">
+    <div class="level-header">
+      <div class="level-number">04</div>
+      <div class="level-header-text">
+        <div class="level-tag">Professional Level — Chartered Track</div>
+        <div class="level-title">CILG Executive Diploma in Leadership and Governance</div>
+        <div class="level-sub">Senior-level professional mastery — earns the MCILG designation</div>
+      </div>
+      <div class="level-milestone">
+        <div class="level-milestone-title">Designation</div>
+        <div class="level-milestone-val">MCILG</div>
+        <div class="level-milestone-sub">Full Member</div>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <div style="background:rgba(200,241,53,.08);border:1.5px solid var(--lime-dk);border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.8rem;display:flex;align-items:flex-start;gap:.9rem">
+        <span style="font-size:1.3rem">⭐</span>
+        <div>
+          <div style="font-family:var(--ff-head);font-size:.82rem;font-weight:700;color:var(--forest);margin-bottom:.25rem">MILESTONE: Completion of Level 4 awards the designation Full Member of CILG (MCILG)</div>
+          <div style="font-size:.8rem;color:var(--text2);line-height:1.7">Post-nominal: <strong>MCILG</strong> · Membership Grade: Member (Full) · Holder is a Chartered-track Senior Professional in Leadership and Governance</div>
+        </div>
+      </div>
+
+      <div class="level-overview">
+        <div>
+          <p class="level-desc">The Executive Diploma in Leadership and Governance represents senior-level professional mastery. Designed for experienced professionals in leadership and governance roles, this level demands sophisticated analysis, evidence of professional impact, and the ability to lead at an organizational or sectoral level. Successful completion leads to Full Membership of CILG (MCILG).</p>
+        </div>
+        <div class="level-attrs">
+          <div class="level-attr-row"><span class="level-attr-label">Level</span><span class="level-attr-val">Level 4 — Advanced</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Duration</span><span class="level-attr-val">12–18 months</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Modules</span><span class="level-attr-val">5 modules</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Assessment</span><span class="level-attr-val">Strategic Assignments, Portfolio Evidence, Oral/Viva Assessment</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Pass Mark</span><span class="level-attr-val">50% per module</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Membership</span><span class="level-attr-val">Full Member (MCILG)</span></div>
+        </div>
+      </div>
+
+      <div class="entry-box">
+        <div class="entry-box-title">📋 Entry Requirements — Level 4</div>
+        <ul>
+          <li>Completion of CILG Level 3 Diploma (Skills Level) and current Associate Membership (ACILG), OR</li>
+          <li>Approved Recognition of Prior Learning (RPL) with CILG Exemptions Committee confirmation — limited to one module</li>
+          <li>Minimum five (5) years of relevant professional experience, of which at least three (3) years must be in a senior leadership, governance, or executive management role</li>
+          <li>Completion of a CILG-accredited Professional Mentoring Review with an approved CILG Mentor (MCILG or FCILG designate)</li>
+          <li>Submission of a Professional Portfolio demonstrating senior-level leadership and governance practice</li>
+        </ul>
+      </div>
+
+      <div class="modules-title">Level 4 Modules (5 Modules)</div>
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-num">Module 4.1</div>
+          <div class="module-name">Executive Leadership and Organizational Transformation</div>
+          <div class="module-desc">Develops executive-level leadership capabilities, focusing on transformational leadership, organizational culture change, and the psychology of senior leadership.</div>
+          <div class="module-topics">
+            <div class="module-topic">Executive leadership models and their application in complex organizations</div>
+            <div class="module-topic">Leading large-scale organizational transformation programs</div>
+            <div class="module-topic">Cognitive and behavioral dimensions of executive decision-making</div>
+            <div class="module-topic">Building and sustaining executive teams</div>
+            <div class="module-topic">Succession planning and senior talent governance</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 4.2</div>
+          <div class="module-name">Board Governance and Director Effectiveness</div>
+          <div class="module-desc">Designed for professionals who serve on or advise boards of directors, examining board dynamics, director responsibilities, governance accountability, and board performance evaluation.</div>
+          <div class="module-topics">
+            <div class="module-topic">The effective board: composition, size, independence, and diversity</div>
+            <div class="module-topic">Non-executive and independent directors: role and responsibilities</div>
+            <div class="module-topic">Board committees: audit, risk, remuneration, and nomination</div>
+            <div class="module-topic">Director liability, indemnification, and fiduciary responsibilities</div>
+            <div class="module-topic">Board performance evaluation and improvement frameworks</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 4.3</div>
+          <div class="module-name">Strategic Finance and Governance Reporting</div>
+          <div class="module-desc">Develops advanced financial literacy for senior leaders, with a strong emphasis on governance-linked financial oversight, reporting, and accountability.</div>
+          <div class="module-topics">
+            <div class="module-topic">Strategic financial management: capital allocation, M&amp;A, and investment governance</div>
+            <div class="module-topic">Integrated reporting frameworks (IR Framework, GRI, SASB)</div>
+            <div class="module-topic">Financial governance and the audit committee</div>
+            <div class="module-topic">Taxation governance and transfer pricing oversight</div>
+            <div class="module-topic">Financial risk and treasury governance at board level</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 4.4</div>
+          <div class="module-name">Public Policy, Governance, and Regulatory Affairs</div>
+          <div class="module-desc">Addresses the interface between organizations and the public policy environment, exploring how leaders navigate regulatory landscapes and engage in policy processes.</div>
+          <div class="module-topics">
+            <div class="module-topic">The regulatory environment: federal, state, and international regulatory frameworks</div>
+            <div class="module-topic">Corporate political activity and government relations</div>
+            <div class="module-topic">Public governance: governance in government agencies and public institutions</div>
+            <div class="module-topic">Environmental, social, and governance (ESG) regulation and reporting</div>
+            <div class="module-topic">Anti-corruption, anti-money laundering, and compliance governance</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 4.5</div>
+          <div class="module-name">Organizational Ethics and Governance Culture</div>
+          <div class="module-desc">Provides an advanced exploration of ethical frameworks, the role of culture in governance, and the leader's responsibility for organizational integrity.</div>
+          <div class="module-topics">
+            <div class="module-topic">Normative ethical frameworks and their application in organizational governance</div>
+            <div class="module-topic">Building an ethical culture: the role of tone at the top</div>
+            <div class="module-topic">Corporate social responsibility and stakeholder governance</div>
+            <div class="module-topic">Governance failures and the ethics of accountability</div>
+            <div class="module-topic">Designing and implementing ethics and compliance programs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progression-box">
+        <div class="prog-box-title">Progression to Full Membership (MCILG)</div>
+        <ol class="prog-steps">
+          <li class="prog-step">Pass all 5 modules at Level 4 (minimum 50% per module)</li>
+          <li class="prog-step">Complete a Viva Voce (Professional Discussion) with two CILG assessors — 45 minutes</li>
+          <li class="prog-step">Submit an Advanced Professional Portfolio demonstrating 5+ years of senior professional practice</li>
+          <li class="prog-step">Provide two professional referees (at least one must be an MCILG or FCILG designate)</li>
+          <li class="prog-step">Pay Full Membership subscription</li>
+          <li class="prog-step">Recommit to CILG Code of Professional Conduct</li>
+        </ol>
+        <div class="prog-milestone-tag">⭐ Upon approval: Conferred as Member of the Chartered Institute of Leadership and Governance (MCILG)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 5 ── -->
+  <div class="level-block" id="level5">
+    <div class="level-header" style="background:linear-gradient(135deg, #071a0e 0%, var(--forest) 100%);">
+      <div class="level-number" style="color:rgba(200,241,53,.25)">05</div>
+      <div class="level-header-text">
+        <div class="level-tag">Expert Level — The Chartered Designation</div>
+        <div class="level-title">Chartered Professional in Leadership and Governance</div>
+        <div class="level-sub">The pinnacle of the CILG framework — earns the FCILG Chartered designation · No exemptions permitted</div>
+      </div>
+      <div class="level-milestone" style="background:rgba(200,241,53,.2);border-color:var(--lime)">
+        <div class="level-milestone-title">Chartered</div>
+        <div class="level-milestone-val" style="font-size:1.3rem">FCILG ★</div>
+        <div class="level-milestone-sub">Fellow</div>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <div style="background:var(--forest);border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.8rem;display:flex;align-items:flex-start;gap:.9rem;border:1.5px solid var(--lime)">
+        <span style="font-size:1.3rem">🏆</span>
+        <div>
+          <div style="font-family:var(--ff-head);font-size:.82rem;font-weight:700;color:var(--lime);margin-bottom:.25rem">MILESTONE: Completion of Level 5 awards the designation Fellow of CILG (FCILG) — the Chartered designation</div>
+          <div style="font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.7">Post-nominal: <strong style="color:var(--lime)">FCILG</strong> · Chartered Title: Chartered Professional in Leadership and Governance · The highest recognition in CILG — equivalent standing with global Chartered professionals</div>
+        </div>
+      </div>
+
+      <div class="level-overview">
+        <div>
+          <p class="level-desc">The Professional Level is the pinnacle of the CILG qualification framework, conferring the prestigious title of Chartered Professional in Leadership and Governance and the designation Fellow of CILG (FCILG). This level is reserved for seasoned professionals who have demonstrated exceptional mastery, strategic leadership, and meaningful contribution to the advancement of leadership and governance practice. No exemptions are permitted at this level.</p>
+        </div>
+        <div class="level-attrs">
+          <div class="level-attr-row"><span class="level-attr-label">Level</span><span class="level-attr-val">Level 5 — Expert</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Duration</span><span class="level-attr-val">18–24 months</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Modules</span><span class="level-attr-val">5 modules</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Assessment</span><span class="level-attr-val">Strategic Dissertation, Executive Portfolio, Peer Assessment, Oral Defense</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Pass Mark</span><span class="level-attr-val">50% per module — no exemptions</span></div>
+          <div class="level-attr-row"><span class="level-attr-label">Membership</span><span class="level-attr-val">Fellow (FCILG) — Chartered</span></div>
+        </div>
+      </div>
+
+      <div class="entry-box">
+        <div class="entry-box-title">📋 Entry Requirements — Level 5</div>
+        <ul>
+          <li>Completion of CILG Level 4 Advanced Diploma and current Full Membership (MCILG)</li>
+          <li>Minimum eight (8) years of progressive professional experience in leadership, governance, or executive management</li>
+          <li>At least five (5) years in a senior or executive leadership role (C-suite, Board, Director, Senior VP, or equivalent)</li>
+          <li>Demonstrated contribution to the profession: publications, speaking engagements, board service, policy contributions, or mentoring</li>
+          <li>Endorsement by two (2) existing FCILG Fellows of the Institute</li>
+          <li>Completion of the CILG Professional Entry Interview (conducted by a panel of three FCILG Fellows)</li>
+          <li>Current CILG CPD compliance: minimum 40 CPD hours per year for the preceding two years</li>
+        </ul>
+      </div>
+
+      <div class="modules-title">Level 5 Modules (5 Modules)</div>
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-num">Module 5.1</div>
+          <div class="module-name">Thought Leadership in Governance and Leadership</div>
+          <div class="module-desc">Develops research, analytical, and thought leadership capabilities for practitioners operating at the frontier of leadership and governance. Candidates contribute to knowledge development in their field.</div>
+          <div class="module-topics">
+            <div class="module-topic">Research methodologies for professional practice: action research, case study, and grounded theory</div>
+            <div class="module-topic">Critical analysis of contemporary governance and leadership models</div>
+            <div class="module-topic">Publishing and disseminating professional knowledge</div>
+            <div class="module-topic">CILG position papers and professional standards contributions</div>
+            <div class="module-topic">Building intellectual capital within organizations and the profession</div>
+          </div>
+          <div style="margin-top:.8rem;padding:.6rem .8rem;background:var(--lime-pale);border-radius:7px;font-size:.72rem;color:var(--forest);font-weight:600">Assessment: 5,000-word research paper on an approved governance or leadership topic</div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 5.2</div>
+          <div class="module-name">Global Governance, Leadership, and Geopolitical Risk</div>
+          <div class="module-desc">Equips candidates to lead and govern across jurisdictions and to navigate complex geopolitical dynamics in a globally interconnected environment.</div>
+          <div class="module-topics">
+            <div class="module-topic">Comparative corporate governance systems: Anglo-Saxon, Continental European, and Asian models</div>
+            <div class="module-topic">Cross-border governance: multinational boards, subsidiary governance, and holding structures</div>
+            <div class="module-topic">Geopolitical risk assessment and organizational strategy</div>
+            <div class="module-topic">International sanctions, trade compliance, and cross-border regulatory governance</div>
+            <div class="module-topic">Global leadership: cross-cultural leadership effectiveness</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 5.3</div>
+          <div class="module-name">Sustainable Leadership and Future of Governance</div>
+          <div class="module-desc">Examines the governance and leadership challenges of the 21st century, including sustainability, technology governance, and the future of organizations.</div>
+          <div class="module-topics">
+            <div class="module-topic">Sustainable development goals (SDGs) and their governance implications</div>
+            <div class="module-topic">ESG leadership: integrating environmental, social, and governance considerations into strategy</div>
+            <div class="module-topic">Technology governance: AI, data governance, cybersecurity, and digital board oversight</div>
+            <div class="module-topic">Future of work, organizational design, and post-industrial leadership</div>
+            <div class="module-topic">The role of the leading professional examination body in shaping governance futures</div>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">Module 5.4</div>
+          <div class="module-name">Executive Mentoring, Coaching, and Professional Development</div>
+          <div class="module-desc">Formalizes the Fellow candidate's obligation to contribute to the development of the next generation of leaders, building structured mentoring and professional development leadership skills.</div>
+          <div class="module-topics">
+            <div class="module-topic">Executive coaching frameworks and tools</div>
+            <div class="module-topic">Formal mentoring programs: design, delivery, and evaluation</div>
+            <div class="module-topic">Developing organizational leadership pipelines</div>
+            <div class="module-topic">The international professional body and the stewardship of professional standards</div>
+            <div class="module-topic">Candidates must demonstrate active mentoring of at least one junior CILG member during this level</div>
+          </div>
+        </div>
+        <div class="module-card" style="border-color:var(--lime-dk)">
+          <div class="module-num">Module 5.5 — Capstone</div>
+          <div class="module-name">Professional Capstone — Leadership and Governance in Practice</div>
+          <div class="module-desc">The culminating assessment of the CILG Professional qualification. Candidates produce a substantial, original Professional Governance Report addressing a real strategic, governance, or leadership challenge.</div>
+          <div class="module-topics">
+            <div class="module-topic">Professional Governance Report: 8,000–10,000 words addressing a substantive leadership or governance challenge</div>
+            <div class="module-topic">Oral Defense before a CILG Examiners Panel (60 minutes)</div>
+            <div class="module-topic">Peer Review by one other Level 5 candidate</div>
+            <div class="module-topic">CPD Portfolio Review confirming professional standing and active practice</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progression-box">
+        <div class="prog-box-title">Fellowship Conferral Process (FCILG)</div>
+        <ol class="prog-steps">
+          <li class="prog-step">Pass all 5 Level 5 modules (including successful Capstone oral defense)</li>
+          <li class="prog-step">Full membership compliance — no outstanding disciplinary matters</li>
+          <li class="prog-step">CILG Fellowship Application reviewed by the CILG Admissions and Standards Committee</li>
+          <li class="prog-step">Final approval by the CILG Board of Governors</li>
+          <li class="prog-step">Formal Conferral at the CILG Annual Conferment Ceremony (or by postal conferral where attendance is not possible)</li>
+          <li class="prog-step">Publication of FCILG designation in the CILG Official Register</li>
+        </ol>
+        <div class="prog-milestone-tag">🏆 Post-nominal: FCILG · Chartered Title: Chartered Professional in Leadership and Governance · The FCILG may also use the title 'Chartered Member' of CILG in all professional communications</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end levels-section -->
+
+
+<!-- ASSESSMENT PHILOSOPHY -->
+<section class="forest-section" id="section-assessment">
+  <div class="section-inner">
+    <div class="section-label">Section 1.4</div>
+    <h2 class="section-h2">Assessment Philosophy</h2>
+    <p class="section-lead">All CILG assessments are competency-driven and professionally focused. The Institute employs a variety of assessment modalities to ensure holistic evaluation.</p>
+
+    <div class="assess-grid">
+      <div class="assess-card">
+        <div class="assess-icon">✍️</div>
+        <div class="assess-title">Written Examinations</div>
+        <div class="assess-desc">Testing knowledge recall, professional reasoning, and analytical judgment across all levels of the framework.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-icon">📋</div>
+        <div class="assess-title">Case Study Assessments</div>
+        <div class="assess-desc">Scenario-based evaluations that simulate real organizational and governance challenges, requiring applied problem-solving.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-icon">📄</div>
+        <div class="assess-title">Professional Practice Reports</div>
+        <div class="assess-desc">Documented evidence of applying learned competencies in a professional setting, linking theory to real-world practice.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-icon">📁</div>
+        <div class="assess-title">Portfolio of Evidence</div>
+        <div class="assess-desc">A compilation of work products, professional achievements, and reflective accounts demonstrating sustained competence.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-icon">🎤</div>
+        <div class="assess-title">Oral Assessments / Viva Voce</div>
+        <div class="assess-desc">For Advanced and Professional levels to assess depth of understanding, critical thinking, and professional judgment in dialogue.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-icon">📈</div>
+        <div class="assess-title">Continuing Professional Development (CPD) Records</div>
+        <div class="assess-desc">Required for progression to higher levels, evidencing ongoing professional growth, learning, and engagement.</div>
+      </div>
+    </div>
+
+    <!-- Grading System -->
+    <div style="margin-top:3rem">
+      <div style="font-family:var(--ff-head);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;letter-spacing:-.01em">1.5 Grading System</div>
+      <p style="font-size:.88rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;line-height:1.8">Candidates who achieve a Distinction in all five modules at a given level may be eligible for the CILG Level Excellence Award, which carries recognition on their certificate and transcript.</p>
+      <div class="grading-table-wrap">
+        <table class="grading-table">
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Score Range</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="grade-dist">Distinction</td><td>80% – 100%</td><td>Exceptional professional mastery; awarded at all levels</td></tr>
+            <tr><td class="grade-merit">Merit</td><td>70% – 79%</td><td>High professional competence; awarded at all levels</td></tr>
+            <tr><td class="grade-pass">Pass</td><td>50% – 69%</td><td>Satisfactory professional competence; minimum passing standard</td></tr>
+            <tr><td style="color:rgba(255,220,100,.9)">Referred</td><td>45% – 49%</td><td>Near-pass; candidate may re-sit specific components only</td></tr>
+            <tr><td style="color:rgba(255,120,120,.9)">Fail</td><td>Below 45%</td><td>Insufficient competence; full module re-sit required</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- POLICIES SECTION -->
+<section class="section" id="section-policies">
+  <div class="section-inner">
+    <div class="section-label">Section 1.6 – 1.9</div>
+    <h2 class="section-h2">Framework Policies</h2>
+    <p class="section-lead">CILG operates clear and structured policies governing exemptions, re-sits, credit transfer, and study modes to ensure fair, transparent, and accessible pathways for all candidates.</p>
+
+    <div class="policies-grid">
+      <div class="policy-card">
+        <div class="policy-icon">🔓</div>
+        <div class="policy-title">Exemptions Policy</div>
+        <div class="policy-body">CILG recognises that many candidates already possess significant professional knowledge, prior qualifications, or substantial career experience. The Institute operates a structured Exemptions Policy to avoid unnecessary repetition and to respect the professional credentials of applicants.</div>
+        <div class="policy-sub">
+          <div class="policy-sub-title">Basis for Exemptions</div>
+          <ul>
+            <li><strong>Prior Learning Exemptions (PLE):</strong> Awarded on the basis of prior qualifications from recognised institutions (universities, leading professional examination bodies, etc.)</li>
+            <li><strong>Professional Experience Exemptions (PEE):</strong> Awarded on the basis of substantial verified professional experience in relevant fields</li>
+            <li><strong>Cross-Institutional Recognition:</strong> CILG maintains Memoranda of Understanding (MoUs) with select international professional bodies; holders of recognised designations from such bodies may qualify for module or level exemptions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">🔄</div>
+        <div class="policy-title">Re-sit Policy</div>
+        <div class="policy-body">Candidates who fail a module may re-sit up to two (2) times per module. A waiting period of sixty (60) days applies between the original sitting and the first re-sit. Candidates who fail a module three times must formally reapply to that module and pay the full module registration fee.</div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-icon">🤝</div>
+        <div class="policy-title">Credit Transfer Policy</div>
+        <div class="policy-body">CILG participates in a Credit Transfer framework with select partner institutions and international professional bodies. Credits earned at CILG may be transferable toward academic or professional programs at partner institutions. Details of specific credit transfer arrangements are published in the CILG Partnerships Register available on the official CILG website.</div>
+      </div>
+    </div>
+
+    <!-- Exemption Caps -->
+    <h3 style="font-family:var(--ff-head);font-size:1rem;font-weight:800;color:var(--forest);margin-top:2.5rem;margin-bottom:1rem;letter-spacing:-.02em">1.6.3 Exemption Limits by Level</h3>
+    <div class="exempt-caps">
+      <div class="exempt-caps-title">Maximum Exemption Caps per Level</div>
+      <div class="exempt-caps-grid">
+        <div class="exempt-cap-item"><div class="exempt-cap-level">Level 1</div><div class="exempt-cap-val">5</div><div class="exempt-cap-sub">Full level exemption permitted with qualifying credentials</div></div>
+        <div class="exempt-cap-item"><div class="exempt-cap-level">Level 2</div><div class="exempt-cap-val">3</div><div class="exempt-cap-sub">modules max</div></div>
+        <div class="exempt-cap-item"><div class="exempt-cap-level">Level 3</div><div class="exempt-cap-val">2</div><div class="exempt-cap-sub">modules max</div></div>
+        <div class="exempt-cap-item"><div class="exempt-cap-level">Level 4</div><div class="exempt-cap-val">1</div><div class="exempt-cap-sub">module max</div></div>
+        <div class="exempt-cap-item"><div class="exempt-cap-level">Level 5</div><div class="exempt-cap-val">0</div><div class="exempt-cap-sub">No exemptions permitted</div></div>
+      </div>
+      <div class="exempt-note">Note: Even where full level exemptions are granted, candidates must pay the applicable exemption assessment fee and submit a Professional Experience Portfolio for verification.</div>
+    </div>
+
+    <!-- Study Modes -->
+    <h3 style="font-family:var(--ff-head);font-size:1rem;font-weight:800;color:var(--forest);margin-top:2.5rem;margin-bottom:.5rem;letter-spacing:-.02em">1.9 Mode of Study</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1rem">
+      <div class="pillar-card" style="background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem 1.4rem">
+        <div class="pillar-icon">💻</div>
+        <div class="pillar-title">Online Learning</div>
+        <div class="pillar-desc">Self-paced modules delivered via the CILG Learning Management System (LMS) for maximum flexibility.</div>
+      </div>
+      <div class="pillar-card" style="background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem 1.4rem">
+        <div class="pillar-icon">🖥️</div>
+        <div class="pillar-title">Blended Learning</div>
+        <div class="pillar-desc">Combination of online study and facilitated virtual workshops, offering structured support alongside flexibility.</div>
+      </div>
+      <div class="pillar-card" style="background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem 1.4rem">
+        <div class="pillar-icon">🏢</div>
+        <div class="pillar-title">In-Person Intensive Programs</div>
+        <div class="pillar-desc">Available in select cities and through CILG-accredited training centers for immersive learning experiences.</div>
+      </div>
+      <div class="pillar-card" style="background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem 1.4rem">
+        <div class="pillar-icon">🏛️</div>
+        <div class="pillar-title">Employer-Sponsored Programs</div>
+        <div class="pillar-desc">Organizations may enroll cohorts of employees under a Corporate Learning Agreement for tailored delivery.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CPD SECTION -->
+<section class="section" style="background:var(--bg-off)" id="section-cpd">
+  <div class="section-inner">
+    <div class="section-label">Section 2.21</div>
+    <h2 class="section-h2">Continuing Professional<br>Development (CPD)</h2>
+    <p class="section-lead">CPD is a mandatory requirement for all active CILG members beyond Student level. CPD ensures that professionals remain current, competent, and effective in their practice.</p>
+
+    <div class="cpd-grid">
+      <div class="cpd-card">
+        <div class="cpd-grade">Affiliate Member</div>
+        <div class="cpd-desig">AfCILG</div>
+        <div class="cpd-hours">20</div>
+        <div class="cpd-unit">hours per year</div>
+        <div class="cpd-method">CILG CPD Online Portal</div>
+      </div>
+      <div class="cpd-card">
+        <div class="cpd-grade">Associate Member</div>
+        <div class="cpd-desig">ACILG</div>
+        <div class="cpd-hours">30</div>
+        <div class="cpd-unit">hours per year</div>
+        <div class="cpd-method">CILG CPD Online Portal + Annual Return</div>
+      </div>
+      <div class="cpd-card featured">
+        <div class="cpd-grade">Full Member</div>
+        <div class="cpd-desig">MCILG</div>
+        <div class="cpd-hours">40</div>
+        <div class="cpd-unit">hours per year</div>
+        <div class="cpd-method">CILG CPD Portfolio + Annual Return</div>
+      </div>
+      <div class="cpd-card featured">
+        <div class="cpd-grade">Fellow</div>
+        <div class="cpd-desig">FCILG</div>
+        <div class="cpd-hours">40</div>
+        <div class="cpd-unit">hours per year</div>
+        <div class="cpd-method">CILG CPD Portfolio + Annual Return + Peer Review</div>
+      </div>
+    </div>
+
+    <div class="cpd-activities">
+      <div class="cpd-activities-title">Qualifying CPD Activities</div>
+      <div class="cpd-acts-list">
+        <div class="cpd-act">📅 Attending conferences and seminars</div>
+        <div class="cpd-act">🎓 Completing additional qualifications or training</div>
+        <div class="cpd-act">✍️ Publishing articles or papers</div>
+        <div class="cpd-act">🤝 Mentoring junior professionals</div>
+        <div class="cpd-act">🏛️ Board service</div>
+        <div class="cpd-act">📋 Committee participation</div>
+        <div class="cpd-act">📚 Verified self-directed learning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Begin Your Qualification Journey</h2>
+  <p>Join the CILG Qualification Framework and advance your career in leadership and governance — from Foundation to Chartered Fellow.</p>
+  <div class="cta-btns">
+    <a href="appn.html" class="cta-btn-main">Apply Now →</a>
+    <a href="membership.html" class="cta-btn-alt">Explore Membership</a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
+        <p style="margin-top:.75rem">Chartered Institute of Leadership and Governance — a leading professional examination body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.45)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4> <a href="contact.html">Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:research@cilgglobal.org">research@cilgglobal.org</a>
+        <a href="mailto:media@cilgglobal.org">media@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America<br>
+          <span style="color:rgba(255,255,255,.28);font-size:.68rem">(Correspondence address only)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered leading professional examination body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SMOOTH SCROLL TO SECTION
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const tabsH = document.getElementById('levelTabs').offsetHeight;
+  const navH = nav.offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - tabsH - 12;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// ACTIVE LEVEL TAB ON SCROLL
+const sections = ['section-overview','level1','level2','level3','level4','level5','section-assessment','section-policies','section-cpd'];
+const tabs = document.querySelectorAll('.level-tab');
+const tabsBar = document.getElementById('levelTabs');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + nav.offsetHeight + tabsBar.offsetHeight + 80;
+  let active = 0;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top + window.scrollY <= scrollY) active = i;
+  });
+  tabs.forEach((t, i) => t.classList.toggle('act', i === active));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Membership Framework - Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ===== ROOT ===== */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ===== PAGE TOC SIDEBAR ===== */
+.toc-sidebar {
+  position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 6px;
+}
+.toc-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--g300);
+  transition: all var(--tr); cursor: pointer; position: relative;
+}
+.toc-dot.active { background: var(--lime-dk); transform: scale(1.4); }
+.toc-dot:hover { background: var(--forest-lt); }
+.toc-dot::before {
+  content: attr(data-label);
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  white-space: nowrap; background: var(--forest); color: #fff;
+  font-family: var(--ff-body); font-size: .65rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 5px;
+  opacity: 0; pointer-events: none; transition: opacity var(--tr);
+}
+.toc-dot:hover::before { opacity: 1; }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; min-height: 75vh; overflow: hidden;
+  background: linear-gradient(135deg, rgba(13,43,31,.72), rgba(13,43,31,.85)), url('assets/images/membership-hero.jpg') center/cover no-repeat;
+  padding-top: var(--nav-h); display: flex; align-items: center; justify-content: center;
+}
+.hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 4rem 3rem; width: 100%; text-align: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(200,241,53,.18); border: 1px solid var(--lime-dk);
+  color: #fff; padding: 4px 14px; border-radius: 40px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.4rem;
+}
+.hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.hero-headline { font-family: var(--ff-head); font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.1; color: #fff; letter-spacing: -.03em; margin-bottom: 1.2rem; }
+.hero-tagline { font-size: clamp(.95rem, 1.5vw, 1.15rem); font-weight: 400; color: rgba(255,255,255,.9); margin-bottom: 2rem; font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto; }
+.hero-tabs { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+.hero-tab {
+  padding: 9px 20px; border-radius: 8px; font-size: .75rem; font-weight: 700; letter-spacing: .02em;
+  border: 1.5px solid rgba(255,255,255,.25); color: rgba(255,255,255,.85); cursor: pointer;
+  transition: all var(--tr); background: rgba(255,255,255,.06);
+}
+.hero-tab:hover, .hero-tab.active { background: var(--lime); color: var(--forest); border-color: var(--lime); }
+
+/* ===== SHARED SECTION ===== */
+.section { padding: 6rem 3rem; background: var(--bg); }
+.section-alt { background: var(--bg-off); }
+.section-dark { background: var(--forest); color: #fff; }
+.section-inner { max-width: 1260px; margin: 0 auto; }
+.section-label {
+  font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--forest-lt); margin-bottom: .7rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+.section-dark .section-label { color: var(--lime); }
+.section-dark .section-label::before { background: var(--lime); }
+.section-h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 800; color: var(--forest); line-height: 1.1; letter-spacing: -.03em; margin-bottom: .9rem; }
+.section-dark .section-h2 { color: #fff; }
+.section-lead { font-size: .95rem; color: var(--text2); max-width: 820px; line-height: 1.85; }
+.section-dark .section-lead { color: rgba(255,255,255,.65); }
+
+/* ===== OVERVIEW ===== */
+.overview-content h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 700; color: var(--forest); margin-top: 2rem; margin-bottom: 1rem; }
+.overview-content h3:first-child { margin-top: 0; }
+.overview-content p { font-size: .95rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem; }
+
+/* ===== GRADES TABLE ===== */
+.grades-table { margin: 3rem auto 0; overflow-x: auto; }
+.membership-table {
+  width: 100%; border-collapse: collapse; background: var(--white);
+  border: 1px solid var(--g200); border-radius: 12px; overflow: hidden;
+}
+.membership-table th {
+  background: linear-gradient(135deg, var(--forest-mid), var(--forest-lt));
+  color: #fff; padding: 1.2rem; text-align: left;
+  font-family: var(--ff-head); font-weight: 700; font-size: .9rem;
+  border: 1px solid var(--g200);
+}
+.membership-table td { padding: 1rem 1.2rem; border: 1px solid var(--g200); font-size: .9rem; color: var(--text2); vertical-align: top; }
+.membership-table tbody tr:nth-child(odd) { background: rgba(200,241,53,.05); }
+.membership-table tbody tr:hover { background: rgba(200,241,53,.12); }
+
+/* ===== CODE OF CONDUCT ===== */
+.conduct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+.conduct-content p { font-size: .95rem; color: rgba(255,255,255,.7); line-height: 1.9; margin-bottom: 1.2rem; }
+.conduct-list { list-style: none; margin-left: 0; }
+.conduct-list li { padding: 0.8rem 0 0.8rem 2rem; font-size: .95rem; color: rgba(255,255,255,.7); border-bottom: 1px solid rgba(255,255,255,.1); position: relative; }
+.conduct-list li:last-child { border-bottom: none; }
+.conduct-list li:before { content: '→'; position: absolute; left: 0; color: var(--lime); font-weight: bold; }
+.conduct-list strong { color: #fff; font-weight: 700; }
+
+/* ===== GRADE SECTIONS ===== */
+.grade-section { padding: 6rem 3rem; background: var(--bg); border-top: 1px solid var(--g200); }
+.grade-section:nth-child(even) { background: var(--bg-off); }
+.grade-content { max-width: 1260px; margin: 0 auto; }
+.grade-header { margin-bottom: 2rem; }
+.grade-title { font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800; color: var(--forest); margin-bottom: .5rem; }
+.grade-subtitle { font-size: 1rem; color: var(--text2); font-style: italic; margin-bottom: 1rem; }
+.grade-divider { height: 2px; width: 50px; background: var(--lime-dk); margin-bottom: 1.5rem; }
+.grade-content h4 { font-family: var(--ff-head); font-size: 1.15rem; font-weight: 700; color: var(--forest); margin-top: 1.5rem; margin-bottom: .8rem; }
+.grade-content h4:first-of-type { margin-top: 0; }
+.grade-content p { font-size: .95rem; color: var(--text2); line-height: 1.9; margin-bottom: 0.8rem; }
+.grade-content ul { margin-left: 1.5rem; }
+.grade-content li { font-size: .95rem; color: var(--text2); line-height: 1.85; margin-bottom: 0.6rem; }
+.grade-box { background: var(--white); border: 1.5px solid var(--g200); border-radius: 12px; padding: 1.8rem; margin: 1.5rem 0; }
+.grade-box h5 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: 1rem; }
+.grade-box ul { margin-left: 1.5rem; }
+.grade-box li { font-size: .9rem; color: var(--text2); line-height: 1.8; margin-bottom: 0.5rem; }
+
+/* ===== SUPPLEMENTARY FRAMEWORK ===== */
+.supp-section { padding: 6rem 3rem; }
+.supp-section:nth-child(odd) { background: var(--bg); }
+.supp-section:nth-child(even) { background: var(--bg-off); }
+
+/* Part headers */
+.part-header {
+  background: linear-gradient(135deg, var(--forest-mid), var(--forest-lt));
+  color: #fff; padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden;
+}
+.part-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 0%, rgba(200,241,53,.12) 0%, transparent 65%); }
+.part-header-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+.part-eyebrow { font-size: .6rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--lime); margin-bottom: .5rem; }
+.part-title { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .6rem; }
+.part-desc { font-size: .95rem; color: rgba(255,255,255,.65); max-width: 620px; margin: 0 auto; }
+
+/* Info cards */
+.info-card { background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem; }
+.info-card h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--forest); margin-bottom: .8rem; }
+.info-card p { font-size: .92rem; color: var(--text2); line-height: 1.85; margin-bottom: .7rem; }
+.info-card p:last-child { margin-bottom: 0; }
+.info-card ul { margin-left: 1.4rem; }
+.info-card li { font-size: .92rem; color: var(--text2); line-height: 1.85; margin-bottom: .4rem; }
+
+/* Alert/notice boxes */
+.notice-box {
+  border-left: 4px solid var(--lime-dk); background: var(--lime-pale);
+  border-radius: 0 10px 10px 0; padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+}
+.notice-box p { font-size: .9rem; color: var(--text); line-height: 1.8; margin-bottom: .4rem; }
+.notice-box p:last-child { margin-bottom: 0; }
+.notice-box strong { color: var(--forest); }
+.notice-box.dark { background: rgba(13,43,31,.06); border-color: var(--forest-lt); }
+
+/* Fee table */
+.fee-table-wrap { overflow-x: auto; margin: 2rem 0; }
+.fee-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; border: 1px solid var(--g200); }
+.fee-table th { background: var(--forest); color: #fff; padding: 1rem 1.2rem; text-align: left; font-family: var(--ff-head); font-size: .85rem; font-weight: 700; border: 1px solid rgba(255,255,255,.1); }
+.fee-table td { padding: .85rem 1.2rem; border: 1px solid var(--g200); font-size: .88rem; color: var(--text2); vertical-align: top; }
+.fee-table tbody tr:nth-child(odd) { background: rgba(200,241,53,.04); }
+.fee-table tbody tr:hover { background: rgba(200,241,53,.1); }
+.fee-highlight { font-weight: 700; color: var(--forest); }
+
+/* CPD grid */
+.cpd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.cpd-card {
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px;
+  padding: 1.8rem; transition: all var(--tr);
+}
+.cpd-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 32px rgba(13,43,31,.08); transform: translateY(-2px); }
+.cpd-card-icon { width: 42px; height: 42px; background: var(--lime-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.2rem; }
+.cpd-card h4 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .6rem; }
+.cpd-card p { font-size: .88rem; color: var(--text2); line-height: 1.8; margin-bottom: .5rem; }
+.cpd-card .cpd-rule { font-size: .78rem; font-weight: 600; color: var(--forest-lt); background: var(--lime-pale); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-top: .3rem; }
+
+/* Principle cards (Code of Conduct) */
+.principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
+.principle-card {
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px;
+  padding: 2rem; transition: all var(--tr);
+}
+.principle-card:hover { border-color: var(--forest-lt); box-shadow: 0 8px 32px rgba(13,43,31,.08); }
+.principle-num { font-size: .6rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--lime-dk); margin-bottom: .5rem; }
+.principle-name { font-family: var(--ff-head); font-size: 1.15rem; font-weight: 800; color: var(--forest); margin-bottom: .7rem; }
+.principle-tagline { font-size: .88rem; color: var(--text2); font-style: italic; margin-bottom: 1rem; line-height: 1.7; }
+.principle-card ul { margin-left: 1.2rem; }
+.principle-card li { font-size: .85rem; color: var(--text2); line-height: 1.75; margin-bottom: .4rem; }
+
+/* Sanctions table */
+.sanction-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; border: 1px solid var(--g200); margin: 1.5rem 0; }
+.sanction-table th { background: var(--forest); color: #fff; padding: 1rem 1.2rem; text-align: left; font-family: var(--ff-head); font-size: .85rem; font-weight: 700; }
+.sanction-table td { padding: .85rem 1.2rem; border: 1px solid var(--g200); font-size: .88rem; color: var(--text2); vertical-align: top; }
+.sanction-table tbody tr:hover { background: rgba(200,241,53,.07); }
+
+/* Upgrade process steps */
+.steps-list { counter-reset: step-counter; list-style: none; margin: 2rem 0; }
+.steps-list li {
+  counter-increment: step-counter;
+  padding: 1.5rem 1.5rem 1.5rem 5rem;
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 12px;
+  margin-bottom: 1rem; position: relative;
+}
+.steps-list li::before {
+  content: counter(step-counter);
+  position: absolute; left: 1.5rem; top: 1.5rem;
+  width: 2rem; height: 2rem; background: var(--lime); color: var(--forest);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-head); font-weight: 800; font-size: .9rem;
+}
+.steps-list li h5 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .5rem; }
+.steps-list li p { font-size: .9rem; color: var(--text2); line-height: 1.8; }
+.steps-list li ul { margin-top: .6rem; margin-left: 1.2rem; }
+.steps-list li ul li { padding: 0; background: none; border: none; border-radius: 0; margin-bottom: .3rem; font-size: .88rem; }
+.steps-list li ul li::before { display: none; }
+
+/* Ethics helpline box */
+.ethics-box {
+  background: linear-gradient(135deg, var(--forest-mid), var(--forest));
+  color: #fff; border-radius: 14px; padding: 2rem; margin: 2rem 0;
+}
+.ethics-box h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--lime); margin-bottom: 1rem; }
+.ethics-box p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.8; margin-bottom: .5rem; }
+.ethics-box a { color: var(--lime); }
+
+/* Declaration box */
+.declaration-box {
+  background: var(--forest); color: #fff; border-radius: 14px; padding: 2.5rem;
+  border-left: 5px solid var(--lime); margin: 2rem 0;
+}
+.declaration-box h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--lime); margin-bottom: 1.2rem; }
+.declaration-box ol { margin-left: 1.5rem; }
+.declaration-box li { font-size: .9rem; color: rgba(255,255,255,.8); line-height: 1.85; margin-bottom: .7rem; }
+
+/* CTA */
+.cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(200,241,53,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .8rem; position: relative; }
+.cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-btn-main { padding: 14px 32px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .84rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); cursor: pointer; }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,241,53,.35); }
+.cta-btn-alt { padding: 14px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .84rem; font-weight: 600; transition: all var(--tr); cursor: pointer; }
+.cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
+
+/* Footer */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nav-links { gap: .02rem; }
+  .nav-link { font-size: .67rem; padding: 5px 8px; }
+  .conduct-grid { grid-template-columns: 1fr; }
+  .toc-sidebar { display: none; }
+}
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .nav { padding: 0 1.2rem; }
+  .section, .supp-section, .grade-section, .cta-section { padding: 4rem 1.2rem; }
+  .part-header { padding: 3rem 1.2rem; }
+  .hero { padding-top: var(--nav-h); }
+  .hero-content { padding: calc(var(--nav-h) + 1.5rem) 1.2rem 3rem; }
+  .hero-headline { font-size: 2.2rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .grades-table, .fee-table-wrap { overflow-x: auto; }
+  .membership-table, .fee-table { font-size: .83rem; }
+  .membership-table th, .membership-table td, .fee-table th, .fee-table td { padding: 0.75rem; }
+  .steps-list li { padding-left: 3.5rem; }
+  .steps-list li::before { left: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link act">Home</a>
+
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+    <a href="index.html" class="mob-link">Home</a>
+
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qualifications.html#professional" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+<!-- TOC Sidebar -->
+<div class="toc-sidebar" id="tocSidebar">
+  <div class="toc-dot active" data-label="Overview" data-target="hero"></div>
+  <div class="toc-dot" data-label="Grades" data-target="grades"></div>
+  <div class="toc-dot" data-label="Code of Conduct" data-target="conduct"></div>
+  <div class="toc-dot" data-label="Student" data-target="grade-student"></div>
+  <div class="toc-dot" data-label="Affiliate" data-target="grade-affiliate"></div>
+  <div class="toc-dot" data-label="Associate" data-target="grade-associate"></div>
+  <div class="toc-dot" data-label="Full Member" data-target="grade-member"></div>
+  <div class="toc-dot" data-label="Fellow" data-target="grade-fellow"></div>
+  <div class="toc-dot" data-label="Honorary &amp; Corporate" data-target="grade-hon"></div>
+  <div class="toc-dot" data-label="Upgrade Policy" data-target="supplementary"></div>
+  <div class="toc-dot" data-label="Fee Schedule" data-target="fees"></div>
+  <div class="toc-dot" data-label="CPD Framework" data-target="cpd"></div>
+  <div class="toc-dot" data-label="Conduct Code" data-target="code"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> Membership &amp; Professional Standards</div>
+    <h1 class="hero-headline">CILG Membership Framework</h1>
+    <p class="hero-tagline">A pathway to professional distinction in leadership and governance — from student to chartered fellow</p>
+    <div class="hero-tabs">
+      <a href="#grades" class="hero-tab">Membership Grades</a>
+      <a href="#supplementary" class="hero-tab">Upgrade Policy</a>
+      <a href="#fees" class="hero-tab">Fee Schedule</a>
+      <a href="#cpd" class="hero-tab">CPD Framework</a>
+      <a href="#code" class="hero-tab">Code of Conduct</a>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-inner overview-content">
+    <div class="section-label">Purpose and Overview</div>
+    <h2 class="section-h2">Purpose of the Membership Framework</h2>
+    <p>The CILG Membership Framework provides a structured, transparent, and professionally credible pathway for individuals to progress through levels of recognized professional standing in the field of leadership and governance. Each membership grade reflects a distinct stage of professional development and carries with it specific rights, responsibilities, and expectations.</p>
+    <p>Membership of CILG is a mark of professional distinction. It signals to employers, colleagues, clients, and the public that the holder adheres to the highest standards of leadership and governance practice, is committed to continuous professional development, and operates within the CILG Code of Professional Conduct.</p>
+  </div>
+</section>
+
+<!-- GRADES AT A GLANCE -->
+<section class="section section-alt" id="grades">
+  <div class="section-inner">
+    <div class="section-label">Membership Grades</div>
+    <h2 class="section-h2">Membership Grades at a Glance</h2>
+    <div class="grades-table">
+      <table class="membership-table">
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Designation</th>
+            <th>Post-nominal</th>
+            <th>Entry Route</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Student</td><td>Student Member</td><td>SCILG</td><td>Enrollment in CILG Level 1 or 2</td></tr>
+          <tr><td>Affiliate</td><td>Affiliate Member</td><td>AffCILG</td><td>Completion of Level 2 or qualifying experience</td></tr>
+          <tr><td>Associate</td><td>Associate Member</td><td>ACILG</td><td>Completion of Level 3 Advanced Diploma</td></tr>
+          <tr><td>Full Member</td><td>Member</td><td>MCILG</td><td>Completion of Level 4 Executive Diploma</td></tr>
+          <tr><td>Fellow</td><td>Fellow</td><td>FCILG</td><td>Completion of Level 5 or Chartered Professional</td></tr>
+          <tr><td>Honorary Fellow</td><td>Honorary Fellow</td><td>Hon. FCILG</td><td>By award of the CILG Board</td></tr>
+          <tr><td>Corporate Member</td><td>Corporate Member</td><td>CCILG</td><td>Organizational application</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CODE OF CONDUCT (summary) -->
+<section class="section section-dark" id="conduct">
+  <div class="section-inner">
+    <div class="section-label">Professional Standards</div>
+    <h2 class="section-h2">CILG Code of Professional Conduct</h2>
+    <p class="section-lead">All CILG members at every grade are bound by the CILG Code of Professional Conduct, built upon seven foundational principles.</p>
+    <div class="conduct-grid">
+      <div class="conduct-content">
+        <p>The Code sets out the professional obligations, ethical standards, and behavioral expectations of members. Compliance with the Code is not merely an aspiration — it is a condition of membership.</p>
+      </div>
+      <div class="conduct-content">
+        <ul class="conduct-list">
+          <li><strong>Integrity:</strong> Acting honestly and with transparency in all professional dealings</li>
+          <li><strong>Competence:</strong> Maintaining and developing skills and knowledge relevant to one's professional role</li>
+          <li><strong>Accountability:</strong> Accepting responsibility for professional actions and decisions</li>
+          <li><strong>Transparency:</strong> Open, clear, and honest professional dealings; disclosing conflicts</li>
+          <li><strong>Respect &amp; Inclusivity:</strong> Treating all individuals with dignity, fairness, and without discrimination</li>
+          <li><strong>Professional Independence:</strong> Exercising independent judgment free from undue influence</li>
+          <li><strong>Stewardship of the Profession:</strong> Contributing to the advancement of leadership and governance</li>
+        </ul>
+        <p style="margin-top:1.2rem;color:rgba(255,255,255,.6);font-size:.9rem;">Members found in breach of the Code may be subject to investigation by the CILG Professional Standards Committee, with sanctions up to and including removal from the CILG Register. <a href="#code" style="color:var(--lime);">Full Code of Conduct →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRADE 1: STUDENT -->
+<section class="grade-section" id="grade-student">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Grade 1: Student Member</div>
+      <div class="grade-subtitle">Designation: SCILG | Entry to the CILG Professional Community</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>Student Membership is the entry-level membership grade of CILG. It is designed for individuals who have formally enrolled in the CILG qualification framework and are actively pursuing their professional development in leadership and governance. Student membership is a gateway to the CILG community, providing access to study resources, student events, and the CILG mentor network.</p>
+    <h4>Eligibility Requirements</h4>
+    <div class="grade-box">
+      <h5>Student Member (SCILG) — Eligibility Criteria</h5>
+      <ul>
+        <li>Be a minimum of 18 years of age</li>
+        <li>Have enrolled in and paid for at least one CILG qualification module at Level 1 or Level 2</li>
+        <li>Submit a completed CILG Student Membership Application Form</li>
+        <li>Pay the applicable Student Enrollment Fee (USD 50, one-time)</li>
+        <li>Agree to and sign the CILG Code of Professional Conduct (Student version)</li>
+        <li>No prior academic qualification or professional experience is required</li>
+      </ul>
+    </div>
+    <h4>Benefits and Privileges</h4>
+    <ul>
+      <li>Access to CILG Student Learning Management System (LMS) and digital library</li>
+      <li>CILG Student Membership Certificate and membership card</li>
+      <li>Use of the post-nominal 'SCILG' after name in educational contexts</li>
+      <li>Access to CILG student networking events and webinars</li>
+      <li>Eligibility to apply for CILG student scholarships and bursaries</li>
+      <li>Access to the CILG Student Mentoring Programme</li>
+      <li>Discounted rates on CILG publications and professional resources</li>
+      <li>Eligibility to vote in CILG Student Committee elections</li>
+    </ul>
+    <h4>Obligations</h4>
+    <ul>
+      <li>Maintain active enrollment in at least one CILG qualification module per year</li>
+      <li>Abide by the CILG Code of Professional Conduct at all times</li>
+      <li>Notify the Registrar of any change in circumstances affecting membership eligibility</li>
+    </ul>
+    <h4>Duration and Renewal</h4>
+    <p>Student Membership is maintained through active module enrollment. Student Membership automatically upgrades upon completion of the relevant qualification level; an upgrade fee of USD 200 applies for transition to Affiliate.</p>
+  </div>
+</section>
+
+<!-- GRADE 2: AFFILIATE -->
+<section class="grade-section" id="grade-affiliate">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Grade 2: Affiliate Member</div>
+      <div class="grade-subtitle">Designation: AffCILG | Emerging Professional</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>Affiliate Membership recognizes individuals who have demonstrated a foundational level of professional knowledge in leadership and governance. Affiliates are emerging professionals who have completed the CILG Certificate qualification or who bring relevant professional experience that aligns with CILG's competency standards.</p>
+    <h4>Eligibility Requirements</h4>
+    <div class="grade-box">
+      <h5>Affiliate Member (AffCILG) — Eligibility Criteria</h5>
+      <p><strong>Route A — Qualification:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Successful completion of the CILG Certificate in Leadership and Governance (Level 2)</li>
+        <li>Current CILG Student Membership in good standing</li>
+      </ul>
+      <p><strong>Route B — Professional Experience:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Minimum three (3) years of professional experience in a leadership, governance, management, or administrative role</li>
+        <li>Submission of a CV and Professional Experience Summary (500 words)</li>
+        <li>Approval by the CILG Membership Committee</li>
+      </ul>
+      <p><strong>Both Routes Require:</strong></p>
+      <ul>
+        <li>Completed Affiliate Membership Application Form</li>
+        <li>One professional referee (current or recent employer, or CILG member at any grade)</li>
+        <li>Payment of Affiliate Upgrade Fee: USD 200</li>
+        <li>Signed CILG Code of Professional Conduct (Affiliate version)</li>
+      </ul>
+    </div>
+    <h4>Benefits and Privileges</h4>
+    <ul>
+      <li>Use of post-nominal 'AffCILG' after name in professional contexts</li>
+      <li>CILG Affiliate Membership Certificate and digital badge</li>
+      <li>Access to CILG professional development webinars, workshops, and events</li>
+      <li>Subscription to CILG Journal of Leadership and Governance (digital)</li>
+      <li>Access to the CILG Members' Portal and career development resources</li>
+      <li>Eligibility to serve on CILG Student and Affiliate Committees</li>
+      <li>Networking access to CILG regional chapters; discounted conference registration</li>
+    </ul>
+    <h4>Obligations</h4>
+    <ul>
+      <li>Complete a minimum of 20 CPD hours per year; submit annual CPD log and brief reflection statement by 31 January</li>
+      <li>Maintain annual Affiliate subscription: USD 40 per year</li>
+      <li>Abide by the CILG Code of Professional Conduct</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GRADE 3: ASSOCIATE -->
+<section class="grade-section" id="grade-associate">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Grade 3: Associate Member</div>
+      <div class="grade-subtitle">Designation: ACILG | Qualified Professional in Leadership and Governance</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>Associate Membership is the first fully qualified grade of CILG and represents a significant professional achievement. The ACILG designation is awarded to candidates who have completed the CILG Diploma in Leadership and Governance (Skills Level) and demonstrated the ability to apply professional knowledge in real organizational settings.</p>
+    <h4>Eligibility Requirements</h4>
+    <div class="grade-box">
+      <h5>Associate Member (ACILG) — Eligibility Criteria</h5>
+      <p><strong>Route A — Standard Qualification Route:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Successful completion of the CILG Advanced Diploma in Leadership and Governance (Level 3)</li>
+        <li>Minimum two (2) years of relevant professional experience (verified)</li>
+        <li>Submission of a Professional Competency Reflection (2,000 words)</li>
+        <li>Current CILG Affiliate Membership in good standing</li>
+      </ul>
+      <p><strong>Route B — Experience and Prior Learning Route:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Minimum five (5) years of progressive professional experience in leadership, governance, or management</li>
+        <li>Completion of approved Level 3 modules (after exemptions, if applicable)</li>
+        <li>Submission of a Professional Experience Portfolio</li>
+        <li>Interview with the CILG Membership Committee</li>
+      </ul>
+      <p><strong>Both Routes Require:</strong></p>
+      <ul>
+        <li>Two professional references (at least one from an ACILG or FCILG designate)</li>
+        <li>CPD compliance: minimum 20 CPD hours during Affiliate membership period</li>
+        <li>Employer verification letter on organizational letterhead</li>
+        <li>Payment of Associate Upgrade Fee: USD 300</li>
+        <li>Signed CILG Code of Professional Conduct (Associate version)</li>
+      </ul>
+    </div>
+    <h4>Benefits and Privileges</h4>
+    <ul>
+      <li>Use of post-nominal 'ACILG' — a recognized professional qualification designation</li>
+      <li>CILG Associate Membership Certificate (suitable for framing and display)</li>
+      <li>Full access to CILG Members' Portal, research library, and governance resource center</li>
+      <li>Invitation to CILG Annual Conference and Leadership Summit at member rates</li>
+      <li>Eligibility to serve on CILG Technical and Professional Committees</li>
+      <li>Access to CILG's mentoring program — as both mentee and mentor</li>
+      <li>Recognition in the CILG Annual Register of Members; listing on public Membership Directory</li>
+    </ul>
+    <h4>Obligations</h4>
+    <ul>
+      <li>Complete a minimum of 30 CPD hours per year; submit CPD log, annual reflection, evidence items, and Personal Development Plan by 31 January</li>
+      <li>Maintain active participation in at least one CILG professional activity per year</li>
+      <li>Annual Associate subscription: USD 50 per year</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GRADE 4: FULL MEMBER -->
+<section class="grade-section" id="grade-member">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Grade 4: Full Member</div>
+      <div class="grade-subtitle">Designation: MCILG | Senior Qualified Professional</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>Full Membership is the senior professional grade of CILG below Fellowship. The MCILG designation is awarded to professionals who have demonstrated sustained excellence in leadership and governance practice at an advanced level. Members are recognized as experienced senior professionals whose judgment, expertise, and leadership command respect within the profession.</p>
+    <h4>Eligibility Requirements</h4>
+    <div class="grade-box">
+      <h5>Full Member (MCILG) — Eligibility Criteria</h5>
+      <p><strong>Route A — Standard Qualification Route:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Successful completion of the CILG Executive Diploma in Leadership and Governance (Level 4)</li>
+        <li>Minimum five (5) years of relevant professional experience, of which three (3) must be senior-level</li>
+        <li>Passed Viva Voce (oral assessment, 45 minutes) before two CILG Assessors</li>
+        <li>Advanced Professional Portfolio (3,000–4,000 words, six competency domains)</li>
+        <li>Current CILG Associate Membership in good standing</li>
+      </ul>
+      <p><strong>Route B — Senior Experience Route:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Minimum ten (10) years of senior professional experience in leadership or governance</li>
+        <li>Board-level or C-suite experience of at least five (5) years</li>
+        <li>Completion of approved Level 4 modules</li>
+        <li>Executive Leadership Portfolio with verifiable evidence of governance impact</li>
+        <li>Panel Interview with the CILG Senior Membership Committee</li>
+      </ul>
+      <p><strong>Both Routes Require:</strong></p>
+      <ul>
+        <li>Two professional references from MCILG or FCILG designates</li>
+        <li>CPD compliance for preceding two years (30 hrs/year minimum)</li>
+        <li>Completion of CILG Professional Mentoring Review with an approved CILG Mentor</li>
+        <li>Payment of Full Member Upgrade Fee: USD 500</li>
+        <li>Recommitment to CILG Code of Professional Conduct (Member version)</li>
+      </ul>
+    </div>
+    <h4>Benefits and Privileges</h4>
+    <ul>
+      <li>Use of post-nominal 'MCILG' as a recognized senior professional designation</li>
+      <li>CILG Full Membership Certificate and official membership plaque</li>
+      <li>Voting rights in CILG General Meetings, including election of Board members</li>
+      <li>Eligibility to stand for election to the CILG Board of Governors and Presidential office</li>
+      <li>Eligibility to be appointed as a CILG Assessor, Examiner, or Approved Mentor</li>
+      <li>Invitation to closed CILG Executive Roundtables and policy discussions</li>
+      <li>Priority access to CILG-sponsored board placement and governance advisory opportunities</li>
+    </ul>
+    <h4>Obligations</h4>
+    <ul>
+      <li>Complete a minimum of 40 CPD hours per year; submit full CPD Portfolio (not merely a log) by 31 January</li>
+      <li>Actively contribute to CILG's professional development activities — as an assessor, mentor, committee member, or speaker</li>
+      <li>Annual Full Member subscription: USD 60 per year</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GRADE 5: FELLOW -->
+<section class="grade-section" id="grade-fellow">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Grade 5: Fellow</div>
+      <div class="grade-subtitle">Designation: FCILG — Chartered Professional in Leadership and Governance | The Highest Honour</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>Fellowship is the pinnacle of CILG membership and the most prestigious recognition the Institute confers upon individual members. The Fellow designation (FCILG) is awarded to those who have demonstrated exceptional mastery across the full breadth of leadership and governance practice, who have made a meaningful contribution to the advancement of the profession, and who exemplify the values and standards of CILG.</p>
+    <p>The conferral of FCILG carries with it the Chartered Professional title, placing FCILG holders in the same standing as other internationally recognized chartered professionals.</p>
+    <h4>Eligibility Requirements</h4>
+    <div class="grade-box">
+      <h5>Fellow (FCILG) — Eligibility Criteria</h5>
+      <p><strong>Route A — Standard Professional Qualification Route:</strong></p>
+      <ul style="margin-bottom:1rem">
+        <li>Successful completion of the CILG Chartered Professional in Leadership and Governance (Level 5), including Professional Capstone and Oral Defense</li>
+        <li>Current Full Membership (MCILG) in good standing for minimum three (3) years</li>
+        <li>Minimum eight (8) years of relevant professional experience; five (5) in a senior or executive role</li>
+        <li>Executive Leadership and Governance Portfolio (5,000 words)</li>
+        <li>Fellowship Interview before a panel of three FCILG Fellows (60–90 minutes)</li>
+        <li>Full CPD compliance for preceding three consecutive years</li>
+        <li>Evidence of active mentoring of at least one junior CILG member; mentoring log required</li>
+        <li>Endorsement by two (2) existing FCILG Fellows who are not employer or family member</li>
+        <li>Payment of Fellowship Upgrade Fee: USD 700</li>
+      </ul>
+      <p><strong>Route B — Exceptional Professional Achievement Route:</strong></p>
+      <ul>
+        <li>Minimum fifteen (15) years of distinguished professional leadership and governance practice</li>
+        <li>Demonstrated national or international impact in leadership or governance</li>
+        <li>Significant publications, thought leadership, board service, policy contributions, or institutional leadership</li>
+        <li>Portfolio demonstrating contribution to the profession</li>
+        <li>Nomination by three (3) existing FCILG Fellows; approval by Fellowship Admissions Committee and CILG Board</li>
+      </ul>
+    </div>
+    <h4>Benefits and Privileges</h4>
+    <ul>
+      <li>Use of post-nominal 'FCILG' and right to use title 'Chartered Professional in Leadership and Governance'</li>
+      <li>CILG Fellowship Certificate, Fellowship Medal, and official designation letter</li>
+      <li>Listing in the CILG Fellows Register — a publicly searchable directory</li>
+      <li>Invitation to the CILG Fellows' Council — a strategic advisory body to the CILG Board</li>
+      <li>Exclusive participation in the CILG Annual Fellows' Symposium</li>
+      <li>Eligibility to serve as President, Vice-President, or Chairman of the CILG Board</li>
+      <li>Authority to sign as referee for all CILG membership applications up to and including Fellowship</li>
+    </ul>
+    <h4>Obligations</h4>
+    <ul>
+      <li>Maintain a minimum of 40 CPD hours per year with full portfolio documentation including peer review component and mentoring evidence</li>
+      <li>Actively mentor at least one MCILG or ACILG member per year</li>
+      <li>Participate in CILG Fellows' Council meetings (minimum twice per year)</li>
+      <li>Annual Fellowship subscription: USD 80 per year</li>
+    </ul>
+  </div>
+</section>
+
+<!-- HONORARY & CORPORATE -->
+<section class="grade-section" id="grade-hon">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Honorary Grade: Honorary Fellow</div>
+      <div class="grade-subtitle">Designation: Hon. FCILG | By Award of the CILG Board of Governors</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>The Honorary Fellowship of CILG is the highest honor the Institute bestows. It is awarded exclusively by the CILG Board of Governors, without application, to individuals of exceptional distinction who have made extraordinary contributions to the fields of leadership, governance, public service, or organizational development.</p>
+    <h4>Award Process</h4>
+    <ul>
+      <li>Any FCILG Fellow may nominate an individual to the CILG Secretary-General</li>
+      <li>A two-thirds majority vote of the Board of Governors is required for conferral</li>
+      <li>Honorary Fellows do not pay membership subscriptions and are not subject to CPD requirements</li>
+      <li>Formally presented at the CILG Annual Conferment Ceremony or a designated occasion</li>
+    </ul>
+    <h4>Typical Profile of Honorary Fellows</h4>
+    <ul>
+      <li>Heads of State, former government ministers, or senior public servants who have advanced good governance</li>
+      <li>Distinguished scholars or academics who have made significant contributions to leadership and governance knowledge</li>
+      <li>Business and organizational leaders of international standing</li>
+      <li>Leaders of international organizations who have championed governance excellence</li>
+    </ul>
+  </div>
+</section>
+
+<section class="grade-section">
+  <div class="grade-content">
+    <div class="grade-header">
+      <div class="grade-title">Corporate Membership</div>
+      <div class="grade-subtitle">Designation: CCILG | Organizational Excellence in Leadership and Governance</div>
+      <div class="grade-divider"></div>
+    </div>
+    <h4>Overview</h4>
+    <p>CILG Corporate Membership is designed for organizations that wish to formally align their governance practices, professional development programs, and organizational culture with CILG standards.</p>
+    <h4>Corporate Membership Tiers</h4>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead>
+          <tr><th>Tier</th><th>Designation</th><th>Organization Size</th><th>Registration</th><th>Annual Sub.</th><th>Individual Memberships</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Associate Corporate</td><td>ACCorp-CILG</td><td>Up to 50 staff</td><td>USD 1,000</td><td>USD 700/yr</td><td>Up to 10 (25% discount)</td></tr>
+          <tr><td>Full Corporate</td><td>FCorp-CILG</td><td>51–500 staff</td><td>USD 1,000</td><td>USD 700/yr</td><td>Up to 50 (25% discount)</td></tr>
+          <tr><td>Premier Corporate</td><td>PCorp-CILG</td><td>500+ staff</td><td>USD 1,000</td><td>USD 700/yr</td><td>Unlimited (preferential rates)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Corporate Membership Eligibility</h4>
+    <ul>
+      <li>Legally registered organization in good standing; relevant field of operations</li>
+      <li>Minimum one (1) designated CILG contact at ACILG level or above</li>
+      <li>Completed Corporate Membership Application Form</li>
+      <li>Demonstrate commitment to professional development and ethical conduct</li>
+    </ul>
+    <h4>Key Benefits</h4>
+    <ul>
+      <li>Use of CILG Corporate Member logo; listing in the CILG Corporate Register</li>
+      <li>Bulk enrollment at preferential rates; dedicated CILG Corporate Relationship Manager</li>
+      <li>Access to in-house training, governance advisory services, and CILG research publications</li>
+      <li>Invitation to CILG Corporate Forums, Executive Roundtables, and Governance Summits</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====================== SUPPLEMENTARY FRAMEWORK ====================== -->
+
+<!-- PART ONE: UPGRADE POLICY -->
+<div id="supplementary">
+  <div class="part-header">
+    <div class="part-header-inner">
+      <div class="part-eyebrow">Supplementary Professional Standards Framework — Part One</div>
+      <h2 class="part-title">Membership Upgrade Policy</h2>
+      <p class="part-desc">Procedures, requirements, evidence standards, timelines, and conditions governing progression through CILG membership grades.</p>
+    </div>
+  </div>
+</div>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 1.1–1.2</div>
+    <h2 class="section-h2">Purpose, Scope &amp; General Principles</h2>
+    <p class="section-lead" style="margin-bottom:2rem">Membership upgrade is not automatic. Completion of a qualification creates eligibility to apply — it does not confer the grade. Members must formally apply, submit evidence, pay the upgrade fee, and receive written confirmation from the CILG Registrar before the new designation may be used.</p>
+    <div class="info-card">
+      <h4>General Principles Governing Upgrades</h4>
+      <ul>
+        <li>All membership upgrades are subject to approval by the CILG Membership Committee</li>
+        <li>Applications are assessed on qualification completion, professional experience, CPD compliance, ethical standing, and referee endorsement</li>
+        <li>The CILG Registrar maintains sole authority to confer, withhold, suspend, or revoke membership grades</li>
+        <li>A member may not hold or use a designation above their confirmed membership grade at any time</li>
+        <li>All evidence submitted must be authentic, current, and verifiable — submission of false or misleading information constitutes a serious breach of the Code</li>
+        <li>Upgrade fees are non-refundable once an application has been formally submitted and assessed</li>
+        <li>Declined applications may be appealed to the CILG Appeals Committee within thirty (30) working days</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Section 1.3</div>
+    <h2 class="section-h2">Upgrade Pathway Overview</h2>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead>
+          <tr><th>From Grade</th><th>To Grade</th><th>Qualification Required</th><th>Min. Experience</th><th>Referees</th><th>Other Requirements</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Student (SCILG)</td><td>Affiliate (AffCILG)</td><td>Level 2 Certificate</td><td>None formally required</td><td>1 professional</td><td>CPD not yet mandatory</td></tr>
+          <tr><td>Affiliate (AffCILG)</td><td>Associate (ACILG)</td><td>Level 3 Diploma</td><td>2 years relevant</td><td>2 (1 must be ACILG+)</td><td>CPD compliance; Professional Reflection</td></tr>
+          <tr><td>Associate (ACILG)</td><td>Full Member (MCILG)</td><td>Level 4 Adv. Diploma</td><td>5 years (3 senior)</td><td>2 (MCILG or FCILG)</td><td>Viva Voce; Advanced Portfolio; CPD 2 yrs</td></tr>
+          <tr><td>Full Member (MCILG)</td><td>Fellow (FCILG)</td><td>Level 5 Chartered Prof.</td><td>8 years (5 senior)</td><td>2 FCILG Fellows</td><td>Fellowship Interview; Capstone Defense; CPD 3 yrs</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 1.4</div>
+    <h2 class="section-h2">Upgrade Process — Step by Step</h2>
+    <ol class="steps-list">
+      <li>
+        <h5>Eligibility Self-Assessment</h5>
+        <p>Consult the CILG Membership Upgrade Checklist (available on the CILG Members' Portal) to confirm eligibility for the target grade. Contact Membership Services for a free pre-application eligibility consultation where uncertain.</p>
+      </li>
+      <li>
+        <h5>Submission of Application</h5>
+        <p>Submit to the CILG Registrar's Office:</p>
+        <ul>
+          <li>Completed CILG Membership Upgrade Application Form</li>
+          <li>Certified copies of all relevant CILG qualification certificates</li>
+          <li>Current curriculum vitae (CV)</li>
+          <li>Professional Experience Statement (format per target grade — see Section 1.5)</li>
+          <li>Completed and signed CPD Return for the preceding period</li>
+          <li>Signed referee declaration forms from all required referees</li>
+          <li>Proof of identity (government-issued photo ID)</li>
+          <li>Payment confirmation of the applicable Upgrade Fee</li>
+        </ul>
+      </li>
+      <li>
+        <h5>Application Review</h5>
+        <p>The CILG Membership Committee reviews all upgrade applications within thirty (30) working days of receipt of a complete application. For Full Member and Fellowship upgrades, the Viva Voce and Professional Entry Interview are scheduled during this review period.</p>
+      </li>
+      <li>
+        <h5>Decision and Notification</h5>
+        <p>The Registrar communicates the Committee's decision in writing within five (5) working days. Outcomes: <strong>Approved</strong> (new designation effective immediately), <strong>Deferred</strong> (gaps identified; one free resubmission within 12 months), or <strong>Declined</strong> (full written reasons; 30-day appeal right).</p>
+      </li>
+      <li>
+        <h5>Conferral and Certification</h5>
+        <p>Upon approval, the CILG Registrar updates the Official Membership Register. New Membership Certificate issued within fifteen (15) working days. Fellowship conferral is announced at the CILG Annual Conferment Ceremony unless postal conferral is requested.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="supp-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Section 1.5</div>
+    <h2 class="section-h2">Grade-Specific Upgrade Requirements</h2>
+
+    <div class="info-card" style="border-left:4px solid var(--lime-dk)">
+      <h4>SCILG → AffCILG (Student to Affiliate)</h4>
+      <ul>
+        <li><strong>Qualification:</strong> CILG Level 2 Certificate + full transcript</li>
+        <li><strong>Experience:</strong> Not mandatory; 500-word Professional Summary for Experience Route (min. 3 years)</li>
+        <li><strong>CPD:</strong> Not mandatory; declare any CPD undertaken as evidence of commitment</li>
+        <li><strong>Referees:</strong> One professional referee; family members not accepted</li>
+        <li><strong>Fee:</strong> USD 200; signed Code of Conduct (Affiliate version)</li>
+      </ul>
+    </div>
+
+    <div class="info-card" style="border-left:4px solid var(--lime-dk)">
+      <h4>AffCILG → ACILG (Affiliate to Associate)</h4>
+      <ul>
+        <li><strong>Qualification:</strong> CILG Level 3 Diploma + full transcript</li>
+        <li><strong>Experience:</strong> Minimum 2 years verified professional experience; employer verification letter on organizational letterhead</li>
+        <li><strong>Written submission:</strong> Professional Competency Reflection — 2,000 words demonstrating how Level 3 learning has been applied in a real professional context</li>
+        <li><strong>CPD:</strong> Minimum 20 CPD hours recorded and submitted via CILG portal</li>
+        <li><strong>Referees:</strong> Two referees; at least one must hold ACILG or above</li>
+        <li><strong>Fee:</strong> USD 300; signed Code of Conduct (Associate version)</li>
+      </ul>
+    </div>
+
+    <div class="info-card" style="border-left:4px solid var(--lime-dk)">
+      <h4>ACILG → MCILG (Associate to Full Member)</h4>
+      <ul>
+        <li><strong>Qualification:</strong> CILG Level 4 Advanced Diploma + Viva Voce result</li>
+        <li><strong>Experience:</strong> Minimum 5 years total, 3 years senior-level; employer/client verification</li>
+        <li><strong>Written submission:</strong> Advanced Professional Portfolio (3,000–4,000 words) structured across CILG's six professional competency domains: Leadership Practice, Governance and Compliance, Strategic Management, Stakeholder Engagement, Ethical Practice, and Professional Development</li>
+        <li><strong>Viva Voce:</strong> Mandatory oral assessment (45 minutes) before two CILG Assessors (MCILG/FCILG); pass mark 50%; result recorded on official transcript</li>
+        <li><strong>CPD:</strong> Minimum 30 CPD hours/year for each year of Associate Membership; CPD Portfolio (not merely a log)</li>
+        <li><strong>Referees:</strong> Two referees, both MCILG or FCILG; at least one with direct knowledge of senior governance work</li>
+        <li><strong>Other:</strong> Completion of CILG Professional Mentoring Review</li>
+        <li><strong>Fee:</strong> USD 500; recommitment to Code of Conduct (Member version)</li>
+      </ul>
+    </div>
+
+    <div class="info-card" style="border-left:4px solid var(--lime-dk)">
+      <h4>MCILG → FCILG (Full Member to Fellow)</h4>
+      <ul>
+        <li><strong>Qualification:</strong> All five Level 5 modules + passed Oral Defense before CILG Examiners Panel; official Level 5 certificate</li>
+        <li><strong>Experience:</strong> Minimum 8 years total; 5 years senior/executive/board-level; demonstrated contribution to the profession</li>
+        <li><strong>Written submission:</strong> Executive Leadership and Governance Portfolio — 5,000 words demonstrating exceptional professional impact, thought leadership, and contribution to advancement of the profession</li>
+        <li><strong>Fellowship Interview:</strong> Mandatory panel interview by three FCILG Fellows (60–90 minutes); assesses professional standing, contribution, commitment to CILG values; outcome: Pass or Defer</li>
+        <li><strong>CPD:</strong> Full CPD compliance for minimum three consecutive years as Full Member; portfolios demonstrating breadth, depth, and professional leadership in learning</li>
+        <li><strong>Mentoring:</strong> Evidence of active mentoring of at least one junior CILG member; mentoring log and reflective statement required</li>
+        <li><strong>Referees:</strong> Two existing FCILG Fellows; not the applicant's direct employer or family member</li>
+        <li><strong>Fee:</strong> USD 700; formal recommitment to Code of Conduct (Fellow version); agreement to participate in Fellows' Council</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Sections 1.6–1.9</div>
+    <h2 class="section-h2">Timelines, Backdating, Reinstatement &amp; Post-Nominals</h2>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead>
+          <tr><th>Application Type</th><th>Standard Processing</th><th>Assessment Component</th><th>Certificate Issued</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Student → Affiliate</td><td>10 working days</td><td>None</td><td>Within 15 working days of approval</td></tr>
+          <tr><td>Affiliate → Associate</td><td>10 working days</td><td>None</td><td>Within 15 working days of approval</td></tr>
+          <tr><td>Associate → Full Member</td><td>10 working days</td><td>Viva Voce (45 min)</td><td>Within 15 working days of approval</td></tr>
+          <tr><td>Full Member → Fellow</td><td>10 working days</td><td>Fellowship Interview (60–90 min)</td><td>Conferment at Annual Ceremony or postal</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice-box dark" style="margin-top:2rem">
+      <p><strong>Backdating Policy:</strong> Membership upgrades take effect from the date of formal written approval by the Registrar. Backdating of a membership grade or post-nominal designation is not permitted under any circumstances.</p>
+    </div>
+    <h3 style="font-family:var(--ff-head);font-size:1.3rem;font-weight:700;color:var(--forest);margin:2rem 0 1rem">Lapsed Membership — Reinstatement Conditions</h3>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead><tr><th>Lapsed Period</th><th>Reinstatement Condition</th><th>Upgrade Eligibility</th></tr></thead>
+        <tbody>
+          <tr><td>Up to 12 months</td><td>Pay all outstanding subscriptions + USD 50 administration fee</td><td>Eligible immediately on reinstatement</td></tr>
+          <tr><td>12–24 months</td><td>Outstanding subscriptions + USD 75 fee + CPD catch-up plan</td><td>Eligible after CPD catch-up plan approved</td></tr>
+          <tr><td>Over 24 months</td><td>Full re-application at current grade; all arrears + USD 100 fee; CPD portfolio review</td><td>Eligible after full reinstatement review</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 style="font-family:var(--ff-head);font-size:1.3rem;font-weight:700;color:var(--forest);margin:2rem 0 1rem">Use of Post-Nominal Designations</h3>
+    <div class="info-card">
+      <ul>
+        <li>Post-nominal designations are the intellectual property of CILG and are licensed to members in good standing only</li>
+        <li>Designations may be used on business cards, email signatures, LinkedIn profiles, CVs, and letterheads</li>
+        <li>Format must follow CILG style: <em>'John Smith, MCILG'</em> — not 'John Smith (MCILG Member)' or any variation</li>
+        <li>Use of a designation above one's confirmed grade is a disciplinary offence</li>
+        <li>Members whose membership has lapsed or been suspended must immediately cease all CILG post-nominal use</li>
+        <li>Misuse by non-members is a legal matter and will be referred to CILG's legal representatives</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PART TWO: FEE SCHEDULE -->
+<div id="fees">
+  <div class="part-header">
+    <div class="part-header-inner">
+      <div class="part-eyebrow">Supplementary Professional Standards Framework — Part Two</div>
+      <h2 class="part-title">Membership Fee Schedule</h2>
+      <p class="part-desc">Upgrade fees, annual subscriptions, corporate structures, concessions, and payment policies. Fee schedule for the 2024 financial year.</p>
+    </div>
+  </div>
+</div>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 2.2</div>
+    <h2 class="section-h2">Membership Upgrade Fees</h2>
+    <div class="notice-box">
+      <p><strong>Upgrade Fee Policy:</strong> Fees are non-refundable once formally submitted. A deferred application (not declined) includes one free resubmission within 12 months. A new fee is payable upon re-application after decline. Fees must be paid in full before processing begins.</p>
+    </div>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead><tr><th>Membership Grade</th><th>Designation</th><th>Upgrade / Application Fee</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Student Member</td><td>SCILG</td><td class="fee-highlight">USD 50</td><td>Initial enrollment/registration fee; paid once on first enrollment. Covers LMS access and Student Certificate.</td></tr>
+          <tr><td>Affiliate Member</td><td>AffCILG</td><td class="fee-highlight">USD 200</td><td>Payable on upgrade from Student to Affiliate</td></tr>
+          <tr><td>Associate Member</td><td>ACILG</td><td class="fee-highlight">USD 300</td><td>Payable on upgrade from Affiliate to Associate</td></tr>
+          <tr><td>Full Member</td><td>MCILG</td><td class="fee-highlight">USD 500</td><td>Includes Viva Voce administration</td></tr>
+          <tr><td>Fellow</td><td>FCILG</td><td class="fee-highlight">USD 700</td><td>Includes Fellowship Interview administration and Conferment</td></tr>
+          <tr><td>Honorary Fellow</td><td>Hon. FCILG</td><td class="fee-highlight">Waived</td><td>Conferred by the Board; no fee applies</td></tr>
+          <tr><td>Corporate Membership</td><td>CCILG</td><td class="fee-highlight">USD 1,000</td><td>Corporate registration/onboarding fee; all corporate tiers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Section 2.3</div>
+    <h2 class="section-h2">Annual Membership Subscription Fees</h2>
+    <div class="notice-box dark">
+      <p><strong>Subscription Policy:</strong> Subscriptions fall due on 1 January each year (or anniversary for mid-year joiners). Thirty (30) day grace period applies. Membership is placed in 'Lapsed' status after 44 days of non-payment. Lapsed members may not use CILG post-nominals. Monthly/quarterly installment options available for Associate and above — apply to Membership Services.</p>
+    </div>
+    <div class="fee-table-wrap" style="margin-top:1.5rem">
+      <table class="fee-table">
+        <thead><tr><th>Grade</th><th>Designation</th><th>Annual Subscription</th><th>Payment Options</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Student Member</td><td>SCILG</td><td class="fee-highlight">No annual subscription</td><td>N/A</td><td>Maintained by active module enrollment; USD 50 one-time enrollment fee</td></tr>
+          <tr><td>Affiliate Member</td><td>AffCILG</td><td class="fee-highlight">USD 40/year</td><td>Quarterly: USD 10</td><td>First year due upon upgrade confirmation</td></tr>
+          <tr><td>Associate Member</td><td>ACILG</td><td class="fee-highlight">USD 50/year</td><td>Quarterly: USD 12.50</td><td>Includes digital Journal of Leadership &amp; Governance</td></tr>
+          <tr><td>Full Member</td><td>MCILG</td><td class="fee-highlight">USD 60/year</td><td>Monthly: USD 5.00</td><td>Includes full Members' Portal and research library access</td></tr>
+          <tr><td>Fellow</td><td>FCILG</td><td class="fee-highlight">USD 80/year</td><td>Monthly: USD 6.67</td><td>Includes Fellows' Council participation rights</td></tr>
+          <tr><td>Honorary Fellow</td><td>Hon. FCILG</td><td class="fee-highlight">Waived</td><td>N/A</td><td>All benefits provided at no charge</td></tr>
+          <tr><td>Corporate Membership</td><td>CCILG</td><td class="fee-highlight">USD 700/year</td><td>Annually</td><td>Covers all enrolled individual staff; tiered benefits apply</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 2.5</div>
+    <h2 class="section-h2">Other Fees and Charges</h2>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead><tr><th>Service / Item</th><th>Fee (USD)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Replacement Membership Certificate</td><td>USD 25</td><td>Digital reissue free; physical replacement fee</td></tr>
+          <tr><td>Membership Verification Letter</td><td>USD 15</td><td>Official letter confirming grade; issued within 5 working days</td></tr>
+          <tr><td>Expedited Application Processing</td><td>USD 75</td><td>Processing within 5 working days instead of standard timelines</td></tr>
+          <tr><td>Exemption Assessment Fee</td><td>USD 50 per module</td><td>Non-refundable; charged per application, not per approved exemption</td></tr>
+          <tr><td>CPD Audit Fee</td><td>USD 30</td><td>Charged when CPD return is selected for formal audit</td></tr>
+          <tr><td>Reinstatement Fee (up to 12 months)</td><td>USD 50</td><td>Administrative fee; arrears also payable</td></tr>
+          <tr><td>Reinstatement Fee (12–24 months)</td><td>USD 75</td><td>Administrative fee; arrears also payable</td></tr>
+          <tr><td>Reinstatement Fee (over 24 months)</td><td>USD 100</td><td>Full re-application process; arrears also payable</td></tr>
+          <tr><td>Appeals Administration Fee</td><td>USD 40</td><td>Refunded if appeal is successful</td></tr>
+          <tr><td>Duplicate Transcript</td><td>USD 20</td><td>Official CILG academic/professional transcript</td></tr>
+          <tr><td>Change of Name / Details on Register</td><td>USD 10</td><td>Requires supporting documentation</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Section 2.6</div>
+    <h2 class="section-h2">Hardship, Waivers &amp; Concessionary Fees</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+      <div class="info-card">
+        <h4>CILG Hardship Fund</h4>
+        <p>For current CILG members facing genuine financial hardship. Maximum award: 100% of annual subscription or 50% of an upgrade fee for one year. Application is confidential, via the CILG Secretary-General. Maximum of two (2) grants per member in any five-year period.</p>
+      </div>
+      <div class="info-card">
+        <h4>Low &amp; Middle-Income Country (LMIC) Concession</h4>
+        <p>Members resident in World Bank-classified low- or middle-income countries receive a <strong>50% reduction</strong> on both upgrade fees and annual subscriptions. Applied automatically on application. Qualifying countries reviewed annually in line with World Bank classifications.</p>
+      </div>
+      <div class="info-card">
+        <h4>Early Career Concession</h4>
+        <p>Members in professional employment for fewer than three (3) years at time of application for Affiliate or Associate Membership receive a <strong>25% reduction</strong> on the applicable upgrade fee. Evidence of employment start date required.</p>
+      </div>
+      <div class="info-card">
+        <h4>Armed Forces, Government &amp; Non-Profit Concession</h4>
+        <p>Members in active military service, full-time public sector government, or full-time employment at registered non-profit organizations receive a <strong>20% reduction</strong> on annual subscriptions at all grades. Verification required annually at renewal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART THREE: CPD FRAMEWORK -->
+<div id="cpd">
+  <div class="part-header">
+    <div class="part-header-inner">
+      <div class="part-eyebrow">Supplementary Professional Standards Framework — Part Three</div>
+      <h2 class="part-title">Continuing Professional Development (CPD) Framework</h2>
+      <p class="part-desc">CPD is a professional obligation and a condition of continued membership at all grades above Student. Annual deadline: 31 January for the preceding calendar year.</p>
+    </div>
+  </div>
+</div>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 3.3</div>
+    <h2 class="section-h2">CPD Requirements by Membership Grade</h2>
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead><tr><th>Grade</th><th>Annual CPD Hours</th><th>Evidence Format</th><th>Submission Deadline</th><th>Audit Risk</th></tr></thead>
+        <tbody>
+          <tr><td>Student (SCILG)</td><td>Not mandatory</td><td>Voluntary CPD log (portal)</td><td>N/A</td><td>N/A</td></tr>
+          <tr><td>Affiliate (AffCILG)</td><td class="fee-highlight">Min. 20 hrs/year</td><td>CPD Log + brief annual reflection statement (200–400 words)</td><td>31 January</td><td>Random 10% audit</td></tr>
+          <tr><td>Associate (ACILG)</td><td class="fee-highlight">Min. 30 hrs/year</td><td>CPD Log + Annual Reflection (400–600 words) + 3 evidence items + Personal Development Plan</td><td>31 January</td><td>Random 20% audit</td></tr>
+          <tr><td>Full Member (MCILG)</td><td class="fee-highlight">Min. 40 hrs/year</td><td>Full CPD Portfolio: log, structured reflection (600–1,000 words), 5 evidence items, PDP, Statement of Professional Contribution</td><td>31 January</td><td>Random 30% audit</td></tr>
+          <tr><td>Fellow (FCILG)</td><td class="fee-highlight">Min. 40 hrs/year</td><td>Full CPD Portfolio + Extended Reflection (1,000–1,500 words) + peer review by one FCILG Fellow + mentoring log + contribution statement</td><td>31 January</td><td>Mandatory audit every 3 years</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice-box" style="margin-top:1.5rem">
+      <p><strong>CPD Hour Counting Rule:</strong> Passive attendance = 1 CPD hour. Active facilitation or speaking = 1.5x the hours. Teaching, writing, and mentoring have specific counting rules (see below). CPD hours are measured as verifiable professional learning hours — not calendar time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Section 3.4</div>
+    <h2 class="section-h2">What Counts as CPD</h2>
+    <div class="cpd-grid">
+      <div class="cpd-card">
+        <div class="cpd-card-icon">🎓</div>
+        <h4>Formal Learning Activities</h4>
+        <p>CILG-approved courses, seminars, masterclasses; professional qualifications; university or executive education programs; structured e-learning with verified completion; in-house training with demonstrable outcomes.</p>
+        <span class="cpd-rule">1 hour = 1 CPD hour | Evidence: completion certificate</span>
+      </div>
+      <div class="cpd-card">
+        <div class="cpd-card-icon">🎤</div>
+        <h4>Professional Events &amp; Conferences</h4>
+        <p>CILG Annual Conference, Regional Chapter Events; IoD, NACD, ICSA, ACFE conferences; board governance seminars, executive roundtables, leadership summits; industry governance events.</p>
+        <span class="cpd-rule">Max. 10 CPD hrs/year from conferences | Evidence: registration confirmation</span>
+      </div>
+      <div class="cpd-card">
+        <div class="cpd-card-icon">💼</div>
+        <h4>Work-Based Learning</h4>
+        <p>Significant new professional projects outside existing expertise; board or trustee service in a new context; managing major organizational change; research assignments; shadowing or secondment in a new context.</p>
+        <span class="cpd-rule">Max. 15 CPD hrs/year | Evidence: reflective account required</span>
+      </div>
+      <div class="cpd-card">
+        <div class="cpd-card-icon">📚</div>
+        <h4>Self-Directed Learning</h4>
+        <p>Professional journals, governance reports, policy papers, academic research; regulatory updates and governance code revisions; case studies; professional podcasts or webinars.</p>
+        <span class="cpd-rule">Max. 10 CPD hrs/year | Evidence: reading/reflection log with dates and sources</span>
+      </div>
+      <div class="cpd-card">
+        <div class="cpd-card-icon">✍️</div>
+        <h4>Teaching, Writing &amp; Knowledge Contribution</h4>
+        <p>Writing for CILG's Journal of Leadership and Governance or peer-reviewed publications; authoring books or governance guides; delivering training; presenting at conferences; contributing to CILG technical committees.</p>
+        <span class="cpd-rule">1.5x preparation + delivery time | Evidence: publication record or program confirmation</span>
+      </div>
+      <div class="cpd-card">
+        <div class="cpd-card-icon">🤝</div>
+        <h4>Mentoring &amp; Coaching</h4>
+        <p>Formal mentoring of a CILG Student, Affiliate, or Associate member (minimum 12-month structured relationship); formal executive coaching sessions as coach. Participation in CILG's Mentoring Programme is auto-verified in the CPD portal.</p>
+        <span class="cpd-rule">Up to 8 CPD hrs/year per mentee | Up to 6 hrs/year as coach</span>
+      </div>
+    </div>
+    <div class="notice-box dark" style="margin-top:2rem">
+      <p><strong>Does NOT count as CPD:</strong> Routine day-to-day work tasks and normal job duties; social or networking activities without a structured learning component; entertainment or hospitality events; volunteer activities with no professional learning dimension; unverified or unrecorded learning.</p>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Sections 3.6–3.10</div>
+    <h2 class="section-h2">CPD Recording, Audit, Deferral &amp; Approved Providers</h2>
+    <div class="info-card">
+      <h4>The CILG CPD Portal</h4>
+      <p>All members record CPD activities using the CILG CPD Online Portal (via the Members' Portal). The portal supports: real-time activity logging by type; uploading evidence documents; progress tracking toward annual targets; generating CPD Returns; and automated reminders for CPD deadlines.</p>
+    </div>
+    <div class="info-card" style="margin-top:1.5rem">
+      <h4>Late Submission Consequences</h4>
+      <ul>
+        <li><strong>1–30 days late:</strong> Written warning issued; member placed under 'CPD Notice'</li>
+        <li><strong>31–90 days late:</strong> Membership suspended pending submission; placed on CPD Defaulter Register</li>
+        <li><strong>Over 90 days (no response):</strong> Membership lapsed for CPD non-compliance</li>
+      </ul>
+    </div>
+    <div class="info-card" style="margin-top:1.5rem">
+      <h4>CPD Audit Process</h4>
+      <p>Members selected for audit receive written notification and must submit their complete CPD Portfolio within 21 days. Two CILG CPD Auditors (MCILG/FCILG) assess genuineness and verifiability. Outcomes: <strong>Pass</strong> / <strong>Pass with Recommendations</strong> / <strong>Refer</strong> (additional evidence required within 21 days) / <strong>Fail</strong> (referred to Professional Standards Committee for investigation).</p>
+    </div>
+    <div class="info-card" style="margin-top:1.5rem">
+      <h4>CPD Deferral — Special Circumstances</h4>
+      <p>Members facing exceptional circumstances (serious illness, bereavement, maternity/paternity leave, or significant personal crisis) may apply for a CPD Deferral, which suspends the requirement for up to twelve (12) months. Applications must be submitted before or within sixty (60) days of the CPD Return deadline, with supporting documentation.</p>
+    </div>
+    <div class="info-card" style="margin-top:1.5rem">
+      <h4>CILG-Approved CPD Providers</h4>
+      <p>CILG maintains an Approved CPD Provider Register. Members attending events or completing programs from CILG-Approved Providers have their CPD automatically verified without requiring individual evidence submission. Organizations may apply to the CILG CPD Committee; approved status is reviewed annually.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PART FOUR: CODE OF PROFESSIONAL CONDUCT -->
+<div id="code">
+  <div class="part-header">
+    <div class="part-header-inner">
+      <div class="part-eyebrow">Supplementary Professional Standards Framework — Part Four</div>
+      <h2 class="part-title">Code of Professional Conduct</h2>
+      <p class="part-desc">The ethical standards, professional obligations, and behavioral expectations governing all CILG members at every grade, in all professional and public contexts.</p>
+    </div>
+  </div>
+</div>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 4.2</div>
+    <h2 class="section-h2">The Seven Principles of CILG Professional Conduct</h2>
+    <p style="font-size:.95rem;color:var(--text2);margin-bottom:2rem;line-height:1.85">Membership of CILG is a voluntary choice. In accepting membership, every member makes a solemn commitment to uphold and be bound by this Code. Compliance is not merely an aspiration — it is a condition of membership.</p>
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-num">Principle 1</div>
+        <div class="principle-name">Integrity</div>
+        <div class="principle-tagline">Members shall act with honesty, truthfulness, and moral courage in all professional dealings.</div>
+        <ul>
+          <li>Be truthful in all professional representations, including CVs, reports, and communications with CILG</li>
+          <li>Not misrepresent qualifications, experience, or designations to any employer, client, or public body</li>
+          <li>Not engage in, facilitate, or conceal fraud, corruption, or financial misconduct</li>
+          <li>Maintain confidentiality of information entrusted in a professional capacity</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">Principle 2</div>
+        <div class="principle-name">Competence</div>
+        <div class="principle-tagline">Members shall maintain and continuously develop the knowledge, skills, and professional capability required to perform their roles to the highest standard.</div>
+        <ul>
+          <li>Only undertake work for which they possess or can reasonably acquire the necessary competence</li>
+          <li>Meet CILG CPD requirements in full each year and maintain an accurate, verifiable CPD record</li>
+          <li>Seek further learning, mentoring, or specialist advice when facing challenges beyond current expertise</li>
+          <li>Not allow CPD to become a box-ticking exercise — CPD must represent genuine professional learning</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">Principle 3</div>
+        <div class="principle-name">Accountability</div>
+        <div class="principle-tagline">Members shall accept personal responsibility for their professional decisions, actions, and advice.</div>
+        <ul>
+          <li>Take personal responsibility for the quality, accuracy, and consequences of professional advice and decisions</li>
+          <li>Not misattribute work or deflect blame for professional failures to colleagues or subordinates</li>
+          <li>Cooperate fully with any CILG investigation, audit, or compliance review</li>
+          <li>Promptly disclose to CILG any matter affecting fitness to practice, including criminal convictions or regulatory sanctions</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">Principle 4</div>
+        <div class="principle-name">Transparency</div>
+        <div class="principle-tagline">Members shall be open, clear, and honest in professional dealings, avoiding or fully disclosing conflicts of interest.</div>
+        <ul>
+          <li>Disclose any actual, potential, or perceived conflict of interest before undertaking work or at earliest opportunity</li>
+          <li>Not accept gifts or hospitality above a nominal value (USD 50 where no organizational policy exists) without declaration</li>
+          <li>Be transparent about the basis for professional opinions and the limitations of analyses</li>
+          <li>In public or quasi-public roles, support the public's right to access organizational governance information</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">Principle 5</div>
+        <div class="principle-name">Respect &amp; Inclusivity</div>
+        <div class="principle-tagline">Members shall treat all individuals with dignity, fairness, and respect, and actively promote diversity and inclusion.</div>
+        <ul>
+          <li>Treat all individuals with fairness and respect regardless of age, gender, race, ethnicity, nationality, religion, disability, or sexual orientation</li>
+          <li>Not engage in, condone, or fail to challenge discrimination, harassment, or bullying in any professional context</li>
+          <li>Actively promote inclusive practices and diverse board composition in organizational and governance roles</li>
+          <li>Support psychological safety — creating conditions where people feel safe to speak up and contribute fully</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">Principle 6</div>
+        <div class="principle-name">Professional Independence</div>
+        <div class="principle-tagline">Members shall exercise independent professional judgment, resisting undue influence and maintaining objectivity.</div>
+        <ul>
+          <li>Form and express professional opinions based on evidence and sound judgment — not on the preferences of employers, clients, or stakeholders</li>
+          <li>Resist undue pressure to produce reports or opinions that misrepresent facts or reach pre-determined conclusions</li>
+          <li>Document and escalate concerns where being pressured to act improperly; contact CILG Ethics Helpline if needed</li>
+          <li>Maintain independence appropriate to governance oversight roles in accordance with applicable codes and laws</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <div class="principle-num">Principle 7</div>
+        <div class="principle-name">Stewardship of the Profession</div>
+        <div class="principle-tagline">Members shall actively contribute to the advancement, reputation, and integrity of the leadership and governance profession and of CILG.</div>
+        <ul>
+          <li>Uphold the reputation of CILG and not bring the Institute into disrepute</li>
+          <li>Support and mentor less experienced professionals and members</li>
+          <li>Participate constructively in CILG's professional activities — committees, consultations, publications, and events</li>
+          <li>Report in good faith concerns about another CILG member's serious breach of the Code to the Professional Standards Committee</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Sections 4.10–4.13</div>
+    <h2 class="section-h2">Conflicts of Interest, Social Media, Ethics Helpline &amp; Disciplinary Procedures</h2>
+    <div class="info-card">
+      <h4>Categories of Conflict of Interest</h4>
+      <ul>
+        <li><strong>Financial:</strong> Personal financial interest in a matter on which the member is providing advice or making a governance decision</li>
+        <li><strong>Relational:</strong> Close personal, family, or social relationships with parties who stand to benefit from the member's decisions</li>
+        <li><strong>Competitive:</strong> Simultaneous advisory or employment relationships with competing organizations without disclosure and consent</li>
+        <li><strong>Reputational:</strong> Prior endorsements or published opinions that prevent objective assessment of a current matter</li>
+        <li><strong>Positional:</strong> Multiple governance roles creating contradictory accountability relationships</li>
+      </ul>
+      <p style="margin-top:1rem">When a conflict arises: <strong>Identify → Disclose in writing → Seek guidance → Recuse if necessary → Document</strong>.</p>
+    </div>
+    <div class="info-card" style="margin-top:1.5rem">
+      <h4>Social Media and Digital Communications</h4>
+      <ul>
+        <li>Statements made on social media in a professional capacity — or referencing CILG membership — are subject to the same standards as formal communications</li>
+        <li>Members shall not use social media to share confidential information, make defamatory statements, or engage in personal attacks</li>
+        <li>Members shall not use CILG post-nominals on social media profiles without ensuring membership is current and in good standing</li>
+        <li>Unprofessional conduct that brings CILG or the profession into disrepute may constitute a breach of the Code, even if posted in a 'personal' capacity</li>
+      </ul>
+    </div>
+    <div class="ethics-box">
+      <h4>CILG Ethics Helpline</h4>
+      <p>For members facing ethical dilemmas, wishing to report a concern about a colleague's conduct, or requiring guidance on the application of the Code.</p>
+      <p>Email: <a href="mailto:ethics@cilgglobal.org">ethics@cilgglobal.org</a> | Online form available via the CILG Members' Portal under 'Ethics and Conduct'</p>
+      <p>All communications are treated in strict confidence. Members seeking guidance (not reporting a breach) may contact anonymously. Formal reports require identification; CILG will not disclose the reporting member's identity without consent except as required by law. Response within five (5) working days.</p>
+    </div>
+    <h3 style="font-family:var(--ff-head);font-size:1.3rem;font-weight:700;color:var(--forest);margin:2.5rem 0 1rem">Investigation and Disciplinary Procedures</h3>
+    <p style="font-size:.92rem;color:var(--text2);margin-bottom:1.5rem">The CILG Professional Standards Committee may open a formal investigation upon receipt of a complaint from any member, employer, client, or member of the public; information arising from CILG's regulatory functions; a self-referral; or information from a criminal prosecution or regulatory finding.</p>
+    <div style="overflow-x:auto">
+      <table class="sanction-table">
+        <thead><tr><th>Sanction</th><th>Description</th><th>Applicable To</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Formal Warning</strong></td><td>Written warning recorded on the member's file; no impact on designation</td><td>Minor or first-time breaches</td></tr>
+          <tr><td><strong>Reprimand</strong></td><td>Formal reprimand recorded on file; made known to the member's employer where required by public interest</td><td>Moderate breaches</td></tr>
+          <tr><td><strong>Conditions of Practice</strong></td><td>Member required to undertake specified CPD, training, supervision, or remedial action</td><td>Competence-related breaches</td></tr>
+          <tr><td><strong>Suspension</strong></td><td>Membership suspended for a defined period (3–24 months); member may not use CILG designations during suspension</td><td>Serious breaches</td></tr>
+          <tr><td><strong>Demotion</strong></td><td>Grade reduced to a lower grade; original grade may not be reapplied for minimum two years</td><td>Serious misrepresentation or misconduct</td></tr>
+          <tr><td><strong>Removal</strong></td><td>Permanently removed from the CILG Register; all designations forfeited; cannot reapply</td><td>Most serious or repeated breaches</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice-box dark" style="margin-top:1.5rem">
+      <p><strong>Right of Appeal:</strong> Sanctioned members may appeal the Finding and/or Sanction to the CILG Appeals Committee within thirty (30) working days of written notification. The Appeals Committee operates independently of the Professional Standards Committee. Its decision is final and binding.</p>
+    </div>
+  </div>
+</section>
+
+<section class="supp-section">
+  <div class="section-inner">
+    <div class="section-label">Section 5</div>
+    <h2 class="section-h2">Member Declaration</h2>
+    <p style="font-size:.95rem;color:var(--text2);margin-bottom:1.5rem">By accepting membership of the Chartered Institute of Leadership and Governance (CILG) at any grade, every member makes the following declaration:</p>
+    <div class="declaration-box">
+      <h4>Member Declaration</h4>
+      <ol>
+        <li>I have read, understood, and agree to be bound by the CILG Code of Professional Conduct in its current form and as amended from time to time.</li>
+        <li>I will maintain my professional competence through compliance with the CILG CPD Framework applicable to my membership grade.</li>
+        <li>I will pay my CILG membership subscription fees when due and will promptly notify CILG of any change in circumstances that affects my membership eligibility.</li>
+        <li>I understand that any misrepresentation of my qualifications, experience, or membership grade is a serious breach of the Code and may result in removal from the CILG Register.</li>
+        <li>I accept that CILG has the authority to investigate complaints about my professional conduct and to impose sanctions, up to and including permanent removal from the Register, where a breach of the Code is established.</li>
+        <li>I commit to upholding the reputation of CILG and the leadership and governance profession at all times.</li>
+      </ol>
+    </div>
+    <p style="font-size:.82rem;color:var(--text2);margin-top:1.5rem">© Chartered Institute of Leadership and Governance (CILG). All Rights Reserved. Supplementary Professional Standards Framework — Edition 1.0, 2024 | <a href="http://www.cilg.org" style="color:var(--forest-lt)">www.cilg.org</a></p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Join the CILG Professional Community?</h2>
+  <p>Apply now to become a member and take the next step in your governance career.</p>
+  <div class="cta-btns">
+    <a href="appn.html" class="cta-btn-main">Apply Now</a>
+    <a href="about.html" class="cta-btn-alt">Learn More About CILG</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>CILG</h3>
+        <p>Chartered Institute of Leadership and Governance — a registered professional body dedicated to advancing governance excellence worldwide through internationally recognised qualifications, rigorous standards, and a global community of practice.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4> <a href="contact.html">Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:research@cilgglobal.org">research@cilgglobal.org</a>
+        <a href="mailto:ethics@cilgglobal.org">ethics@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America<br>
+          <span style="color:rgba(255,255,255,.28);font-size:.68rem">(Correspondence address only)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// TOC DOTS
+const dots = document.querySelectorAll('.toc-dot');
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById(dot.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Intersection Observer for active TOC dot
+const sections = Array.from(dots).map(d => document.getElementById(d.dataset.target)).filter(Boolean);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      dots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

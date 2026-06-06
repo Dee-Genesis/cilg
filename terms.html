@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Terms of Use | Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ===== ROOT ===== */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --red:         #c0392b;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h); display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200); transition: all var(--tr);
+}
+.nav.scrolled { height: 58px; background: rgba(247,248,243,0.98); box-shadow: 0 2px 24px rgba(13,43,31,.08); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ===== TOC SIDEBAR ===== */
+.toc-sidebar {
+  position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 6px;
+}
+.toc-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--g300);
+  transition: all var(--tr); cursor: pointer; position: relative;
+}
+.toc-dot.active { background: var(--lime-dk); transform: scale(1.4); }
+.toc-dot:hover { background: var(--forest-lt); }
+.toc-dot::before {
+  content: attr(data-label);
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  white-space: nowrap; background: var(--forest); color: #fff;
+  font-family: var(--ff-body); font-size: .65rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 5px;
+  opacity: 0; pointer-events: none; transition: opacity var(--tr);
+}
+.toc-dot:hover::before { opacity: 1; }
+
+/* ===== HERO ===== */
+.page-hero {
+  padding-top: calc(var(--nav-h) + 5rem);
+  padding-bottom: 5rem;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, #122e22 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(200,241,53,.12) 0%, transparent 65%);
+}
+.page-hero::after {
+  content:''; position:absolute; top:-120px; right:-120px;
+  width:550px; height:550px; border-radius:50%;
+  border:80px solid rgba(200,241,53,.04); pointer-events:none;
+}
+.page-hero-inner { position:relative; z-index:1; max-width:800px; margin:0 auto; padding:0 2rem; }
+.page-hero-label {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(200,241,53,.15); border:1px solid rgba(200,241,53,.35);
+  color:var(--lime); padding:4px 16px; border-radius:40px;
+  font-size:.65rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.page-hero-label span { width:5px; height:5px; background:var(--lime); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.page-hero h1 {
+  font-family:var(--ff-head); font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:800; color:#fff; letter-spacing:-.03em; line-height:1.1;
+  margin-bottom:1.2rem;
+}
+.page-hero h1 span { color: var(--lime); }
+.page-hero-sub {
+  font-size:1rem; color:rgba(255,255,255,.65); line-height:1.8;
+  max-width:580px; margin:0 auto 2rem;
+}
+.page-hero-meta {
+  display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1);
+}
+.page-hero-meta-item { font-size: .75rem; color: rgba(255,255,255,.5); display: flex; align-items: center; gap: 6px; }
+.page-hero-meta-item strong { color: rgba(255,255,255,.85); font-weight: 600; }
+.hero-tabs { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.hero-tab {
+  padding: 9px 20px; border-radius: 8px; font-size: .75rem; font-weight: 700; letter-spacing: .02em;
+  border: 1.5px solid rgba(255,255,255,.25); color: rgba(255,255,255,.85); cursor: pointer;
+  transition: all var(--tr); background: rgba(255,255,255,.06);
+}
+.hero-tab:hover { background: var(--lime); color: var(--forest); border-color: var(--lime); }
+
+/* ===== SHARED SECTIONS ===== */
+.section { padding: 6rem 3rem; background: var(--bg); }
+.section-alt { background: var(--bg-off); }
+.section-dark { background: var(--forest); color: #fff; }
+.section-inner { max-width: 920px; margin: 0 auto; }
+.section-label {
+  font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--forest-lt); margin-bottom: .7rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+.section-dark .section-label { color: var(--lime); }
+.section-dark .section-label::before { background: var(--lime); }
+.section-h2 {
+  font-family: var(--ff-head); font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 800; color: var(--forest); letter-spacing: -.03em;
+  line-height: 1.15; margin-bottom: 1.5rem;
+  padding-bottom: .9rem; border-bottom: 2px solid var(--lime);
+}
+.section-dark .section-h2 { color: #fff; border-bottom-color: rgba(200,241,53,.4); }
+
+/* ===== CONTENT TYPOGRAPHY ===== */
+.tc-body p { font-size: .97rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem; }
+.tc-body p:last-child { margin-bottom: 0; }
+.tc-body h3 {
+  font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700;
+  color: var(--forest); margin: 2.5rem 0 .9rem; display: flex; align-items: center; gap: 10px;
+}
+.tc-body h3::before {
+  content: ''; width: 4px; height: 1.1em; background: var(--lime-dk);
+  border-radius: 2px; flex-shrink: 0; display: inline-block;
+}
+.tc-body ul, .tc-body ol { margin-left: 1.5rem; margin-bottom: 1.2rem; }
+.tc-body li { font-size: .95rem; color: var(--text2); line-height: 1.85; margin-bottom: .5rem; }
+.tc-body strong { color: var(--forest); font-weight: 700; }
+.tc-body a { color: var(--forest-lt); font-weight: 600; border-bottom: 1px solid var(--lime-dk); transition: color var(--tr); }
+.tc-body a:hover { color: var(--forest); }
+
+/* ===== NOTICE / INFO BOXES ===== */
+.notice-box {
+  border-left: 4px solid var(--lime-dk); background: var(--lime-pale);
+  border-radius: 0 10px 10px 0; padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+}
+.notice-box p { font-size: .9rem; color: var(--text); line-height: 1.8; margin-bottom: .4rem; }
+.notice-box p:last-child { margin-bottom: 0; }
+.notice-box strong { color: var(--forest); }
+.notice-box.alert { border-left-color: #e67e22; background: #fef9ef; }
+.notice-box.alert p { color: #7a4a10; }
+.notice-box.dark { background: rgba(13,43,31,.06); border-color: var(--forest-lt); }
+
+/* ===== TOC PANEL ===== */
+.toc-panel {
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 14px; padding: 2rem; margin-bottom: 3rem;
+}
+.toc-panel-title {
+  font-family: var(--ff-head); font-size: .75rem; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--forest-lt);
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+}
+.toc-panel-title::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+.toc-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .4rem;
+}
+.toc-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; border-radius: 7px; font-size: .82rem;
+  color: var(--text2); font-weight: 500; transition: all var(--tr);
+  border: 1px solid transparent;
+}
+.toc-link:hover { background: var(--g100); border-color: var(--g200); color: var(--forest); }
+.toc-link-num {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  background: var(--lime-pale); border: 1px solid var(--lime-dk);
+  font-size: .62rem; font-weight: 800; color: var(--forest-lt);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== DEFINITION BOX ===== */
+.definition-box {
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 14px; padding: 2rem; margin: 2rem 0;
+}
+.definition-box h4 {
+  font-family: var(--ff-head); font-size: 1rem; font-weight: 700;
+  color: var(--forest); margin-bottom: 1rem;
+}
+.def-item { display: flex; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--g200); }
+.def-item:last-child { border-bottom: none; padding-bottom: 0; }
+.def-term { font-size: .88rem; font-weight: 700; color: var(--forest); min-width: 160px; flex-shrink: 0; }
+.def-desc { font-size: .88rem; color: var(--text2); line-height: 1.8; }
+
+/* ===== INFO CARD ===== */
+.info-card {
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem;
+}
+.info-card h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--forest); margin-bottom: .8rem; }
+.info-card p { font-size: .92rem; color: var(--text2); line-height: 1.85; margin-bottom: .7rem; }
+.info-card p:last-child { margin-bottom: 0; }
+.info-card ul { margin-left: 1.4rem; }
+.info-card li { font-size: .92rem; color: var(--text2); line-height: 1.85; margin-bottom: .4rem; }
+
+/* ===== DECLARATION BOX ===== */
+.declaration-box {
+  background: var(--forest); color: #fff; border-radius: 14px; padding: 2.5rem;
+  border-left: 5px solid var(--lime); margin: 2rem 0;
+}
+.declaration-box h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--lime); margin-bottom: 1.2rem; }
+.declaration-box p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.85; margin-bottom: .8rem; }
+.declaration-box p:last-child { margin-bottom: 0; }
+.declaration-box ol { margin-left: 1.5rem; }
+.declaration-box li { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.85; margin-bottom: .7rem; }
+
+/* ===== LAST UPDATED BADGE ===== */
+.last-updated {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--g100); border: 1px solid var(--g200);
+  border-radius: 8px; padding: 8px 14px;
+  font-size: .78rem; color: var(--g500); font-weight: 500; margin-bottom: 2.5rem;
+}
+.last-updated strong { color: var(--forest); }
+
+/* ===== CTA ===== */
+.cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(200,241,53,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .8rem; position: relative; }
+.cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-btn-main { padding: 14px 32px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .84rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); cursor: pointer; }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,241,53,.35); }
+.cta-btn-alt { padding: 14px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .84rem; font-weight: 600; transition: all var(--tr); cursor: pointer; }
+.cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
+
+/* ===== FOOTER ===== */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .nav-links { gap: .02rem; }
+  .nav-link { font-size: .67rem; padding: 5px 8px; }
+  .toc-sidebar { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .nav { padding: 0 1.2rem; }
+  .page-hero { padding: calc(var(--nav-h) + 3rem) 1.2rem 3.5rem; }
+  .section, .cta-section { padding: 4rem 1.2rem; }
+  .page-hero-meta { gap: 1rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .def-item { flex-direction: column; gap: .4rem; }
+  .def-term { min-width: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG<span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+<!-- TOC Sidebar Dots -->
+<div class="toc-sidebar" id="tocSidebar">
+  <div class="toc-dot active" data-label="Introduction"   data-target="sec-intro"></div>
+  <div class="toc-dot"        data-label="Definitions"    data-target="sec-definitions"></div>
+  <div class="toc-dot"        data-label="Acceptance"     data-target="sec-acceptance"></div>
+  <div class="toc-dot"        data-label="Membership"     data-target="sec-membership"></div>
+  <div class="toc-dot"        data-label="Credentials"    data-target="sec-credentials"></div>
+  <div class="toc-dot"        data-label="IP Rights"      data-target="sec-ip"></div>
+  <div class="toc-dot"        data-label="Conduct"        data-target="sec-conduct"></div>
+  <div class="toc-dot"        data-label="Privacy"        data-target="sec-privacy"></div>
+  <div class="toc-dot"        data-label="Fees"           data-target="sec-fees"></div>
+  <div class="toc-dot"        data-label="Liability"      data-target="sec-liability"></div>
+  <div class="toc-dot"        data-label="Termination"    data-target="sec-termination"></div>
+  <div class="toc-dot"        data-label="Governing Law"  data-target="sec-law"></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════ -->
+<section class="page-hero" id="hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-label"><span></span> Legal &amp; Governance Documents</div>
+    <h1>Terms of <span>Use</span></h1>
+    <p class="page-hero-sub">Please read these terms carefully before accessing CILG's website, portals, programmes, or professional services. By engaging with any CILG platform or service, you agree to be bound by these terms.</p>
+    <div class="hero-tabs">
+      <a href="#sec-membership"   class="hero-tab">Membership Terms</a>
+      <a href="#sec-credentials"  class="hero-tab">Credentials &amp; Designations</a>
+      <a href="#sec-ip"           class="hero-tab">Intellectual Property</a>
+      <a href="#sec-conduct"      class="hero-tab">Code of Conduct</a>
+      <a href="#sec-privacy"      class="hero-tab">Privacy</a>
+    </div>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📅 <strong>Effective Date:</strong> 1 January 2025</div>
+      <div class="page-hero-meta-item">🔄 <strong>Last Reviewed:</strong> June 2026</div>
+      <div class="page-hero-meta-item">📄 <strong>Version:</strong> 2.1</div>
+      <div class="page-hero-meta-item">⚖️ <strong>Jurisdiction:</strong> United States of America</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     INTRODUCTION
+═══════════════════════════════════════ -->
+<section class="section" id="sec-intro">
+  <div class="section-inner">
+    <div class="section-label">Section 1</div>
+    <h2 class="section-h2">Introduction</h2>
+
+    <div class="toc-panel">
+      <div class="toc-panel-title">On This Page — Table of Contents</div>
+      <div class="toc-grid">
+        <a href="#sec-intro"       class="toc-link"><span class="toc-link-num">1</span> Introduction</a>
+        <a href="#sec-definitions" class="toc-link"><span class="toc-link-num">2</span> Definitions</a>
+        <a href="#sec-acceptance"  class="toc-link"><span class="toc-link-num">3</span> Acceptance of Terms</a>
+        <a href="#sec-membership"  class="toc-link"><span class="toc-link-num">4</span> Membership Terms &amp; Conditions</a>
+        <a href="#sec-credentials" class="toc-link"><span class="toc-link-num">5</span> Credentials &amp; Designations</a>
+        <a href="#sec-ip"          class="toc-link"><span class="toc-link-num">6</span> Intellectual Property</a>
+        <a href="#sec-conduct"     class="toc-link"><span class="toc-link-num">7</span> Acceptable Use &amp; Conduct</a>
+        <a href="#sec-privacy"     class="toc-link"><span class="toc-link-num">8</span> Privacy &amp; Data Protection</a>
+        <a href="#sec-fees"        class="toc-link"><span class="toc-link-num">9</span> Fees, Payments &amp; Refunds</a>
+        <a href="#sec-liability"   class="toc-link"><span class="toc-link-num">10</span> Limitation of Liability</a>
+        <a href="#sec-termination" class="toc-link"><span class="toc-link-num">11</span> Termination &amp; Suspension</a>
+        <a href="#sec-law"         class="toc-link"><span class="toc-link-num">12</span> Governing Law &amp; Disputes</a>
+      </div>
+    </div>
+
+    <div class="tc-body">
+      <p>These Terms of Use ("Terms") govern your access to and use of all websites, digital portals, online services, qualifications, membership programmes, professional certifications, events, and other services operated or offered by the <strong>Chartered Institute of Leadership and Governance</strong> ("CILG", "the Institute", "we", "our", or "us"), a registered professional body incorporated under the laws of the United States of America.</p>
+
+      <p>CILG is committed to upholding the highest standards of governance, integrity, and professionalism. These Terms are designed to protect the interests of all members, students, applicants, and users of CILG services while advancing the Institute's mission to promote leadership and governance excellence globally.</p>
+
+      <p>These Terms should be read in conjunction with CILG's <a href="privacy-policy.html">Privacy Policy</a>, the <a href="membership.html">Membership Framework</a>, the <a href="qualifications.html">Qualification Framework</a>, and the CILG Code of Professional Conduct. In the event of any conflict between these documents, these Terms of Use shall take precedence unless otherwise expressly stated.</p>
+
+      <div class="notice-box">
+        <p><strong>Important Notice:</strong> If you do not agree to these Terms in their entirety, you must immediately cease your use of all CILG websites, portals, and services, and must not apply for or hold any CILG membership or credential.</p>
+      </div>
+
+      <p>CILG reserves the right to amend these Terms at any time. Where changes are material, reasonable notice will be provided to existing members via registered email. Continued use of CILG services following notification of changes constitutes your acceptance of the revised Terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     DEFINITIONS
+═══════════════════════════════════════ -->
+<section class="section section-alt" id="sec-definitions">
+  <div class="section-inner">
+    <div class="section-label">Section 2</div>
+    <h2 class="section-h2">Definitions</h2>
+    <div class="tc-body">
+      <p>In these Terms, the following words and phrases shall have the meanings assigned to them below, unless the context clearly requires otherwise.</p>
+    </div>
+    <div class="definition-box">
+      <h4>Key Terms</h4>
+      <div class="def-item">
+        <span class="def-term">"CILG"</span>
+        <span class="def-desc">The Chartered Institute of Leadership and Governance, including all its divisions, committees, offices, and authorised representatives.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"Member"</span>
+        <span class="def-desc">Any individual or organisation registered under a recognised CILG membership grade, including Student, Affiliate, Associate, Full Member, Fellow, Honorary Fellow, and Corporate Member.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"User"</span>
+        <span class="def-desc">Any individual or entity accessing CILG websites, portals, or online services, whether or not they hold formal CILG membership.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"Services"</span>
+        <span class="def-desc">All qualifications, professional certifications, membership programmes, events, publications, digital portals, verification systems, and other offerings made available by CILG.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"Credential"</span>
+        <span class="def-desc">Any post-nominal designation, certificate, award, or professional recognition conferred by CILG, including but not limited to SCILG, AffCILG, ACILG, MCILG, and FCILG.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"Portal"</span>
+        <span class="def-desc">Any CILG-operated online platform, including the Application Portal, Verification Portal, Member Portal, and any other digital environment provided by the Institute.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"Intellectual Property"</span>
+        <span class="def-desc">All trademarks, service marks, logos, designations, course content, syllabi, publications, frameworks, assessment materials, website content, and other proprietary materials owned by or licensed to CILG.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"CPD"</span>
+        <span class="def-desc">Continuing Professional Development — the structured learning and development activities required to maintain active CILG membership in good standing.</span>
+      </div>
+      <div class="def-item">
+        <span class="def-term">"Code of Conduct"</span>
+        <span class="def-desc">The CILG Code of Professional Conduct, which sets out the ethical standards and professional obligations binding upon all Members.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ACCEPTANCE
+═══════════════════════════════════════ -->
+<section class="section" id="sec-acceptance">
+  <div class="section-inner">
+    <div class="section-label">Section 3</div>
+    <h2 class="section-h2">Acceptance of Terms</h2>
+    <div class="tc-body">
+      <p>By accessing any CILG website, submitting an application, enrolling in a programme, activating or maintaining membership, or using any CILG Portal or Service, you confirm that:</p>
+      <ul>
+        <li>You are at least 18 years of age and have the legal capacity to enter into a binding agreement;</li>
+        <li>You have read, understood, and agree to be legally bound by these Terms in their entirety;</li>
+        <li>Where you are acting on behalf of an organisation, you have the authority to bind that organisation to these Terms;</li>
+        <li>All information provided to CILG, including application data, personal details, and professional history, is accurate, complete, and not misleading;</li>
+        <li>You accept that any misrepresentation constitutes grounds for immediate cancellation of membership or credentials, with no entitlement to refund.</li>
+      </ul>
+
+      <div class="notice-box dark">
+        <p><strong>Age Requirement:</strong> CILG Services are intended for professional adults aged 18 years and above. Users under 18 may only participate in CILG Student programmes with the written consent of a parent or legal guardian.</p>
+      </div>
+
+      <p>Acceptance is deemed to occur at the earliest of: submission of an online application or registration form; payment of any fee to CILG; or active use of any CILG portal or digital resource.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MEMBERSHIP TERMS
+═══════════════════════════════════════ -->
+<section class="section section-alt" id="sec-membership">
+  <div class="section-inner">
+    <div class="section-label">Section 4</div>
+    <h2 class="section-h2">Membership Terms &amp; Conditions</h2>
+    <div class="tc-body">
+
+      <h3>4.1 Eligibility and Application</h3>
+      <p>Membership of CILG is open to individuals and organisations who meet the eligibility criteria set out in the <a href="membership.html">CILG Membership Framework</a>. CILG reserves the absolute right to approve, defer, or decline any application without obligation to provide reasons, and without liability to the applicant.</p>
+      <p>Submission of an application does not guarantee admission to membership. CILG may request additional documentation, references, or verification of any information provided at any stage of the application process.</p>
+
+      <h3>4.2 Membership Obligations</h3>
+      <p>All Members, regardless of grade, are required to:</p>
+      <ul>
+        <li>Maintain the minimum annual CPD requirements applicable to their membership grade as set out in the CILG CPD Framework;</li>
+        <li>Pay all applicable annual subscription fees and levies by the due date;</li>
+        <li>Notify CILG promptly of any change in professional status, criminal conviction, regulatory action, or other matter that may affect their suitability for continued membership;</li>
+        <li>Comply fully with the CILG Code of Professional Conduct at all times;</li>
+        <li>Cooperate with any investigation or review conducted by the CILG Professional Standards Committee;</li>
+        <li>Use CILG post-nominal designations only in the manner authorised by the Institute and only whilst in good standing.</li>
+      </ul>
+
+      <h3>4.3 Membership Renewal</h3>
+      <p>CILG membership is renewed annually. Renewal notices will be issued not less than 30 days before the renewal date. Failure to renew on time will result in the suspension of membership privileges, including the right to use CILG post-nominal designations. Lapsed memberships not renewed within 60 days of the renewal date may be cancelled, and re-admission may be required upon any subsequent application.</p>
+
+      <h3>4.4 Upgrading Membership Grade</h3>
+      <p>Members wishing to upgrade their membership grade must demonstrate that they meet all eligibility requirements for the higher grade, as detailed in the Membership Framework. Upgrade applications are subject to CILG's assessment procedures and are not automatic upon meeting minimum criteria. CILG's decision on upgrades is final.</p>
+
+      <div class="info-card">
+        <h4>Corporate Membership</h4>
+        <p>Corporate Members are bound by these Terms in addition to any separate Corporate Membership Agreement entered into with CILG. In the event of any conflict between a Corporate Membership Agreement and these Terms, the Corporate Membership Agreement shall prevail to the extent of the inconsistency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CREDENTIALS & DESIGNATIONS
+═══════════════════════════════════════ -->
+<section class="section" id="sec-credentials">
+  <div class="section-inner">
+    <div class="section-label">Section 5</div>
+    <h2 class="section-h2">Credentials &amp; Designations</h2>
+    <div class="tc-body">
+
+      <h3>5.1 Grant and Scope of Credentials</h3>
+      <p>CILG post-nominal designations and professional credentials are awarded to individuals who have demonstrated the requisite knowledge, experience, and professional standing as assessed by the Institute. All credentials remain the property of CILG and are granted to Members on a conditional, non-transferable, and revocable licence basis.</p>
+
+      <h3>5.2 Conditions of Use</h3>
+      <p>Members holding a CILG credential may use the associated post-nominal designation only whilst their membership is active and in good standing. The following conditions apply to the use of all CILG credentials:</p>
+      <ul>
+        <li>Post-nominal designations must be used accurately and in the form authorised by CILG. Abbreviations or modified forms not approved by the Institute are prohibited;</li>
+        <li>Credentials must not be represented in any way that implies a broader scope of qualification, endorsement, or authority than that granted by CILG;</li>
+        <li>Members must not use a credential after suspension or termination of membership, however caused;</li>
+        <li>Credentials must not be used in connection with any activity that constitutes a breach of the CILG Code of Professional Conduct or brings the Institute into disrepute.</li>
+      </ul>
+
+      <h3>5.3 Verification of Credentials</h3>
+      <p>CILG maintains a public Verification Portal through which the credentials and membership status of any CILG member can be verified by third parties. Members consent to their name, credential, membership grade, and good-standing status being included in the CILG Register and being accessible via the Verification Portal.</p>
+
+      <div class="notice-box alert">
+        <p><strong>Misuse of Credentials:</strong> Any fraudulent claim to hold a CILG credential or the use of a revoked credential is a serious breach of these Terms and may be referred to the relevant professional, regulatory, or law enforcement authorities. CILG reserves the right to pursue all appropriate legal remedies in such cases.</p>
+      </div>
+
+      <h3>5.4 Revocation of Credentials</h3>
+      <p>CILG may revoke any credential at any time on the grounds of: misrepresentation in the original application; breach of the Code of Professional Conduct; failure to maintain CPD requirements; non-payment of dues; criminal conviction relevant to professional standing; or any other conduct deemed by CILG to be incompatible with membership. Revocation is effective from the date of written notification. Members retain no right to use a revoked credential after that date.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     INTELLECTUAL PROPERTY
+═══════════════════════════════════════ -->
+<section class="section section-alt" id="sec-ip">
+  <div class="section-inner">
+    <div class="section-label">Section 6</div>
+    <h2 class="section-h2">Intellectual Property Rights</h2>
+    <div class="tc-body">
+
+      <h3>6.1 Ownership</h3>
+      <p>All content, materials, and intellectual property made available through CILG websites, portals, publications, and programmes — including but not limited to qualification frameworks, syllabi, assessment materials, course content, articles, research papers, logos, brand identifiers, post-nominal designations, and website design — are the exclusive property of CILG or its licensors and are protected by applicable copyright, trademark, and intellectual property laws.</p>
+
+      <h3>6.2 Permitted Use</h3>
+      <p>Subject to these Terms, CILG grants you a limited, non-exclusive, non-transferable, revocable licence to access and use CILG's published materials solely for your personal, non-commercial, and professional development purposes. This licence does not permit:</p>
+      <ul>
+        <li>Reproduction, redistribution, or publication of CILG materials without prior written consent from the Institute;</li>
+        <li>Modification, adaptation, or creation of derivative works from CILG content;</li>
+        <li>Commercial use, sale, or licensing of any CILG material to third parties;</li>
+        <li>Systematic downloading or scraping of content from CILG websites or portals;</li>
+        <li>Use of CILG logos, trade names, or brand identifiers in any form without express written authorisation;</li>
+        <li>Framing or mirroring any CILG webpage without prior written consent.</li>
+      </ul>
+
+      <h3>6.3 Trademarks and Designations</h3>
+      <p>The CILG name, logo, and all post-nominal designations (including SCILG, AffCILG, ACILG, MCILG, FCILG, and Hon. FCILG) are registered or unregistered trademarks and service marks of the Chartered Institute of Leadership and Governance. Unauthorised use of these marks is strictly prohibited and may result in legal action.</p>
+
+      <h3>6.4 User-Generated Content</h3>
+      <p>Where CILG platforms allow you to submit content (including testimonials, forum posts, or professional profiles), you retain ownership of your content but grant CILG a perpetual, royalty-free, worldwide licence to use, reproduce, and display such content in connection with the Institute's activities. You warrant that any content you submit does not infringe the rights of any third party.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONDUCT
+═══════════════════════════════════════ -->
+<section class="section section-dark" id="sec-conduct">
+  <div class="section-inner">
+    <div class="section-label">Section 7</div>
+    <h2 class="section-h2">Acceptable Use &amp; Professional Conduct</h2>
+    <div class="tc-body">
+
+      <h3 style="color:#fff;">7.1 General Standards</h3>
+      <p style="color:rgba(255,255,255,.72);">All users of CILG platforms and services are required to conduct themselves in a manner consistent with the principles of professional integrity, respect, and fairness. CILG is committed to maintaining a professional environment free from harassment, discrimination, and misconduct.</p>
+
+      <h3 style="color:#fff;">7.2 Prohibited Activities</h3>
+      <p style="color:rgba(255,255,255,.72);">The following activities are expressly prohibited and may result in immediate suspension or termination of access and/or membership:</p>
+      <ul style="margin-left:1.5rem;margin-bottom:1.2rem;">
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Providing false or misleading information to CILG at any time;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Impersonating any person, entity, or CILG credential holder;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Attempting to gain unauthorised access to any CILG system, account, or data;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Uploading or transmitting malware, viruses, or any harmful code;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Engaging in any form of harassment, bullying, or abusive communication directed at CILG staff, members, or other users;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Using CILG platforms or credentials for fraudulent, deceptive, or unlawful purposes;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Attempting to circumvent, manipulate, or misuse any CILG assessment, evaluation, or verification process;</li>
+        <li style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.85;margin-bottom:.5rem;">Engaging in any activity that brings CILG, its members, or the profession of leadership and governance into disrepute.</li>
+      </ul>
+
+      <h3 style="color:#fff;">7.3 Code of Professional Conduct</h3>
+      <p style="color:rgba(255,255,255,.72);">All CILG Members are additionally bound by the CILG Code of Professional Conduct, which sets out seven foundational principles: Integrity, Competence, Accountability, Transparency, Respect &amp; Inclusivity, Professional Independence, and Stewardship of the Profession. Breach of the Code may result in disciplinary proceedings by the CILG Professional Standards Committee, with sanctions up to and including permanent removal from the CILG Register.</p>
+
+      <div class="notice-box dark" style="background:rgba(200,241,53,.08);border-left-color:var(--lime);">
+        <p style="color:rgba(255,255,255,.8);"><strong style="color:var(--lime);">Reporting Concerns:</strong> Members and users are encouraged to report suspected breaches of professional conduct or these Terms via the CILG Ethics helpline at <a href="mailto:ethics@cilgglobal.org" style="color:var(--lime);">ethics@cilgglobal.org</a>. All reports are treated with appropriate confidentiality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PRIVACY
+═══════════════════════════════════════ -->
+<section class="section" id="sec-privacy">
+  <div class="section-inner">
+    <div class="section-label">Section 8</div>
+    <h2 class="section-h2">Privacy &amp; Data Protection</h2>
+    <div class="tc-body">
+
+      <h3>8.1 Data Controller</h3>
+      <p>CILG acts as the data controller in respect of personal data collected and processed in connection with your membership, application, and use of CILG services. CILG processes personal data in accordance with its <a href="privacy-policy.html">Privacy Policy</a>, which forms part of these Terms and is incorporated herein by reference.</p>
+
+      <h3>8.2 What We Collect</h3>
+      <p>CILG may collect and process the following categories of personal data:</p>
+      <ul>
+        <li>Identity data: full name, date of birth, gender, nationality, and passport or national ID details;</li>
+        <li>Contact data: email address, telephone numbers, postal address;</li>
+        <li>Professional data: employment history, qualifications, CPD records, and membership status;</li>
+        <li>Financial data: payment information and fee transaction records (processed securely via third-party payment processors);</li>
+        <li>Usage data: website access logs, portal interaction data, and communications with CILG.</li>
+      </ul>
+
+      <h3>8.3 How We Use Your Data</h3>
+      <p>Personal data is used to administer membership and qualifications, process applications and payments, maintain the CILG Register, operate the Verification Portal, communicate relevant Institute news and events, and fulfil legal and regulatory obligations. CILG will not sell your personal data to third parties.</p>
+
+      <h3>8.4 Your Rights</h3>
+      <p>Subject to applicable law, you have rights to access, rectify, erase, restrict, or object to the processing of your personal data, and to data portability. To exercise any of these rights, please contact <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>. Please refer to the full <a href="privacy-policy.html">Privacy Policy</a> for complete information on data retention, international transfers, and your statutory rights.</p>
+
+      <div class="notice-box">
+        <p><strong>Verification Portal:</strong> By holding CILG membership, you consent to your name, membership grade, credential status, and good-standing status being publicly accessible on the CILG Verification Portal. If you wish to request restricted visibility, please contact the Membership Office.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FEES
+═══════════════════════════════════════ -->
+<section class="section section-alt" id="sec-fees">
+  <div class="section-inner">
+    <div class="section-label">Section 9</div>
+    <h2 class="section-h2">Fees, Payments &amp; Refunds</h2>
+    <div class="tc-body">
+
+      <h3>9.1 Fee Schedule</h3>
+      <p>CILG's current fee schedule, including application fees, annual subscription fees, examination and assessment fees, and any other applicable charges, is published on the CILG website and within the Membership Framework. CILG reserves the right to revise its fee schedule with not less than 30 days' written notice to existing members.</p>
+
+      <h3>9.2 Payment Terms</h3>
+      <p>All fees are payable in United States Dollars (USD) unless otherwise specified. Payments must be made by the due date specified on the relevant invoice or renewal notice. CILG accepts payment via bank transfer, credit card, debit card, or such other methods as may be notified from time to time. All payments must be made free of any deductions or withholding taxes.</p>
+
+      <h3>9.3 Late Payment</h3>
+      <p>Failure to pay any fee by the due date may result in:</p>
+      <ul>
+        <li>Suspension of membership and withdrawal of the right to use CILG credentials;</li>
+        <li>Removal from the active CILG Register;</li>
+        <li>A late payment surcharge as notified by CILG from time to time;</li>
+        <li>Where payment remains outstanding for more than 90 days, termination of membership and referral of the outstanding debt for collection.</li>
+      </ul>
+
+      <h3>9.4 Refund Policy</h3>
+      <p>All fees paid to CILG are, save as set out below, non-refundable. CILG will consider refund requests in the following limited circumstances:</p>
+      <ul>
+        <li><strong>Application Fees:</strong> Non-refundable in all circumstances once an application has been submitted;</li>
+        <li><strong>Annual Subscription Fees:</strong> Non-refundable once membership has been activated for the relevant period;</li>
+        <li><strong>Examination / Assessment Fees:</strong> A partial refund or credit may be available where written cancellation is received not less than 14 days before the scheduled assessment date. No refund is available for no-shows or cancellations received with less than 14 days' notice;</li>
+        <li><strong>Events and Conferences:</strong> Cancellation and refund terms for specific events will be published separately with the event details.</li>
+      </ul>
+
+      <div class="notice-box">
+        <p><strong>Currency and Taxes:</strong> Where CILG fees are paid by members outside the United States, the member is solely responsible for any bank charges, currency conversion costs, or applicable local taxes arising from the payment transaction. CILG fees are quoted exclusive of any applicable sales tax or VAT, which will be added where required by law.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     LIABILITY
+═══════════════════════════════════════ -->
+<section class="section" id="sec-liability">
+  <div class="section-inner">
+    <div class="section-label">Section 10</div>
+    <h2 class="section-h2">Limitation of Liability</h2>
+    <div class="tc-body">
+
+      <h3>10.1 No Warranty</h3>
+      <p>CILG's websites, portals, and services are provided on an "as is" and "as available" basis. Whilst CILG takes reasonable steps to ensure the accuracy and currency of all information published, the Institute makes no representation or warranty — express or implied — as to the completeness, accuracy, reliability, suitability, or availability of any content, credential, or service.</p>
+
+      <h3>10.2 Limitation of Liability</h3>
+      <p>To the fullest extent permitted by applicable law, CILG and its officers, governors, employees, agents, and representatives shall not be liable for any loss or damage — whether direct, indirect, consequential, incidental, or otherwise — arising from or in connection with:</p>
+      <ul>
+        <li>Your use of or reliance upon any CILG website, portal, publication, or service;</li>
+        <li>Any interruption, suspension, or unavailability of CILG platforms;</li>
+        <li>Any decision made by an employer, client, or third party in reliance upon a CILG credential or membership status;</li>
+        <li>Any action taken or not taken by CILG in the exercise of its discretion under these Terms or the Membership Framework;</li>
+        <li>Any data breach, unauthorised access, or loss of data arising from causes beyond CILG's reasonable control.</li>
+      </ul>
+
+      <h3>10.3 Indemnification</h3>
+      <p>You agree to indemnify, defend, and hold harmless CILG, its governors, officers, employees, and agents from and against any claims, losses, damages, costs, and expenses (including reasonable legal fees) arising from: your use of CILG services; your breach of these Terms; your violation of any applicable law or regulation; or any misrepresentation made by you to CILG or to any third party in connection with your membership or credential.</p>
+
+      <div class="notice-box dark">
+        <p><strong>Professional Advice:</strong> Nothing on any CILG website or in any CILG publication constitutes legal, financial, regulatory, or professional advice. Members and users should seek independent professional advice appropriate to their specific circumstances.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TERMINATION
+═══════════════════════════════════════ -->
+<section class="section section-alt" id="sec-termination">
+  <div class="section-inner">
+    <div class="section-label">Section 11</div>
+    <h2 class="section-h2">Termination &amp; Suspension</h2>
+    <div class="tc-body">
+
+      <h3>11.1 Voluntary Resignation</h3>
+      <p>A Member may resign from CILG membership at any time by submitting written notice to the Membership Office at <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>. Resignation takes effect from the date of acknowledgement by CILG. No refund of subscription fees already paid will be due upon voluntary resignation. Any outstanding dues remain payable notwithstanding resignation.</p>
+
+      <h3>11.2 Suspension</h3>
+      <p>CILG may suspend a Member's membership and all associated rights and privileges, with immediate effect, where:</p>
+      <ul>
+        <li>A formal complaint or investigation is pending before the Professional Standards Committee;</li>
+        <li>The Member has failed to meet CPD requirements;</li>
+        <li>Subscription fees are overdue by more than 30 days;</li>
+        <li>There is reason to believe the Member has breached these Terms or the Code of Professional Conduct;</li>
+        <li>A criminal investigation or regulatory proceeding relevant to professional standing is pending or ongoing.</li>
+      </ul>
+      <p>During suspension, the Member may not represent themselves as a CILG member in good standing or use any CILG post-nominal designation.</p>
+
+      <h3>11.3 Termination by CILG</h3>
+      <p>CILG may terminate membership permanently following: a finding of misconduct by the Professional Standards Committee; conviction of a criminal offence relevant to professional standing; persistent non-payment of dues; or submission of materially false information in any application or renewal. Termination is effected by written notice. Members may appeal a termination decision in accordance with CILG's published appeals procedure within 30 days of notification.</p>
+
+      <h3>11.4 Consequences of Termination</h3>
+      <p>Upon termination of membership, whether voluntary or otherwise, the former Member must: immediately cease to use all CILG credentials and post-nominal designations; remove all references to CILG membership from professional profiles, marketing materials, and communications; and return or destroy any CILG-issued membership certificates upon request. CILG will update the Verification Portal to reflect the change in status.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     GOVERNING LAW
+═══════════════════════════════════════ -->
+<section class="section section-dark" id="sec-law">
+  <div class="section-inner">
+    <div class="section-label">Section 12</div>
+    <h2 class="section-h2">Governing Law &amp; Dispute Resolution</h2>
+    <div class="tc-body">
+
+      <h3 style="color:#fff;">12.1 Governing Law</h3>
+      <p style="color:rgba(255,255,255,.72);">These Terms and any dispute or claim arising out of or in connection with them — including non-contractual disputes — shall be governed by and construed in accordance with the laws of the State of Michigan, United States of America, without regard to its conflict of laws provisions.</p>
+
+      <h3 style="color:#fff;">12.2 Dispute Resolution</h3>
+      <p style="color:rgba(255,255,255,.72);">In the event of any dispute between you and CILG arising under or in connection with these Terms, both parties agree to first attempt to resolve the dispute through good-faith negotiation. If the dispute is not resolved within 30 days of written notice, either party may refer the matter to mediation before a mutually agreed mediator. Where mediation fails, disputes shall be submitted to the exclusive jurisdiction of the courts of the State of Michigan, USA.</p>
+
+      <h3 style="color:#fff;">12.3 Complaints Procedure</h3>
+      <p style="color:rgba(255,255,255,.72);">Formal complaints regarding CILG services, decisions, or conduct should be submitted in writing to the CILG Secretariat at <a href="mailto:info@cilgglobal.org" style="color:var(--lime);">info@cilgglobal.org</a>. CILG will acknowledge receipt within 5 working days and will respond substantively within 30 working days. CILG's full Complaints Procedure is available from the Membership Office upon request.</p>
+
+      <h3 style="color:#fff;">12.4 Severability</h3>
+      <p style="color:rgba(255,255,255,.72);">If any provision of these Terms is found to be unlawful, void, or unenforceable for any reason, that provision shall be deemed severed from these Terms and shall not affect the validity and enforceability of any remaining provisions.</p>
+
+      <h3 style="color:#fff;">12.5 Entire Agreement</h3>
+      <p style="color:rgba(255,255,255,.72);">These Terms, together with the CILG Privacy Policy, Membership Framework, and any applicable programme-specific terms, constitute the entire agreement between you and CILG with respect to your use of CILG services and supersede all prior agreements, representations, or understandings, whether written or oral.</p>
+
+      <div class="declaration-box" style="margin-top:3rem;">
+        <h4>📬 Contact CILG</h4>
+        <p>For any enquiries relating to these Terms of Use, please contact the CILG Secretariat:</p>
+        <ol>
+          <li><strong style="color:var(--lime);">Email:</strong> <a href="mailto:info@cilgglobal.org" style="color:rgba(255,255,255,.85);">info@cilgglobal.org</a></li>
+          <li><strong style="color:var(--lime);">Membership Office:</strong> <a href="mailto:membership@cilgglobal.org" style="color:rgba(255,255,255,.85);">membership@cilgglobal.org</a></li>
+          <li><strong style="color:var(--lime);">Ethics &amp; Conduct:</strong> <a href="mailto:ethics@cilgglobal.org" style="color:rgba(255,255,255,.85);">ethics@cilgglobal.org</a></li>
+          <li><strong style="color:var(--lime);">Telephone:</strong> +1 (575) 329-8396 (Mon–Fri, 9:00 AM–5:00 PM ET)</li>
+          <li><strong style="color:var(--lime);">Postal Address:</strong> 2222 W. Grand River Ave STE A, Okemos, MI 48864, United States of America</li>
+        </ol>
+        <p style="margin-top:1.2rem;font-size:.82rem;color:rgba(255,255,255,.45);">These Terms of Use were last reviewed and updated in June 2026. CILG reserves the right to update these Terms periodically. The current version will always be available at <a href="terms.html" style="color:var(--lime);">cilgglobal.org/terms</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CTA
+═══════════════════════════════════════ -->
+<section class="cta-section">
+  <h2>Ready to Join the Institute?</h2>
+  <p>Apply for CILG membership and join a global community of leadership and governance professionals.</p>
+  <div class="cta-btns">
+    <a href="appn.html" class="cta-btn-main">Begin Your Application</a>
+    <a href="membership.html" class="cta-btn-alt">View Membership Grades</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>CILG</h3>
+        <p>Chartered Institute of Leadership and Governance — a registered professional body dedicated to advancing governance excellence worldwide through internationally recognised qualifications, rigorous standards, and a global community of practice.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html" style="color:var(--lime);">Terms of Use</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4><a href="contact.html">Contact Us</a></h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:ethics@cilgglobal.org">ethics@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America<br>
+          <span style="color:rgba(255,255,255,.28);font-size:.68rem">(Correspondence address only)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:var(--lime);font-size:.72rem;">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// TOC DOTS — scroll & active state
+const dots = document.querySelectorAll('.toc-dot');
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById(dot.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+const sections = Array.from(dots).map(d => document.getElementById(d.dataset.target)).filter(Boolean);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      dots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
+    }
+  });
+}, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

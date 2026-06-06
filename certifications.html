@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Professional Certification Programmes — Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET — FINZO PALETTE
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+  /* cert colours */
+  --c1: #1B3A6B;
+  --c2: #1B5E4A;
+  --c3: #5C2D91;
+  --c4: #7A2D00;
+  --c5: #0F4C75;
+  --c6: #2D4A1B;
+  --c7: #1A3A5C;
+  --c8: #4A1B5C;
+  --c9: #5C1B1B;
+  --c10:#1B4A3A;
+  --c11:#3A1B5C;
+  --c12:#5C3D1B;
+  --c13:#1B4A5C;
+  --c14:#4A3D1B;
+  --c15:#1B5C3A;
+  --c16:#5C1B3A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--ff-body);background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--g100)}
+::-webkit-scrollbar-thumb{background:var(--lime-dk);border-radius:3px}
+a{text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav-h);
+  display:flex;align-items:center;
+  padding:0 3rem;
+  background:rgba(247,248,243,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--g200);
+  transition:all var(--tr);
+}
+.nav.scrolled{height:58px;background:rgba(247,248,243,0.98);box-shadow:0 2px 24px rgba(13,43,31,.08)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo img{height:38px;width:auto}
+.nav-logo-fallback{font-family:var(--ff-head);font-size:1.2rem;font-weight:800;color:var(--forest);letter-spacing:-.01em;line-height:1}
+.nav-logo-sub{font-size:.5rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g300);display:block;margin-top:2px}
+.nav-sep{width:1px;height:26px;background:var(--g200);margin:0 1.2rem;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:.1rem;margin-left:auto}
+.nav-item{position:relative}
+.nav-link{
+  display:flex;align-items:center;gap:4px;
+  font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+  padding:6px 11px;border-radius:6px;border:1px solid transparent;
+  color:var(--text2);transition:all var(--tr);white-space:nowrap;cursor:pointer;
+}
+.nav-link:hover,.nav-link.act{color:var(--forest);background:var(--g100);border-color:var(--g200)}
+.nav-link .arrow{width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent;border-top:3.5px solid currentColor;transition:transform var(--tr);opacity:.6}
+.nav-item:hover .arrow{transform:rotate(180deg)}
+.nav-cta{
+  margin-left:.5rem;padding:8px 18px !important;
+  background:var(--lime) !important;color:var(--forest) !important;
+  border:1px solid var(--lime) !important;border-radius:8px !important;
+  font-weight:700 !important;transition:all var(--tr) !important;
+}
+.nav-cta:hover{background:var(--lime-dk) !important;border-color:var(--lime-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(174,219,26,.35)}
+.nav-item:hover .nav-cta{transform:none;box-shadow:none}
+.nav-dropdown{
+  position:absolute;top:calc(100% + 8px);left:50%;
+  transform:translateX(-50%) translateY(6px);
+  background:var(--white);border:1px solid var(--g200);
+  border-radius:12px;padding:6px;min-width:210px;
+  opacity:0;pointer-events:none;transition:all var(--tr);
+  box-shadow:0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before{content:'';position:absolute;bottom:100%;left:0;right:0;height:12px}
+.nav-item:hover .nav-dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown a{display:block;padding:7px 12px;border-radius:7px;font-size:.74rem;font-weight:500;color:var(--text2);transition:all var(--tr);white-space:nowrap}
+.nav-dropdown a:hover{color:var(--forest);background:var(--g100)}
+.nav-dropdown .dd-divider{height:1px;background:var(--g200);margin:4px 0}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;margin-left:auto;background:none;border:none}
+.nav-hamburger span{width:22px;height:2px;background:var(--forest);border-radius:2px;transition:all var(--tr);display:block}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.nav-mobile{
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;
+  background:var(--white);z-index:999;overflow-y:auto;
+  padding:1.5rem 1.5rem 3rem;
+  transform:translateY(-10px);opacity:0;transition:all .3s ease;pointer-events:none;
+}
+.nav-mobile.open{transform:translateY(0);opacity:1;pointer-events:auto;display:block}
+.mob-section{margin-bottom:1.5rem}
+.mob-section-title{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g300);padding:0 4px;margin-bottom:.5rem}
+.mob-link{display:block;padding:10px 14px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--text2);transition:all var(--tr);border:1px solid transparent}
+.mob-link:hover{color:var(--forest);background:var(--g100);border-color:var(--g200)}
+.mob-cta{display:block;width:100%;padding:14px;margin-top:1rem;background:var(--lime);color:var(--forest);font-weight:700;font-size:.9rem;letter-spacing:.02em;border-radius:10px;text-align:center;transition:all var(--tr)}
+.mob-cta:hover{background:var(--lime-dk)}
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero{
+  padding-top:calc(var(--nav-h) + 4rem);
+  padding-bottom:4rem;
+  background:linear-gradient(160deg,#06111F 0%,#0D2B1F 55%,#081420 100%);
+  position:relative;overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0px,transparent 1px,transparent 72px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0px,transparent 1px,transparent 72px);
+  pointer-events:none;
+}
+.page-hero::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 70% at 50% 110%,rgba(200,241,53,.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.page-hero-inner{max-width:1260px;margin:0 auto;padding:0 3rem;position:relative;z-index:2;text-align:center}
+.page-hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,241,53,.12);border:1px solid rgba(200,241,53,.3);
+  color:var(--lime);padding:6px 20px;border-radius:40px;
+  font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.page-hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--lime);border-radius:50%;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.page-hero-seal{
+  width:88px;height:88px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(200,241,53,.2),rgba(200,241,53,.06));
+  border:2px solid rgba(200,241,53,.35);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;box-shadow:0 8px 32px rgba(200,241,53,.12);
+}
+.page-hero-seal-text{font-family:var(--ff-head);font-size:1.6rem;font-weight:800;color:var(--lime);letter-spacing:.04em}
+.page-hero h1{font-family:var(--ff-head);font-size:clamp(2rem,4.5vw,3.6rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.03em;margin-bottom:.7rem}
+.page-hero-sub{font-family:var(--ff-head);font-size:clamp(.95rem,1.8vw,1.2rem);color:rgba(200,241,53,.8);font-style:italic;margin-bottom:1.2rem}
+.page-hero-desc{font-size:.95rem;color:rgba(255,255,255,.55);max-width:640px;margin:0 auto 2.5rem;line-height:1.9}
+.page-hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap}
+.page-hero-stat-num{font-family:var(--ff-head);font-size:2.2rem;font-weight:800;color:var(--lime);line-height:1}
+.page-hero-stat-lbl{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem}
+.page-hero-rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);margin:2.5rem auto 0}
+
+/* ═══════════════════════════════════════════
+   CERT INDEX
+═══════════════════════════════════════════ */
+.cert-index-section{background:var(--forest);padding:5rem 3rem;border-bottom:1px solid rgba(200,241,53,.1)}
+.cert-index-inner{max-width:1260px;margin:0 auto}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:.8rem;
+}
+.section-label::before{content:'';width:18px;height:2px;background:var(--lime);border-radius:2px}
+.cert-index-title{font-family:var(--ff-head);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:#fff;margin-bottom:.5rem;letter-spacing:-.03em}
+.cert-index-sub{font-size:.88rem;color:rgba(255,255,255,.4);margin-bottom:2.5rem}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.cert-tile{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:1.1rem 1.4rem;
+  text-decoration:none;transition:all var(--tr);
+  display:flex;align-items:center;gap:1rem;
+  position:relative;overflow:hidden;
+}
+.cert-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tile-clr,var(--lime));opacity:.7;transition:opacity var(--tr)}
+.cert-tile:hover{background:rgba(255,255,255,.07);transform:translateX(4px)}
+.cert-tile:hover::before{opacity:1}
+.cert-tile-num{font-family:var(--ff-head);font-size:.72rem;color:rgba(255,255,255,.3);flex-shrink:0;width:24px}
+.cert-tile-code{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:2px}
+.cert-tile-name{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.8);line-height:1.4}
+
+/* ═══════════════════════════════════════════
+   SYLLABUS DOWNLOAD SECTION
+═══════════════════════════════════════════ */
+.syllabus-section{background:var(--bg-off);padding:5rem 3rem;border-bottom:1px solid var(--g200)}
+.syllabus-inner{max-width:1260px;margin:0 auto}
+.syllabus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:2.5rem}
+.syllabus-card{
+  background:var(--white);border:1.5px solid var(--g200);border-radius:14px;
+  padding:1.4rem 1.2rem;display:flex;flex-direction:column;gap:.8rem;
+  transition:all var(--tr);
+}
+.syllabus-card:hover{border-color:var(--lime-dk);transform:translateY(-3px);box-shadow:0 10px 32px rgba(13,43,31,.08)}
+.syllabus-level-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;width:fit-content;
+}
+.syllabus-title{font-family:var(--ff-head);font-size:.95rem;font-weight:700;color:var(--forest);line-height:1.35}
+.syllabus-desc{font-size:.76rem;color:var(--text2);line-height:1.6;flex:1}
+.syllabus-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 16px;border-radius:8px;
+  font-size:.76rem;font-weight:700;letter-spacing:.02em;
+  background:var(--lime);color:var(--forest);
+  transition:all var(--tr);border:none;cursor:pointer;text-decoration:none;width:100%;justify-content:center;
+  margin-top:auto;
+}
+.syllabus-btn:hover{background:var(--lime-dk);transform:translateY(-1px);box-shadow:0 4px 14px rgba(174,219,26,.35)}
+.syllabus-btn svg{width:15px;height:15px;flex-shrink:0}
+
+/* ═══════════════════════════════════════════
+   CERT SECTIONS
+═══════════════════════════════════════════ */
+.cert-section{padding:5.5rem 3rem;border-bottom:1px solid var(--g200)}
+.cert-section:nth-child(odd){background:var(--bg)}
+.cert-section:nth-child(even){background:var(--white)}
+.cert-section-inner{max-width:1260px;margin:0 auto}
+.cert-header{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;margin-bottom:2.5rem}
+.cert-code-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:5px 14px;border-radius:6px;
+  font-family:var(--ff-head);font-size:.78rem;font-weight:700;letter-spacing:.08em;
+  color:#fff;margin-bottom:.85rem;
+}
+.cert-title{font-family:var(--ff-head);font-size:clamp(1.7rem,3vw,2.6rem);color:var(--forest);font-weight:800;line-height:1.1;margin-bottom:.65rem;letter-spacing:-.03em}
+.cert-tagline{font-size:1rem;font-style:italic;color:var(--text2);margin-bottom:1rem}
+.cert-meta-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.cert-meta-pill{font-size:.74rem;font-weight:500;padding:4px 12px;border-radius:20px;background:var(--g100);color:var(--text);border:1px solid var(--g200)}
+.cert-acorn{
+  width:96px;height:96px;border-radius:14px;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(13,43,31,.12);
+}
+.cert-acorn-abbr{font-family:var(--ff-head);font-size:1rem;font-weight:800;color:#fff;letter-spacing:.04em}
+.cert-acorn-line{width:36px;height:1px;background:rgba(255,255,255,.3);margin:4px 0}
+.cert-acorn-num{font-size:.6rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase}
+.cert-body{display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start}
+.blk-head{
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--g300);margin:2.2rem 0 .9rem;
+  padding-bottom:.4rem;border-bottom:1px solid var(--g200);
+}
+.blk-head:first-child{margin-top:0}
+.overview-text{font-size:.93rem;color:var(--text2);line-height:1.9;margin-bottom:1.2rem}
+.modules-list{display:flex;flex-direction:column;gap:.7rem}
+.module-item{
+  background:var(--g100);border:1px solid var(--g200);border-radius:10px;
+  padding:.95rem 1.15rem;display:grid;grid-template-columns:44px 1fr;gap:.7rem;align-items:start;
+  transition:all var(--tr);
+}
+.module-item:hover{border-color:var(--g300);background:var(--bg-off)}
+.module-num{font-family:var(--ff-head);font-size:.72rem;font-weight:700;color:#fff;border-radius:6px;padding:5px 4px;text-align:center;line-height:1}
+.module-name{font-size:.92rem;font-weight:700;color:var(--forest);margin-bottom:.2rem}
+.module-desc{font-size:.82rem;color:var(--text2);line-height:1.65}
+.elig-list{display:flex;flex-direction:column;gap:.55rem}
+.elig-item{
+  display:flex;gap:.7rem;align-items:flex-start;
+  font-size:.87rem;color:var(--text2);line-height:1.65;
+  padding:.5rem .75rem;background:var(--g100);border-radius:8px;border:1px solid var(--g200);
+}
+.elig-icon{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.outcome-tag{font-size:.8rem;padding:.5rem .75rem;border-radius:6px;background:var(--lime-pale);border:1px solid rgba(174,219,26,.3);color:var(--forest);font-weight:600;line-height:1.45}
+
+/* sidebar */
+.scard{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem;margin-bottom:1.1rem;box-shadow:0 2px 12px rgba(13,43,31,.05)}
+.scard-head{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--g200)}
+.scard-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--g200);gap:1rem}
+.scard-row:last-child{border-bottom:none}
+.scard-lbl{font-size:.8rem;color:var(--text2)}
+.scard-val{font-size:.8rem;font-weight:700;color:var(--forest);text-align:right}
+.assess-grid{display:flex;flex-direction:column;gap:.55rem}
+.assess-item{background:var(--g100);border:1px solid var(--g200);border-radius:8px;padding:.7rem .95rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.assess-name{font-size:.85rem;font-weight:500;color:var(--forest)}
+.assess-pct{font-family:var(--ff-head);font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:20px;color:#fff;flex-shrink:0}
+.gband{display:flex;align-items:center;gap:.5rem;padding:5px 0;border-bottom:1px solid var(--g200)}
+.gband:last-child{border-bottom:none}
+.gband-range{font-size:.76rem;color:var(--text2);width:76px;flex-shrink:0}
+.gband-name{font-size:.83rem;font-weight:700;width:86px}
+.gband-bar{flex:1;height:5px;border-radius:3px;background:var(--g200);overflow:hidden}
+.gband-fill{height:100%;border-radius:3px}
+
+/* ═══════════════════════════════════════════
+   GENERAL STANDARDS SECTION
+═══════════════════════════════════════════ */
+.gen-section{background:var(--forest);padding:5rem 3rem}
+.gen-inner{max-width:1260px;margin:0 auto}
+.gen-title{font-family:var(--ff-head);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:.5rem;letter-spacing:-.03em}
+.gen-sub{font-size:.88rem;color:rgba(255,255,255,.45);text-align:center;margin-bottom:3rem}
+.gen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
+.gen-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.6rem}
+.gen-card-icon{font-size:1.7rem;margin-bottom:.85rem}
+.gen-card h3{font-family:var(--ff-head);font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.7rem}
+.gen-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.8}
+.gen-card ul{list-style:none;margin-top:.7rem}
+.gen-card ul li{font-size:.83rem;color:rgba(255,255,255,.6);padding:3px 0;padding-left:14px;position:relative;line-height:1.6}
+.gen-card ul li::before{content:'›';position:absolute;left:0;color:var(--lime);font-weight:700}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4rem 3rem 2rem}
+.footer-inner{max-width:1260px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
+.footer-brand h3{font-family:var(--ff-head);font-size:1.3rem;font-weight:800;color:var(--lime);letter-spacing:-.02em;margin-bottom:.75rem}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.8}
+.footer-col h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem}
+.footer-col a{display:block;font-size:.78rem;color:rgba(255,255,255,.75);padding:3px 0;transition:color var(--tr)}
+.footer-col a:hover{color:var(--lime)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.72rem;color:rgba(255,255,255,.5)}
+.footer-social{display:flex;gap:.65rem;align-items:center;margin-top:1.4rem}
+.footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);transition:all .25s cubic-bezier(.4,0,.2,1);text-decoration:none}
+.footer-social a:hover{background:var(--lime);border-color:var(--lime);color:var(--forest);transform:translateY(-2px);box-shadow:0 6px 18px rgba(200,241,53,.3)}
+.footer-social a svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
+
+/* scroll-to-top */
+.st{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--lime);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--forest);font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(174,219,26,.4);transition:all var(--tr);opacity:0;visibility:hidden;z-index:100}
+.st.on{opacity:1;visibility:visible}
+.st:hover{background:var(--lime-dk);transform:translateY(-3px)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1000px){
+  .cert-body{grid-template-columns:1fr}
+  .cert-header{grid-template-columns:1fr}
+  .cert-acorn{display:none}
+  .outcomes-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:760px){
+  .nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .cert-section{padding:3.5rem 1.5rem}
+  .cert-index-section{padding:3.5rem 1.5rem}
+  .syllabus-section{padding:3.5rem 1.5rem}
+  .gen-section{padding:3.5rem 1.5rem}
+  .page-hero-inner{padding:0 1.5rem}
+  .outcomes-grid{grid-template-columns:1fr}
+  .page-hero-stats{gap:1.5rem}
+  footer{padding:3rem 1.5rem 1.5rem}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link act">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qualifications.html#professional" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Certifications</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-eyebrow">16 Professional Certifications</div>
+    <div class="page-hero-seal"><span class="page-hero-seal-text">CILG</span></div>
+    <h1>Professional Certification<br>Programmes</h1>
+    <p class="page-hero-sub">Chartered Institute of Leadership and Governance</p>
+    <p class="page-hero-desc">A suite of sixteen globally recognised professional certifications designed for practitioners who lead organisations, govern institutions, drive strategy, and shape the future of professional practice — aligned to international chartered body standards.</p>
+    <div class="page-hero-stats">
+      <div><div class="page-hero-stat-num">16</div><div class="page-hero-stat-lbl">Certifications</div></div>
+      <div><div class="page-hero-stat-num">5</div><div class="page-hero-stat-lbl">Modules Each</div></div>
+      <div><div class="page-hero-stat-num">USA</div><div class="page-hero-stat-lbl">Registered Body</div></div>
+    </div>
+    <div class="page-hero-rule"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ALL CERTIFICATIONS INDEX
+═══════════════════════════════════════ -->
+<section class="cert-index-section" id="cert-index">
+  <div class="cert-index-inner">
+    <div class="section-label">Certification Suite</div>
+    <div class="cert-index-title">All Certification Programmes</div>
+    <div class="cert-index-sub">Click any certification to navigate directly to the full programme write-up</div>
+    <div class="cert-grid">
+      <a href="#caigp"  class="cert-tile" style="--tile-clr:var(--c1)"><span class="cert-tile-num">01</span><div><div class="cert-tile-code">CAIGP</div><div class="cert-tile-name">Certified AI Governance Professional</div></div></a>
+      <a href="#chrm"   class="cert-tile" style="--tile-clr:var(--c2)"><span class="cert-tile-num">02</span><div><div class="cert-tile-code">CHRM</div><div class="cert-tile-name">Certified Human Resource Manager</div></div></a>
+      <a href="#csol"   class="cert-tile" style="--tile-clr:var(--c3)"><span class="cert-tile-num">03</span><div><div class="cert-tile-code">CSOL</div><div class="cert-tile-name">Certified Strategic Organizational Leadership</div></div></a>
+      <a href="#cpage"  class="cert-tile" style="--tile-clr:var(--c4)"><span class="cert-tile-num">04</span><div><div class="cert-tile-code">CPAGE</div><div class="cert-tile-name">Certified Public Administration &amp; Governance Expert</div></div></a>
+      <a href="#cpm"    class="cert-tile" style="--tile-clr:var(--c5)"><span class="cert-tile-num">05</span><div><div class="cert-tile-code">CPM</div><div class="cert-tile-name">Certified Project Manager</div></div></a>
+      <a href="#clgp"   class="cert-tile" style="--tile-clr:var(--c6)"><span class="cert-tile-num">06</span><div><div class="cert-tile-code">CLGP</div><div class="cert-tile-name">Certified Leadership Governance Professional</div></div></a>
+      <a href="#ccrm"   class="cert-tile" style="--tile-clr:var(--c7)"><span class="cert-tile-num">07</span><div><div class="cert-tile-code">CCRM</div><div class="cert-tile-name">Certified Corporate Risk Manager</div></div></a>
+      <a href="#ceem"   class="cert-tile" style="--tile-clr:var(--c8)"><span class="cert-tile-num">08</span><div><div class="cert-tile-code">CEEM</div><div class="cert-tile-name">Certified ESG &amp; Environmental Manager</div></div></a>
+      <a href="#cdgp"   class="cert-tile" style="--tile-clr:var(--c9)"><span class="cert-tile-num">09</span><div><div class="cert-tile-code">CDGP</div><div class="cert-tile-name">Certified Data Governance Professional</div></div></a>
+      <a href="#csmp"   class="cert-tile" style="--tile-clr:var(--c10)"><span class="cert-tile-num">10</span><div><div class="cert-tile-code">CSMP</div><div class="cert-tile-name">Certified Strategy &amp; Management Professional</div></div></a>
+      <a href="#cppm"   class="cert-tile" style="--tile-clr:var(--c11)"><span class="cert-tile-num">11</span><div><div class="cert-tile-code">CPPM</div><div class="cert-tile-name">Certified Policy &amp; Public Management Professional</div></div></a>
+      <a href="#cethm"  class="cert-tile" style="--tile-clr:var(--c12)"><span class="cert-tile-num">12</span><div><div class="cert-tile-code">CETHM</div><div class="cert-tile-name">Certified Ethics &amp; Compliance Professional</div></div></a>
+      <a href="#cdtl"   class="cert-tile" style="--tile-clr:var(--c13)"><span class="cert-tile-num">13</span><div><div class="cert-tile-code">CDTL</div><div class="cert-tile-name">Certified Digital Transformation Leader</div></div></a>
+      <a href="#ccsp"   class="cert-tile" style="--tile-clr:var(--c14)"><span class="cert-tile-num">14</span><div><div class="cert-tile-code">CCSP</div><div class="cert-tile-name">Certified Change &amp; Strategy Professional</div></div></a>
+      <a href="#cnlp"   class="cert-tile" style="--tile-clr:var(--c15)"><span class="cert-tile-num">15</span><div><div class="cert-tile-code">CNLP</div><div class="cert-tile-name">Certified Non-Profit Leadership Professional</div></div></a>
+      <a href="#cwlp"   class="cert-tile" style="--tile-clr:var(--c16)"><span class="cert-tile-num">16</span><div><div class="cert-tile-code">CWLP</div><div class="cert-tile-name">Certified Women in Leadership Professional</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SYLLABUS DOWNLOADS
+═══════════════════════════════════════ -->
+<section class="syllabus-section" id="syllabi">
+  <div class="syllabus-inner">
+    <div class="section-label">Programme Syllabi</div>
+    <h2 style="font-family:var(--ff-head);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:var(--forest);letter-spacing:-.03em;margin-bottom:.5rem">Download Syllabi</h2>
+    <p style="font-size:.9rem;color:var(--text2);max-width:620px;line-height:1.85">Download the official CILG Level Syllabi below. Each syllabus contains the full learning outcomes, module breakdowns, assessment specifications, and eligibility requirements for the corresponding qualification level.</p>
+    <div class="syllabus-grid">
+      <div class="syllabus-card">
+        <div class="syllabus-level-badge" style="background:var(--lime-pale);color:var(--forest);border:1px solid rgba(174,219,26,.4)">Level 1</div>
+        <div class="syllabus-title">CILG Level 1 Syllabus</div>
+        <p class="syllabus-desc">Foundation level qualification — introducing core principles of leadership and governance for early-career professionals.</p>
+        <a href="assets/documents/CILG_Level1_Syllabus.pdf" download class="syllabus-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Syllabus
+        </a>
+      </div>
+      <div class="syllabus-card">
+        <div class="syllabus-level-badge" style="background:#EDF9F5;color:#1B5E4A;border:1px solid rgba(27,94,74,.25)">Level 2</div>
+        <div class="syllabus-title">CILG Level 2 Syllabus</div>
+        <p class="syllabus-desc">Certificate level — developing practitioner competencies in governance frameworks and leadership application.</p>
+        <a href="assets/documents/CILG_Level2_Syllabus.pdf" download class="syllabus-btn" style="background:#1B5E4A;color:#fff">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Syllabus
+        </a>
+      </div>
+      <div class="syllabus-card">
+        <div class="syllabus-level-badge" style="background:#F0EDFB;color:#5C2D91;border:1px solid rgba(92,45,145,.25)">Level 3</div>
+        <div class="syllabus-title">CILG Level 3 Syllabus</div>
+        <p class="syllabus-desc">Diploma level — advanced study in strategic leadership, corporate governance, and professional practice standards.</p>
+        <a href="assets/documents/CILG_Level3_Syllabus.pdf" download class="syllabus-btn" style="background:#5C2D91;color:#fff">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Syllabus
+        </a>
+      </div>
+      <div class="syllabus-card">
+        <div class="syllabus-level-badge" style="background:#FEF0E8;color:#7A2D00;border:1px solid rgba(122,45,0,.25)">Level 4</div>
+        <div class="syllabus-title">CILG Level 4 Syllabus</div>
+        <p class="syllabus-desc">Advanced diploma — complex governance structures, board-level leadership, risk, and stakeholder management.</p>
+        <a href="assets/documents/CILG_Level4_Syllabus.pdf" download class="syllabus-btn" style="background:#7A2D00;color:#fff">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Syllabus
+        </a>
+      </div>
+      <div class="syllabus-card">
+        <div class="syllabus-level-badge" style="background:#E8F1FE;color:#0F4C75;border:1px solid rgba(15,76,117,.25)">Level 5</div>
+        <div class="syllabus-title">CILG Level 5 Syllabus</div>
+        <p class="syllabus-desc">Masters level — governance mastery, executive leadership, organisational strategy, and global governance standards.</p>
+        <a href="assets/documents/CILG_Level5_Syllabus.pdf" download class="syllabus-btn" style="background:#0F4C75;color:#fff">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Syllabus
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CERT 01 — CAIGP
+═══════════════════════════════════════ -->
+<section class="cert-section" id="caigp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c1)">CAIGP</div>
+      <h2 class="cert-title">Certified AI Governance Professional</h2>
+      <p class="cert-tagline">"Governing Intelligence — Shaping the Future of Responsible Technology Leadership"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 6 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Mixed Assessment</span><span class="cert-meta-pill">Post-nominal: CAIGP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c1),#2557A7)"><div class="cert-acorn-abbr">CAIGP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified AI Governance Professional (CAIGP) is a forward-facing, practice-oriented certification designed for professionals who bear responsibility for the governance, oversight, ethical deployment, and strategic management of artificial intelligence systems within their organisations and sectors. As AI transforms every dimension of organisational life — from decision-making and talent management to public service delivery and corporate strategy — the need for qualified governance professionals who can provide robust oversight of AI systems has become urgent and unambiguous.</p>
+      <p class="overview-text">The CAIGP equips holders with a comprehensive command of AI governance frameworks, regulatory landscapes, ethical AI principles, risk management methodologies, and board-level AI oversight competencies. It is designed for professionals across all sectors — corporate, government, civil society, and international organisations — and is particularly relevant for board directors, chief technology officers, compliance officers, risk managers, legal counsel, policy advisors, and senior executives who must make or oversee AI-related governance decisions.</p>
+      <p class="overview-text">The certification is aligned with emerging global standards including the OECD Principles on AI, the EU AI Act, the US Executive Order on AI, and the standards of leading technology governance bodies. It reflects CILG's commitment to ensuring that the governance profession stays ahead of the technological frontier.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c1)">M1</div><div><div class="module-name">Foundations of Artificial Intelligence and Machine Learning for Governance Professionals</div><div class="module-desc">An accessible but rigorous grounding in how AI and ML systems work — architecture, data dependency, algorithmic decision-making, and the key concepts governance professionals must understand. Covers supervised and unsupervised learning, natural language processing, generative AI, and autonomous systems without requiring a technical background.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c1)">M2</div><div><div class="module-name">AI Governance Frameworks, Regulation, and International Standards</div><div class="module-desc">A comprehensive survey of the global AI regulatory and governance landscape: the EU AI Act, US Executive Order on Safe AI, OECD AI Principles, UNESCO Recommendation on AI Ethics, and sector-specific frameworks (finance, health, defence). Covers risk-tiering models, conformity assessment, and the role of national regulators.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c1)">M3</div><div><div class="module-name">Ethical AI: Bias, Fairness, Transparency, and Accountability</div><div class="module-desc">Deep examination of the ethical dimensions of AI deployment — algorithmic bias, fairness definitions and trade-offs, explainability requirements, accountability chains, and human oversight mechanisms. Case studies in AI failures and governance responses. Practical frameworks for ethical AI procurement and deployment.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c1)">M4</div><div><div class="module-name">AI Risk Management and Organisational Resilience</div><div class="module-desc">Applying enterprise risk management frameworks (NIST AI RMF, ISO/IEC 42001) to AI systems. AI-specific risk categories: model risk, data risk, cybersecurity risk, operational risk, reputational risk, and systemic risk. Building internal AI governance structures, AI audit functions, and board-level AI risk committees.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c1)">M5</div><div><div class="module-name">Board and Executive AI Governance: Strategy, Oversight, and Future Readiness</div><div class="module-desc">Strategic AI governance for boards and executive teams: defining AI strategy, board-level AI literacy, governing AI procurement and third-party risk, managing AI-driven workforce transformation, and positioning organisations for responsible AI leadership. Capstone assignment integrates all five modules through an AI governance diagnostic and board report.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>A bachelor's degree in any discipline, OR a recognised professional qualification at diploma level or above</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of professional experience in a governance, technology, compliance, legal, risk, policy, or management role</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>Completion of CILG Registration Form and payment of programme fee</div>
+        <div class="elig-item"><span class="elig-icon">🌐</span>English language proficiency: IELTS 6.0 or equivalent where English is not the first language</div>
+        <div class="elig-item"><span class="elig-icon">✅</span>Agreement to CILG Code of Professional Conduct</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative route: 5+ years of relevant professional experience without a degree — subject to Admissions Committee approval</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief AI Governance Officer</div><div class="outcome-tag">AI Ethics and Compliance Lead</div>
+        <div class="outcome-tag">Technology Risk Director</div><div class="outcome-tag">Board Advisor — AI &amp; Technology</div>
+        <div class="outcome-tag">AI Policy and Regulatory Affairs</div><div class="outcome-tag">Responsible AI Programme Manager</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c1)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Certification Code</span><span class="scard-val">CAIGP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Post-nominal</span><span class="scard-val">CAIGP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 6 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Study Mode</span><span class="scard-val">Online / Blended</span></div>
+        <div class="scard-row"><span class="scard-lbl">Total Modules</span><span class="scard-val">5 modules</span></div>
+        <div class="scard-row"><span class="scard-lbl">Exam Windows</span><span class="scard-val">Mar · Jun · Sep · Dec</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass Mark</span><span class="scard-val">50% per module</span></div>
+        <div class="scard-row"><span class="scard-lbl">CPD Required</span><span class="scard-val">20 hrs/year</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c1)">Assessment Methods</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c1)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Case Study Report</span><span class="assess-pct" style="background:var(--c1)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c1)">25%</span></div>
+        </div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c1)">Grading Scale</div>
+        <div class="gband"><span class="gband-range">80–100%</span><span class="gband-name" style="color:#1B6B4A">Distinction</span><div class="gband-bar"><div class="gband-fill" style="width:100%;background:#1B6B4A"></div></div></div>
+        <div class="gband"><span class="gband-range">70–79%</span><span class="gband-name" style="color:var(--c1)">Merit</span><div class="gband-bar"><div class="gband-fill" style="width:80%;background:var(--c1)"></div></div></div>
+        <div class="gband"><span class="gband-range">50–69%</span><span class="gband-name" style="color:#B8860B">Pass</span><div class="gband-bar"><div class="gband-fill" style="width:60%;background:#B8860B"></div></div></div>
+        <div class="gband"><span class="gband-range">45–49%</span><span class="gband-name" style="color:var(--c4)">Referred</span><div class="gband-bar"><div class="gband-fill" style="width:35%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">0–44%</span><span class="gband-name" style="color:var(--c9)">Fail</span><div class="gband-bar"><div class="gband-fill" style="width:15%;background:var(--c9)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 02 — CHRM -->
+<section class="cert-section" id="chrm">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c2)">CHRM</div>
+      <h2 class="cert-title">Certified Human Resource Manager</h2>
+      <p class="cert-tagline">"Developing People, Strengthening Organisations, Advancing Professional Practice"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 6 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CHRM</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c2),#2A9E6B)"><div class="cert-acorn-abbr">CHRM</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Human Resource Manager (CHRM) is a comprehensive professional certification equipping HR practitioners with the strategic, operational, and governance competencies required to lead the people function in modern organisations. It moves beyond transactional HR to develop practitioners who can architect talent strategy, lead cultural transformation, navigate complex employment law landscapes, and position HR as a core driver of organisational performance and governance.</p>
+      <p class="overview-text">The CHRM bridges the gap between foundational HR practice and the strategic demands of senior HR leadership. It is designed for HR professionals seeking formal professional recognition of their expertise, managers transitioning into HR leadership roles, and organisational leaders who bear responsibility for human capital strategy and governance. The programme is aligned to international HRM standards, drawing on frameworks from SHRM, CIPD, and the HRCI.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c2)">M1</div><div><div class="module-name">Strategic Human Resource Management and Talent Architecture</div><div class="module-desc">HR as a strategic function: aligning HR strategy to organisational goals, workforce planning, talent acquisition strategy, employer branding, and building high-performance talent pipelines. The HR business partner model and the future of the HR function in a digital and agile world.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c2)">M2</div><div><div class="module-name">Employment Law, Compliance, and Workplace Governance</div><div class="module-desc">Comprehensive coverage of US federal and state employment law, international employment law principles, the legal framework of the employment relationship, discrimination and equal opportunity law, disciplinary and grievance procedures, termination governance, and managing employment-related litigation risk. GDPR and employee data privacy.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c2)">M3</div><div><div class="module-name">Performance Management, Learning, and Organisational Development</div><div class="module-desc">Designing and implementing performance management frameworks, appraisal systems, succession planning, learning and development strategy, competency frameworks, 70-20-10 learning models, leadership development programmes, and talent development ROI. Organisational development principles and culture change.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c2)">M4</div><div><div class="module-name">Total Rewards, Compensation Governance, and Employee Wellbeing</div><div class="module-desc">Compensation strategy and governance, pay equity analysis, benefits design, executive compensation governance, reward benchmarking, variable pay structures, employee wellbeing programmes, and the governance of remuneration committees. Pay transparency legislation and future of work considerations.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c2)">M5</div><div><div class="module-name">Diversity, Equity, Inclusion, and the Future HR Leadership Agenda</div><div class="module-desc">DEI strategy design and implementation, inclusive leadership, psychological safety, managing neurodiversity, intersectionality in the workplace, the business case for DEI, and measuring DEI progress. Future of work: remote and hybrid workforce governance, AI in HR, generational workforce dynamics, and the evolving HR leadership mandate. Capstone: HR strategy report for a complex organisational scenario.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in any discipline OR a professional diploma-level qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of professional experience in HR, people management, organisational development, or a related function</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>CILG Registration Form and programme fee payment</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative: 4+ years of supervisory or management experience in a people-facing role, subject to committee review</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Human Resources Manager</div><div class="outcome-tag">HR Business Partner</div>
+        <div class="outcome-tag">Head of People &amp; Culture</div><div class="outcome-tag">Talent Acquisition Leader</div>
+        <div class="outcome-tag">Chief People Officer</div><div class="outcome-tag">DEI Programme Director</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c2)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Certification Code</span><span class="scard-val">CHRM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Post-nominal</span><span class="scard-val">CHRM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 6 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Total Modules</span><span class="scard-val">5 modules</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass Mark</span><span class="scard-val">50% per module</span></div>
+        <div class="scard-row"><span class="scard-lbl">CPD Required</span><span class="scard-val">20 hrs/year</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c2)">Assessment Methods</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c2)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c2)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Case Study Report</span><span class="assess-pct" style="background:var(--c2)">25%</span></div>
+        </div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c2)">Grading Scale</div>
+        <div class="gband"><span class="gband-range">80–100%</span><span class="gband-name" style="color:#1B6B4A">Distinction</span><div class="gband-bar"><div class="gband-fill" style="width:100%;background:#1B6B4A"></div></div></div>
+        <div class="gband"><span class="gband-range">70–79%</span><span class="gband-name" style="color:var(--c2)">Merit</span><div class="gband-bar"><div class="gband-fill" style="width:80%;background:var(--c2)"></div></div></div>
+        <div class="gband"><span class="gband-range">50–69%</span><span class="gband-name" style="color:#B8860B">Pass</span><div class="gband-bar"><div class="gband-fill" style="width:60%;background:#B8860B"></div></div></div>
+        <div class="gband"><span class="gband-range">45–49%</span><span class="gband-name" style="color:var(--c4)">Referred</span><div class="gband-bar"><div class="gband-fill" style="width:35%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">0–44%</span><span class="gband-name" style="color:var(--c9)">Fail</span><div class="gband-bar"><div class="gband-fill" style="width:15%;background:var(--c9)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 03 — CSOL -->
+<section class="cert-section" id="csol">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c3)">CSOL</div>
+      <h2 class="cert-title">Certified Strategic Organizational Leadership</h2>
+      <p class="cert-tagline">"Architecting High-Performance Organisations Through Strategic Leadership Mastery"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 6 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CSOL</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c3),#7B4BB8)"><div class="cert-acorn-abbr">CSOL</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Strategic Organizational Leadership (CSOL) certification is designed for current and emerging senior leaders who must translate complex strategic visions into organisational reality. It addresses the full spectrum of strategic leadership — from the formulation of ambitious organisational strategies and the creation of aligned cultures, to the leadership of large-scale transformation programmes and the management of executive teams in conditions of uncertainty and disruption.</p>
+      <p class="overview-text">CSOL is grounded in evidence-based leadership science and informed by the experiences of high-performing organisations across sectors. Holders develop the intellectual frameworks and practical leadership tools to lead organisations that are adaptive, inclusive, high-performing, and sustainably governed. The programme aligns with the leadership competency frameworks of CMI, IMD, and the Harvard Kennedy School Leadership Programmes.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c3)">M1</div><div><div class="module-name">Strategic Thinking, Analysis, and Competitive Intelligence</div><div class="module-desc">Developing strategic thinking capability: mental models, systems thinking, cognitive biases in strategy, environmental scanning (PESTLE, scenario planning), competitive intelligence frameworks, Porter's Five Forces, VRIO, Blue Ocean Strategy, and the dynamics of sustainable competitive advantage.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c3)">M2</div><div><div class="module-name">Organisational Design, Culture, and Performance Architecture</div><div class="module-desc">Designing organisations for strategic execution: structural models, network organisations, agile design, culture as a strategic asset, organisational values and culture alignment, the cultural web, measuring organisational health, performance management systems, and OKR frameworks.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c3)">M3</div><div><div class="module-name">Executive Leadership, Influence, and Stakeholder Navigation</div><div class="module-desc">The psychology of executive leadership, authentic and adaptive leadership styles, leading boards and governance bodies, political intelligence and stakeholder mapping, influencing without authority, managing upwards and sideways, executive communication, and building coalitions for change.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c3)">M4</div><div><div class="module-name">Leading Organisational Transformation and Change</div><div class="module-desc">Large-scale change management: Kotter, ADKAR, Prosci, and McKinsey 7S frameworks. Leading through resistance, communication strategy for change, managing the human dimensions of transformation, digital transformation leadership, and sustaining change through cultural embedding.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c3)">M5</div><div><div class="module-name">Strategic Leadership in Practice: Capstone Simulation and Portfolio</div><div class="module-desc">An integrated simulation-based module in which candidates apply all prior learning to lead a complex organisational scenario through strategic analysis, decision-making, stakeholder management, and transformation execution. Supported by a reflective leadership portfolio demonstrating personal leadership development and professional application.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or equivalent professional qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum three (3) years of professional experience with at least one (1) year in a management or leadership role</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>Brief leadership biography (400 words) as part of registration</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative route: 6+ years of progressive management experience without a degree, subject to Admissions review</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief Executive Officer</div><div class="outcome-tag">Managing Director</div>
+        <div class="outcome-tag">VP Strategy &amp; Operations</div><div class="outcome-tag">Director of Organisational Excellence</div>
+        <div class="outcome-tag">Strategy Consultant</div><div class="outcome-tag">Executive Leadership Coach</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c3)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Certification Code</span><span class="scard-val">CSOL</span></div>
+        <div class="scard-row"><span class="scard-lbl">Post-nominal</span><span class="scard-val">CSOL</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 6 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Total Modules</span><span class="scard-val">5 modules</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass Mark</span><span class="scard-val">50% per module</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c3)">Assessment Methods</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Leadership Portfolio</span><span class="assess-pct" style="background:var(--c3)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Case Study Report</span><span class="assess-pct" style="background:var(--c3)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c3)">25%</span></div>
+        </div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c3)">Grading Scale</div>
+        <div class="gband"><span class="gband-range">80–100%</span><span class="gband-name" style="color:#1B6B4A">Distinction</span><div class="gband-bar"><div class="gband-fill" style="width:100%;background:#1B6B4A"></div></div></div>
+        <div class="gband"><span class="gband-range">70–79%</span><span class="gband-name" style="color:var(--c3)">Merit</span><div class="gband-bar"><div class="gband-fill" style="width:80%;background:var(--c3)"></div></div></div>
+        <div class="gband"><span class="gband-range">50–69%</span><span class="gband-name" style="color:#B8860B">Pass</span><div class="gband-bar"><div class="gband-fill" style="width:60%;background:#B8860B"></div></div></div>
+        <div class="gband"><span class="gband-range">45–49%</span><span class="gband-name" style="color:var(--c4)">Referred</span><div class="gband-bar"><div class="gband-fill" style="width:35%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">0–44%</span><span class="gband-name" style="color:var(--c9)">Fail</span><div class="gband-bar"><div class="gband-fill" style="width:15%;background:var(--c9)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 04 — CPAGE -->
+<section class="cert-section" id="cpage">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c4)">CPAGE</div>
+      <h2 class="cert-title">Certified Public Administration and Governance Expert</h2>
+      <p class="cert-tagline">"Professionalising Public Service — Excellence in Government, Governance, and Accountability"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 6 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CPAGE</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c4),#C04B0D)"><div class="cert-acorn-abbr">CPAGE</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Public Administration and Governance Expert (CPAGE) is a rigorous professional certification for practitioners in government, public institutions, intergovernmental organisations, regulatory bodies, and civil society organisations. It addresses the distinctive challenges of governance and leadership in the public sphere — where accountability to citizens, adherence to the rule of law, management of public resources, and the delivery of public value are paramount.</p>
+      <p class="overview-text">CPAGE equips holders with advanced competencies in public sector governance, policy analysis and implementation, public financial management, regulatory administration, and the leadership of public institutions. It is relevant for civil servants, municipal administrators, government ministers' advisors, parliamentary staff, public sector executives, international development professionals, and those working in development finance institutions. The programme aligns with the standards of the American Society for Public Administration (ASPA) and the International Institute of Administrative Sciences (IIAS).</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c4)">M1</div><div><div class="module-name">Foundations of Public Administration and Governance Theory</div><div class="module-desc">Classical and contemporary theories of public administration: Weberian bureaucracy, New Public Management, New Public Governance, and whole-of-government approaches. The structure of government, separation of powers, federalism, decentralisation, and the institutional framework of the administrative state. Comparative public administration.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c4)">M2</div><div><div class="module-name">Public Policy Analysis, Formulation, and Implementation</div><div class="module-desc">The policy cycle: agenda-setting, policy formulation, adoption, implementation, evaluation, and termination. Evidence-based policy making, regulatory impact assessment, cost-benefit analysis, stakeholder consultation, legislative drafting principles, and the political economy of policy reform. International policy transfer and diffusion.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c4)">M3</div><div><div class="module-name">Public Financial Management, Accountability, and Audit</div><div class="module-desc">Government budgeting systems (programme-based, zero-based, performance-based budgeting), fiscal management, public expenditure management, internal controls in the public sector, supreme audit institutions, parliamentary scrutiny, public procurement governance, anti-corruption frameworks, and IPSAS standards.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c4)">M4</div><div><div class="module-name">Regulatory Governance, Administrative Law, and Government Ethics</div><div class="module-desc">Principles of administrative law, judicial review, delegated legislation, regulatory design and enforcement, independent regulatory bodies, freedom of information, open government, whistleblower protection, conflict of interest management, and the ethics of public office. Anti-corruption law and practice.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c4)">M5</div><div><div class="module-name">Public Sector Leadership, Service Delivery Innovation, and Digital Government</div><div class="module-desc">Leading public institutions in an era of citizen expectation and digital transformation. Citizen-centred service design, e-government and digital public services, public sector innovation labs, managing public sector performance, and the leadership challenges of the modern public administrator. Capstone: a policy advisory report on a governance challenge in the public sector.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in public administration, political science, law, economics, social sciences, or a related field; OR a professional diploma-level qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of professional experience in a government, public sector, intergovernmental, regulatory, or civil society organisation</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>CILG Registration Form and programme fee</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative route: 5+ years of relevant public sector experience without a degree, subject to committee review</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Senior Civil Servant / Director</div><div class="outcome-tag">Regulatory Affairs Manager</div>
+        <div class="outcome-tag">Government Advisor / Consultant</div><div class="outcome-tag">Public Sector Reform Specialist</div>
+        <div class="outcome-tag">Parliamentary / Legislative Officer</div><div class="outcome-tag">International Development Professional</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c4)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Certification Code</span><span class="scard-val">CPAGE</span></div>
+        <div class="scard-row"><span class="scard-lbl">Post-nominal</span><span class="scard-val">CPAGE</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 6 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Total Modules</span><span class="scard-val">5 modules</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass Mark</span><span class="scard-val">50% per module</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c4)">Assessment Methods</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c4)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Policy Advisory Report</span><span class="assess-pct" style="background:var(--c4)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c4)">25%</span></div>
+        </div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c4)">Grading Scale</div>
+        <div class="gband"><span class="gband-range">80–100%</span><span class="gband-name" style="color:#1B6B4A">Distinction</span><div class="gband-bar"><div class="gband-fill" style="width:100%;background:#1B6B4A"></div></div></div>
+        <div class="gband"><span class="gband-range">70–79%</span><span class="gband-name" style="color:var(--c4)">Merit</span><div class="gband-bar"><div class="gband-fill" style="width:80%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">50–69%</span><span class="gband-name" style="color:#B8860B">Pass</span><div class="gband-bar"><div class="gband-fill" style="width:60%;background:#B8860B"></div></div></div>
+        <div class="gband"><span class="gband-range">45–49%</span><span class="gband-name" style="color:var(--c4)">Referred</span><div class="gband-bar"><div class="gband-fill" style="width:35%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">0–44%</span><span class="gband-name" style="color:var(--c9)">Fail</span><div class="gband-bar"><div class="gband-fill" style="width:15%;background:var(--c9)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 05 — CPM -->
+<section class="cert-section" id="cpm">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c5)">CPM</div>
+      <h2 class="cert-title">Certified Project Manager</h2>
+      <p class="cert-tagline">"Delivering Strategic Value — Leadership, Governance, and Excellence in Project Management"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 6 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CPM (CILG)</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c5),#1A6DA0)"><div class="cert-acorn-abbr">CPM</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The CILG Certified Project Manager (CPM) is a governance-focused project management certification that elevates project leadership beyond scheduling and task management to encompass the strategic, stakeholder, and governance dimensions that determine whether complex projects truly succeed. Designed for project managers, programme directors, and organisational leaders who bear accountability for the delivery of strategic initiatives, the CPM develops the full spectrum of competencies required to govern, lead, and deliver projects in complex environments.</p>
+      <p class="overview-text">The CPM distinguishes itself from technical project management certifications (such as PMP and PRINCE2) by its emphasis on leadership, governance, stakeholder navigation, and strategic alignment — the "soft" dimensions that experienced practitioners know are the primary causes of project failure. The programme is aligned with PMI's PMBOK, APM Body of Knowledge, and PRINCE2 governance principles, while maintaining CILG's distinctive governance and leadership perspective.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c5)">M1</div><div><div class="module-name">Project Governance, Sponsorship, and Strategic Alignment</div><div class="module-desc">The role of governance in project success: project governance frameworks, the project sponsor's responsibilities, aligning projects to organisational strategy, the project board and steering committee, programme vs. project governance, benefits realisation management, and portfolio governance in complex organisations.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c5)">M2</div><div><div class="module-name">Project Planning, Scheduling, and Scope Management</div><div class="module-desc">Comprehensive project planning methodologies: scope definition, work breakdown structures, scheduling techniques (CPM, PERT, Gantt), resource planning, baseline setting, scope change control, configuration management, and the governance of project documentation. Agile and hybrid planning approaches.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c5)">M3</div><div><div class="module-name">Project Risk, Finance, and Procurement Governance</div><div class="module-desc">Risk identification, analysis, and response planning for complex projects. Project cost management, earned value analysis, financial governance of projects, budget governance reporting, contract types and management, procurement strategy, and supplier governance. Managing project contingency and change control.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c5)">M4</div><div><div class="module-name">Stakeholder Management, Communication, and Leadership</div><div class="module-desc">Advanced stakeholder mapping and engagement strategies, building project teams, managing remote and virtual teams, project communication planning, reporting to the board and executive sponsors, managing conflict in project environments, and the psychology of project leadership under pressure.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c5)">M5</div><div><div class="module-name">Project Closeout, Organisational Learning, and Emerging Methodologies</div><div class="module-desc">Project transition, handover, and benefits realisation. Post-project review, lessons learned processes, building organisational project management capability, the PMO function, and emerging methodologies: Agile PM, SAFe, and AI-assisted project management. Capstone: a project governance audit and recovery plan for a complex failing project.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in any discipline OR a professional diploma</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of experience in project management, programme management, or a role with significant project responsibility</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>CILG Registration Form and fee</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative route: 4+ years of project experience across multiple projects, subject to review</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Project Manager / Director</div><div class="outcome-tag">Programme Director</div>
+        <div class="outcome-tag">PMO Head</div><div class="outcome-tag">Project Governance Advisor</div>
+        <div class="outcome-tag">Change Delivery Manager</div><div class="outcome-tag">Infrastructure Programme Lead</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c5)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Certification Code</span><span class="scard-val">CPM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Post-nominal</span><span class="scard-val">CPM (CILG)</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 6 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Total Modules</span><span class="scard-val">5 modules</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass Mark</span><span class="scard-val">50% per module</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c5)">Assessment Methods</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c5)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Project Case Study</span><span class="assess-pct" style="background:var(--c5)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c5)">25%</span></div>
+        </div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c5)">Grading Scale</div>
+        <div class="gband"><span class="gband-range">80–100%</span><span class="gband-name" style="color:#1B6B4A">Distinction</span><div class="gband-bar"><div class="gband-fill" style="width:100%;background:#1B6B4A"></div></div></div>
+        <div class="gband"><span class="gband-range">70–79%</span><span class="gband-name" style="color:var(--c5)">Merit</span><div class="gband-bar"><div class="gband-fill" style="width:80%;background:var(--c5)"></div></div></div>
+        <div class="gband"><span class="gband-range">50–69%</span><span class="gband-name" style="color:#B8860B">Pass</span><div class="gband-bar"><div class="gband-fill" style="width:60%;background:#B8860B"></div></div></div>
+        <div class="gband"><span class="gband-range">45–49%</span><span class="gband-name" style="color:var(--c4)">Referred</span><div class="gband-bar"><div class="gband-fill" style="width:35%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">0–44%</span><span class="gband-name" style="color:var(--c9)">Fail</span><div class="gband-bar"><div class="gband-fill" style="width:15%;background:var(--c9)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 06 — CLGP -->
+<section class="cert-section" id="clgp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c6)">CLGP</div>
+      <h2 class="cert-title">Certified Leadership Governance Professional</h2>
+      <p class="cert-tagline">"The Gold Standard for Professionals at the Intersection of Leadership and Governance"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 4 – 6 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CLGP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c6),#3A8A30)"><div class="cert-acorn-abbr">CLGP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Leadership Governance Professional (CLGP) is CILG's flagship certification — the definitive professional qualification for practitioners who sit at the intersection of leadership and governance. It is designed for professionals who lead organisations while simultaneously bearing governance responsibilities: board directors, company secretaries, senior executives, governance officers, executive directors of charities and non-profits, and public sector leaders operating within formal governance frameworks.</p>
+      <p class="overview-text">The CLGP develops an integrated command of both leadership and governance — not as separate disciplines but as a unified professional practice. Holders demonstrate the ability to provide strategic leadership whilst maintaining rigorous governance standards, to govern effectively whilst inspiring and leading organisational teams, and to navigate the complex interplay between leadership authority and governance accountability. The programme draws on frameworks from ICSA, IoD, NACD, ACCA, and the OECD Principles of Corporate Governance.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c6)">M1</div><div><div class="module-name">Integrated Leadership and Governance: Theory, Practice, and Professional Standards</div><div class="module-desc">The relationship between leadership and governance: governance as a leadership function, leadership accountability, the governance-management boundary, board-executive relationships, governance codes and leadership expectations, and the CILG integrated professional framework. Leadership ethics in governance contexts.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c6)">M2</div><div><div class="module-name">Corporate Governance Excellence: Board Leadership and Director Effectiveness</div><div class="module-desc">Advanced corporate governance: board composition and diversity, director duties and liabilities, board evaluation and renewal, committee governance (audit, risk, remuneration, nomination), the board-CEO relationship, board information and reporting, governance codes (US, UK, African, and international), and governance for non-listed entities including charities and mutuals.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c6)">M3</div><div><div class="module-name">Risk Governance, Internal Control, and Assurance Leadership</div><div class="module-desc">Enterprise risk governance: board risk oversight, three lines of defence model, internal audit governance, the audit committee, regulatory compliance governance, management of reputational risk, crisis governance, and integrated assurance frameworks. Embedding a risk-aware culture through leadership.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c6)">M4</div><div><div class="module-name">Stakeholder Governance, Sustainability, and ESG Leadership</div><div class="module-desc">Stakeholder governance theory and practice, investor relations governance, ESG strategy and board oversight, sustainability reporting frameworks (GRI, TCFD, ISSB), integrated reporting, human rights due diligence, supply chain governance, and the governance of purpose-led organisations.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c6)">M5</div><div><div class="module-name">Governance in Crisis, Transition, and Complex Environments</div><div class="module-desc">Governance in adversity: leading through corporate crises, governance during M&amp;A and restructuring, insolvency governance, governance of turnaround situations, political and geopolitical risk governance, and governance across complex multi-stakeholder environments. Capstone: a comprehensive governance review and leadership action plan for a complex organisational case.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or recognised professional qualification at diploma level or above</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum three (3) years of professional experience in a leadership, governance, company secretarial, board, or senior management role</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>Leadership/governance biography (400 words) submitted at registration</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative: 6+ years of relevant practice without a degree, subject to admissions review</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Board Director / Non-Executive Director</div><div class="outcome-tag">Company Secretary</div>
+        <div class="outcome-tag">Chief Governance Officer</div><div class="outcome-tag">Governance Consultant / Advisor</div>
+        <div class="outcome-tag">Executive Director (Non-profit / Charity)</div><div class="outcome-tag">Head of Corporate Affairs</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c6)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Certification Code</span><span class="scard-val">CLGP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Post-nominal</span><span class="scard-val">CLGP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">4 – 6 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Total Modules</span><span class="scard-val">5 modules</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass Mark</span><span class="scard-val">50% per module</span></div>
+        <div class="scard-row"><span class="scard-lbl">CPD Required</span><span class="scard-val">25 hrs/year</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c6)">Assessment Methods</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c6)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Governance Report</span><span class="assess-pct" style="background:var(--c6)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c6)">25%</span></div>
+        </div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c6)">Grading Scale</div>
+        <div class="gband"><span class="gband-range">80–100%</span><span class="gband-name" style="color:#1B6B4A">Distinction</span><div class="gband-bar"><div class="gband-fill" style="width:100%;background:#1B6B4A"></div></div></div>
+        <div class="gband"><span class="gband-range">70–79%</span><span class="gband-name" style="color:var(--c6)">Merit</span><div class="gband-bar"><div class="gband-fill" style="width:80%;background:var(--c6)"></div></div></div>
+        <div class="gband"><span class="gband-range">50–69%</span><span class="gband-name" style="color:#B8860B">Pass</span><div class="gband-bar"><div class="gband-fill" style="width:60%;background:#B8860B"></div></div></div>
+        <div class="gband"><span class="gband-range">45–49%</span><span class="gband-name" style="color:var(--c4)">Referred</span><div class="gband-bar"><div class="gband-fill" style="width:35%;background:var(--c4)"></div></div></div>
+        <div class="gband"><span class="gband-range">0–44%</span><span class="gband-name" style="color:var(--c9)">Fail</span><div class="gband-bar"><div class="gband-fill" style="width:15%;background:var(--c9)"></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 07 — CCRM -->
+<section class="cert-section" id="ccrm">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c7)">CCRM</div>
+      <h2 class="cert-title">Certified Corporate Risk Manager</h2>
+      <p class="cert-tagline">"Mastering Enterprise Risk — Building Resilient Organisations Through Expert Governance"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CCRM</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c7),#2A5EA0)"><div class="cert-acorn-abbr">CCRM</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Corporate Risk Manager (CCRM) equips risk professionals, compliance officers, internal auditors, and senior managers with advanced enterprise risk management competencies aligned to international standards including COSO ERM, ISO 31000, and the IRM Risk Management Standard. The programme emphasises risk governance — the oversight and accountability mechanisms that ensure risk management is embedded in organisational culture and decision-making at every level, including at board level.</p>
+      <p class="overview-text">CCRM holders can design and implement comprehensive ERM frameworks, communicate risk effectively to boards and senior executives, lead risk-aware cultures, and provide independent assurance on risk management effectiveness. The certification is applicable across all sectors including financial services, infrastructure, energy, healthcare, government, and manufacturing.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c7)">M1</div><div><div class="module-name">Enterprise Risk Management Frameworks and Standards</div><div class="module-desc">COSO ERM 2017, ISO 31000, NIST RMF — comparative analysis and implementation guidance. Risk appetite, tolerance, and culture. The Chief Risk Officer's mandate and board risk committee governance.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c7)">M2</div><div><div class="module-name">Strategic, Financial, and Operational Risk Categories</div><div class="module-desc">Deep-dive into risk taxonomy: strategic risk, financial risk (credit, market, liquidity), operational risk, technology risk, supply chain risk, reputational risk, and emerging risks. Quantitative and qualitative risk assessment methodologies.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c7)">M3</div><div><div class="module-name">Risk Control, Mitigation, and Internal Audit</div><div class="module-desc">Control design and testing, the three lines of defence model, control self-assessment, risk-based internal audit methodology, audit committee governance, and internal control reporting frameworks (SOX, COSO ICIF).</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c7)">M4</div><div><div class="module-name">Business Continuity, Crisis Management, and Organisational Resilience</div><div class="module-desc">Business continuity planning (ISO 22301), crisis leadership frameworks, incident response governance, reputational crisis management, disaster recovery, and building organisational resilience as a competitive advantage.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c7)">M5</div><div><div class="module-name">Risk Reporting, Communication, and Governance Integration</div><div class="module-desc">Designing board-level risk dashboards, risk reporting frameworks, risk culture measurement, embedding ERM in strategic planning and investment decisions. Capstone: enterprise risk management maturity assessment and improvement plan for a complex organisation.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or professional qualification; OR risk / audit / finance diploma-level qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of experience in risk management, internal audit, compliance, or financial management</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative: 5 years of operational or management experience with significant risk responsibility</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief Risk Officer</div><div class="outcome-tag">Enterprise Risk Manager</div>
+        <div class="outcome-tag">Head of Internal Audit</div><div class="outcome-tag">Risk &amp; Compliance Director</div>
+        <div class="outcome-tag">Risk Governance Advisor</div><div class="outcome-tag">Business Continuity Manager</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c7)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CCRM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c7)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c7)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Risk Assessment Report</span><span class="assess-pct" style="background:var(--c7)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c7)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 08 — CEEM -->
+<section class="cert-section" id="ceem">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c8)">CEEM</div>
+      <h2 class="cert-title">Certified ESG and Environmental Manager</h2>
+      <p class="cert-tagline">"Leading Sustainable Futures — Environmental Governance and ESG Professional Excellence"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CEEM</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c8),#7B3BAA)"><div class="cert-acorn-abbr">CEEM</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified ESG and Environmental Manager (CEEM) is designed for professionals who lead, manage, or advise on environmental sustainability, ESG strategy, and the governance of sustainable practice within organisations. As ESG obligations migrate from voluntary aspiration to regulatory requirement, the need for qualified professionals who can govern, report, and lead on sustainability has become a boardroom imperative. The CEEM provides a rigorous, practice-oriented certification that equips holders to lead ESG programmes, design sustainability governance structures, and navigate the complex and evolving global ESG regulatory landscape.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c8)">M1</div><div><div class="module-name">ESG Frameworks, Regulation, and Global Standards</div><div class="module-desc">GRI, TCFD, ISSB, SASB, EU CSRD, US SEC Climate Rules, CDP — navigating the global ESG reporting landscape. ESG ratings agencies, materiality assessment, and double materiality. ESG due diligence in investment and M&amp;A.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c8)">M2</div><div><div class="module-name">Environmental Management: Climate, Carbon, and Circular Economy</div><div class="module-desc">Climate science for governance professionals, carbon accounting (Scope 1/2/3), net-zero strategy, Science Based Targets, environmental management systems (ISO 14001), water and biodiversity governance, and circular economy principles for organisational sustainability.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c8)">M3</div><div><div class="module-name">Social Governance: Human Rights, Supply Chain, and Community Impact</div><div class="module-desc">UN Guiding Principles on Business and Human Rights, supply chain due diligence, forced labour and modern slavery governance, community impact assessment, social value measurement, stakeholder engagement for social licence, and DEI as a social governance imperative.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c8)">M4</div><div><div class="module-name">ESG Governance: Board Oversight and Sustainable Finance</div><div class="module-desc">Board ESG governance structures, sustainable finance taxonomy (EU, ASEAN, global), green and sustainability-linked bonds, ESG integration in investment decision-making, greenwashing risks and governance, and the Chief Sustainability Officer's mandate.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c8)">M5</div><div><div class="module-name">ESG Strategy, Implementation, and Stakeholder Communication</div><div class="module-desc">Designing and executing organisational ESG strategies, transition planning, ESG target-setting and KPIs, integrated reporting, ESG investor communications, and building ESG culture. Capstone: ESG governance review and sustainability strategy report.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in any discipline, or professional qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of experience in sustainability, ESG, environmental management, corporate social responsibility, or a related governance role</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative: 5+ years in a relevant field without a degree</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief Sustainability Officer</div><div class="outcome-tag">ESG Programme Manager</div>
+        <div class="outcome-tag">Head of Corporate Responsibility</div><div class="outcome-tag">Sustainability Reporting Lead</div>
+        <div class="outcome-tag">Environmental Governance Advisor</div><div class="outcome-tag">Sustainable Finance Analyst</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c8)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CEEM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c8)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c8)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">ESG Strategy Report</span><span class="assess-pct" style="background:var(--c8)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c8)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 09 — CDGP -->
+<section class="cert-section" id="cdgp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c9)">CDGP</div>
+      <h2 class="cert-title">Certified Data Governance Professional</h2>
+      <p class="cert-tagline">"Governing the Data Asset — Privacy, Quality, and Strategic Information Leadership"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CDGP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c9),#9B2A2A)"><div class="cert-acorn-abbr">CDGP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">Data is among the most strategically valuable — and most governance-intensive — assets of the modern organisation. The Certified Data Governance Professional (CDGP) equips practitioners to establish, lead, and oversee comprehensive data governance programmes that protect organisational data assets, ensure regulatory compliance, maximise data quality and utility, and position data as a strategic enabler of organisational performance. The CDGP covers data governance frameworks (DAMA-DMBOK, ISO 8000), privacy law (GDPR, CCPA, US state privacy laws), data strategy, and the governance of AI and analytics systems.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c9)">M1</div><div><div class="module-name">Data Governance Frameworks, Strategy, and Programme Design</div><div class="module-desc">DAMA-DMBOK, the DCAM framework, data governance operating models, the Data Governance Council, data stewardship, data ownership, data governance policies and standards, and aligning data governance to business strategy and digital transformation.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c9)">M2</div><div><div class="module-name">Data Privacy Law, Compliance, and Rights Management</div><div class="module-desc">GDPR, CCPA, US federal privacy legislation, international data transfer mechanisms, privacy by design and default, data subject rights management, Privacy Impact Assessments, the Data Protection Officer's role, and breach notification governance.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c9)">M3</div><div><div class="module-name">Data Quality, Metadata Management, and Master Data</div><div class="module-desc">Data quality dimensions, profiling, and measurement. Metadata management, data cataloguing, master data management, data lineage, reference data management, and building a data quality culture. ISO 8000 data quality standards.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c9)">M4</div><div><div class="module-name">Cybersecurity Governance and Data Risk Management</div><div class="module-desc">Information security governance (ISO 27001, NIST CSF), the intersection of data governance and cybersecurity, cyber risk management, incident response governance, third-party data risk, cloud data governance, and board-level cybersecurity oversight.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c9)">M5</div><div><div class="module-name">Data Analytics Governance, AI Data Ethics, and the Future Data Enterprise</div><div class="module-desc">Governing analytics and business intelligence programmes, AI data governance, algorithmic accountability, data ethics frameworks, open data governance, and building the data-driven organisation with responsible governance at its core. Capstone: data governance maturity assessment and roadmap.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or professional qualification in IT, law, business, or a related field</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years in data management, IT governance, privacy compliance, information management, or a related role</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative: 5+ years of relevant experience without a degree</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief Data Officer</div><div class="outcome-tag">Data Governance Manager</div>
+        <div class="outcome-tag">Data Protection Officer</div><div class="outcome-tag">Information Governance Lead</div>
+        <div class="outcome-tag">Privacy &amp; Compliance Manager</div><div class="outcome-tag">Head of Data &amp; Analytics</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c9)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CDGP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c9)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c9)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Governance Roadmap</span><span class="assess-pct" style="background:var(--c9)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c9)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 10 — CSMP -->
+<section class="cert-section" id="csmp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c10)">CSMP</div>
+      <h2 class="cert-title">Certified Strategy and Management Professional</h2>
+      <p class="cert-tagline">"From Vision to Value — Mastering the Art and Science of Strategic Management"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CSMP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c10),#2A9E70)"><div class="cert-acorn-abbr">CSMP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Strategy and Management Professional (CSMP) develops advanced strategic and operational management competencies for professionals responsible for formulating and executing organisational strategies. The programme integrates strategic analysis, business model innovation, financial strategy, and performance management into a unified management framework aligned to the standards of the Strategic Management Society, the Chartered Management Institute, and the Institute of Management Consultants.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c10)">M1</div><div><div class="module-name">Advanced Strategic Analysis and Business Model Innovation</div><div class="module-desc">Strategic analysis methodologies: dynamic capabilities, resource-based view, platform strategy, ecosystem thinking, disruptive innovation frameworks, and business model canvas and design. Corporate-level vs business-unit strategy.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c10)">M2</div><div><div class="module-name">Financial Strategy and Value Creation</div><div class="module-desc">Corporate finance for strategists: capital allocation, M&amp;A strategy and valuation, shareholder value creation, financing choices, financial modelling for strategy, and the financial governance of strategic decisions at board level.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c10)">M3</div><div><div class="module-name">Operations Strategy, Supply Chain, and Digital Operations</div><div class="module-desc">Operations as a strategic function, lean management, operational excellence, supply chain resilience, digital operations and Industry 4.0, outsourcing governance, and the operations dimension of corporate strategy.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c10)">M4</div><div><div class="module-name">Strategy Execution, Performance Management, and the Balanced Scorecard</div><div class="module-desc">Translating strategy into execution: strategy maps, Balanced Scorecard, OKRs, managing strategic change, building execution capability, measuring strategic performance, and the governance of strategy execution at board and executive level.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c10)">M5</div><div><div class="module-name">Global Strategy, Market Entry, and International Management</div><div class="module-desc">Global strategy frameworks, internationalisation theories, market entry mode selection, managing multinational operations, cross-cultural management, geopolitical risk in global strategy, and the governance challenges of international expansion. Capstone: strategic management plan for an organisational growth challenge.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or recognised professional qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of management or business development experience</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>Alternative route: 5 years progressive management experience</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Strategy Director</div><div class="outcome-tag">Management Consultant</div>
+        <div class="outcome-tag">Chief Operating Officer</div><div class="outcome-tag">VP Business Development</div>
+        <div class="outcome-tag">Corporate Planner</div><div class="outcome-tag">Business Transformation Lead</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c10)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CSMP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c10)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c10)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Strategy Report</span><span class="assess-pct" style="background:var(--c10)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Case Study</span><span class="assess-pct" style="background:var(--c10)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 11 — CPPM -->
+<section class="cert-section" id="cppm">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c11)">CPPM</div>
+      <h2 class="cert-title">Certified Policy and Public Management Professional</h2>
+      <p class="cert-tagline">"Translating Policy into Impact — Leadership in Public Management and Institutional Reform"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CPPM</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c11),#6040B0)"><div class="cert-acorn-abbr">CPPM</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Policy and Public Management Professional (CPPM) is designed for professionals who work at the interface of policy formulation, institutional management, and public sector leadership. It combines advanced policy analysis skills with the management competencies required to implement complex public programmes, lead institutional reforms, and manage public agencies effectively. The CPPM is particularly relevant for mid-to-senior civil servants, policy advisors, legislative staff, public sector managers, and development sector professionals.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c11)">M1</div><div><div class="module-name">Advanced Policy Analysis: Theory, Methodology, and Application</div><div class="module-desc">Policy analysis frameworks: rational, incremental, mixed-scanning, and evidence-based approaches. Qualitative and quantitative policy research methodologies, stakeholder analysis, cost-benefit and cost-effectiveness analysis, regulatory impact assessment, and comparative policy analysis.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c11)">M2</div><div><div class="module-name">Public Sector Performance Management and Accountability</div><div class="module-desc">Results-based management, logic models, theory of change, performance measurement frameworks, public sector scorecards, accountability mechanisms in democratic governance, parliamentary oversight, and public sector audit governance.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c11)">M3</div><div><div class="module-name">Institutional Design, Public Sector Reform, and Change Management</div><div class="module-desc">Theories of institutional change, public sector reform typologies, managing reform resistance, capacity building, public service motivation, civil service modernisation, and the political economy of administrative reform. International case studies in successful institutional transformation.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c11)">M4</div><div><div class="module-name">Intergovernmental Relations, Multilateral Governance, and Development Cooperation</div><div class="module-desc">Federalism and intergovernmental coordination, multilateral institution governance (UN, World Bank, IMF, regional bodies), development aid governance, South-South cooperation, and the management of multi-partner development programmes.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c11)">M5</div><div><div class="module-name">Digital Government, Smart Cities, and Public Innovation</div><div class="module-desc">E-government maturity models, digital service delivery, open government data, civic technology, smart city governance, public innovation labs, agile government, and leading digital transformation in the public sector. Capstone: public management reform advisory report.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in public administration, social science, economics, law, or related discipline; OR professional diploma</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of professional experience in a public sector, government, NGO, or international development organisation</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Policy Manager / Analyst</div><div class="outcome-tag">Public Sector Reform Lead</div>
+        <div class="outcome-tag">Institutional Development Advisor</div><div class="outcome-tag">Development Sector Manager</div>
+        <div class="outcome-tag">Parliamentary Budget Officer</div><div class="outcome-tag">Programme Director — Public Sector</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c11)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CPPM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c11)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Policy Analysis Report</span><span class="assess-pct" style="background:var(--c11)">45%</span></div>
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c11)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Reflective Assignment</span><span class="assess-pct" style="background:var(--c11)">20%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 12 — CETHM -->
+<section class="cert-section" id="cethm">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c12)">CETHM</div>
+      <h2 class="cert-title">Certified Ethics and Compliance Professional</h2>
+      <p class="cert-tagline">"Integrity as Infrastructure — Professionalising Compliance and Ethical Leadership"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CETHM</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c12),#B87530)"><div class="cert-acorn-abbr">CETHM</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Ethics and Compliance Professional (CETHM) is a governance-focused certification for compliance officers, ethics programme managers, legal counsel, internal auditors, and senior managers who bear responsibility for building and sustaining organisational cultures of integrity. As regulatory expectations around ethics and compliance programmes intensify globally, the CETHM equips practitioners with the frameworks, tools, and governance competencies to design effective compliance programmes, manage regulatory relationships, conduct investigations, and lead organisations through ethical challenges. The programme draws on SCCE (Society of Corporate Compliance and Ethics), US DOJ compliance programme guidance, and ISO 37001 (anti-bribery management systems).</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c12)">M1</div><div><div class="module-name">Compliance Programme Design and Regulatory Governance</div><div class="module-desc">Anatomy of an effective compliance programme: risk assessment, policies and procedures, training, monitoring and testing, reporting mechanisms, investigations, and response. US DOJ compliance programme guidance, UK Bribery Act, FCPA, and sector-specific regulatory frameworks.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c12)">M2</div><div><div class="module-name">Corporate Ethics, Values Leadership, and Culture of Integrity</div><div class="module-desc">Business ethics frameworks: stakeholder theory, normative ethics, the ethics of governance. Tone at the top, middle management ethics leadership, ethical culture measurement, incentives and integrity, and embedding values in organisational systems. Ethical leadership development.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c12)">M3</div><div><div class="module-name">Anti-Corruption, Anti-Bribery, and Financial Crime Compliance</div><div class="module-desc">Anti-bribery and corruption governance (ISO 37001, FCPA, UK Bribery Act), AML frameworks, sanctions compliance, fraud prevention frameworks, third-party due diligence, and managing regulatory investigations. Case studies in major corporate compliance failures.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c12)">M4</div><div><div class="module-name">Investigations, Whistleblowing, and Disclosure Governance</div><div class="module-desc">Internal investigation methodology, rights of the investigated party, evidence handling, legal privilege, regulatory self-reporting decisions, whistleblower programme design, protected disclosure governance, and managing retaliation risks.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c12)">M5</div><div><div class="module-name">Board and Executive Ethics Oversight and Future Compliance Challenges</div><div class="module-desc">The board's ethics and compliance mandate, audit committee oversight, compliance committee structures, managing regulatory relationships, deferred prosecution agreements, the future of compliance (AI, RegTech), and building the next generation of compliance professionals. Capstone: compliance programme effectiveness review.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in law, business, accounting, or a related field; OR professional qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years in compliance, legal, audit, or ethics function</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief Compliance Officer</div><div class="outcome-tag">Ethics Programme Manager</div>
+        <div class="outcome-tag">MLRO / Financial Crime Lead</div><div class="outcome-tag">Regulatory Affairs Director</div>
+        <div class="outcome-tag">Compliance Investigations Lead</div><div class="outcome-tag">Legal &amp; Compliance Counsel</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c12)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CETHM</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c12)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c12)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Compliance Audit Report</span><span class="assess-pct" style="background:var(--c12)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c12)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 13 — CDTL -->
+<section class="cert-section" id="cdtl">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c13)">CDTL</div>
+      <h2 class="cert-title">Certified Digital Transformation Leader</h2>
+      <p class="cert-tagline">"Leading the Digital Future — Governance, Strategy, and People in the Age of Transformation"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CDTL</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c13),#2A8A9E)"><div class="cert-acorn-abbr">CDTL</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Digital Transformation Leader (CDTL) prepares senior leaders and digital professionals to lead the governance, strategy, and people dimensions of complex digital transformation programmes. As organisations across all sectors invest in digital capabilities, the critical success factor is not technology — it is governance and leadership. The CDTL ensures that those leading digital transformation can govern technology investments effectively, manage the cultural and human dimensions of digital change, ensure cybersecurity and data governance, and position digital capabilities as sustained sources of competitive and public value.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c13)">M1</div><div><div class="module-name">Digital Strategy, Technology Landscape, and Platform Economics</div><div class="module-desc">Formulating digital strategy: technology trend analysis, platform business models, cloud strategy, API economy, edge computing, blockchain for governance, and the digital business transformation framework. Aligning digital investment to strategic outcomes.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c13)">M2</div><div><div class="module-name">IT Governance, Architecture, and Investment Management</div><div class="module-desc">IT governance frameworks (COBIT, IT4IT), enterprise architecture governance, technology investment appraisal, portfolio management of digital investments, vendor governance, and board-level technology oversight. Digital risk governance.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c13)">M3</div><div><div class="module-name">Leading Digital Change: Culture, People, and Organisational Transformation</div><div class="module-desc">The human dimensions of digital transformation: digital culture, digital literacy and upskilling, managing workforce displacement, digital change management, agile leadership, and building digital-first organisations with human-centred design principles.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c13)">M4</div><div><div class="module-name">Cybersecurity Leadership and Digital Risk Governance</div><div class="module-desc">Cybersecurity governance for leaders: the CISO's mandate, board-level cyber oversight, NIST Cybersecurity Framework, incident response governance, third-party cyber risk, regulatory requirements for cyber governance, and the governance of AI-related cyber risks.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c13)">M5</div><div><div class="module-name">Emerging Technologies and the Future of Digital Governance</div><div class="module-desc">AI governance (revisited in a digital leadership context), quantum computing implications, the metaverse and Web3 governance, digital identity, future of digital regulation, and building long-term digital resilience. Capstone: digital transformation governance framework and board presentation.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree in any discipline; OR professional qualification in IT, business, or management</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of experience in a digital, technology, or change leadership role</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Chief Digital Officer</div><div class="outcome-tag">Digital Transformation Director</div>
+        <div class="outcome-tag">IT Governance Lead</div><div class="outcome-tag">CIO / Head of Technology</div>
+        <div class="outcome-tag">Digital Strategy Advisor</div><div class="outcome-tag">Technology Board Advisor</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c13)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CDTL</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c13)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c13)">35%</span></div>
+          <div class="assess-item"><span class="assess-name">Digital Strategy Report</span><span class="assess-pct" style="background:var(--c13)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Assignment</span><span class="assess-pct" style="background:var(--c13)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 14 — CCSP -->
+<section class="cert-section" id="ccsp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c14)">CCSP</div>
+      <h2 class="cert-title">Certified Change and Strategy Professional</h2>
+      <p class="cert-tagline">"Navigating Complexity — Expert Leadership in Organisational Change and Strategic Execution"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CCSP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c14),#8A701A)"><div class="cert-acorn-abbr">CCSP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Change and Strategy Professional (CCSP) addresses one of the most persistent challenges in organisational life — the ability to execute strategic change effectively. Studies consistently show that more than two-thirds of organisational change programmes fail to achieve their objectives. The CCSP develops the competencies required to design change interventions that succeed: combining rigorous strategic analysis, sophisticated change management methodology, advanced stakeholder engagement, and the emotional intelligence required to lead people through uncertainty and transformation.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c14)">M1</div><div><div class="module-name">Change Management Frameworks and Organisational Psychology</div><div class="module-desc">Kotter's 8-step model, ADKAR, Lewin's change model, McKinsey 7S, the psychology of change resistance, neuroscience of change, managing uncertainty and ambiguity, and change readiness assessment. Designing multi-level change interventions.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c14)">M2</div><div><div class="module-name">Strategic Change: Alignment, Sequencing, and Programme Design</div><div class="module-desc">Aligning change to strategy, change portfolio management, sequencing multiple simultaneous change initiatives, managing change saturation, benefits realisation in change programmes, and the governance of large-scale transformation.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c14)">M3</div><div><div class="module-name">Communication, Influence, and Culture Change</div><div class="module-desc">Strategic communications for change, crafting change narratives, influencing without authority, managing change champions and resisters, culture change methodology, embedding change through systems and structures, and sustaining momentum in long change programmes.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c14)">M4</div><div><div class="module-name">Change Leadership, Coaching, and Team Development</div><div class="module-desc">The change leader's personal effectiveness, coaching for change, developing change capability within teams, building high-performing change delivery teams, leadership transitions and succession, and managing the emotional dimensions of change leadership.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c14)">M5</div><div><div class="module-name">Measuring, Evaluating, and Sustaining Change</div><div class="module-desc">Change measurement frameworks: leading and lagging indicators, adoption metrics, benefit tracking, evaluation methodologies, embedding change in standard processes, preventing regression, and building organisational change capability for the future. Capstone: change management plan for a strategic transformation.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or professional qualification</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of management experience with involvement in change or transformation initiatives</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Change Manager / Director</div><div class="outcome-tag">Transformation Programme Lead</div>
+        <div class="outcome-tag">Organisational Development Director</div><div class="outcome-tag">Business Change Consultant</div>
+        <div class="outcome-tag">Strategy Execution Lead</div><div class="outcome-tag">People Change Partner</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c14)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CCSP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c14)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c14)">30%</span></div>
+          <div class="assess-item"><span class="assess-name">Change Management Plan</span><span class="assess-pct" style="background:var(--c14)">45%</span></div>
+          <div class="assess-item"><span class="assess-name">Reflective Portfolio</span><span class="assess-pct" style="background:var(--c14)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 15 — CNLP -->
+<section class="cert-section" id="cnlp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c15)">CNLP</div>
+      <h2 class="cert-title">Certified Non-Profit Leadership Professional</h2>
+      <p class="cert-tagline">"Mission-Driven Leadership — Governance and Management Excellence in the Third Sector"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CNLP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c15),#2A9E60)"><div class="cert-acorn-abbr">CNLP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Non-Profit Leadership Professional (CNLP) is purpose-built for leaders of charities, NGOs, foundations, social enterprises, faith-based organisations, and civil society bodies who require professional certification that reflects the unique governance and leadership context of the third sector. Non-profit leadership demands a distinctive blend of mission-centred governance, volunteer management, fundraising strategy, regulatory compliance, and public accountability — competencies that mainstream business leadership programmes do not adequately address.</p>
+      <p class="overview-text">The CNLP equips executive directors, trustees, programme directors, and senior managers with the full complement of competencies required to lead mission-driven organisations effectively, ethically, and sustainably. The programme is aligned with the standards of the BoardSource Non-Profit Governance Framework and the US IRS governance standards for tax-exempt organisations.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c15)">M1</div><div><div class="module-name">Non-Profit Governance: Board Leadership, Legal Structures, and Regulatory Compliance</div><div class="module-desc">US non-profit law (IRC 501(c)(3) and related provisions), trustee duties and liabilities, board composition and development, governance policies, conflict of interest management, Form 990 governance, state registration requirements, and international NGO governance frameworks.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c15)">M2</div><div><div class="module-name">Mission-Driven Strategy, Theory of Change, and Impact Measurement</div><div class="module-desc">Strategic planning in a mission-driven context, theory of change methodology, logic models, social impact assessment, beneficiary engagement, social return on investment, and communicating impact to donors, funders, and the public.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c15)">M3</div><div><div class="module-name">Non-Profit Financial Management, Fundraising Governance, and Resource Mobilisation</div><div class="module-desc">Non-profit financial management, restricted and unrestricted fund accounting, financial reserves policy, fundraising governance (AFP Donor Bill of Rights, fundraising regulation), grant management, social enterprise revenue models, and diversifying income streams.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c15)">M4</div><div><div class="module-name">Human Capital Management in Non-Profit: Paid Staff and Volunteer Governance</div><div class="module-desc">HR in the third sector: managing paid and volunteer workforces simultaneously, volunteer management frameworks, non-profit compensation governance, building culture in mission-driven organisations, preventing staff burnout, and succession planning for small non-profits.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c15)">M5</div><div><div class="module-name">Stakeholder Engagement, Advocacy, and Organisational Sustainability</div><div class="module-desc">Advocacy governance, media and public communications for non-profits, managing relationships with government and funders, safeguarding governance, organisational sustainability planning, mergers and alliances in the third sector, and future-proofing the mission. Capstone: non-profit strategic governance review.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or professional qualification in any discipline; OR demonstrated community leadership experience</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Minimum two (2) years of experience in a non-profit, charity, NGO, social enterprise, faith-based, or community organisation in a paid or voluntary leadership capacity</div>
+        <div class="elig-item"><span class="elig-icon">⭐</span>CILG recognises that many outstanding third-sector leaders lack formal academic credentials — the alternative entry route (4+ years of leadership experience) is actively encouraged for this programme</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Executive Director — Charity/NGO</div><div class="outcome-tag">Non-Profit Trustee / Board Chair</div>
+        <div class="outcome-tag">Head of Fundraising &amp; Partnerships</div><div class="outcome-tag">Social Impact Manager</div>
+        <div class="outcome-tag">Foundation Programme Director</div><div class="outcome-tag">Third Sector Governance Advisor</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c15)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CNLP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c15)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c15)">30%</span></div>
+          <div class="assess-item"><span class="assess-name">Governance Review Report</span><span class="assess-pct" style="background:var(--c15)">45%</span></div>
+          <div class="assess-item"><span class="assess-name">Professional Portfolio</span><span class="assess-pct" style="background:var(--c15)">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERT 16 — CWLP -->
+<section class="cert-section" id="cwlp">
+<div class="cert-section-inner">
+  <div class="cert-header">
+    <div>
+      <div class="cert-code-badge" style="background:var(--c16)">CWLP</div>
+      <h2 class="cert-title">Certified Women in Leadership Professional</h2>
+      <p class="cert-tagline">"Breaking Barriers, Shaping Futures — Professional Excellence for Women Leaders at Every Level"</p>
+      <div class="cert-meta-row"><span class="cert-meta-pill">Duration: 3 – 5 Months</span><span class="cert-meta-pill">5 Modules</span><span class="cert-meta-pill">Post-nominal: CWLP</span></div>
+    </div>
+    <div class="cert-acorn" style="background:linear-gradient(135deg,var(--c16),#9B2060)"><div class="cert-acorn-abbr">CWLP</div><div class="cert-acorn-line"></div><div class="cert-acorn-num">CILG</div></div>
+  </div>
+  <div class="cert-body">
+    <div class="cert-main">
+      <p class="blk-head">Programme Overview</p>
+      <p class="overview-text">The Certified Women in Leadership Professional (CWLP) is a ground-breaking professional certification designed to accelerate the development of women in leadership and governance roles — from emerging managers through to board directors and senior executives. It combines rigorous professional leadership content with specific attention to the structural, cultural, and individual barriers that continue to limit the advancement of women in organisations, and equips participants with the knowledge, strategies, and professional credentials to lead with confidence and authority at every level.</p>
+      <p class="overview-text">The CWLP is inclusive by design — it is open to all professionals who identify as women, and its content is deeply relevant to organisations, allies, and leaders who wish to build genuinely inclusive governance cultures. The programme is informed by the research of the Catalyst Institute, McKinsey Women in the Workplace studies, and the governance frameworks of 30% Club and Women on Boards initiatives globally. It reflects CILG's commitment to ensuring that the governance and leadership profession reflects the full diversity of the society it serves.</p>
+      <p class="blk-head">Module Structure</p>
+      <div class="modules-list">
+        <div class="module-item"><div class="module-num" style="background:var(--c16)">M1</div><div><div class="module-name">Women in Leadership: Research, Theory, and the Structural Reality</div><div class="module-desc">The evidence base on gender and leadership: current representation data, structural barriers to advancement (glass ceiling, glass cliff, maternal wall), unconscious bias and its impact, gender and leadership style research, intersectionality in leadership, and the business and governance case for gender-balanced leadership.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c16)">M2</div><div><div class="module-name">Executive Presence, Authentic Leadership, and Personal Brand</div><div class="module-desc">Developing executive presence as a woman leader, the authenticity paradox, navigating gendered expectations in leadership, personal brand development, strategic visibility, building credibility in male-dominated environments, and the psychology of confidence and resilience in senior leadership.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c16)">M3</div><div><div class="module-name">Navigating Governance: Boardroom Dynamics, Negotiation, and Political Intelligence</div><div class="module-desc">Understanding boardroom dynamics and politics, effective participation in governance bodies, negotiation strategies for women leaders, managing difficult stakeholders, political intelligence and influencing skills, and preparing for and succeeding in board appointments. Mentoring and sponsorship as governance tools.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c16)">M4</div><div><div class="module-name">Building Inclusive Organisations: DEI Strategy and Culture Leadership</div><div class="module-desc">Designing and leading DEI strategies, gender pay gap governance and reporting, parental leave policy design, flexible work governance, inclusive recruitment and promotion systems, managing microaggressions institutionally, and measuring the impact of gender inclusion initiatives.</div></div></div>
+        <div class="module-item"><div class="module-num" style="background:var(--c16)">M5</div><div><div class="module-name">Women's Leadership in Global Context and the Future Governance Agenda</div><div class="module-desc">Women in leadership across cultures and sectors — comparative analysis, women in political leadership and public governance, women's leadership in conflict and crisis contexts, global women's leadership networks and organisations, and the future agenda: achieving gender parity in governance through systemic change. Capstone: a personal leadership development plan and organisational gender governance strategy.</div></div></div>
+      </div>
+      <p class="blk-head">Eligibility Requirements</p>
+      <div class="elig-list">
+        <div class="elig-item"><span class="elig-icon">🎓</span>Bachelor's degree or professional qualification in any discipline; OR demonstrated professional experience</div>
+        <div class="elig-item"><span class="elig-icon">💼</span>Open to professionals at all career stages — from early-career professionals to board directors. No minimum years of experience required</div>
+        <div class="elig-item"><span class="elig-icon">🌍</span>Open to all professionals who identify as women, across all sectors and geographies</div>
+        <div class="elig-item"><span class="elig-icon">📋</span>Personal statement of motivation (300 words) as part of registration</div>
+        <div class="elig-item"><span class="elig-icon">✅</span>CILG Code of Professional Conduct agreement</div>
+      </div>
+      <p class="blk-head">Career Outcomes</p>
+      <div class="outcomes-grid">
+        <div class="outcome-tag">Board Director / Non-Executive Director</div><div class="outcome-tag">Chief Executive Officer</div>
+        <div class="outcome-tag">Head of DEI / Inclusion Lead</div><div class="outcome-tag">Executive Leadership Coach</div>
+        <div class="outcome-tag">Senior Manager — Any Sector</div><div class="outcome-tag">Women's Leadership Programme Director</div>
+      </div>
+    </div>
+    <div class="cert-sidebar">
+      <div class="scard"><div class="scard-head" style="color:var(--c16)">Programme Details</div>
+        <div class="scard-row"><span class="scard-lbl">Code / Post-nominal</span><span class="scard-val">CWLP</span></div>
+        <div class="scard-row"><span class="scard-lbl">Duration</span><span class="scard-val">3 – 5 months</span></div>
+        <div class="scard-row"><span class="scard-lbl">Modules</span><span class="scard-val">5</span></div>
+        <div class="scard-row"><span class="scard-lbl">Min. Pass</span><span class="scard-val">50%</span></div>
+        <div class="scard-row"><span class="scard-lbl">Special Feature</span><span class="scard-val">Peer cohort mentoring included</span></div>
+      </div>
+      <div class="scard"><div class="scard-head" style="color:var(--c16)">Assessment</div>
+        <div class="assess-grid">
+          <div class="assess-item"><span class="assess-name">Written Examination</span><span class="assess-pct" style="background:var(--c16)">30%</span></div>
+          <div class="assess-item"><span class="assess-name">Leadership Strategy Report</span><span class="assess-pct" style="background:var(--c16)">40%</span></div>
+          <div class="assess-item"><span class="assess-name">Reflective Portfolio</span><span class="assess-pct" style="background:var(--c16)">30%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     GENERAL STANDARDS
+═══════════════════════════════════════ -->
+<section class="gen-section" id="general">
+  <div class="gen-inner">
+    <div class="section-label" style="color:var(--lime);justify-content:center">Universal Standards</div>
+    <div class="gen-title">General Standards Applicable to All 16 Certifications</div>
+    <div class="gen-sub">Common policies, standards, and provisions that apply across the entire CILG certification suite</div>
+    <div class="gen-grid">
+      <div class="gen-card">
+        <div class="gen-card-icon">📊</div>
+        <h3>Universal Grading Scale</h3>
+        <p>All 16 certifications use a competency-referenced grading scale consistent with international professional body standards (ACCA, CIPD, ICSA, IoD, CMI):</p>
+        <ul>
+          <li><strong>Distinction:</strong> 80–100% — Exceptional mastery</li>
+          <li><strong>Merit:</strong> 70–79% — High professional competence</li>
+          <li><strong>Pass:</strong> 50–69% — Satisfactory competence</li>
+          <li><strong>Referred:</strong> 45–49% — Near-pass, component re-sit</li>
+          <li><strong>Fail:</strong> Below 45% — Full module re-sit required</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">📝</div>
+        <h3>Assessment Framework</h3>
+        <p>All certifications combine three assessment modalities in varying proportions tailored to the nature of the discipline:</p>
+        <ul>
+          <li>Written Examinations (closed and open-book)</li>
+          <li>Professional Practice Assignments (workplace-applied)</li>
+          <li>Case Study Reports (scenario-based analysis)</li>
+          <li>Governance/Strategy Reports (capstone projects)</li>
+          <li>Reflective Portfolios (for leadership-focused programmes)</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">🕐</div>
+        <h3>Examination Windows</h3>
+        <p>Four examination windows per year — March, June, September, and December — with registration closing six weeks before each window. Candidates may register for a maximum of three modules per window.</p>
+        <ul>
+          <li>Results released within 15 working days of window close</li>
+          <li>Re-sit available after minimum 60-day waiting period</li>
+          <li>Maximum three attempts per module</li>
+          <li>Official transcripts updated within 5 working days</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">🌐</div>
+        <h3>Modes of Study</h3>
+        <p>All certifications are delivered through the CILG Learning Management System (LMS) via the following approved modes:</p>
+        <ul>
+          <li>Self-directed online learning (maximum flexibility)</li>
+          <li>Tutor-led virtual classroom (structured cohorts)</li>
+          <li>Blended learning (online + in-person intensive)</li>
+          <li>Employer-sponsored corporate cohorts</li>
+          <li>CILG Accredited Learning Partner delivery</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">🔄</div>
+        <h3>CPD and Certification Renewal</h3>
+        <p>All CILG certifications are valid for three (3) years from the date of award. Renewal requires demonstration of ongoing professional development:</p>
+        <ul>
+          <li>Minimum 20 CPD hours per year (60 hours over 3-year cycle)</li>
+          <li>CPD recorded via CILG Online CPD Portal</li>
+          <li>Renewal application submitted with CPD evidence</li>
+          <li>Holders who do not renew lose the right to use the post-nominal</li>
+          <li>Late renewal available within 6 months with additional fee</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">🏛️</div>
+        <h3>Academic Integrity</h3>
+        <p>CILG operates a zero-tolerance policy on academic misconduct. All submitted assessments are:</p>
+        <ul>
+          <li>Processed through plagiarism detection software</li>
+          <li>Screened for AI-generated content</li>
+          <li>Assessed by independent double-marking on borderline cases</li>
+          <li>Subject to External Verifier review each examination cycle</li>
+          <li>Backed by the CILG Academic Integrity Policy</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">♿</div>
+        <h3>Reasonable Adjustments</h3>
+        <p>CILG is committed to accessibility and equal opportunity for all candidates. Adjustments available include:</p>
+        <ul>
+          <li>Extended examination time (25% standard; 50% exceptional)</li>
+          <li>Large print, screen-reader compatible, and Braille materials</li>
+          <li>Private examination rooms and amanuensis support</li>
+          <li>Flexible submission deadlines for written assessments</li>
+          <li>Apply to accessibility@cilg.org at least 8 weeks before examination</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">🌍</div>
+        <h3>Global Recognition and MRAs</h3>
+        <p>CILG certifications are recognised globally through a growing network of Mutual Recognition Agreements with peer professional bodies:</p>
+        <ul>
+          <li>IoD (Institute of Directors)</li>
+          <li>ICSA (The Governance Institute)</li>
+          <li>CMI (Chartered Management Institute)</li>
+          <li>IRM (Institute of Risk Management)</li>
+          <li>CIPD (HR professionals)</li>
+          <li>Full MRA directory at www.cilg.org/mra</li>
+        </ul>
+      </div>
+      <div class="gen-card">
+        <div class="gen-card-icon">💰</div>
+        <h3>Fees and Financial Support</h3>
+        <p>Programme fees vary by certification and delivery mode. Financial support options include:</p>
+        <ul>
+          <li>CILG Hardship Fund (confidential application)</li>
+          <li>50% LMIC concession for qualifying countries</li>
+          <li>25% early-career discount (under 3 years' professional experience)</li>
+          <li>20% discount for military, government, and non-profit sector</li>
+          <li>Corporate bulk-enrolment discounts available</li>
+          <li>Contact finance@cilg.org for full fee schedule</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
+        <p>Chartered Institute of Leadership and Governance — a registered professional body dedicated to advancing the highest standards of professional excellence in leadership, corporate governance, organisational management, and public administration. Registered: United States of America.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <!-- PORTALS -->
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4> <a href="contact.html">Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:research@cilgglobal.org">research@cilgglobal.org</a>
+        <a href="mailto:media@cilgglobal.org">media@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America<br>
+          <span style="color:rgba(255,255,255,.28);font-size:.68rem"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="st" id="st">↑</a>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL TO TOP
+const st = document.getElementById('st');
+window.addEventListener('scroll', () => st.classList.toggle('on', window.scrollY > 500));
+</script>
+</body>
+</html>

@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Certification Verification Guidelines — Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET — FINZO PALETTE
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+  /* content palette */
+  --navy:        #0D2B1F;
+  --navy-mid:    #1A4030;
+  --navy-lt:     #2D6347;
+  --gold:        #AEDB1A;
+  --gold-lt:     #C8F135;
+  --gold-pale:   #EDF9B8;
+  --green:       #1A4030;
+  --green-lt:    #E8F5EE;
+  --green-mid:   #2D6347;
+  --teal:        #1A4030;
+  --teal-lt:     #E2F0EC;
+  --red:         #7B1A1A;
+  --red-lt:      #FAE8E8;
+  --amber:       #7A5010;
+  --amber-lt:    #FEF3E6;
+  --blue:        #1A3860;
+  --blue-lt:     #EEF3FB;
+  --g50:         #F7F8F3;
+  --g100c:       #F0F1EB;
+  --g200c:       #DDDFD6;
+  --g300c:       #B8BDB0;
+  --g400:        #8A9080;
+  --g500c:       #7A8070;
+  --g700:        #3A4035;
+  --sh0: 0 1px 4px rgba(13,43,31,.07);
+  --sh1: 0 4px 20px rgba(13,43,31,.10);
+  --sh2: 0 12px 48px rgba(13,43,31,.13);
+  --sh3: 0 24px 80px rgba(13,43,31,.17);
+  --r:8px; --rl:14px; --rxl:22px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback {
+  font-family: var(--ff-head);
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--forest); letter-spacing: -.01em; line-height: 1;
+}
+.nav-logo-sub {
+  font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--g300); display: block; margin-top: 2px;
+}
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow {
+  width: 0; height: 0;
+  border-left: 3px solid transparent; border-right: 3px solid transparent;
+  border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6;
+}
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover {
+  background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35);
+}
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before {
+  content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px;
+}
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a {
+  display: block; padding: 7px 12px; border-radius: 7px;
+  font-size: .74rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); white-space: nowrap;
+}
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none;
+}
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--g300); padding: 0 4px; margin-bottom: .5rem;
+}
+.mob-link {
+  display: block; padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); border: 1px solid transparent;
+}
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta {
+  display: block; width: 100%; padding: 14px; margin-top: 1rem;
+  background: var(--lime); color: var(--forest);
+  font-weight: 700; font-size: .9rem; letter-spacing: .02em;
+  border-radius: 10px; text-align: center; transition: all var(--tr);
+}
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero {
+  padding-top: var(--nav-h);
+  background: linear-gradient(168deg, #04150D 0%, var(--forest) 52%, #050E08 100%);
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.006) 0,transparent 1px,transparent 70px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.006) 0,transparent 1px,transparent 70px);
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 75% 60% at 50% 110%, rgba(200,241,53,.12), transparent 62%);
+}
+.page-hero-inner {
+  max-width: 1260px; margin: 0 auto;
+  padding: 5rem 3rem 4.5rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  position: relative; z-index: 2;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,241,53,.12); border: 1px solid rgba(200,241,53,.3);
+  color: var(--lime); padding: 5px 18px; border-radius: 40px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+.hero-badge::before { content: ''; width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+.hero-shield {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200,241,53,.18), rgba(200,241,53,.05));
+  border: 2px solid rgba(200,241,53,.28);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.6rem; font-size: 2.4rem;
+  box-shadow: 0 8px 32px rgba(200,241,53,.12);
+}
+.page-hero h1 {
+  font-family: var(--ff-head); font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: #fff; font-weight: 800; line-height: 1.08; letter-spacing: -.03em;
+  margin-bottom: .6rem;
+}
+.hero-sub {
+  font-size: clamp(.95rem, 2vw, 1.2rem); font-weight: 400;
+  color: rgba(200,241,53,.85); font-style: italic;
+  margin-bottom: 1.4rem;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-sub::before, .hero-sub::after { content: ''; width: 36px; height: 1px; background: linear-gradient(90deg,transparent,rgba(200,241,53,.45)); }
+.hero-sub::after { transform: scaleX(-1); }
+.hero-desc {
+  font-size: .95rem; color: rgba(255,255,255,.55); max-width: 680px; line-height: 1.9;
+  margin-bottom: 2rem;
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn-hero-primary {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--lime); color: var(--forest);
+  padding: .8rem 1.8rem; border-radius: var(--r);
+  font-family: var(--ff-head); font-size: .88rem; font-weight: 700;
+  transition: all var(--tr);
+}
+.btn-hero-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(174,219,26,.4); }
+.btn-hero-secondary {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.8); padding: .8rem 1.8rem; border-radius: var(--r);
+  font-size: .88rem; font-weight: 600; transition: all var(--tr);
+}
+.btn-hero-secondary:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
+.hero-rule { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--lime-dk), transparent); margin: 2rem auto 0; }
+
+/* QUICK ACCESS BAR */
+.quick-bar { background: var(--forest); border-bottom: 1px solid rgba(200,241,53,.12); padding: 1.2rem 3rem; }
+.quick-inner { max-width: 1260px; margin: 0 auto; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.quick-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.35); white-space: nowrap; }
+.quick-divider { width: 1px; height: 20px; background: rgba(255,255,255,.1); flex-shrink: 0; }
+.quick-link {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.7); padding: .38rem .9rem; border-radius: 6px;
+  font-size: .78rem; font-weight: 500; transition: all var(--tr);
+}
+.quick-link:hover { background: rgba(200,241,53,.1); border-color: rgba(200,241,53,.3); color: var(--lime); }
+.ql-badge { background: var(--forest-lt); color: #fff; font-size: .6rem; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
+
+/* ═══ PAGE LAYOUT ═══════════════════════════════ */
+.page { max-width: 1260px; margin: 0 auto; padding: 0 3rem 6rem; }
+
+/* ═══ SECTION BAND ══════════════════════════════ */
+.sec-band {
+  display: flex; align-items: stretch; border-radius: var(--rxl);
+  overflow: hidden; margin: 5rem 0 3rem; box-shadow: var(--sh3);
+}
+.sec-stripe { width: 7px; flex-shrink: 0; background: linear-gradient(180deg, var(--lime-dk), var(--lime)); }
+.sec-main { flex: 1; background: var(--forest); padding: 2.25rem 3rem; }
+.sec-ey { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .4rem; }
+.sec-main h2 { font-family: var(--ff-head); font-size: clamp(1.5rem, 3vw, 2.2rem); color: #fff; font-weight: 800; line-height: 1.15; margin-bottom: .65rem; letter-spacing: -.02em; }
+.sec-main p { font-size: .9rem; color: rgba(255,255,255,.55); line-height: 1.85; max-width: 700px; }
+.sec-num { display: flex; align-items: center; justify-content: center; background: rgba(200,241,53,.04); border-left: 1px solid rgba(255,255,255,.05); padding: 2rem 3rem; min-width: 120px; }
+.sec-dig { font-family: var(--ff-head); font-size: 5.5rem; font-weight: 800; color: rgba(255,255,255,.07); line-height: 1; }
+
+/* ═══ TYPOGRAPHY ═══════════════════════════════ */
+.h2 { font-family: var(--ff-head); font-size: 1.55rem; font-weight: 800; color: var(--forest); margin-bottom: .5rem; padding-bottom: .55rem; border-bottom: 2px solid var(--g200); position: relative; letter-spacing: -.02em; }
+.h2::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 50px; height: 2px; background: var(--lime-dk); }
+.h3 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--forest-mid); margin: 2rem 0 .6rem; display: flex; align-items: center; gap: .6rem; }
+.h3::before { content: ''; width: 4px; height: 18px; background: var(--lime-dk); border-radius: 2px; flex-shrink: 0; }
+.sub { font-size: .9rem; color: var(--g500); margin-bottom: 1.75rem; line-height: 1.7; }
+.prose { font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.1rem; }
+.prose:last-child { margin-bottom: 0; }
+.prose strong { color: var(--forest); font-weight: 600; }
+
+/* ═══ PORTAL CARDS ══════════════════════════════ */
+.portal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+.portal-card { border-radius: var(--rxl); overflow: hidden; box-shadow: var(--sh2); transition: all var(--tr); }
+.portal-card:hover { box-shadow: var(--sh3); transform: translateY(-3px); }
+.pc-head { padding: 2rem 2.25rem 1.5rem; position: relative; overflow: hidden; }
+.pc-head::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,.04), transparent); }
+.pc-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.22); color: #fff; padding: 3px 12px; border-radius: 20px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .75rem; }
+.pc-icon { font-size: 2.5rem; margin-bottom: .6rem; display: block; }
+.pc-title { font-family: var(--ff-head); font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: .3rem; }
+.pc-subtitle { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+.pc-body { background: var(--white); border: 1px solid var(--g200); border-top: none; border-radius: 0 0 var(--rxl) var(--rxl); padding: 1.75rem 2.25rem; }
+.pc-url { display: flex; align-items: center; gap: .6rem; background: var(--g100); border: 1px solid var(--g200); border-radius: var(--r); padding: .65rem 1rem; margin-bottom: 1rem; font-family: monospace; font-size: .78rem; color: var(--forest); word-break: break-all; }
+.pc-url-label { font-family: var(--ff-body); font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--g400); margin-right: .25rem; white-space: nowrap; }
+.pc-url a { color: var(--forest-lt); }
+.pc-url a:hover { color: var(--lime-dk); text-decoration: underline; }
+.pc-steps { list-style: none; counter-reset: step; }
+.pc-steps li { counter-increment: step; display: flex; gap: .75rem; align-items: flex-start; padding: .5rem 0; border-bottom: 1px solid var(--g100); font-size: .87rem; color: var(--text2); line-height: 1.65; }
+.pc-steps li:last-child { border-bottom: none; }
+.pc-steps li::before { content: counter(step); width: 22px; height: 22px; border-radius: 50%; background: var(--forest); color: #fff; font-size: .7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.pc-cta { display: block; text-align: center; margin-top: 1.25rem; padding: .8rem; background: var(--c, var(--forest-lt)); color: #fff; border-radius: var(--r); font-weight: 700; font-size: .88rem; text-decoration: none; transition: all var(--tr); }
+.pc-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+/* ═══ STEP FLOW ═════════════════════════════════ */
+.step-flow { display: flex; flex-direction: column; gap: 0; margin: 2rem 0; position: relative; }
+.step-flow::before { content: ''; position: absolute; left: 22px; top: 44px; bottom: 44px; width: 2px; background: linear-gradient(180deg, var(--lime-dk), var(--g200)); z-index: 0; }
+.step-item { display: grid; grid-template-columns: 50px 1fr; gap: 1.25rem; align-items: flex-start; margin-bottom: 1.75rem; position: relative; z-index: 1; }
+.step-item:last-child { margin-bottom: 0; }
+.step-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--ff-head); font-size: 1.15rem; font-weight: 800; color: #fff; flex-shrink: 0; box-shadow: var(--sh1); background: var(--forest); }
+.step-body { background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); padding: 1.25rem 1.5rem; box-shadow: var(--sh0); }
+.step-num { font-family: monospace; font-size: .65rem; font-weight: 600; color: var(--g400); margin-bottom: .2rem; text-transform: uppercase; letter-spacing: .08em; }
+.step-title { font-size: .97rem; font-weight: 700; color: var(--forest); margin-bottom: .3rem; }
+.step-desc { font-size: .87rem; color: var(--text2); line-height: 1.7; }
+.step-note { background: var(--g100); border: 1px solid var(--g200); border-radius: var(--r); padding: .6rem .85rem; margin-top: .65rem; font-size: .82rem; color: var(--g500); line-height: 1.6; display: flex; align-items: flex-start; gap: .5rem; }
+
+/* ═══ INFO BOXES ════════════════════════════════ */
+.info-box { border-radius: var(--rl); padding: 1.4rem 1.7rem; margin: 1.5rem 0; }
+.info-box.gold { background: var(--lime-pale); border: 1px solid rgba(174,219,26,.25); border-left: 5px solid var(--lime-dk); }
+.info-box.navy { background: var(--g100); border: 1px solid var(--g200); border-left: 5px solid var(--forest-mid); }
+.info-box.green { background: var(--green-lt); border: 1px solid rgba(26,64,48,.15); border-left: 5px solid var(--forest-lt); }
+.info-box.red { background: var(--red-lt); border: 1px solid rgba(123,26,26,.15); border-left: 5px solid var(--red); }
+.info-box.amber { background: var(--amber-lt); border: 1px solid rgba(122,80,16,.18); border-left: 5px solid var(--amber); }
+.info-box.teal { background: var(--teal-lt); border: 1px solid rgba(26,64,48,.15); border-left: 5px solid var(--forest); }
+.info-box.blue { background: var(--blue-lt); border: 1px solid rgba(26,56,96,.15); border-left: 5px solid var(--blue); }
+.ib-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin-bottom: .6rem; display: flex; align-items: center; gap: 7px; }
+.info-box.gold .ib-title { color: var(--forest); }
+.info-box.navy .ib-title { color: var(--forest-mid); }
+.info-box.green .ib-title { color: var(--forest-lt); }
+.info-box.red .ib-title { color: var(--red); }
+.info-box.amber .ib-title { color: var(--amber); }
+.info-box.teal .ib-title { color: var(--forest); }
+.info-box.blue .ib-title { color: var(--blue); }
+.info-box ul { list-style: none; }
+.info-box ul li { font-size: .89rem; color: var(--text2); padding: .3rem 0 .3rem 14px; position: relative; line-height: 1.65; }
+.info-box ul li::before { content: '›'; position: absolute; left: 0; color: var(--lime-dk); font-weight: 700; }
+.info-box p { font-size: .9rem; color: var(--text2); line-height: 1.8; }
+
+/* ═══ DATA TABLE ════════════════════════════════ */
+.data-table { width: 100%; border-collapse: collapse; border-radius: var(--rl); overflow: hidden; border: 1px solid var(--g200); margin: 1.5rem 0; box-shadow: var(--sh0); }
+.data-table thead th { background: var(--forest); color: #fff; padding: 11px 15px; text-align: left; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.data-table tbody td { padding: 10px 15px; border-bottom: 1px solid var(--g100); font-size: .87rem; color: var(--text2); vertical-align: top; line-height: 1.65; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:nth-child(even) td { background: var(--g100); }
+.data-table td:first-child { font-weight: 600; color: var(--forest); white-space: nowrap; width: 200px; }
+.badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.badge.required { background: var(--green-lt); color: var(--forest-lt); }
+.badge.optional { background: var(--g100); color: var(--g500); }
+.badge.automated { background: var(--blue-lt); color: var(--blue); }
+.badge.manual { background: var(--amber-lt); color: var(--amber); }
+
+/* ═══ FEATURE GRID ══════════════════════════════ */
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+.feat-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); padding: 1.5rem; box-shadow: var(--sh0); transition: all var(--tr); position: relative; overflow: hidden; }
+.feat-card:hover { box-shadow: var(--sh1); transform: translateY(-2px); }
+.feat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--fc, var(--lime-dk)); }
+.feat-icon { font-size: 1.6rem; margin-bottom: .7rem; }
+.feat-title { font-size: .93rem; font-weight: 700; color: var(--forest); margin-bottom: .3rem; }
+.feat-desc { font-size: .83rem; color: var(--text2); line-height: 1.7; }
+
+/* ═══ WARNING BOX ═══════════════════════════════ */
+.warn-box { background: linear-gradient(135deg, rgba(123,26,26,.06), rgba(123,26,26,.02)); border: 1px solid rgba(123,26,26,.2); border-radius: var(--rl); padding: 1.5rem 1.75rem; margin: 1.5rem 0; }
+.warn-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--red); margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
+.warn-list { list-style: none; }
+.warn-list li { font-size: .89rem; color: var(--text2); padding: .35rem 0 .35rem 20px; position: relative; line-height: 1.65; border-bottom: 1px solid rgba(123,26,26,.07); }
+.warn-list li:last-child { border-bottom: none; }
+.warn-list li::before { content: '⚠'; position: absolute; left: 0; font-size: .8rem; }
+
+/* ═══ COMPARISON TABLE ══════════════════════════ */
+.comp-table { width: 100%; border-collapse: collapse; border-radius: var(--rl); overflow: hidden; border: 1px solid var(--g200); margin: 1.5rem 0; box-shadow: var(--sh0); }
+.comp-table th { background: var(--forest); color: #fff; padding: 11px 16px; text-align: left; font-size: .7rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.comp-table td { padding: 10px 16px; border-bottom: 1px solid var(--g100); font-size: .87rem; color: var(--text2); vertical-align: top; line-height: 1.6; }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table td:first-child { font-weight: 600; color: var(--forest); width: 200px; }
+.check { color: var(--forest-lt); font-weight: 700; }
+.cross { color: var(--red); font-weight: 700; }
+.dot-o { color: var(--amber); font-weight: 700; }
+
+/* ═══ CERT GRID ═════════════════════════════════ */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+.cert-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); padding: 1.5rem; box-shadow: var(--sh0); transition: all var(--tr); }
+.cert-card:hover { box-shadow: var(--sh1); }
+.cert-level { font-family: monospace; font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .3rem; }
+.cert-name { font-family: var(--ff-head); font-size: 1rem; font-weight: 800; color: var(--forest); margin-bottom: .5rem; }
+.cert-id-format { background: var(--g100); border: 1px solid var(--g200); border-radius: var(--r); padding: .45rem .75rem; font-family: monospace; font-size: .8rem; color: var(--forest-mid); margin-bottom: .6rem; }
+.cert-desc { font-size: .84rem; color: var(--text2); line-height: 1.65; }
+
+/* ═══ CONTACT GRID ══════════════════════════════ */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+.contact-card { background: var(--white); border: 1px solid var(--g200); border-radius: var(--rl); padding: 2rem; box-shadow: var(--sh1); transition: all var(--tr); }
+.contact-card:hover { box-shadow: var(--sh2); }
+.cc-icon { font-size: 2.2rem; margin-bottom: .9rem; }
+.cc-title { font-family: var(--ff-head); font-size: 1.15rem; font-weight: 800; color: var(--forest); margin-bottom: .3rem; }
+.cc-sub { font-size: .8rem; color: var(--g500); margin-bottom: 1rem; }
+.cc-link { display: block; font-family: monospace; font-size: .88rem; color: var(--forest-lt); word-break: break-all; padding: .6rem .85rem; background: var(--g100); border: 1px solid var(--g200); border-radius: var(--r); text-decoration: none; transition: all var(--tr); margin-bottom: .75rem; }
+.cc-link:hover { background: var(--lime-pale); border-color: rgba(174,219,26,.3); color: var(--forest); }
+.cc-hours { font-size: .83rem; color: var(--text2); line-height: 1.7; }
+.cc-hours strong { color: var(--forest); }
+
+/* ═══ FAQ ═══════════════════════════════════════ */
+.faq-list { margin: 1.5rem 0; }
+.faq-item { border: 1px solid var(--g200); border-radius: var(--rl); margin-bottom: .75rem; overflow: hidden; box-shadow: var(--sh0); }
+.faq-q { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.5rem; cursor: pointer; user-select: none; transition: background var(--tr); background: var(--white); }
+.faq-q:hover { background: var(--g100); }
+.faq-icon { width: 26px; height: 26px; border-radius: 6px; background: var(--forest); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; transition: all var(--tr); }
+.faq-item.open .faq-icon { background: var(--lime-dk); transform: rotate(45deg); color: var(--forest); }
+.faq-question { font-size: .93rem; font-weight: 600; color: var(--forest); flex: 1; }
+.faq-toggle { font-size: .9rem; color: var(--g400); flex-shrink: 0; transition: transform var(--tr); }
+.faq-item.open .faq-toggle { transform: rotate(180deg); }
+.faq-a { display: none; padding: 0 1.5rem 1.25rem; font-size: .9rem; color: var(--text2); line-height: 1.8; background: var(--white); }
+.faq-item.open .faq-a { display: block; }
+
+/* ═══ DIVIDER ═══════════════════════════════════ */
+.divider { height: 1px; background: var(--g200); margin: 3rem 0; }
+
+/* ═══ SCROLL TO TOP ═════════════════════════════ */
+.st { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 100; width: 42px; height: 42px; background: var(--lime-dk); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--forest); font-size: .95rem; text-decoration: none; box-shadow: var(--sh1); transition: all var(--tr); opacity: 0; visibility: hidden; }
+.st.show { opacity: 1; visibility: visible; }
+.st:hover { background: var(--lime); transform: translateY(-3px); }
+
+/* ═══ FOOTER ════════════════════════════════════ */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* ═══ RESPONSIVE ════════════════════════════════ */
+@media (max-width: 1024px) {
+  .nav-links { gap: .02rem; }
+  .nav-link { font-size: .67rem; padding: 5px 8px; }
+}
+@media (max-width: 900px) {
+  .sec-num { display: none; }
+  .portal-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .nav { padding: 0 1.2rem; }
+  .page { padding: 0 1.2rem 4rem; }
+  .quick-bar { padding: 1rem 1.2rem; }
+  .page-hero-inner { padding: 3rem 1.2rem 3rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link act">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qualifications.html#professional" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" id="top">
+  <div class="page-hero-inner">
+    <div class="hero-badge">Official Verification Framework · 2024 Edition</div>
+    <div class="hero-shield">🛡️</div>
+    <h1>Certificate Verification Guidelines</h1>
+    <div class="hero-sub">Chartered Institute of Leadership and Governance</div>
+    <p class="hero-desc">The authoritative guide to verifying the authenticity of all CILG qualifications, professional certifications, membership designations, and post-nominal credentials — for employers, academic institutions, regulatory bodies, professional partners, and certificate holders.</p>
+    <div class="hero-cta">
+      <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="btn-hero-primary">🌐 Verify Online Now</a>
+      <a href="mailto:verify@certificate@cilgglobal.org" class="btn-hero-secondary">✉️ Manual Verification Request</a>
+    </div>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+
+<!-- QUICK ACCESS BAR -->
+<div class="quick-bar">
+  <div class="quick-inner">
+    <span class="quick-label">Quick Access</span>
+    <div class="quick-divider"></div>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="quick-link">🌐 Online Verification Portal <span class="ql-badge">Live</span></a>
+    <a href="mailto:verify@certificate@cilgglobal.org" class="quick-link">✉️ verify@certificate@cilgglobal.org</a>
+    <a href="#certificates" class="quick-link">📄 Certificate Reference Codes</a>
+    <a href="#security" class="quick-link">🔐 Security Features</a>
+    <a href="#faq" class="quick-link">❓ FAQs</a>
+  </div>
+</div>
+
+<main>
+<div class="page">
+
+  <!-- ══ SECTION 1 — OVERVIEW ══ -->
+  <div class="sec-band" id="overview">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section One</div>
+      <h2>Overview and Purpose of Certificate Verification</h2>
+      <p>CILG's verification framework is the definitive mechanism through which employers, institutions, and professional partners may confirm the authenticity and currency of any CILG credential — protecting the integrity of the profession and the value of every genuine CILG qualification.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">1</div></div>
+  </div>
+
+  <h2 class="h2">1.1 Why Certificate Verification Matters</h2>
+  <p class="sub">Protecting the value of genuine CILG qualifications and the integrity of the governance profession</p>
+
+  <p class="prose">The Chartered Institute of Leadership and Governance (CILG) issues formal certificates, designations, and post-nominal credentials that represent significant professional achievement. Each credential is the product of rigorous examination, assessed professional experience, and demonstrated commitment to the CILG Code of Professional Conduct. The integrity of these credentials — their trustworthiness as indicators of genuine professional competence — is one of CILG's most important institutional assets and one of its primary obligations to the profession and to the public.</p>
+  <p class="prose">Certificate verification exists to protect three distinct groups. <strong>Employers and institutions</strong> rely on CILG credentials when making hiring, promotion, and governance appointment decisions; verification ensures that the credentials they rely upon are genuine and current. <strong>Certificate holders</strong> benefit when employers and partners can easily confirm the authenticity of their credentials — protecting the investment they have made in their professional development from the damage caused by fraudulent claimants. <strong>The governance profession</strong> depends on the maintenance of credentialing standards; every fraudulent credential that goes undetected undermines the professional standing of every genuine credential holder.</p>
+  <p class="prose">CILG provides two verification channels — an <strong>Online Verification Portal</strong> for immediate, automated verification and a <strong>Manual Verification Service</strong> for complex, bulk, or sensitive verification requests — ensuring that credential verification is accessible, reliable, and responsive to the diverse needs of those who rely on it.</p>
+
+  <div class="feat-grid">
+    <div class="feat-card" style="--fc:#2D6347">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">Instant Online Verification</div>
+      <div class="feat-desc">Real-time credential verification through the CILG Online Verification Portal — available 24/7, no registration required, results in seconds.</div>
+    </div>
+    <div class="feat-card" style="--fc:#1A4030">
+      <div class="feat-icon">🛡️</div>
+      <div class="feat-title">Tamper-Evident Certificates</div>
+      <div class="feat-desc">All CILG certificates incorporate multi-layer security features including unique QR codes, watermarks, embossed seals, and cryptographic verification signatures.</div>
+    </div>
+    <div class="feat-card" style="--fc:#AEDB1A">
+      <div class="feat-icon">🗃️</div>
+      <div class="feat-title">Live Register of Members</div>
+      <div class="feat-desc">The CILG Public Register of Members at www.cilg.org/register is updated in real-time and displays current membership grade, status, and post-nominal entitlement.</div>
+    </div>
+    <div class="feat-card" style="--fc:#3A1060">
+      <div class="feat-icon">✉️</div>
+      <div class="feat-title">Manual Verification Service</div>
+      <div class="feat-desc">Dedicated manual verification for bulk requests, legal proceedings, regulatory enquiries, and sensitive institutional use-cases — handled by the CILG Credentials Team.</div>
+    </div>
+    <div class="feat-card" style="--fc:#7B1A1A">
+      <div class="feat-icon">🔔</div>
+      <div class="feat-title">Fraud Reporting</div>
+      <div class="feat-desc">CILG maintains a dedicated fraud reporting mechanism for suspected credential misrepresentation — with prompt investigation and legal referral where appropriate.</div>
+    </div>
+    <div class="feat-card" style="--fc:#1A3860">
+      <div class="feat-icon">📋</div>
+      <div class="feat-title">Verification Certificates</div>
+      <div class="feat-desc">Upon request, CILG issues formal written Verification Certificates — official CILG documents confirming the authenticity of a credential for legal, regulatory, or institutional purposes.</div>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:3rem">1.2 Who Should Use This Guide</h2>
+  <p class="prose">This verification guide is intended for all parties who need to confirm the authenticity, currency, and scope of CILG credentials. Primary audiences include:</p>
+
+  <div class="info-box navy">
+    <div class="ib-title">👥 Primary Verification Audiences</div>
+    <ul>
+      <li><strong>Employers and Recruitment Professionals:</strong> HR managers, talent acquisition specialists, and hiring managers verifying the credentials of job applicants, existing employees, or contractors who claim CILG qualifications or membership designations</li>
+      <li><strong>Boards of Directors and Governance Committees:</strong> Nomination committees, company secretaries, and board chairs verifying the governance credentials of prospective non-executive directors, trustees, committee members, and governance advisors</li>
+      <li><strong>Regulatory and Supervisory Bodies:</strong> Financial regulators, professional licensing authorities, government agencies, and oversight bodies verifying credentials as part of fit-and-proper assessments or regulatory authorisation processes</li>
+      <li><strong>Academic Institutions:</strong> Universities, business schools, and professional development institutions verifying credentials for admission purposes, academic recognition, or professional qualification mapping</li>
+      <li><strong>Legal Professionals:</strong> Solicitors, barristers, attorneys, and courts requiring certified verification of professional credentials for legal proceedings, dispute resolution, or professional disciplinary matters</li>
+      <li><strong>Professional Procurement Teams:</strong> Organisations verifying the professional credentials of governance consultants, advisors, and service providers as part of procurement and due diligence processes</li>
+      <li><strong>Individual Credential Holders:</strong> CILG members who wish to obtain official written confirmation of their own credentials for professional, employment, or immigration purposes</li>
+      <li><strong>International Partners and Mutual Recognition Bodies:</strong> Peer professional bodies and institutions verifying CILG credentials as part of mutual recognition assessment or professional equivalency processes</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 2 — ONLINE PORTAL ══ -->
+  <div class="sec-band" id="online">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Two</div>
+      <h2>Online Verification Portal</h2>
+      <p>The CILG Online Verification Portal provides instant, automated verification of all CILG credentials — available 24 hours a day, seven days a week, without registration or fee. It is the fastest and most convenient verification method for routine credential checks.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">2</div></div>
+  </div>
+
+  <div class="portal-grid">
+    <div class="portal-card">
+      <div class="pc-head" style="background:linear-gradient(135deg,#0A3A20,#1A6B4A)">
+        <span class="pc-badge">🌐 Recommended Method</span>
+        <span class="pc-icon">🖥️</span>
+        <div class="pc-title">Online Verification Portal</div>
+        <div class="pc-subtitle">Instant automated credential verification — no registration required</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-url">
+          <span class="pc-url-label">Portal URL</span>
+          <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">https://cilgglobal.org/cilg/user/</a>
+        </div>
+        <p style="font-size:.84rem;color:var(--g500);margin-bottom:.9rem;line-height:1.65">Enter any CILG certificate number, membership ID, or post-nominal designation to instantly verify credential authenticity and current status.</p>
+        <ol class="pc-steps">
+          <li>Navigate to the portal at the URL above</li>
+          <li>Enter the CILG Certificate Number or Membership ID in the search field</li>
+          <li>Optionally enter the credential holder's full name to narrow results</li>
+          <li>Click "Verify" to run the real-time database check</li>
+          <li>Review the verification result and download or print the result page if required</li>
+        </ol>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="pc-cta" style="--c:var(--forest-lt)">Access Verification Portal →</a>
+      </div>
+    </div>
+    <div class="portal-card">
+      <div class="pc-head" style="background:linear-gradient(135deg,#0A2A5C,#1E4A8A)">
+        <span class="pc-badge">📱 Also Available</span>
+        <span class="pc-icon">📷</span>
+        <div class="pc-title">QR Code Verification</div>
+        <div class="pc-subtitle">Scan the QR code printed on any physical CILG certificate</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-url">
+          <span class="pc-url-label">Method</span>
+          <span style="font-size:.78rem;color:var(--forest)">Scan QR code on CILG certificate with any smartphone camera</span>
+        </div>
+        <p style="font-size:.84rem;color:var(--g500);margin-bottom:.9rem;line-height:1.65">Every CILG certificate issued from 2020 onwards carries a unique QR code that links directly to the credential's verification record in the CILG database.</p>
+        <ol class="pc-steps">
+          <li>Obtain the physical CILG certificate or a clear digital image of it</li>
+          <li>Locate the QR code printed in the lower-right corner of the certificate</li>
+          <li>Open the camera application on any iOS or Android smartphone</li>
+          <li>Point the camera at the QR code — a verification link will appear automatically</li>
+          <li>Tap the link to open the live verification record in your browser</li>
+        </ol>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="pc-cta" style="--c:var(--forest-mid)">Verify via Portal Instead →</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:3rem">2.1 Step-by-Step Portal Verification Guide</h2>
+  <p class="sub">A detailed walkthrough of the online verification process for first-time and regular users</p>
+
+  <div class="step-flow">
+    <div class="step-item">
+      <div class="step-circle" style="background:var(--forest-lt)">1</div>
+      <div class="step-body">
+        <div class="step-num">Step 01 · Access</div>
+        <div class="step-title">Navigate to the CILG Verification Portal</div>
+        <div class="step-desc">Open any modern web browser and navigate to <strong>https://cilgglobal.org/cilg/user/</strong>. No login, registration, or account creation is required. The portal is accessible from all devices including smartphones, tablets, and desktop computers. The portal operates 24 hours a day, 7 days a week, including public holidays.</div>
+        <div class="step-note">💡 Tip: Bookmark the portal URL for quick access on future verification requests. Always navigate directly to the URL — do not follow verification links in unsolicited emails, as these may be fraudulent imitations.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <div class="step-num">Step 02 · Input</div>
+        <div class="step-title">Enter the Credential Identifier</div>
+        <div class="step-desc">In the verification search field, enter one or more of the following: the <strong>CILG Certificate Number</strong> (printed on the face of all CILG certificates, formatted as CILG-XXXX-XXXXXXXX); the <strong>CILG Membership ID</strong> (displayed on the CILG membership card and in the member's online profile); or the credential holder's <strong>full registered name</strong> combined with their known membership grade or post-nominal (e.g., "John Smith ACILG"). For the most precise results, use the Certificate Number or Membership ID.</div>
+        <div class="step-note">📋 Note: Certificate Numbers are printed on the face of all CILG certificates in the format CILG-[YEAR]-[UNIQUE ID]. They are also visible in the member's CILG Members' Portal profile. If you cannot locate the certificate number, ask the credential holder to provide it directly from their Portal profile, or contact the CILG Credentials Team.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">3</div>
+      <div class="step-body">
+        <div class="step-num">Step 03 · Search</div>
+        <div class="step-title">Submit the Verification Request</div>
+        <div class="step-desc">Click the "Verify" or "Search" button to submit the query to the CILG credentials database. The system performs a real-time lookup against the live CILG member and certificate records. The search typically returns results within two to three seconds. If no result is returned within ten seconds, check the internet connection and try again. If repeated searches return no results, the credential may not exist in the CILG database — which may indicate a fraudulent claim.</div>
+        <div class="step-note">⚡ The verification portal queries the live CILG database in real time — there is no data lag or refresh delay. Results reflect the credential's status as of the moment the search is submitted.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">4</div>
+      <div class="step-body">
+        <div class="step-num">Step 04 · Review</div>
+        <div class="step-title">Interpret the Verification Result</div>
+        <div class="step-desc">The verification result page displays the credential's current status and details. Review all displayed information carefully against the credential being verified. The result page will show one of three primary status indicators: <strong style="color:var(--forest-lt)">VERIFIED — ACTIVE</strong> (the credential is genuine and the holder is currently in good standing); <strong style="color:var(--amber)">VERIFIED — SUSPENDED/LAPSED</strong> (the credential exists but the member's standing is currently impaired — see Section 4 for implications); or <strong style="color:var(--red)">NOT FOUND / VERIFICATION FAILED</strong> (no matching credential exists in the CILG database — see Section 6 for reporting).</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">5</div>
+      <div class="step-body">
+        <div class="step-num">Step 05 · Record</div>
+        <div class="step-title">Save or Print the Verification Result</div>
+        <div class="step-desc">For employment, regulatory, or institutional purposes, save a record of the verification result. Options include: using the browser's "Print" function to print or save-as-PDF the result page; downloading the result using the "Download Result" button where available; or taking a dated screenshot of the result page. For formal legal or regulatory purposes where a signed written confirmation is required, use the Manual Verification Service described in Section 3.</div>
+        <div class="step-note">📝 Best practice: Record the date and time of the verification search along with the result, and retain this record in the relevant personnel or compliance file. The verification portal does not retain individual search records on behalf of the verifying party.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-circle">6</div>
+      <div class="step-body">
+        <div class="step-num">Step 06 · Act</div>
+        <div class="step-title">Respond to the Verification Outcome</div>
+        <div class="step-desc">Use the verification result to inform the relevant employment, governance, regulatory, or procurement decision. If the result confirms active, good-standing membership, the credential is genuine and current. If the result indicates a suspended, lapsed, or impaired status, contact the credential holder to understand the circumstances — or contact the CILG Credentials Team at <a href="mailto:verify@certificate@cilgglobal.org" style="color:var(--forest-lt)">verify@certificate@cilgglobal.org</a> for further information. If no matching credential is found and fraud is suspected, report it using the process in Section 6.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:3rem">2.2 Understanding Verification Results</h2>
+  <p class="sub">A guide to interpreting what the portal displays and the professional implications of each result status</p>
+
+  <table class="data-table">
+    <thead><tr><th>Status Displayed</th><th>Meaning</th><th>Data Shown</th><th>Action Recommended</th></tr></thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--forest-lt)">✅ VERIFIED — ACTIVE</td>
+        <td>The credential is genuine, the certificate number is valid, and the member is currently in good standing with all obligations met</td>
+        <td>Full name, membership grade, post-nominal, grade confirmation date, CPD status, and public register listing link</td>
+        <td>Accept the credential as genuine and current. Proceed with confidence</td>
+      </tr>
+      <tr>
+        <td style="color:var(--amber)">⚠️ VERIFIED — SUSPENDED</td>
+        <td>The credential is genuine but the member's standing is currently suspended — most commonly due to subscription arrears or CPD non-compliance</td>
+        <td>Full name, grade, suspension reason category (not full detail), and suspension date</td>
+        <td>Contact the credential holder to understand circumstances. Suspension may be temporary. Contact CILG Credentials Team for further detail</td>
+      </tr>
+      <tr>
+        <td style="color:var(--amber)">⚠️ VERIFIED — LAPSED</td>
+        <td>The credential was genuine at the time of issue but the membership has since lapsed. The member is no longer an active CILG member</td>
+        <td>Full name, grade at time of lapse, lapse date, and original certificate issuance date</td>
+        <td>The credential reflects the level achieved at the date of issue but should not be accepted as evidence of current active membership. Clarify with the credential holder</td>
+      </tr>
+      <tr>
+        <td style="color:var(--amber)">⚠️ VERIFIED — UNDER INVESTIGATION</td>
+        <td>The credential is genuine and the member is active, but a disciplinary investigation is currently in progress</td>
+        <td>Status notation only — no detail of the investigation is disclosed</td>
+        <td>Exercise caution in high-stakes governance appointments. Contact CILG Credentials Team directly for relevant further information</td>
+      </tr>
+      <tr>
+        <td style="color:var(--red)">❌ NOT FOUND</td>
+        <td>No matching credential exists in the CILG database for the identifier entered</td>
+        <td>No data — negative result only</td>
+        <td>Re-check the identifier for typographical errors. If the credential remains unverified after a corrected search, treat the claim as unverified. Report suspected fraud per Section 6</td>
+      </tr>
+      <tr>
+        <td style="color:var(--red)">❌ TERMINATED</td>
+        <td>The member's membership has been terminated by CILG following a disciplinary finding or other significant breach of membership obligations</td>
+        <td>Full name, termination date, and notation that post-nominal may not be used</td>
+        <td>Do not accept the credential as current. The individual is no longer a member of CILG and may not use the CILG post-nominal</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SECTION 3 — MANUAL VERIFICATION ══ -->
+  <div class="sec-band" id="manual">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Three</div>
+      <h2>Manual Verification Service</h2>
+      <p>CILG's Manual Verification Service provides formal written verification of credentials for legal proceedings, regulatory submissions, bulk institutional checks, and other purposes where the Online Portal result alone is insufficient. All manual verification requests are handled personally by the CILG Credentials Team.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">3</div></div>
+  </div>
+
+  <h2 class="h2">3.1 When to Use Manual Verification</h2>
+  <p class="sub">Manual verification is the appropriate channel for formal, sensitive, or complex credential confirmation needs</p>
+
+  <p class="prose">The Online Verification Portal is sufficient for the majority of routine credential checks. However, the Manual Verification Service should be used in the following circumstances:</p>
+
+  <div class="info-box teal">
+    <div class="ib-title">📋 Use Manual Verification When</div>
+    <ul>
+      <li>A <strong>formal written Verification Certificate</strong> is required — signed by a CILG authorised officer on official CILG letterhead — for legal proceedings, regulatory submissions, immigration applications, or formal institutional decisions</li>
+      <li>You are verifying credentials for a <strong>legal or regulatory purpose</strong> where the portal result alone may not be accepted as sufficient documentary evidence by a court, regulator, or formal institutional process</li>
+      <li>You need to verify <strong>multiple credentials in bulk</strong> — for example, verifying the CILG credentials of an entire board, governance team, or shortlisted candidate pool simultaneously</li>
+      <li>The <strong>Online Portal does not return a clear result</strong> and you have reason to believe the credential may be genuine despite the failed search (for example, an older certificate issued before the digital verification system was implemented)</li>
+      <li>You are verifying credentials for a credential holder who is <strong>deceased</strong> and require posthumous confirmation for estate, pension, or insurance purposes</li>
+      <li>You need to verify <strong>historical credentials</strong> — qualifications or membership designations from periods more than five years prior to the date of enquiry</li>
+      <li>You are a <strong>journalist, researcher, or academic institution</strong> conducting a formal study of governance credentialing and require verified data about CILG credential issuance (subject to CILG data protection obligations)</li>
+      <li>You are a <strong>peer professional body or MRA partner</strong> conducting a formal equivalency or mutual recognition assessment and require authenticated credential data</li>
+    </ul>
+  </div>
+
+  <h2 class="h2" style="margin-top:2.5rem">3.2 How to Submit a Manual Verification Request</h2>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="cc-icon">✉️</div>
+      <div class="cc-title">Email Verification Request</div>
+      <div class="cc-sub">Primary channel for all manual verification requests</div>
+      <a class="cc-link" href="mailto:verify@certificate@cilgglobal.org">verify@certificate@cilgglobal.org</a>
+      <div class="cc-hours">
+        <p><strong>Response Time (Standard):</strong> 3–5 business days</p>
+        <p><strong>Response Time (Urgent — declared at time of request):</strong> 24–48 business hours (surcharge applies)</p>
+        <p><strong>Formal Written Verification Certificate:</strong> Issued within 5–7 business days of request confirmation</p>
+        <p style="margin-top:.5rem;font-size:.8rem;color:var(--g500)">Email responses are sent from @cilgglobal.org domain only. Verify the sender address before acting on any verification email.</p>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="cc-icon">📋</div>
+      <div class="cc-title">What to Include in Your Request</div>
+      <div class="cc-sub">Required information for all manual verification requests</div>
+      <div class="cc-hours">
+        <p><strong>Mandatory information:</strong></p>
+        <ul style="list-style:none;margin-top:.4rem;margin-bottom:.75rem">
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> Full legal name of the credential holder (as it would appear on the CILG certificate)</li>
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> CILG Certificate Number and/or CILG Membership ID (if known)</li>
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> The specific credential(s) to be verified and the approximate year of issue</li>
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> The purpose of verification (employment, regulatory, legal, etc.)</li>
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> Your full name, organisation, role, and contact details</li>
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> Whether a formal written Verification Certificate is required</li>
+          <li style="font-size:.85rem;color:var(--text2);padding:.2rem 0 .2rem 14px;position:relative;line-height:1.55"><span style="position:absolute;left:0;color:var(--lime-dk)">›</span> Whether this is an urgent request</li>
+        </ul>
+        <p><strong>Helpful supporting information:</strong> A copy of the certificate being verified (if available) will significantly accelerate processing.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:2.5rem">3.3 Manual Verification Fees</h2>
+
+  <table class="data-table">
+    <thead><tr><th>Service Type</th><th>Description</th><th>Fee</th><th>Turnaround</th></tr></thead>
+    <tbody>
+      <tr><td>Standard Verification</td><td>Email confirmation of credential authenticity and current status — suitable for most employment and governance purposes</td><td>Free</td><td>3–5 business days</td></tr>
+      <tr><td>Urgent Verification</td><td>Prioritised email response — for time-sensitive employment, governance, or regulatory decisions</td><td>USD 25 per credential</td><td>24–48 business hours</td></tr>
+      <tr><td>Formal Verification Certificate</td><td>Official CILG letterhead certificate confirming credential authenticity, signed by an authorised CILG officer — for legal, regulatory, or court purposes</td><td>USD 50 per certificate</td><td>5–7 business days</td></tr>
+      <tr><td>Apostille-Ready Verification</td><td>Official Verification Certificate prepared for apostille authentication — for international use requiring US State Department or state-level notarisation</td><td>USD 75 per certificate + government apostille fee</td><td>7–10 business days</td></tr>
+      <tr><td>Bulk Verification (5+ credentials)</td><td>Simultaneous verification of five or more credentials submitted in a single request — for board reviews, institutional audits, or large-scale talent processes</td><td>USD 15 per credential (minimum 5)</td><td>5–7 business days</td></tr>
+      <tr><td>Historical Credential Verification</td><td>Verification of credentials issued more than five years prior to the enquiry date — may require archive research</td><td>USD 35 per credential</td><td>7–10 business days</td></tr>
+      <tr><td>Self-Verification Certificate</td><td>For CILG members requesting official written confirmation of their own current credentials — for CV, employment, immigration, or professional profile purposes</td><td>Free (members); USD 25 (lapsed members)</td><td>3–5 business days</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box gold">
+    <div class="ib-title">💳 Fee Payment</div>
+    <ul>
+      <li>Fees for paid verification services are invoiced by CILG upon confirmation that the request has been received and will be processed. Payment is required before the Verification Certificate is issued</li>
+      <li>Payment is accepted by credit card, debit card, or bank transfer via a secure payment link sent with the invoice</li>
+      <li>Verification fees are non-refundable once the verification has been completed, regardless of the result</li>
+      <li>Bulk verification requests of 20 or more credentials should contact corporate@cilgglobal.org to discuss volume pricing arrangements</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 4 — CERTIFICATE TYPES ══ -->
+  <div class="sec-band" id="certificates">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Four</div>
+      <h2>CILG Certificate and Credential Types</h2>
+      <p>CILG issues credentials across five principal categories — each with a distinct reference code format, physical and digital security features, and specific scope of professional recognition. Understanding the credential type is essential for accurate verification.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">4</div></div>
+  </div>
+
+  <h2 class="h2">4.1 Qualification Certificates</h2>
+  <p class="sub">Issued on successful completion of each level of the CILG Professional Qualification Framework</p>
+
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-level" style="color:var(--forest-lt)">Level 1</div>
+      <div class="cert-name">Foundation Certificate in Leadership and Governance</div>
+      <div class="cert-id-format">CILG-L1-CERT-[YEAR]-[XXXXXXXX]</div>
+      <div class="cert-desc">Awarded on passing all 5 Level 1 modules (minimum 50% per module). Entry-level qualification. Basis for Affiliate Membership (AfCILG).</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-level" style="color:var(--forest-lt)">Level 2</div>
+      <div class="cert-name">Certificate in Leadership and Governance (Knowledge Level)</div>
+      <div class="cert-id-format">CILG-L2-CERT-[YEAR]-[XXXXXXXX]</div>
+      <div class="cert-desc">Awarded on passing all 5 Level 2 modules. Professional knowledge-level qualification. Prerequisite for Level 3.</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-level" style="color:var(--amber)">Level 3</div>
+      <div class="cert-name">Diploma in Leadership and Governance (Skills Level)</div>
+      <div class="cert-id-format">CILG-L3-DIP-[YEAR]-[XXXXXXXX]</div>
+      <div class="cert-desc">Awarded on passing all 5 Level 3 modules and meeting experience requirements. Basis for Associate Membership (ACILG).</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-level" style="color:var(--blue)">Level 4</div>
+      <div class="cert-name">Advanced Diploma in Leadership and Governance</div>
+      <div class="cert-id-format">CILG-L4-ADIP-[YEAR]-[XXXXXXXX]</div>
+      <div class="cert-desc">Awarded on passing all 5 Level 4 modules including Viva Voce. Basis for Full Membership (MCILG).</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-level" style="color:var(--red)">Level 5</div>
+      <div class="cert-name">Chartered Professional in Leadership and Governance</div>
+      <div class="cert-id-format">CILG-L5-CP-[YEAR]-[XXXXXXXX]</div>
+      <div class="cert-desc">Awarded on completing all Level 5 modules including Capstone and Oral Defence. Basis for Fellowship (FCILG).</div>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:2.5rem">4.2 Membership Designation Credentials</h2>
+  <p class="sub">Post-nominal membership designations issued upon admission to each CILG membership grade</p>
+
+  <table class="data-table">
+    <thead><tr><th>Designation</th><th>Post-nominal</th><th>Credential Format</th><th>Basis for Issuance</th><th>CPD Compliance Shown</th></tr></thead>
+    <tbody>
+      <tr><td>Student Member</td><td>SCILG</td><td>CILG-MEM-SC-[YEAR]-[ID]</td><td>Enrolment in Level 1</td><td><span class="badge optional">N/A</span></td></tr>
+      <tr><td>Affiliate Member</td><td>AfCILG</td><td>CILG-MEM-AF-[YEAR]-[ID]</td><td>Level 1 completion + registration</td><td><span class="badge automated">Auto-checked</span></td></tr>
+      <tr><td>Associate Member</td><td>ACILG</td><td>CILG-MEM-AC-[YEAR]-[ID]</td><td>Level 3 + experience + upgrade approval</td><td><span class="badge automated">Auto-checked</span></td></tr>
+      <tr><td>Full Member</td><td>MCILG</td><td>CILG-MEM-MC-[YEAR]-[ID]</td><td>Level 4 + Viva Voce + senior experience</td><td><span class="badge automated">Auto-checked</span></td></tr>
+      <tr><td>Fellow</td><td>FCILG</td><td>CILG-MEM-FC-[YEAR]-[ID]</td><td>Level 5 + Fellowship entry interview + endorsements</td><td><span class="badge automated">Auto-checked</span></td></tr>
+      <tr><td>Honorary Fellow</td><td>HonFCILG</td><td>CILG-MEM-HF-[YEAR]-[ID]</td><td>Board of Governors nomination and award</td><td><span class="badge optional">Not required</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="h2" style="margin-top:2.5rem">4.3 Professional Certification Credentials</h2>
+  <p class="prose">CILG issues certificates for each of its 16 professional certification programmes. These certifications are distinct from the qualification framework and are identified by a "PC" prefix in their certificate numbers. They may be verified through the same Online Portal and Manual Verification Service as qualification certificates.</p>
+
+  <div class="info-box navy">
+    <div class="ib-title">📄 Certification Reference Codes</div>
+    <ul>
+      <li><strong>CILG-PC-CAIGP</strong> — Certified AI Governance Professional</li>
+      <li><strong>CILG-PC-CHRM</strong> — Certified Human Resource Manager</li>
+      <li><strong>CILG-PC-CSOL</strong> — Certified Strategic Organisational Leader</li>
+      <li><strong>CILG-PC-CPAGE</strong> — Certified Public Administration and Governance Executive</li>
+      <li><strong>CILG-PC-CPM</strong> — Certified Project Manager</li>
+      <li><strong>CILG-PC-CLGP</strong> — Certified Leadership and Governance Professional</li>
+      <li><strong>CILG-PC-CCRM</strong> — Certified Compliance and Risk Manager</li>
+      <li><strong>CILG-PC-CEEM</strong> — Certified ESG and Environmental Manager</li>
+      <li><strong>CILG-PC-CDGP</strong> — Certified Data Governance Professional</li>
+      <li><strong>CILG-PC-CSMP</strong> — Certified Strategic Management Professional</li>
+      <li><strong>CILG-PC-CPPM</strong> — Certified Public Policy Manager</li>
+      <li><strong>CILG-PC-CETHM</strong> — Certified Ethics and Integrity Manager</li>
+      <li><strong>CILG-PC-CDTL</strong> — Certified Digital Transformation Leader</li>
+      <li><strong>CILG-PC-CCSP</strong> — Certified Cybersecurity and Data Privacy Professional</li>
+      <li><strong>CILG-PC-CNLP</strong> — Certified Non-profit Leadership Professional</li>
+      <li><strong>CILG-PC-CWLP</strong> — Certified Women in Leadership Professional</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 5 — DATA AND PRIVACY ══ -->
+  <div class="sec-band" id="data">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Five</div>
+      <h2>Data Displayed During Verification and Privacy Provisions</h2>
+      <p>CILG discloses only the information necessary to confirm credential authenticity — balancing the legitimate interests of verifying parties with the data privacy rights of credential holders.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">5</div></div>
+  </div>
+
+  <h2 class="h2">5.1 Information Displayed by Verification Type</h2>
+
+  <table class="comp-table">
+    <thead><tr><th>Data Field</th><th>Online Portal</th><th>Standard Manual</th><th>Formal Certificate</th></tr></thead>
+    <tbody>
+      <tr><td>Full Registered Name</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Credential/Certificate Type</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Post-nominal Designation</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Current Membership Status</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Certificate Issuance Date</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Membership Grade Confirmation Date</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>CPD Compliance Status</td><td><span class="dot-o">◉</span> Summary only</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Module Results / Grades</td><td><span class="cross">✘</span> No</td><td><span class="dot-o">◉</span> On request by holder</td><td><span class="dot-o">◉</span> On request by holder</td></tr>
+      <tr><td>Employment History</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td></tr>
+      <tr><td>Home Address</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td></tr>
+      <tr><td>Disciplinary History Detail</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td></tr>
+      <tr><td>Disciplinary Status Annotation</td><td><span class="dot-o">◉</span> If public-facing</td><td><span class="dot-o">◉</span> If public-facing</td><td><span class="dot-o">◉</span> If public-facing</td></tr>
+      <tr><td>CILG Examiner/Assessor Status</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td><td><span class="check">✔</span> Yes</td></tr>
+      <tr><td>Authorising Officer Signature</td><td><span class="cross">✘</span> No</td><td><span class="cross">✘</span> No</td><td><span class="check">✔</span> Yes</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="h2" style="margin-top:2rem">5.2 Consent and Privacy Provisions</h2>
+  <p class="prose">CILG's Public Register of Members and the Online Verification Portal disclose only information that CILG members have agreed to disclose as a condition of membership — in accordance with CILG's Privacy Policy and the applicable data protection laws of the jurisdictions in which CILG operates. By accepting CILG membership, all members consent to their name, membership grade, current status, and post-nominal entitlement being publicly searchable through the verification portal and the Public Register.</p>
+
+  <div class="info-box blue">
+    <div class="ib-title">🔒 Privacy Protections for Credential Holders</div>
+    <ul>
+      <li>No contact information, home address, employment details, or personal financial information is disclosed through any verification channel</li>
+      <li>Individual module results, examination grades, and detailed CPD records are disclosed only with the credential holder's explicit prior written consent</li>
+      <li>Disciplinary history detail is never disclosed through the public verification portal; only public-facing status annotations (as listed in the Public Register provisions) are shown</li>
+      <li>All verification request data submitted to the Manual Verification Service is processed in accordance with CILG's Privacy Policy and is not shared with third parties beyond the credential holder (who is not notified of individual verification requests unless they have opted into such notifications)</li>
+      <li>Credential holders may request a "name-only" listing option through the Members' Portal privacy settings — this option displays only their name and status, without the standard profile information, in response to verification searches</li>
+      <li>CILG does not sell, rent, or share verification request data or credential holder data with any third party for commercial purposes</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 6 — SECURITY & ANTI-FRAUD ══ -->
+  <div class="sec-band" id="security">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Six</div>
+      <h2>Certificate Security Features and Fraud Prevention</h2>
+      <p>CILG employs multiple layers of physical and digital security features to protect the authenticity of its credentials and to make fraudulent reproduction or misrepresentation as difficult as possible to perpetrate and as easy as possible to detect.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">6</div></div>
+  </div>
+
+  <h2 class="h2">6.1 Physical Certificate Security Features</h2>
+  <p class="prose">All CILG certificates issued as physical documents incorporate the following security features. Verifiers presented with a physical CILG certificate should check for the presence of these features — the absence of any feature is an indicator that the document may be fraudulent:</p>
+
+  <div class="feat-grid">
+    <div class="feat-card" style="--fc:var(--lime-dk)">
+      <div class="feat-icon">🔵</div>
+      <div class="feat-title">Embossed Institutional Seal</div>
+      <div class="feat-desc">Every physical CILG certificate bears a raised embossed seal in the lower-left corner bearing the CILG crest and the words "Chartered Institute of Leadership and Governance — United States of America." The seal is tactile — it can be felt when running a finger across the surface.</div>
+    </div>
+    <div class="feat-card" style="--fc:var(--forest-mid)">
+      <div class="feat-icon">📱</div>
+      <div class="feat-title">Unique QR Code</div>
+      <div class="feat-desc">Every certificate issued from 2020 onwards carries a unique, cryptographically signed QR code in the lower-right corner. Scanning this code with any smartphone camera links directly to the live verification record in the CILG database. Each code is one-time-generated and unique to a single certificate.</div>
+    </div>
+    <div class="feat-card" style="--fc:var(--blue)">
+      <div class="feat-icon">💧</div>
+      <div class="feat-title">Security Watermark</div>
+      <div class="feat-desc">CILG certificates are printed on security paper incorporating a multi-layer watermark pattern — the CILG initials repeated in a fine-line pattern visible at certain angles. Photocopied or digitally printed reproductions will not accurately replicate this watermark.</div>
+    </div>
+    <div class="feat-card" style="--fc:var(--forest-lt)">
+      <div class="feat-icon">🖊️</div>
+      <div class="feat-title">Authorised Signatory Signature</div>
+      <div class="feat-desc">Every CILG certificate is signed by an authorised signatory — either the CILG President, Secretary-General, or a designated CILG Officer. The signature is applied in blue ink. Specimen signatures of authorised signatories are available on request to verified institutional verifiers.</div>
+    </div>
+    <div class="feat-card" style="--fc:var(--red)">
+      <div class="feat-icon">🔢</div>
+      <div class="feat-title">Unique Serial Number</div>
+      <div class="feat-desc">Every certificate carries a unique serial number printed in a high-resolution microprint format in the border area. The serial number format is CILG-[TYPE]-[YEAR]-[UNIQUE 8-DIGIT ID]. This number is the primary identifier used by the verification portal.</div>
+    </div>
+    <div class="feat-card" style="--fc:var(--amber)">
+      <div class="feat-icon">🏅</div>
+      <div class="feat-title">Gold Foil Accent</div>
+      <div class="feat-desc">All CILG qualification and Fellowship certificates incorporate a gold foil accent on the CILG logo and the certificate border — applied by hot-stamping. This feature is metallically reflective and cannot be accurately reproduced by standard laser or inkjet printing.</div>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:2.5rem">6.2 Digital Certificate Security</h2>
+  <p class="prose">CILG also issues <strong>digital certificates</strong> in PDF format — particularly for members who complete qualifications via online delivery. Digital certificates incorporate the following security features:</p>
+
+  <div class="info-box teal">
+    <div class="ib-title">🔐 Digital Certificate Security Features</div>
+    <ul>
+      <li><strong>Cryptographic Digital Signature:</strong> All CILG digital certificates are digitally signed using SHA-256 encryption. The digital signature can be verified by opening the certificate in Adobe Acrobat Reader — a green tick and "Valid Signature" message confirms an unmodified certificate</li>
+      <li><strong>PDF/A-3 Format:</strong> CILG digital certificates are issued in the archival PDF/A-3 format with metadata embedding the certificate's authenticity data. This metadata is not visible in normal viewing but is readable by document analysis tools</li>
+      <li><strong>Embedded QR Code:</strong> The same unique QR code present on physical certificates is embedded in all digital certificates — linking to the live verification record</li>
+      <li><strong>Issue Timestamp:</strong> Digital certificates include a cryptographically protected issue timestamp — confirming the exact date and time the certificate was generated and has not been backdated</li>
+      <li><strong>Tamper Evidence:</strong> Any modification to the digital certificate — including alterations to name, grade, date, or any other field — will invalidate the digital signature, displaying a red "Signature Invalid" warning in PDF readers</li>
+    </ul>
+  </div>
+
+  <h2 class="h2" style="margin-top:2.5rem">6.3 Suspected Fraud — Reporting and Action</h2>
+
+  <div class="warn-box">
+    <div class="warn-title">⚠️ Warning — Fraudulent Credential Claims</div>
+    <ul class="warn-list">
+      <li>Fraudulent claims of CILG membership or credentials are a serious matter that CILG investigates and, where appropriate, refers to law enforcement and regulatory authorities</li>
+      <li>Misrepresenting professional credentials — including falsely claiming CILG membership, misrepresenting membership grade, or presenting a forged CILG certificate — may constitute criminal fraud under applicable US federal and state laws</li>
+      <li>CILG post-nominals (ACILG, MCILG, FCILG, etc.) are registered marks. Unauthorised use may give rise to civil legal action by CILG</li>
+      <li>Individuals who have been expelled from CILG membership, or whose membership has lapsed, are not entitled to use CILG post-nominals and will be referred to legal counsel if they continue to do so</li>
+      <li>Third-party organisations that knowingly appoint or retain individuals based on fraudulent CILG credentials may themselves be exposed to legal liability in certain circumstances</li>
+    </ul>
+  </div>
+
+  <p class="prose">If you suspect that a person is fraudulently claiming a CILG credential or misrepresenting their CILG membership status, please report it through the following channels:</p>
+
+  <div class="info-box red">
+    <div class="ib-title">🚨 How to Report Suspected Credential Fraud</div>
+    <ul>
+      <li><strong>Email the CILG Credentials Team:</strong> Send full details — including the name of the individual, the credential claimed, and the context in which you encountered the claim — to <strong>verify@certificate@cilgglobal.org</strong> with the subject line "FRAUD REPORT — [Name of Individual]"</li>
+      <li><strong>Provide all available evidence:</strong> Include copies of any certificates presented, screenshots of professional profiles or correspondence where the credential is claimed, and any verification results you have already obtained through the Online Portal</li>
+      <li><strong>CILG's response:</strong> CILG will investigate all fraud reports within 5 business days. If fraud is confirmed, CILG will issue a formal notification to the reporting party and take appropriate action — which may include referral to law enforcement, notification to relevant professional or regulatory bodies, and civil legal action</li>
+      <li><strong>Confidentiality:</strong> The identity of the reporting party will not be disclosed to the individual subject of the investigation without the reporting party's prior written consent, except where required by law</li>
+      <li><strong>False reports:</strong> Submitting a false or malicious fraud report may itself constitute a breach of applicable law. CILG reserves the right to refer confirmed false reporters to appropriate authorities</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 7 — FOR CREDENTIAL HOLDERS ══ -->
+  <div class="sec-band" id="holders">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Seven</div>
+      <h2>Guidance for CILG Credential Holders</h2>
+      <p>Understanding how verification works — and cooperating proactively with the verification process — enables credential holders to protect the value of their CILG qualifications and to present them with confidence in all professional contexts.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">7</div></div>
+  </div>
+
+  <h2 class="h2">7.1 Your Responsibility as a Credential Holder</h2>
+  <p class="prose">Every CILG member and credential holder bears personal responsibility for the accurate and appropriate use of their CILG credentials. The CILG Code of Professional Conduct requires credential holders to:</p>
+
+  <div class="info-box green">
+    <div class="ib-title">✅ Credential Holder Obligations</div>
+    <ul>
+      <li><strong>Accurate representation:</strong> Use only the CILG post-nominal corresponding to your current confirmed membership grade. If you hold ACILG, you may not represent yourself as MCILG or FCILG. If your membership has lapsed, you may not use any CILG post-nominal until reinstatement is confirmed</li>
+      <li><strong>Current standing:</strong> Maintain your membership in good standing by paying subscriptions on time and submitting annual CPD returns by the 31 January deadline. Failure to maintain good standing means you are not entitled to use the CILG post-nominal</li>
+      <li><strong>Verification cooperation:</strong> When an employer, client, or institution requests verification of your CILG credentials, cooperate fully. This includes providing your Certificate Number and Membership ID to the verifying party on request, and directing them to the Online Verification Portal or CILG Credentials Team</li>
+      <li><strong>No misrepresentation:</strong> Do not misrepresent the nature or significance of your CILG credentials — for example, representing a certification programme credential as equivalent to a full qualification, or representing a lapsed membership as current</li>
+      <li><strong>Certificate custody:</strong> Keep your physical CILG certificates in a safe place. If a certificate is lost, damaged, or stolen, report it to the CILG Credentials Team immediately and request a replacement certificate. Replacement fees apply</li>
+    </ul>
+  </div>
+
+  <h2 class="h2" style="margin-top:2rem">7.2 Obtaining Your Own Verification Documents</h2>
+  <p class="prose">CILG members may obtain official verification of their own credentials for use in job applications, professional profiles, immigration applications, and other personal purposes. The fastest method is to direct any verifying party to the Online Verification Portal with your Certificate Number or Membership ID. For purposes requiring a signed official document, submit a Self-Verification Certificate request to <strong>verify@certificate@cilgglobal.org</strong> — this service is free for current members in good standing.</p>
+  <p class="prose">Your current Certificate Number and Membership ID are always available in your CILG Members' Portal profile at www.cilgglobal.org/members/portal. Digital copies of all your CILG certificates are also available for download from the portal. Keep these details accessible so you can provide them quickly when verification is requested.</p>
+
+  <!-- ══ SECTION 8 — FAQ ══ -->
+  <div class="sec-band" id="faq">
+    <div class="sec-stripe"></div>
+    <div class="sec-main">
+      <div class="sec-ey">Section Eight</div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Answers to the questions most commonly raised by employers, institutions, credential holders, and other parties using CILG's verification services.</p>
+    </div>
+    <div class="sec-num"><div class="sec-dig">8</div></div>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">How quickly can I verify a CILG credential?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">Online verification via the portal at <strong>https://cilgglobal.org/cilg/user/</strong> returns a result in two to three seconds — available 24 hours a day, 7 days a week. For Manual Verification, standard requests receive a response within 3–5 business days; urgent requests (which attract a fee of USD 25) are processed within 24–48 business hours.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">Is there a fee to use the Online Verification Portal?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">No. The CILG Online Verification Portal is free to use for all verification purposes — without registration, login, or payment. Fees apply only for Manual Verification services where a formal written Verification Certificate is required, for urgent processing, or for bulk verification requests of five or more credentials. Refer to Section 3.3 for the full fee schedule.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">What does it mean if the portal shows "VERIFIED — SUSPENDED"?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">A "Suspended" status means that the credential is genuine — the person did earn the qualification and held the membership grade — but that the membership is currently impaired, most commonly due to subscription arrears or CPD non-compliance. A suspended member is not currently entitled to use their CILG post-nominal. For employment and governance appointment purposes, you should seek clarification from the credential holder before relying on the credential. CILG cannot disclose the specific reason for suspension through the public portal but can provide further information to authorised institutional verifiers through the Manual Verification Service.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">A person claims to hold FCILG but the portal shows them as MCILG — what should I do?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">This discrepancy may indicate either a misrepresentation or a data discrepancy. First, check that you have entered the correct Certificate Number or Membership ID — typos are the most common cause of result mismatches. If the discrepancy persists after a corrected search, contact the credential holder to clarify. If you remain concerned, submit a Manual Verification request to <strong>verify@certificate@cilgglobal.org</strong> with the details. If fraud is suspected, report it using the process in Section 6.3. CILG's live database is authoritative — the portal always reflects the credential holder's current confirmed grade.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">Can I verify a CILG certificate without the certificate number?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">Yes — the Online Verification Portal accepts the credential holder's full name combined with their known membership grade or post-nominal as a search query. However, name-based searches may return multiple results if more than one CILG member shares the same name. For the most precise and reliable result, always use the Certificate Number (from the face of the certificate) or the Membership ID (from the CILG Public Register or the credential holder's Members' Portal profile).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">Does CILG inform credential holders when their credentials are verified?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">By default, CILG does not inform credential holders when their credentials are searched through the Online Verification Portal — this would defeat the purpose of independent verification. However, credential holders may opt into "Verification Alerts" in their Members' Portal settings — receiving a summary notification (but not the identity of the verifying party) when their credential is searched. For Manual Verification requests, CILG may contact the credential holder to confirm certain details, depending on the nature of the request and the data protection considerations involved.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">How do I verify credentials for a candidate who completed their CILG qualification several years ago?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">The Online Verification Portal contains records for all CILG credentials issued since CILG's inception, including historical credentials. Enter the Certificate Number or Membership ID as normal — historical credentials will show the grade and qualification details along with the issuance date. Note that the "Current Status" shown will reflect the member's current membership status, not their status at the time of initial qualification. If the current status shows "Lapsed," this indicates the person's membership is no longer active — the credential remains genuine as evidence of the qualification achieved, but does not confirm current active membership. For credentials issued before the digital verification system was implemented (pre-2020), the Manual Verification Service may be more reliable than the portal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">What is the difference between a CILG qualification certificate and a CILG membership designation?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">A <strong>qualification certificate</strong> (e.g., Level 3 Diploma certificate) is awarded once — when the candidate passes the required assessments — and reflects the academic and professional achievement of completing that level of the qualification framework. It does not expire, although it is backdated to the date of award. A <strong>membership designation</strong> (e.g., ACILG) is the ongoing professional status conferred on admission to a membership grade — and it is conditional on continued compliance with membership obligations including CPD, subscription payment, and Code of Professional Conduct adherence. Membership designations are therefore "current" only while the member is in good standing. For most employment and governance purposes, confirming current membership status (through the portal) is more relevant than confirming historical certificate achievement.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">I've discovered a fraudulent CILG certificate. What should I do?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">Report it immediately to the CILG Credentials Team at <strong>verify@certificate@cilgglobal.org</strong> with the subject line "FRAUD REPORT" and as much detail as possible — including the name of the individual, the certificate or credential claimed, the context in which it was presented, and any copy of the fraudulent certificate you hold. CILG will acknowledge your report within 2 business days and conduct an investigation. If you have already made a hiring or governance appointment decision based on the fraudulent credential, seek legal advice promptly. CILG will cooperate with any legal process relating to confirmed credential fraud.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <div class="faq-icon">+</div>
+        <div class="faq-question">How do I replace a lost or damaged CILG certificate?</div>
+        <div class="faq-toggle">▾</div>
+      </div>
+      <div class="faq-a">CILG members who need a replacement certificate — because the original has been lost, damaged, stolen, or in some cases destroyed — should submit a replacement certificate request to <strong>verify@certificate@cilgglobal.org</strong> or through the CILG Members' Portal. Include your full name, Membership ID, the certificate(s) requiring replacement, and a brief explanation of the circumstances. A replacement fee of USD 30 per certificate applies. Replacement certificates are issued with the original award date and are marked "Replacement" on the rear. They carry all the same security features as original certificates. Digital certificate downloads are always available through the Members' Portal at no charge — a replacement physical certificate fee applies only for the hard-copy document.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT SUMMARY -->
+  <div class="info-box gold" style="margin-bottom:3rem">
+    <div class="ib-title">📬 Verification Service Contact Summary</div>
+    <ul>
+      <li><strong>Online Verification Portal:</strong> <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" style="color:var(--forest-lt)">https://cilgglobal.org/cilg/user/</a> — available 24/7, free, no registration required</li>
+      <li><strong>Manual Verification &amp; Fraud Reports:</strong> <a href="mailto:verify@certificate@cilgglobal.org" style="color:var(--forest-lt)">verify@certificate@cilgglobal.org</a></li>
+      <li><strong>General credentials enquiries:</strong> credentials@cilgglobal.org</li>
+      <li><strong>Replacement certificates:</strong> verify@certificate@cilgglobal.org (subject: "Replacement Certificate Request")</li>
+      <li><strong>Corporate / bulk verification:</strong> corporate@cilgglobal.org</li>
+      <li><strong>CILG Public Register of Members:</strong> <a href="https://www.cilgglobal.org/register" target="_blank" rel="noopener" style="color:var(--forest-lt)">www.cilgglobal.org/register</a></li>
+      <li><strong>CILG website:</strong> <a href="https://www.cilgglobal.org" target="_blank" rel="noopener" style="color:var(--forest-lt)">www.cilgglobal.org</a></li>
+    </ul>
+  </div>
+
+</div><!-- /page -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>CILG</h3>
+        <p>Chartered Institute of Leadership and Governance — a registered professional body dedicated to developing world-class governance and leadership professionals through internationally recognised qualifications, rigorous standards, and a global professional community.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <!-- PORTALS -->
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:research@cilgglobal.org">research@cilgglobal.org</a>
+        <a href="mailto:media@cilgglobal.org">media@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="st" id="st">↑</a>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL TO TOP
+const st = document.getElementById('st');
+window.addEventListener('scroll', () => {
+  st.classList.toggle('show', window.scrollY > 500);
+});
+
+// FAQ TOGGLE
+function toggleFaq(q) {
+  const item = q.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

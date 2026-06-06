@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>About Us - Chartered Institute of Leadership and Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* Root & Reset - Finzo Palette */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* Navigation */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback {
+  font-family: var(--ff-head);
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--forest); letter-spacing: -.01em; line-height: 1;
+}
+.nav-logo-sub {
+  font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--g300); display: block; margin-top: 2px;
+}
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow {
+  width: 0; height: 0;
+  border-left: 3px solid transparent; border-right: 3px solid transparent;
+  border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6;
+}
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta {
+  margin-left: .5rem; padding: 8px 18px !important;
+  background: var(--lime) !important; color: var(--forest) !important;
+  border: 1px solid var(--lime) !important; border-radius: 8px !important;
+  font-weight: 700 !important; transition: all var(--tr) !important;
+}
+.nav-cta:hover {
+  background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35);
+}
+/* Portal CTA dropdown */
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown::before {
+  content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px;
+}
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a {
+  display: block; padding: 7px 12px; border-radius: 7px;
+  font-size: .74rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); white-space: nowrap;
+}
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none;
+}
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999; overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none;
+}
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--g300); padding: 0 4px; margin-bottom: .5rem;
+}
+.mob-link {
+  display: block; padding: 10px 14px; border-radius: 8px;
+  font-size: .9rem; font-weight: 500; color: var(--text2);
+  transition: all var(--tr); border: 1px solid transparent;
+}
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta {
+  display: block; width: 100%; padding: 14px; margin-top: 1rem;
+  background: var(--lime); color: var(--forest);
+  font-weight: 700; font-size: .9rem; letter-spacing: .02em;
+  border-radius: 10px; text-align: center; transition: all var(--tr);
+}
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* Hero */
+.hero { position: relative; min-height: 80vh; overflow: hidden; background: linear-gradient(135deg, rgba(13,43,31,.7), rgba(13,43,31,.8)), url('assets/images/about-hero.jpg') center/cover no-repeat; padding-top: var(--nav-h); display: flex; align-items: center; justify-content: center; }
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 900px; margin: 0 auto;
+  padding: 4rem 3rem; width: 100%;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(200,241,53,.2); border: 1px solid var(--lime-dk);
+  color: #fff; padding: 4px 14px; border-radius: 40px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 1.4rem; opacity: 1; transform: translateY(0);
+}
+.hero-badge-dot { width: 5px; height: 5px; background: var(--forest-lt); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.hero-headline {
+  font-family: var(--ff-head); font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 800; line-height: 1.1; color: #fff; letter-spacing: -.03em;
+  margin-bottom: 1.2rem; opacity: 1;
+}
+.hero-tagline {
+  font-size: clamp(.95rem, 1.5vw, 1.15rem); font-weight: 400; color: rgba(255,255,255,.9);
+  margin-bottom: 1.5rem; font-style: italic; opacity: 1; max-width: 700px; margin-left: auto; margin-right: auto;
+}
+.btn-primary {
+  padding: 13px 26px; background: var(--lime); color: var(--forest);
+  font-family: var(--ff-head); font-size: .82rem; font-weight: 700; letter-spacing: -.01em;
+  border-radius: 9px; border: none; cursor: pointer; transition: all var(--tr);
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(174,219,26,.45); }
+.btn-secondary {
+  padding: 13px 22px; background: rgba(255,255,255,.1); color: #fff;
+  font-size: .82rem; font-weight: 600; border-radius: 9px;
+  border: 1.5px solid rgba(255,255,255,.3); cursor: pointer; transition: all var(--tr);
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,.2); }
+
+/* Shared Section Scaffolding */
+.section { padding: 6rem 3rem; background: var(--bg); }
+.section-inner { max-width: 1260px; margin: 0 auto; }
+.section-label {
+  font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--forest-lt); margin-bottom: .7rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
+.section-h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 800; color: var(--forest); line-height: 1.1; letter-spacing: -.03em; margin-bottom: .9rem; }
+.section-lead { font-size: .95rem; color: var(--text2); max-width: 680px; line-height: 1.85; }
+
+/* About Section */
+.about-section { background: var(--bg); padding: 6rem 3rem; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem; }
+.about-img-wrap { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--forest-mid) 0%, var(--forest-lt) 100%); border: 1px solid var(--g200); box-shadow: 0 12px 40px rgba(13,43,31,.15); }
+.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.about-img-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-head); font-size: 3rem; font-weight: 800; color: var(--lime);
+}
+.about-content-body {
+  margin-top: 0;
+}
+.about-content-body h3 {
+  font-family: var(--ff-head); font-size: 1.5rem; font-weight: 700; color: var(--forest);
+  margin-bottom: 1rem; margin-top: 2rem;
+}
+.about-content-body h3:first-child { margin-top: 0; }
+.about-content-body p {
+  font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem;
+}
+.about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-top: 2.5rem; }
+.pillar-card { background: var(--white); border: 1.5px solid var(--g200); border-radius: 12px; padding: 1.1rem 1.2rem; transition: all var(--tr); }
+.pillar-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 24px rgba(13,43,31,.08); transform: translateY(-2px); }
+.pillar-icon { font-size: 1.4rem; margin-bottom: .45rem; }
+.pillar-title { font-family: var(--ff-head); font-size: .82rem; font-weight: 700; color: var(--forest); }
+.pillar-desc { font-size: .74rem; color: var(--text2); margin-top: .2rem; line-height: 1.6; }
+
+/* Vision Mission Values Section */
+.vision-section { background: var(--bg-off); padding: 6rem 3rem; }
+.vision-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+.vision-card { background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px; padding: 2rem; transition: all var(--tr); }
+.vision-card:hover { border-color: var(--lime-dk); box-shadow: 0 10px 32px rgba(13,43,31,.08); transform: translateY(-4px); }
+.vision-card h3 { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700; color: var(--forest); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+.vision-card h3::before { content: ''; width: 4px; height: 24px; background: var(--lime-dk); border-radius: 2px; }
+.vision-card p { font-size: .9rem; color: var(--text2); line-height: 1.85; }
+
+/* Standards Section */
+.standards-section { background: var(--forest); color: #fff; padding: 6rem 3rem; }
+.standards-section .section-label { color: var(--lime); }
+.standards-section .section-label::before { background: var(--lime); }
+.standards-section .section-h2 { color: #fff; }
+.standards-section .section-lead { color: rgba(255,255,255,.5); }
+.standards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+.standards-content p { font-size: .95rem; color: rgba(255,255,255,.7); line-height: 1.9; margin-bottom: 1.2rem; }
+.standards-content h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+.standards-content h3:first-child { margin-top: 0; }
+.standards-list { list-style: none; }
+.standards-list li { padding: 0.8rem 0; font-size: .9rem; color: rgba(255,255,255,.7); border-bottom: 1px solid rgba(255,255,255,.1); }
+.standards-list li:last-child { border-bottom: none; }
+.standards-list strong { color: #fff; font-weight: 700; }
+
+/* Education Section */
+.education-section { background: var(--bg); padding: 6rem 3rem; }
+.education-content { max-width: 1260px; margin: 0 auto; }
+.education-subsection { margin-top: 3rem; margin-bottom: 2rem; }
+.education-subsection h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 700; color: var(--forest); margin-bottom: 1rem; }
+.education-subsection p { font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 0.8rem; }
+.education-subsection ul { margin-left: 1.5rem; }
+.education-subsection li { font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 0.6rem; }
+.education-subsection strong { color: var(--forest); font-weight: 700; }
+
+/* Global Reach Section */
+.global-section { padding: 6rem 3rem; background: var(--bg); border-top: 1px solid var(--g200); }
+.global-content { max-width: 1260px; margin: 0 auto; }
+.global-text-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+.global-text-column p { font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem; }
+.global-text-column h3 { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700; color: var(--forest); margin-top: 2rem; margin-bottom: 1rem; }
+.global-text-column h3:first-child { margin-top: 0; }
+.global-badges { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.5rem; }
+.global-badge { padding: 5px 13px; background: var(--white); border: 1.5px solid var(--g200); border-radius: 20px; font-size: .72rem; font-weight: 500; color: var(--text2); display: flex; align-items: center; gap: 4px; transition: all var(--tr); }
+.global-badge:hover { border-color: var(--lime-dk); background: var(--lime-pale); }
+
+/* Governance Structure */
+.governance-section { background: var(--bg-off); padding: 6rem 3rem; }
+.governance-content { max-width: 1260px; margin: 0 auto; }
+.governance-subsection { margin-top: 2.5rem; }
+.governance-subsection h3 { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700; color: var(--forest); margin-bottom: 1rem; }
+.governance-subsection p { font-size: .93rem; color: var(--text2); line-height: 1.9; margin-bottom: 0.8rem; }
+.org-chart { background: var(--white); border: 1.5px solid var(--g200); border-radius: 12px; padding: 2rem; margin-top: 2rem; }
+.org-level { margin-bottom: 1.5rem; }
+.org-level-title { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: var(--lime-dk); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: .05em; }
+.org-item { font-size: .9rem; color: var(--text2); padding-left: 1.5rem; line-height: 1.8; }
+
+/* Accreditation Section */
+.accreditation-section { background: var(--forest); color: #fff; padding: 6rem 3rem; }
+.accreditation-content { max-width: 1260px; margin: 0 auto; }
+.accreditation-content h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 800; margin-bottom: 2rem; }
+.accreditation-content p { font-size: .95rem; color: rgba(255,255,255,.7); line-height: 1.9; margin-bottom: 1.2rem; }
+.accreditation-content h3 { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+.accreditation-content ul { margin-left: 1.5rem; }
+.accreditation-content li { font-size: .93rem; color: rgba(255,255,255,.7); line-height: 1.85; margin-bottom: 0.6rem; }
+
+/* CTA Banner */
+.cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(200,241,53,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .8rem; position: relative; }
+.cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-btn-main { padding: 14px 32px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .84rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,241,53,.35); }
+.cta-btn-alt { padding: 14px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .84rem; font-weight: 600; transition: all var(--tr); }
+.cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
+
+/* Footer */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1);
+  text-decoration: none;
+}
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nav-links { gap: .02rem; }
+  .nav-link { font-size: .67rem; padding: 5px 8px; }
+  .vision-grid { grid-template-columns: 1fr; }
+  .standards-grid { grid-template-columns: 1fr; }
+  .global-text-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+}
+/* Stats Banner */
+.stats-banner { background: var(--forest); padding: 2.2rem 3rem; }
+.stats-banner-inner { max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; text-align: center; }
+.stat-val { font-family: var(--ff-head); font-size: 2.2rem; font-weight: 800; color: var(--lime); line-height: 1; letter-spacing: -.04em; }
+.stat-lbl { font-size: .72rem; font-weight: 500; color: rgba(255,255,255,.5); margin-top: .3rem; letter-spacing: .02em; }
+
+/* Timeline */
+.timeline { margin-top: 3rem; position: relative; }
+.timeline::before { content:''; position:absolute; left: 18px; top:0; bottom:0; width:2px; background: var(--g200); }
+.tl-item { display:flex; gap:2rem; margin-bottom:2.5rem; position:relative; }
+.tl-dot { width:38px; height:38px; border-radius:50%; background:var(--lime); border:3px solid var(--white); box-shadow:0 0 0 3px var(--lime-dk); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:800; color:var(--forest); z-index:1; }
+.tl-body { background:var(--white); border:1.5px solid var(--g200); border-radius:12px; padding:1.3rem 1.5rem; flex:1; transition:all var(--tr); }
+.tl-body:hover { border-color:var(--lime-dk); box-shadow:0 6px 24px rgba(13,43,31,.08); }
+.tl-phase { font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--lime-dk); margin-bottom:.3rem; }
+.tl-title { font-family:var(--ff-head); font-size:1rem; font-weight:700; color:var(--forest); margin-bottom:.4rem; }
+.tl-desc { font-size:.82rem; color:var(--text2); line-height:1.75; }
+
+/* Legal Registration Cards */
+.reg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
+.reg-card { background:var(--white); border:1.5px solid var(--g200); border-radius:14px; padding:1.8rem; transition:all var(--tr); }
+.reg-card:hover { border-color:var(--lime-dk); transform:translateY(-3px); box-shadow:0 10px 32px rgba(13,43,31,.08); }
+.reg-icon { font-size:2rem; margin-bottom:.75rem; }
+.reg-state { font-family:var(--ff-head); font-size:1.1rem; font-weight:800; color:var(--forest); margin-bottom:.2rem; }
+.reg-badge { display:inline-block; background:var(--lime-pale); color:var(--forest-lt); font-size:.6rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:2px 8px; border-radius:4px; margin-bottom:.8rem; }
+.reg-desc { font-size:.82rem; color:var(--text2); line-height:1.75; }
+
+/* Compliance List */
+.compliance-box { background:var(--g100); border:1px solid var(--g200); border-radius:12px; padding:1.8rem 2rem; margin-top:2.5rem; }
+.compliance-box h4 { font-family:var(--ff-head); font-size:.95rem; font-weight:700; color:var(--forest); margin-bottom:1rem; display:flex; align-items:center; gap:8px; }
+.compliance-list { list-style:none; }
+.compliance-list li { font-size:.85rem; color:var(--text2); line-height:1.8; padding:.5rem 0; border-bottom:1px solid var(--g200); display:flex; gap:.75rem; }
+.compliance-list li:last-child { border-bottom:none; }
+.compliance-list li::before { content:'✓'; color:var(--lime-dk); font-weight:800; flex-shrink:0; }
+
+/* Vision / Mission — Rich Layout */
+.vm-intro { font-size:.95rem; color:var(--text2); line-height:1.85; margin-bottom:2.5rem; max-width:820px; }
+.vm-cards { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:3rem; }
+.vm-card { border-radius:16px; padding:2.2rem; position:relative; overflow:hidden; }
+.vm-card-vision { background:var(--forest); color:#fff; }
+.vm-card-mission { background:var(--lime-pale); border:2px solid var(--lime-dk); }
+.vm-card-label { font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; margin-bottom:.8rem; }
+.vm-card-vision .vm-card-label { color:rgba(255,255,255,.5); }
+.vm-card-mission .vm-card-label { color:var(--forest-lt); }
+.vm-card-sub { font-size:.72rem; font-weight:600; margin-bottom:1.2rem; }
+.vm-card-vision .vm-card-sub { color:rgba(255,255,255,.6); }
+.vm-card-mission .vm-card-sub { color:var(--text2); }
+.vm-card-quote { font-family:var(--ff-head); font-size:clamp(1rem,1.6vw,1.2rem); font-weight:700; line-height:1.45; letter-spacing:-.02em; }
+.vm-card-vision .vm-card-quote { color:#fff; }
+.vm-card-mission .vm-card-quote { color:var(--forest); }
+.vm-card::after { content:'\201C'; position:absolute; bottom:-1.5rem; right:1rem; font-size:8rem; font-family:Georgia,serif; opacity:.06; line-height:1; pointer-events:none; }
+.vm-card-vision::after { color:#fff; }
+.vm-card-mission::after { color:var(--forest); }
+.vm-interp { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem; }
+.vm-interp-box { background:var(--white); border:1.5px solid var(--g200); border-radius:12px; padding:1.8rem; }
+.vm-interp-box h4 { font-family:var(--ff-head); font-size:.95rem; font-weight:700; color:var(--forest); margin-bottom:.75rem; display:flex; align-items:center; gap:8px; }
+.vm-interp-box h4::before { content:''; width:4px; height:18px; background:var(--lime-dk); border-radius:2px; flex-shrink:0; }
+.vm-interp-box p { font-size:.85rem; color:var(--text2); line-height:1.85; }
+
+/* Values Section */
+.values-section { background:var(--forest); padding:6rem 3rem; }
+.values-section .section-label { color:var(--lime); }
+.values-section .section-label::before { background:var(--lime); }
+.values-section .section-h2 { color:#fff; }
+.values-section .section-lead { color:rgba(255,255,255,.55); }
+.values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-top:3rem; }
+.value-card { background:rgba(255,255,255,.05); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:1.6rem 1.4rem; transition:all var(--tr); position:relative; overflow:hidden; }
+.value-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--lime); opacity:0; transition:opacity var(--tr); }
+.value-card:hover { border-color:rgba(200,241,53,.3); transform:translateY(-4px); background:rgba(255,255,255,.08); }
+.value-card:hover::after { opacity:1; }
+.value-icon { font-size:1.8rem; margin-bottom:.75rem; }
+.value-name { font-family:var(--ff-head); font-size:.95rem; font-weight:700; color:var(--lime); margin-bottom:.5rem; }
+.value-desc { font-size:.78rem; color:rgba(255,255,255,.55); line-height:1.75; }
+
+/* Code of Conduct Table */
+.coc-section { background:var(--bg-off); padding:6rem 3rem; }
+.coc-intro { font-size:.95rem; color:var(--text2); line-height:1.85; margin-bottom:2.5rem; max-width:780px; }
+.coc-table-wrap { background:var(--white); border:1.5px solid var(--g200); border-radius:14px; overflow:hidden; }
+.coc-table { width:100%; border-collapse:collapse; }
+.coc-table thead tr { background:var(--forest); }
+.coc-table thead th { padding:1rem 1.4rem; text-align:left; font-size:.65rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+.coc-table thead th:first-child { color:var(--lime); }
+.coc-table tbody tr { border-bottom:1px solid var(--g200); transition:background var(--tr); }
+.coc-table tbody tr:last-child { border-bottom:none; }
+.coc-table tbody tr:hover { background:var(--g100); }
+.coc-table td { padding:.95rem 1.4rem; vertical-align:top; }
+.coc-table td:first-child { font-family:var(--ff-head); font-size:.85rem; font-weight:700; color:var(--forest); white-space:nowrap; width:160px; }
+.coc-table td:last-child { font-size:.83rem; color:var(--text2); line-height:1.8; }
+
+/* Mandate / Scope */
+.mandate-section { background:var(--bg); padding:6rem 3rem; }
+.mandate-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:3rem; }
+.mandate-card { background:var(--white); border:1.5px solid var(--g200); border-radius:14px; padding:1.8rem; transition:all var(--tr); }
+.mandate-card:hover { border-color:var(--lime-dk); transform:translateY(-3px); box-shadow:0 10px 32px rgba(13,43,31,.08); }
+.mandate-icon { font-size:2rem; margin-bottom:.8rem; }
+.mandate-title { font-family:var(--ff-head); font-size:1rem; font-weight:700; color:var(--forest); margin-bottom:.5rem; }
+.mandate-desc { font-size:.82rem; color:var(--text2); line-height:1.75; }
+
+/* Sectors */
+.sectors-list { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin-top:2rem; }
+.sector-item { background:var(--white); border:1.5px solid var(--g200); border-radius:10px; padding:1rem 1.2rem; font-size:.83rem; color:var(--text2); line-height:1.65; transition:all var(--tr); }
+.sector-item:hover { border-color:var(--lime-dk); background:var(--lime-pale); }
+.sector-item strong { display:block; font-family:var(--ff-head); font-size:.85rem; color:var(--forest); margin-bottom:.2rem; }
+
+@media(max-width:1024px) {
+  .values-grid { grid-template-columns:repeat(2,1fr); }
+  .vm-cards { grid-template-columns:1fr; }
+  .vm-interp { grid-template-columns:1fr; }
+  .mandate-grid { grid-template-columns:1fr 1fr; }
+  .reg-grid { grid-template-columns:1fr; }
+}
+@media(max-width:640px) {
+  .values-grid { grid-template-columns:1fr 1fr; }
+  .mandate-grid { grid-template-columns:1fr; }
+  .sectors-list { grid-template-columns:1fr; }
+  .stats-banner { padding:1.5rem 1.2rem; }
+  .stats-banner-inner { grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .coc-table td:first-child { white-space:normal; width:auto; }
+  .timeline::before { left:16px; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link act">Home</a>
+
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <div class="dd-divider"></div>
+        <a href="about.html#presence">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="membership.html">Membership Framework</a>
+        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="psf.html">Professional Standard Framework</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+
+    <div class="nav-item">
+      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="cev.html">Certification Verification Guidelines</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav-mobile" id="mobileMenu">
+    <a href="index.html" class="mob-link">Home</a>
+
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
+    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="about.html#presence" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="membership.html" class="mob-link">Membership Framework</a>
+    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qualifications.html#professional" class="mob-link">Professional Standard Framework</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">More</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources &amp; Insights</div>
+    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span> About CILG</div>
+    <h1 class="hero-headline">The Chartered Institute of Leadership and Governance</h1>
+    <p class="hero-tagline">A registered professional body advancing world-class standards in governance, leadership development, and professional excellence</p>
+  </div>
+</section>
+
+<!-- ABOUT INSTITUTE -->
+<section class="about-section" id="overview">
+  <div class="section-inner">
+    <div class="section-label">Section 1 — Institute Overview</div>
+    <h2 class="section-h2">Who We Are</h2>
+    <p class="section-lead">A professional body at the intersection of leadership, governance, and institutional excellence — established in the United States of America with a global mandate to advance professional excellence in leadership and governance practice.</p>
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="assets/images/about-institute.jpg" alt="CILG Institute"
+          onerror="this.style.display='none'; this.parentElement.querySelector('.about-img-placeholder').style.display='flex';">
+        <div class="about-img-placeholder" style="display:none">CILG</div>
+      </div>
+      <div class="about-content-body">
+        <h3>Our Founding Conviction</h3>
+        <p>The Chartered Institute of Leadership and Governance (CILG) was founded on a foundational conviction: that the quality of governance and leadership in organisations — whether corporations, government agencies, non-profits, educational institutions, or international bodies — directly determines the welfare of the people they serve. Poor governance costs lives, destroys wealth, undermines democratic institutions, and erodes public trust.</p>
+        <p>Excellent governance, by contrast, creates the conditions for sustainable development, institutional resilience, and human flourishing. CILG exists to make excellent governance more common, more accessible, and more rigorously defined.</p>
+        <h3>Four Primary Functions</h3>
+        <p>As a professional body, CILG performs four primary functions that distinguish it from academic institutions, training providers, and trade associations:</p>
+        <div class="about-pillars">
+          <div class="pillar-card"><div class="pillar-icon">🎓</div><div class="pillar-title">Credentialing</div><div class="pillar-desc">Awarding recognised professional qualifications and designations that validate governance competence.</div></div>
+          <div class="pillar-card"><div class="pillar-icon">⚖️</div><div class="pillar-title">Standard-Setting</div><div class="pillar-desc">Establishing and maintaining the professional and ethical standards of the governance profession.</div></div>
+          <div class="pillar-card"><div class="pillar-icon">🔬</div><div class="pillar-title">Knowledge Advancement</div><div class="pillar-desc">Producing and disseminating research and professional scholarship that advances governance practice.</div></div>
+          <div class="pillar-card"><div class="pillar-icon">📢</div><div class="pillar-title">Advocacy</div><div class="pillar-desc">Representing the governance profession in public policy debates and regulatory consultations.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BANNER -->
+<div class="stats-banner">
+  <div class="stats-banner-inner">
+    <div><div class="stat-val">5</div><div class="stat-lbl">Qualification Levels</div></div>
+    <div><div class="stat-val">25</div><div class="stat-lbl">Core Modules</div></div>
+    <div><div class="stat-val">16</div><div class="stat-lbl">Certification Programmes</div></div>
+    <div><div class="stat-val">40+</div><div class="stat-lbl">Countries Represented</div></div>
+  </div>
+</div>
+
+<!-- HISTORICAL DEVELOPMENT -->
+<section class="about-section" style="background:var(--bg-off)">
+  <div class="section-inner">
+    <div class="section-label">Section 1.2 — Historical Development</div>
+    <h2 class="section-h2">Founding Principles &amp; Development</h2>
+    <p class="section-lead">CILG was established in response to a documented and persistent gap in the professional formation of governance practitioners — drawing on the institutional models of the world's most respected professional bodies.</p>
+    <p style="font-size:.93rem;color:var(--text2);line-height:1.9;margin-top:1.5rem;max-width:900px">Across industries and sectors, decision-makers at board level, executive level, and in senior governance roles frequently lack the formal professional preparation that their responsibilities demand. Unlike the legal, medical, and accounting professions — which have long maintained rigorous credentialing systems — governance and leadership have historically been practised by individuals whose professional development was incidental to career advancement rather than systematically structured around a recognised body of knowledge and ethical standards.</p>
+    <p style="font-size:.93rem;color:var(--text2);line-height:1.9;margin-top:1rem;max-width:900px">The founders of CILG drew on the institutional models of the world's most respected professional bodies — including ACCA, CIPD, ICSA, IoD, and CMI — to design a qualification and membership framework that would bring equivalent professional rigour to the governance and leadership profession.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">①</div>
+        <div class="tl-body">
+          <div class="tl-phase">Founding</div>
+          <div class="tl-title">Establishment and Initial Registration</div>
+          <div class="tl-desc">CILG is established and registered as a professional body under the laws of the United States of America, with initial registrations in New Mexico, Alaska, and Michigan. The founding Board of Governors convenes and approves the inaugural Qualification Framework and Code of Professional Conduct.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">②</div>
+        <div class="tl-body">
+          <div class="tl-phase">Qualification Framework</div>
+          <div class="tl-title">Launch of the Five-Level Qualification Framework</div>
+          <div class="tl-desc">CILG launches its comprehensive five-level qualification framework — from the Foundation Certificate (Level 1) to the Chartered Professional designation (Level 5) — covering 25 modules with rigorous assessment standards aligned to international professional body benchmarks.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">③</div>
+        <div class="tl-body">
+          <div class="tl-phase">Membership Framework</div>
+          <div class="tl-title">Membership Grade Structure and Professional Community</div>
+          <div class="tl-desc">The seven-grade membership structure is established, from Student Member (SCILG) through to Fellow and Honorary Fellow (FCILG/HonFCILG), with a Corporate Membership tier. The CILG Members' Portal and CPD framework are launched.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">④</div>
+        <div class="tl-body">
+          <div class="tl-phase">Certification Programmes</div>
+          <div class="tl-title">Launch of 16 Professional Certification Programmes</div>
+          <div class="tl-desc">CILG launches 16 professional certification programmes spanning AI Governance, Human Resource Management, Strategic Leadership, Public Administration, Project Management, Risk Management, ESG, Data Governance, and others — making CILG's professional development accessible across specialist domains.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">⑤</div>
+        <div class="tl-body">
+          <div class="tl-phase">Global Reach</div>
+          <div class="tl-title">International Presence and Mutual Recognition</div>
+          <div class="tl-desc">CILG establishes Mutual Recognition Agreements (MRAs) with peer professional bodies, launches the Accredited Learning Partner (ALP) network, and extends its professional community to members across more than 40 countries.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL STATUS -->
+<section class="about-section" id="legal">
+  <div class="section-inner">
+    <div class="section-label">Section 2 — Legal Status &amp; Registration</div>
+    <h2 class="section-h2">Legal Status, Jurisdiction &amp; Registration</h2>
+    <p class="section-lead">CILG's legal framework reflects its commitment to transparency, accountability, and proper governance of its own affairs — embodying in its institutional structure the very standards it promotes in the profession.</p>
+    <p style="font-size:.93rem;color:var(--text2);line-height:1.9;margin-top:1.5rem;max-width:900px">The Chartered Institute of Leadership and Governance is a registered professional body established and operating under the laws of the United States of America. CILG is constituted as a non-profit professional association — an institution whose governing purpose is the advancement of the profession and the public interest, not the generation of financial returns for shareholders or owners. All surplus revenues generated by CILG's activities are reinvested into its professional development, research, and advocacy missions.</p>
+    <p style="font-size:.93rem;color:var(--text2);line-height:1.9;margin-top:1rem;max-width:900px">CILG's legal personality, governance structure, and operational authority derive from its constitutional documents — the Articles of Incorporation and Bylaws — which vest supreme authority in the Board of Governors, a body of elected Fellows and appointed independent members who are collectively accountable for the direction, standards, and integrity of the Institute.</p>
+
+    <div class="reg-grid">
+      <div class="reg-card">
+        <div class="reg-icon">🏔️</div>
+        <div class="reg-state">New Mexico</div>
+        <div class="reg-badge">Primary Registration</div>
+        <div class="reg-desc">CILG is registered in the State of New Mexico as a professional body and non-profit association. New Mexico serves as CILG's principal state of registration, with the Institute maintaining its registered agent and primary corporate records in compliance with the New Mexico Non-Profit Corporation Act.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-icon">🌲</div>
+        <div class="reg-state">Alaska</div>
+        <div class="reg-badge">Active Registration</div>
+        <div class="reg-desc">CILG maintains active registration in the State of Alaska, extending its legal authority to operate, contract, and credential professionals in the Alaskan jurisdiction. This registration supports CILG's service to governance and leadership professionals in Alaska and the broader Pacific region.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-icon">🌊</div>
+        <div class="reg-state">Michigan</div>
+        <div class="reg-badge">Active Registration</div>
+        <div class="reg-desc">CILG is registered in the State of Michigan, establishing its legal presence in the Great Lakes region and the Midwest. Michigan's active professional community and strong public sector presence make it a significant operational jurisdiction for CILG's programmes and membership activities.</div>
+      </div>
+    </div>
+
+    <div class="compliance-box">
+      <h4>📋 Legal and Regulatory Compliance</h4>
+      <ul class="compliance-list">
+        <li>CILG maintains full compliance with the registration, reporting, and governance requirements of each state of registration and files all required annual reports and disclosures on schedule.</li>
+        <li>As a non-profit professional body, CILG operates in accordance with applicable federal and state non-profit laws, including IRS requirements for tax-exempt organisations.</li>
+        <li>CILG's financial records are audited annually by an independent external auditor. The audited financial statements are available to members in good standing on written request to the Secretary-General.</li>
+        <li>CILG does not engage in partisan political activity. Its advocacy activities are confined to evidence-based policy engagement on matters directly relevant to governance standards, professional education, and the public interest.</li>
+        <li>CILG's operations, examinations, and credentialing activities are governed by its own Qualification Framework and Membership Framework — documents reviewed and approved by the Board of Governors on a biennial basis.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="vision-section" id="vision">
+  <div class="section-inner">
+    <div class="section-label">Section 3 — Vision &amp; Mission</div>
+    <h2 class="section-h2">Vision and Mission Statements</h2>
+    <p class="vm-intro">CILG's vision and mission are not aspirational slogans — they are operational commitments that drive every programme we design, every standard we set, and every professional we develop.</p>
+
+    <div class="vm-cards">
+      <div class="vm-card vm-card-vision">
+        <div class="vm-card-label">Our Vision</div>
+        <div class="vm-card-sub">The Destination We Are Building Towards</div>
+        <div class="vm-card-quote">"To be the foremost global authority and most trusted professional body in the fields of leadership and governance — recognized for cultivating principled, competent, and transformative leaders who drive sustainable development, institutional excellence, and societal progress across all sectors and geographies."</div>
+      </div>
+      <div class="vm-card vm-card-mission">
+        <div class="vm-card-label">Our Mission</div>
+        <div class="vm-card-sub">How We Create Value Every Day</div>
+        <div class="vm-card-quote">"To advance the theory and practice of ethical leadership and sound governance through world-class professional education, rigorous credentialing, impactful research, and evidence-based advocacy — empowering individuals, organisations, and institutions to operate with excellence, accountability, transparency, and purpose."</div>
+      </div>
+    </div>
+
+    <div class="vm-interp">
+      <div class="vm-interp-box">
+        <h4>Interpreting Our Vision</h4>
+        <p>The vision statement articulates CILG's highest aspiration — to be the foremost global authority in governance and leadership. This is a standard against which we hold ourselves rigorously accountable. It means that our qualification framework must be benchmarked against the world's best; that our research must advance the frontier of professional knowledge; that our membership community must uphold the highest standards of ethical conduct; and that our voice in governance policy must be informed by evidence and respected by regulators and institutions.</p>
+        <p style="margin-top:.8rem">The reference to <em>all sectors and geographies</em> reflects CILG's conviction that the governance profession's challenges are universal, transcending industry, sector, and national context.</p>
+      </div>
+      <div class="vm-interp-box">
+        <h4>Interpreting Our Mission</h4>
+        <p>The mission statement identifies four mechanisms through which CILG fulfils its purpose: <strong>professional education</strong> (the qualification and certification programmes through which we develop professional competence); <strong>rigorous credentialing</strong> (the assessment and membership framework through which we validate and recognise that competence); <strong>impactful research</strong> (the scholarly and professional inquiry through which we advance governance knowledge); and <strong>evidence-based advocacy</strong> (our engagement with policymakers and regulators on behalf of the governance profession and the public interest).</p>
+        <p style="margin-top:.8rem">Together, these four mechanisms constitute CILG's complete institutional contribution to the governance profession and the public interest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="values-section" id="values">
+  <div class="section-inner">
+    <div class="section-label">Section 6 — Core Values &amp; Ethics</div>
+    <h2 class="section-h2">Core Values and Ethical Framework</h2>
+    <p class="section-lead">CILG's values are not merely aspirational — they are operationalised standards against which CILG holds itself, its staff, and all its members accountable. They underpin every institutional decision, every professional standard, and every interaction with the professional community.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">⚖️</div>
+        <div class="value-name">Integrity</div>
+        <div class="value-desc">CILG maintains absolute honesty and transparency in all its activities — in the accuracy of its communications, the rigour of its assessments, the independence of its governance, and the courage to uphold standards even when doing so is inconvenient or commercially costly.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏆</div>
+        <div class="value-name">Excellence</div>
+        <div class="value-desc">CILG is committed to the highest achievable standard in everything it does — from the intellectual quality of its qualifications and the rigour of its assessments, to the professionalism of its member services and the calibre of its research and publications. Good enough is never good enough.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🛡️</div>
+        <div class="value-name">Accountability</div>
+        <div class="value-desc">CILG holds itself to the same accountability standards it promotes in the profession. Its Board of Governors, Secretariat, and Committee members are individually and collectively accountable for the Institute's performance, standards, and use of resources — publicly and transparently.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔍</div>
+        <div class="value-name">Transparency</div>
+        <div class="value-desc">CILG operates with maximum feasible transparency in its governance, its finances, its standards, and its decision-making. Members, prospective members, employers, and the public should be able to understand how CILG makes decisions, deploys resources, and upholds its standards.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <div class="value-name">Inclusivity</div>
+        <div class="value-desc">CILG is committed to making world-class governance education and professional recognition accessible to every qualified professional regardless of geography, socioeconomic background, gender, ethnicity, disability, or organisational sector. Governance excellence should not be the exclusive domain of the privileged.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💡</div>
+        <div class="value-name">Innovation</div>
+        <div class="value-desc">CILG actively seeks new and better ways to fulfil its mission — in the design and delivery of its qualifications, the application of technology to professional education, the development of new governance frameworks for emerging challenges, and the advancement of governance research methodologies.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div class="value-name">Purpose</div>
+        <div class="value-desc">Every decision CILG makes is guided by its ultimate purpose: the advancement of the public interest through excellent governance and leadership. Commercial considerations, reputational pressures, and institutional convenience are always subordinated to this purpose.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-name">Stewardship</div>
+        <div class="value-desc">CILG understands its role as a steward of the governance profession — not its owner. The Institute serves the profession and the public interest; it does not define them. This stewardship orientation informs CILG's humility in standard-setting and its obligation to develop the next generation of governance professionals.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODE OF PROFESSIONAL CONDUCT -->
+<section class="coc-section">
+  <div class="section-inner">
+    <div class="section-label">Section 6.2 — Ethical Framework</div>
+    <h2 class="section-h2">The Code of Professional Conduct</h2>
+    <p class="coc-intro">CILG's ethical framework is grounded in the seven principles of the CILG Code of Professional Conduct — the binding ethical standard to which all members of CILG are held. These principles are not abstract ideals; they are enforceable professional obligations that define what it means to be a CILG member in good standing.</p>
+    <div class="coc-table-wrap">
+      <table class="coc-table">
+        <thead>
+          <tr>
+            <th>Principle</th>
+            <th>Description and Application</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Integrity</td>
+            <td>Being honest, truthful, and transparent in all professional dealings — rejecting dishonesty, deception, and misrepresentation in any form. For governance professionals, this means providing boards and stakeholders with complete, accurate, and appropriately presented information at all times.</td>
+          </tr>
+          <tr>
+            <td>Professional Competence</td>
+            <td>Maintaining the level of professional knowledge and skill required for the responsibilities undertaken — through continuous professional development, honest self-assessment, and the willingness to seek support when facing challenges beyond current competence.</td>
+          </tr>
+          <tr>
+            <td>Accountability</td>
+            <td>Accepting responsibility for professional decisions and their consequences — not deflecting accountability to others or to circumstances. Governance professionals have a specific accountability obligation to the stakeholders they serve.</td>
+          </tr>
+          <tr>
+            <td>Transparency</td>
+            <td>Proactively sharing information that stakeholders need to make informed decisions — not selectively withholding information to protect professional or organisational interests at the expense of those stakeholders.</td>
+          </tr>
+          <tr>
+            <td>Respect &amp; Inclusivity</td>
+            <td>Treating all people — regardless of background, identity, or organisational position — with dignity and respect. Actively promoting inclusion in governance bodies and the organisations they govern.</td>
+          </tr>
+          <tr>
+            <td>Professional Independence</td>
+            <td>Maintaining the independence of professional judgment that governance roles require — resisting undue pressure from executives, major shareholders, or other powerful stakeholders to compromise professional assessments or advice.</td>
+          </tr>
+          <tr>
+            <td>Stewardship</td>
+            <td>Exercising governance responsibilities as a steward of the interests of all legitimate stakeholders — not as an agent of the most powerful, the most vocal, or those most able to reward or harm the governance professional personally.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CORE MANDATE & SCOPE -->
+<section class="mandate-section" id="mandate">
+  <div class="section-inner">
+    <div class="section-label">Section 4 — Core Mandate &amp; Institutional Scope</div>
+    <h2 class="section-h2">Core Mandate and Institutional Scope</h2>
+    <p class="section-lead">CILG's mandate is defined by its founding purpose: to serve the public interest by advancing professional excellence in governance and leadership. This mandate is broad enough to be relevant across all sectors and contexts, and specific enough to define clear institutional boundaries.</p>
+
+    <div class="mandate-grid">
+      <div class="mandate-card">
+        <div class="mandate-icon">🎓</div>
+        <div class="mandate-title">Professional Formation</div>
+        <div class="mandate-desc">Developing and delivering a comprehensive qualification framework that produces governance and leadership professionals with the knowledge, skills, and ethical judgment required for effective professional practice at every career stage.</div>
+      </div>
+      <div class="mandate-card">
+        <div class="mandate-icon">🏅</div>
+        <div class="mandate-title">Credentialing and Recognition</div>
+        <div class="mandate-desc">Operating a rigorous membership and credentialing system that formally recognises professional competence through assessed qualifications, verified experience, and ongoing CPD compliance — providing public assurance of professional standards.</div>
+      </div>
+      <div class="mandate-card">
+        <div class="mandate-icon">📏</div>
+        <div class="mandate-title">Standard-Setting</div>
+        <div class="mandate-desc">Establishing and maintaining the professional and ethical standards that define acceptable governance and leadership practice — through the Code of Professional Conduct, assessment standards, CPD frameworks, and governance guidance publications.</div>
+      </div>
+      <div class="mandate-card">
+        <div class="mandate-icon">🔬</div>
+        <div class="mandate-title">Knowledge Advancement</div>
+        <div class="mandate-desc">Producing and disseminating original professional scholarship and governance research that advances the evidence base for governance and leadership practice — through the CILG Journal, practitioner reports, and professional guidance publications.</div>
+      </div>
+      <div class="mandate-card">
+        <div class="mandate-icon">📢</div>
+        <div class="mandate-title">Public Interest Advocacy</div>
+        <div class="mandate-desc">Engaging with policymakers, regulators, legislators, and international bodies on evidence-based governance reform — representing the governance profession and the public interest in policy processes that affect institutional quality, accountability, and transparency.</div>
+      </div>
+      <div class="mandate-card">
+        <div class="mandate-icon">🤝</div>
+        <div class="mandate-title">Professional Community</div>
+        <div class="mandate-desc">Building and sustaining a vibrant, global professional community where governance and leadership practitioners connect, collaborate, and continue their professional development throughout their careers — across sectors, geographies, and career stages.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3.5rem">
+      <div class="section-label">Institutional Scope — Sectors Served</div>
+      <h3 style="font-family:var(--ff-head);font-size:1.5rem;font-weight:700;color:var(--forest);margin-bottom:1rem">Who We Serve</h3>
+      <p style="font-size:.93rem;color:var(--text2);line-height:1.9;margin-bottom:1.5rem;max-width:820px">CILG's institutional scope is deliberately broad — reflecting the conviction that governance and leadership challenges are universal across all organisational types, sectors, and geographies.</p>
+      <div class="sectors-list">
+        <div class="sector-item"><strong>Corporate &amp; Private Sector</strong>Board directors, company secretaries, C-suite executives, governance officers, compliance professionals, risk managers, and senior managers in listed companies, private companies, and private equity-backed entities of all sizes.</div>
+        <div class="sector-item"><strong>Public Sector &amp; Government</strong>Civil servants, public administrators, government ministers' advisors, parliamentary staff, public sector executives, regulatory body officers, and local government leaders.</div>
+        <div class="sector-item"><strong>Non-Profit, Charity &amp; Civil Society</strong>Executive directors, trustees, programme directors, foundation officers, NGO leaders, faith-based organisation leaders, and community governance practitioners.</div>
+        <div class="sector-item"><strong>International &amp; Intergovernmental Organisations</strong>Professionals working in multilateral institutions, development finance institutions, international NGOs, and cross-border governance bodies.</div>
+        <div class="sector-item"><strong>Educational Institutions</strong>University governors, school board members, college administrators, and educational governance professionals at all levels.</div>
+        <div class="sector-item"><strong>Financial Services</strong>Compliance officers, risk directors, audit committee members, financial governance professionals, and regulated entity executives.</div>
+        <div class="sector-item"><strong>Healthcare &amp; Social Services</strong>Hospital boards, health authority executives, social care governance professionals, and public health administrators.</div>
+        <div class="sector-item"><strong>Technology &amp; Innovation Sector</strong>Governance professionals in technology companies, AI governance practitioners, data governance specialists, and digital transformation leaders.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION AND CAPACITY BUILDING -->
+<section class="education-section">
+  <div class="education-content">
+    <div class="section-label">Education and Capacity Building</div>
+    <h2 class="section-h2">Education, Training, and Capacity Development</h2>
+    <p class="section-lead" style="max-width: 800px;">CILG delivers world-class education and training through a multi-level qualification framework, specialist certifications, and capacity development programmes serving governance professionals at all career stages.</p>
+
+    <div class="education-subsection">
+      <h3>The Five-Level Qualification Framework</h3>
+      <p>CILG's qualification structure provides a clear, progressive pathway from foundational principles to mastery-level expertise in governance and leadership. Each level builds on previous knowledge, increasing in scope, complexity, and professional application.</p>
+      <p><strong>Level 1: Foundation Certificate in Leadership and Governance</strong></p>
+      <p>An accessible entry-level qualification for professionals beginning their governance journey. Covers foundational governance concepts, leadership principles, organisational accountability, and the role of governance in institutional effectiveness.</p>
+      <p><strong>Level 2: Certificate in Leadership and Governance</strong></p>
+      <p>Builds on foundational knowledge with deeper exploration of governance frameworks, board dynamics, stakeholder management, professional ethics, and governance in specific sectors.</p>
+      <p><strong>Level 3: Advanced Certificate in Leadership and Governance</strong></p>
+      <p>A professional-grade qualification for practitioners seeking to deepen their expertise. Covers strategic governance, risk oversight, financial stewardship, regulatory environments, and governance in complex organisations.</p>
+      <p><strong>Level 4: Diploma in Leadership and Governance</strong></p>
+      <p>A comprehensive diploma integrating governance theory with institutional practice. Focuses on board effectiveness, ESG governance, corporate strategy, institutional governance models, and leadership in diverse contexts.</p>
+      <p><strong>Level 5: Advanced Diploma in Leadership and Governance</strong></p>
+      <p>The flagship CILG qualification and the highest level of professional credential. A master-practitioner programme for senior governance professionals. Covers advanced governance challenges, systemic accountability, transformational leadership, global governance issues, and evidence-based governance research.</p>
+    </div>
+
+    <div class="education-subsection">
+      <h3>Specialist Professional Certifications</h3>
+      <p>CILG offers 16+ specialist certifications designed for governance professionals seeking to develop expertise in specific domains:</p>
+      <ul>
+        <li>Public Sector Governance and Administration</li>
+        <li>Corporate Board Effectiveness</li>
+        <li>Risk Management and Oversight</li>
+        <li>ESG Governance and Sustainability</li>
+        <li>Digital Governance and Cyber Risk</li>
+        <li>Financial Governance and Audit</li>
+        <li>Non-profit Board Practice</li>
+        <li>Crisis Leadership and Governance</li>
+        <li>Governance in Healthcare Institutions</li>
+        <li>Higher Education Governance</li>
+        <li>Governance in the Extractive Industries</li>
+        <li>Governance and Anti-Corruption</li>
+        <li>Stakeholder Engagement and Accountability</li>
+        <li>Strategic Governance and Institutional Leadership</li>
+        <li>Governance and Social Responsibility</li>
+        <li>Emerging Markets Governance</li>
+      </ul>
+    </div>
+
+    <div class="education-subsection">
+      <h3>Delivery and Learning Methods</h3>
+      <p>CILG qualifications are delivered globally through a network of Accredited Learning Partners and in collaboration with universities, professional associations, and training institutions. Learning modes include in-person instructor-led programmes, hybrid delivery combining online and face-to-face learning, self-paced online study, and blended learning approaches. Delivery is tailored to the needs of learners and the contexts in which they work, ensuring accessibility and relevance across regions and professional settings.</p>
+    </div>
+
+    <div class="education-subsection">
+      <h3>Assessment and Credentialing</h3>
+      <p>All CILG qualifications are assessed through rigorous, standardised assessment methods including written examinations, case study analysis, reflective practice assignments, and professional portfolio development. Assessment is designed to evaluate both theoretical knowledge and practical application of governance principles. Successful completion of any CILG qualification results in the award of a recognised credential, providing independent verification of the holder's governance knowledge and competence.</p>
+    </div>
+
+    <div class="education-subsection">
+      <h3>Capacity Development Programmes</h3>
+      <p>Beyond formal qualifications, CILG delivers targeted capacity development programmes to strengthen governance capacity in specific institutions, sectors, and regions. These programmes are tailored to address identified governance challenges and support institutions in meeting their specific governance objectives.</p>
+    </div>
+
+    <div class="education-subsection">
+      <h3>Research and Knowledge Support</h3>
+      <p>CILG maintains a comprehensive knowledge resource on governance practice, policy, and trends. Members have access to CILG research publications, policy briefs, case studies, and governance resources to support their continuing professional development and practice.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- GLOBAL REACH -->
+<section class="global-section" id="presence">
+  <div class="global-content">
+    <div class="section-label">Global Reach</div>
+    <h2 class="section-h2">A Professional Body with Worldwide Reach</h2>
+    <p class="section-lead">From our US base in New Mexico, Alaska, and Michigan, CILG extends its professional community to governance practitioners worldwide through Accredited Learning Partners, Mutual Recognition Agreements, and digital delivery.</p>
+    
+    <div class="global-text-grid">
+      <div class="global-text-column">
+        <h3>Our Global Presence</h3>
+        <p>CILG is registered as a professional body in New Mexico, Alaska, and Michigan in the United States of America. Through strategic partnerships and Accredited Learning Partners, CILG serves governance professionals across all continents: Africa, Asia, Europe, Latin America, the Middle East, and North America.</p>
+        <p>Our global network enables CILG to deliver consistent, rigorous qualifications to governance professionals regardless of geographic location, while remaining sensitive to local governance contexts and institutional environments.</p>
+        
+        <h3>Accredited Learning Partners</h3>
+        <p>CILG collaborates with universities, professional associations, training institutes, and corporate learning organisations worldwide to deliver CILG qualifications. Accredited Learning Partners are vetted and approved to ensure they meet CILG's exacting standards for teaching, assessment, and professional conduct.</p>
+        
+        <h3>Mutual Recognition Agreements</h3>
+        <p>CILG maintains Mutual Recognition Agreements with peer professional bodies in governance and related fields globally. These agreements facilitate recognition of qualifications and professional standing across jurisdictions, strengthening the professional community and extending the reach of governance excellence.</p>
+      </div>
+      <div class="global-text-column">
+        <h3>Strategic Regions</h3>
+        <p>CILG's regional focus areas include:</p>
+        <h3>Africa</h3>
+        <p>Supporting governance development across sub-Saharan Africa through qualifications, capacity building, and partnership with African governance institutions and professional bodies.</p>
+        <h3>Asia</h3>
+        <p>Serving governance professionals across Asia Pacific through partnerships with leading governance, business, and public administration organisations.</p>
+        <h3>Europe</h3>
+        <p>Collaborating with European governance institutions, professional bodies, and training providers to deliver governance qualifications aligned with European governance standards.</p>
+        <h3>Latin America</h3>
+        <p>Building governance capacity in Latin America through Spanish-language and region-specific governance programmes.</p>
+        <h3>Middle East</h3>
+        <p>Supporting governance development in the Middle East region through tailored governance programmes and strategic partnerships.</p>
+        <h3>North America</h3>
+        <p>Serving governance professionals across North America through US-based registration and partnerships with Canadian and Mexican governance organisations.</p>
+      </div>
+    </div>
+
+    <div class="global-badges">
+      <div class="global-badge">New Mexico</div>
+      <div class="global-badge">Alaska</div>
+      <div class="global-badge">Michigan</div>
+      <div class="global-badge">Africa</div>
+      <div class="global-badge">Asia</div>
+      <div class="global-badge">Latin America</div>
+      <div class="global-badge">Europe</div>
+      <div class="global-badge">Middle East</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCREDITATION AND RECOGNITION -->
+<section class="accreditation-section">
+  <div class="accreditation-content">
+    <h2>Accreditation and Recognition</h2>
+    <p>CILG is a fully registered professional body in the United States of America, with registration in New Mexico, Alaska, and Michigan. Our qualifications and professional standards are recognised internationally as indicators of professional competence and governance expertise.</p>
+    
+    <h3>CILG Credentials and Designatory Letters</h3>
+    <p>CILG membership is evidenced through the award of designatory letters that reflect the member's professional standing and level of expertise:</p>
+    <ul>
+      <li>ACILG (Associate Member)</li>
+      <li>MCILG (Full Member)</li>
+      <li>FCILG (Fellow)</li>
+    </ul>
+    
+    <h3>Ongoing Professional Standards</h3>
+    <p>All CILG members commit to maintaining the professional standards set out in the CILG Code of Ethics and Professional Standards Framework. This includes ongoing Continuing Professional Development to ensure current knowledge of governance practice and emerging issues.</p>
+    
+    <h3>Quality Assurance</h3>
+    <p>CILG maintains robust quality assurance processes for all qualifications, assessments, and learning delivery. Accredited Learning Partners are subject to regular monitoring, review, and evaluation to ensure consistent delivery of high-quality education in line with CILG standards.</p>
+    
+    <h3>Recognition and Partnerships</h3>
+    <p>CILG qualifications and professional credentials are recognised by governance institutions, boards, and employers worldwide as evidence of professional competence in governance and leadership. CILG maintains partnerships with peer professional bodies in governance and related disciplines, facilitating mutual recognition of qualifications and supporting the development of governance professionals globally.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Advance Your Governance Career?</h2>
+  <p>Join thousands of governance and leadership professionals who trust CILG to credential their expertise and elevate their careers.</p>
+  <div class="cta-btns">
+    <a href="membership.html#apply" class="cta-btn-main">Apply for Membership</a>
+    <a href="qualifications.html" class="cta-btn-alt">Explore Qualifications</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
+        <p style="margin-top:.75rem">Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.45)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="membership.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="research.html">Research &amp; Insights</a>
+        <a href="partners.html">Partners</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+
+      <!-- ABOUT THE INSTITUTE -->
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#vision">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="about.html#presence">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <!-- PORTALS -->
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="membership.html#apply">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4> <a href="contact.html">Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a>
+        <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>
+        <a href="mailto:partnerships@cilgglobal.org">partnerships@cilgglobal.org</a>
+        <a href="mailto:research@cilgglobal.org">research@cilgglobal.org</a>
+        <a href="mailto:media@cilgglobal.org">media@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America<br>
+          <span style="color:rgba(255,255,255,.28);font-size:.68rem">(Correspondence address only)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+</script>
+</body>
+</html>
