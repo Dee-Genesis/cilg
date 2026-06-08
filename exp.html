@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Exemption Policy | CILG</title>
+<meta name="description" content="CILG Exemption Policy — a comprehensive framework for the recognition of prior learning, professional experience, and equivalent qualifications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --gold:        #C9A84C;
+  --gold-lt:     #F0D080;
+  --gold-pale:   #FDF8E8;
+  --navy:        #0F2140;
+  --navy-mid:    #1B3A6B;
+  --blue:        #2557A7;
+  --green:       #1B6B4A;
+  --green-lt:    #E6F4EF;
+  --burgundy:    #6B1B2E;
+  --burg-lt:     #F7EEF0;
+  --teal:        #1B5F6B;
+  --teal-lt:     #E6F3F5;
+  --orange:      #B85C1B;
+  --orange-lt:   #FEF3EA;
+  --gray-50:     #F8F9FA;
+  --gray-100:    #F1F3F5;
+  --gray-200:    #E9ECEF;
+  --gray-300:    #DEE2E6;
+  --gray-500:    #ADB5BD;
+  --gray-700:    #495057;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --ff-mono:     'JetBrains Mono', monospace;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+  --shadow-sm:   0 1px 3px rgba(13,43,31,.08), 0 1px 2px rgba(13,43,31,.04);
+  --shadow:      0 4px 16px rgba(13,43,31,.10), 0 2px 6px rgba(13,43,31,.06);
+  --shadow-lg:   0 12px 40px rgba(13,43,31,.14), 0 4px 12px rgba(13,43,31,.08);
+  --shadow-xl:   0 24px 64px rgba(13,43,31,.18), 0 8px 20px rgba(13,43,31,.10);
+  --radius:      8px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--forest) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; overflow-y: auto; padding: 1.5rem 1.5rem 3rem; transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none; }
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  padding-top: var(--nav-h);
+  background:
+    linear-gradient(135deg, rgba(13,43,31,.72) 0%, rgba(13,43,31,.82) 100%),
+    url('assets/images/hero1.jpg') center/cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0px, transparent 1px, transparent 60px);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 900px; margin: 0 auto;
+  padding: 5rem 3rem 7rem;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(200,241,53,.18); border: 1px solid rgba(200,241,53,.45);
+  color: var(--lime); padding: 5px 16px; border-radius: 40px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 1.8rem;
+  animation: fadeUp .8s ease both;
+}
+.hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-crest {
+  width: 90px; height: 90px;
+  background: linear-gradient(135deg, rgba(200,241,53,.2), rgba(200,241,53,.06));
+  border: 2px solid rgba(200,241,53,.35);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.8rem;
+  animation: fadeUp .9s .1s ease both;
+}
+.hero-crest-text { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 800; color: var(--lime); letter-spacing: .06em; }
+.hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: #fff; text-align: center;
+  font-weight: 800; letter-spacing: -.03em; line-height: 1.05;
+  margin-bottom: 0.6rem;
+  animation: fadeUp 1s .2s ease both;
+}
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  color: var(--lime); text-align: center; font-weight: 500;
+  margin-bottom: 1.2rem; border-left: 3px solid var(--lime); padding-left: .85rem;
+  animation: fadeUp 1s .3s ease both;
+}
+.hero-desc {
+  font-size: .95rem; color: rgba(255,255,255,.8); text-align: center;
+  max-width: 620px; line-height: 1.9;
+  animation: fadeUp 1s .4s ease both;
+}
+.hero-tags {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  margin-top: 2.5rem;
+  animation: fadeUp 1s .5s ease both;
+}
+.hero-tag {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.85); padding: 8px 20px; border-radius: 40px;
+  font-size: .75rem; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; transition: all var(--tr);
+}
+.hero-tag:hover { background: var(--lime); border-color: var(--lime-dk); color: var(--forest); transform: translateY(-2px); }
+.hero-divider {
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--lime-dk), transparent);
+  margin: 2.2rem auto 0;
+  animation: fadeUp 1s .6s ease both;
+}
+
+/* ═══════════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════════ */
+main { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* ── Part Header ── */
+.part-header {
+  display: flex; align-items: stretch; gap: 0;
+  background: var(--forest); border-radius: var(--radius-xl);
+  overflow: hidden; margin: 3rem 0 2rem; box-shadow: var(--shadow-xl);
+  position: relative;
+}
+.part-header::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(200,241,53,.08), transparent);
+  pointer-events: none;
+}
+.part-stripe { width: 8px; flex-shrink: 0; background: linear-gradient(180deg, var(--lime) 0%, var(--lime-dk) 100%); }
+.part-content { padding: 2.5rem 3rem; flex: 1; }
+.part-label { font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); margin-bottom: .5rem; }
+.part-content h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--white); font-weight: 700; margin-bottom: .75rem; letter-spacing: -.02em; }
+.part-content p { color: rgba(255,255,255,.65); font-size: .95rem; max-width: 700px; }
+.part-number {
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem 3rem; flex-shrink: 0;
+  font-family: var(--ff-head); font-size: 5rem; font-weight: 800;
+  color: rgba(200,241,53,.12); letter-spacing: -.04em;
+  border-left: 1px solid rgba(255,255,255,.06); line-height: 1;
+}
+
+/* ── Section Headings ── */
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem); color: var(--forest);
+  font-weight: 700; margin-bottom: .75rem;
+  padding-bottom: .75rem;
+  border-bottom: 2px solid var(--g200);
+  position: relative; letter-spacing: -.02em;
+}
+.section-title::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 60px; height: 2px; background: var(--lime-dk); }
+.subsection-title {
+  font-family: var(--ff-head);
+  font-size: 1.2rem; color: var(--forest-mid); font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  display: flex; align-items: center; gap: 10px; letter-spacing: -.01em;
+}
+.subsection-title::before { content: ''; width: 4px; height: 20px; background: var(--lime-dk); border-radius: 2px; flex-shrink: 0; }
+.prose-text { font-size: .97rem; color: var(--text2); line-height: 1.85; margin-bottom: 1.25rem; }
+
+/* ── Cards ── */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.card {
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: var(--radius-lg); padding: 2rem;
+  box-shadow: var(--shadow-sm); transition: all var(--tr);
+  position: relative; overflow: hidden;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--g300); }
+.card-accent { position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.card-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+.card h3 { font-family: var(--ff-head); font-size: 1.1rem; color: var(--forest); margin-bottom: .5rem; font-weight: 700; }
+.card p { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+
+/* ── Info Boxes ── */
+.info-box {
+  background: var(--g100); border: 1px solid var(--g200);
+  border-left: 5px solid var(--blue); border-radius: var(--radius);
+  padding: 1.5rem 1.75rem; margin: 1.5rem 0;
+}
+.info-box.gold   { background: var(--gold-pale); border-left-color: var(--gold); border-color: rgba(201,168,76,.2); }
+.info-box.green  { background: var(--green-lt);  border-left-color: var(--green); border-color: rgba(27,107,74,.15); }
+.info-box.burg   { background: var(--burg-lt);   border-left-color: var(--burgundy); border-color: rgba(107,27,46,.15); }
+.info-box.teal   { background: var(--teal-lt);   border-left-color: var(--teal); border-color: rgba(27,95,107,.15); }
+.info-box.orange { background: var(--orange-lt); border-left-color: var(--orange); border-color: rgba(184,92,27,.15); }
+.info-box-title {
+  font-family: var(--ff-body); font-size: .78rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; margin-bottom: .75rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.info-box.blue .info-box-title   { color: var(--blue); }
+.info-box.gold .info-box-title   { color: var(--gold); }
+.info-box.green .info-box-title  { color: var(--green); }
+.info-box.burg .info-box-title   { color: var(--burgundy); }
+.info-box.teal .info-box-title   { color: var(--teal); }
+.info-box.orange .info-box-title { color: var(--orange); }
+.info-box ul { list-style: none; }
+.info-box ul li { font-size: .9rem; color: var(--text2); padding: 4px 0; display: flex; gap: 10px; }
+.info-box ul li::before { content: '›'; color: var(--lime-dk); font-weight: 700; flex-shrink: 0; }
+.info-box p { font-size: .9rem; color: var(--text2); line-height: 1.75; margin-top: .5rem; }
+
+/* ── Tables ── */
+.table-wrap { overflow-x: auto; margin: 2rem 0; border-radius: var(--radius-lg); box-shadow: var(--shadow); border: 1px solid var(--g200); }
+table { width: 100%; border-collapse: collapse; background: var(--white); }
+thead th {
+  background: var(--forest); color: var(--white);
+  font-family: var(--ff-body); font-size: .78rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 14px 16px; text-align: left;
+  border-bottom: 2px solid rgba(200,241,53,.3);
+}
+thead th:first-child { border-radius: var(--radius-lg) 0 0 0; }
+thead th:last-child  { border-radius: 0 var(--radius-lg) 0 0; }
+tbody tr { transition: background var(--tr); border-bottom: 1px solid var(--g100); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--g100); }
+tbody tr:nth-child(even) { background: #FAFAFA; }
+tbody tr:nth-child(even):hover { background: var(--g100); }
+td { padding: 13px 16px; font-size: .88rem; color: var(--text2); vertical-align: top; line-height: 1.65; }
+td:first-child { font-weight: 600; color: var(--forest-mid); }
+.table-caption { font-size: .8rem; color: var(--g500); margin-top: .5rem; font-style: italic; padding: 0 4px; }
+
+/* ── Principle Cards ── */
+.principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+.principle-card {
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: all var(--tr);
+}
+.principle-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--lime-dk); }
+.principle-card::before {
+  content: attr(data-num);
+  position: absolute; top: -10px; right: 10px;
+  font-family: var(--ff-head); font-size: 5rem; font-weight: 800;
+  color: rgba(13,43,31,.04); line-height: 1;
+}
+.principle-card h4 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .5rem; }
+.principle-card p { font-size: .87rem; color: var(--text2); line-height: 1.7; }
+
+/* ── Level Banners ── */
+.level-banner {
+  background: var(--forest); border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem; margin: 2rem 0 1.25rem;
+  display: flex; align-items: center; gap: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.level-badge {
+  background: var(--lime); color: var(--forest); border-radius: 8px;
+  padding: 6px 14px; font-size: .75rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; white-space: nowrap;
+  font-family: var(--ff-head);
+}
+.level-banner h3 { font-family: var(--ff-head); color: var(--white); font-size: 1.15rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+.level-banner p  { color: rgba(255,255,255,.6); font-size: .85rem; margin: 4px 0 0; }
+
+/* ── Exemption Cap Badge ── */
+.cap-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 30px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.cap-badge.open   { background: var(--lime-pale); color: var(--forest-lt); border: 1px solid rgba(174,219,26,.4); }
+.cap-badge.closed { background: var(--burg-lt); color: var(--burgundy); border: 1px solid rgba(107,27,46,.2); }
+.cap-badge.partial{ background: var(--gold-pale); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
+
+/* ── Process Steps ── */
+.steps-list { list-style: none; margin: 2rem 0; }
+.step-item {
+  display: flex; gap: 1.5rem; margin-bottom: 2rem;
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  box-shadow: var(--shadow-sm); transition: all var(--tr);
+  position: relative;
+}
+.step-item:hover { box-shadow: var(--shadow); border-color: var(--g300); }
+.step-item::before {
+  content: ''; position: absolute; left: 44px; top: 100%; width: 2px; height: 2rem;
+  background: var(--g200); display: block;
+}
+.step-item:last-child::before { display: none; }
+.step-number {
+  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+  background: var(--forest); color: var(--lime);
+  font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-body h4 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .4rem; }
+.step-body p { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.step-body ul { list-style: none; margin-top: .75rem; }
+.step-body ul li { font-size: .87rem; color: var(--text2); padding: 3px 0; display: flex; gap: 8px; }
+.step-body ul li::before { content: '›'; color: var(--lime-dk); font-weight: 700; flex-shrink: 0; }
+
+/* ── Decision Cards ── */
+.decision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+.decision-card {
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.decision-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.decision-header { padding: 1.25rem 1.5rem; }
+.decision-type { font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 4px; }
+.decision-name { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--white); }
+.decision-body { background: var(--white); padding: 1.25rem 1.5rem; }
+.decision-body p { font-size: .87rem; color: var(--text2); line-height: 1.7; }
+.d-approved  .decision-header { background: linear-gradient(135deg, var(--green), #24906A); }
+.d-condition .decision-header { background: linear-gradient(135deg, #1B3A6B, var(--blue)); }
+.d-deferred  .decision-header { background: linear-gradient(135deg, #8A6E1E, var(--gold)); }
+.d-declined  .decision-header { background: linear-gradient(135deg, var(--burgundy), #9B2742); }
+
+/* ── Utility ── */
+.section-wrap { padding: 3rem 0; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.divider { height: 1px; background: var(--g200); margin: 3rem 0; }
+.tag { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.tag-green { background: var(--lime-pale); color: var(--forest-lt); }
+.tag-gold  { background: var(--gold-pale); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
+.tag-burg  { background: var(--burg-lt); color: var(--burgundy); }
+.highlight-box {
+  background: linear-gradient(135deg, var(--forest), var(--forest-mid));
+  border-radius: var(--radius-lg); padding: 2rem 2.5rem; margin: 2rem 0;
+  position: relative; overflow: hidden;
+}
+.highlight-box::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(200,241,53,.08), transparent);
+  pointer-events: none;
+}
+.highlight-box h3 { font-family: var(--ff-head); font-size: 1.1rem; color: var(--lime); font-weight: 700; margin-bottom: .75rem; position: relative; z-index: 1; }
+.highlight-box p, .highlight-box ul { position: relative; z-index: 1; }
+.highlight-box p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.8; }
+.highlight-box ul { list-style: none; }
+.highlight-box ul li { font-size: .88rem; color: rgba(255,255,255,.7); padding: 4px 0; display: flex; gap: 10px; }
+.highlight-box ul li::before { content: '✦'; color: var(--lime); font-size: .65rem; margin-top: .3rem; flex-shrink: 0; }
+
+/* ── Scroll to Top ── */
+.scroll-top {
+  position: fixed; bottom: 2rem; right: 2rem;
+  width: 48px; height: 48px;
+  background: var(--lime); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--forest); font-size: 1.2rem; cursor: pointer;
+  box-shadow: var(--shadow-lg); transition: all var(--tr);
+  opacity: 0; visibility: hidden; text-decoration: none; z-index: 50;
+}
+.scroll-top.visible { opacity: 1; visibility: visible; }
+.scroll-top:hover { background: var(--lime-dk); transform: translateY(-3px); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 3rem 3rem 1.5rem; margin-top: 4rem; }
+.footer-inner { max-width: 1300px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .5rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.7; }
+.footer-socials { display: flex; gap: .5rem; margin-top: 1rem; flex-wrap: wrap; }
+.footer-social-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.18);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.6); font-size: .85rem;
+  transition: all var(--tr); text-decoration: none;
+}
+.footer-social-btn:hover { border-color: var(--lime); color: var(--lime); background: rgba(200,241,53,.08); }
+.footer-col h4 { font-size: .63rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: .8rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.7); padding: 2.5px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-col p { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.85; }
+.footer-bottom {
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.footer-bottom span { font-size: .72rem; color: rgba(255,255,255,.35); }
+.footer-bottom a { color: rgba(255,255,255,.6); font-size: .72rem; transition: color .25s; }
+.footer-bottom a:hover { color: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .part-number { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .hero-inner { padding: 4rem 2rem 6rem; }
+  .decision-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .nav { padding: 0 1.25rem; }
+  main { padding: 0 1rem; }
+  .hero h1 { font-size: 2rem; }
+  .part-content { padding: 1.75rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .decision-grid { grid-template-columns: 1fr; }
+  .step-item { flex-direction: column; gap: 1rem; }
+  .step-item::before { left: 22px; }
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ══════════════ NAVIGATION ══════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link act">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="mov.html">Overview</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mup.html">Membership Upgrade</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">Continuous Professional Development</a>
+        <a href="cod.html">Code of Conduct</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Professional Qualification Framework</a>
+        <a href="qul.html">Qualification Levels</a>
+        <a href="psf.html">Professional Standard Framework</a>
+        <a href="exp.html">Exemption Policy</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="news.html">News &amp; Updates</a>
+        <a href="cev.html">Certification Verification</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="vms.html" class="mob-link">Vision &amp; Mission</a>
+    <a href="ves.html" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="gp.html" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="mov.html" class="mob-link">Overview</a>
+    <a href="mg.html" class="mob-link">Membership Grades</a>
+    <a href="mup.html" class="mob-link">Membership Upgrade</a>
+    <a href="mf.html" class="mob-link">Membership Fees</a>
+    <a href="cpd.html" class="mob-link">CPD</a>
+    <a href="cod.html" class="mob-link">Code of Conduct</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qul.html" class="mob-link">Qualification Levels</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+    <a href="exp.html" class="mob-link">Exemption Policy</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+    <a href="news.html" class="mob-link">News &amp; Updates</a>
+    <a href="cev.html" class="mob-link">Certification Verification</a>
+    <a href="faq.html" class="mob-link">FAQs</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+  <a href="appn.html" class="mob-cta">Apply for Membership →</a>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="hero-top">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Policy Document
+    </div>
+    <div class="hero-crest"><span class="hero-crest-text">CILG</span></div>
+    <h1>Exemption Policy</h1>
+    <p class="hero-sub">Recognition of Prior Learning, Professional Experience &amp; Equivalent Qualifications</p>
+    <p class="hero-desc">A comprehensive framework governing eligibility, evidence standards, assessment criteria, and limits for candidates seeking exemption from one or more modules within the CILG Professional Qualification Framework.</p>
+    <div class="hero-tags">
+      <a href="#introduction" class="hero-tag">Introduction</a>
+      <a href="#principles" class="hero-tag">Principles</a>
+      <a href="#eligibility" class="hero-tag">Eligibility</a>
+      <a href="#limits" class="hero-tag">Exemption Limits</a>
+      <a href="#recognised" class="hero-tag">Recognised Bodies</a>
+      <a href="#pee" class="hero-tag">Experience Exemption</a>
+      <a href="#fees" class="hero-tag">Fees</a>
+      <a href="#process" class="hero-tag">Application Process</a>
+      <a href="#decisions" class="hero-tag">Decisions</a>
+      <a href="#module-map" class="hero-tag">Module Map</a>
+      <a href="#mra" class="hero-tag">MRA</a>
+      <a href="#appeals" class="hero-tag">Appeals</a>
+    </div>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOREWORD
+═══════════════════════════════════════════════════════════════ -->
+<section id="introduction" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Foreword</div>
+      <h2>Policy Overview</h2>
+      <p>The CILG Exemption Policy gives effect to the principle of fairness — providing a structured, transparent, and independently assessed process through which eligible candidates may have prior qualifications, formal learning, or professional experience recognised as equivalent to CILG modules.</p>
+    </div>
+    <div class="part-number">EP</div>
+  </div>
+
+  <p class="prose-text">The Chartered Institute of Leadership and Governance (CILG) is committed to building a qualification framework that is both rigorous and fair. Rigour demands that every individual awarded a CILG designation has demonstrated genuine mastery of the knowledge, skills, and competencies appropriate to that designation. Fairness demands that those who have already acquired such mastery through prior learning, professional experience, or equivalent qualifications are not required to repeat what they already know.</p>
+
+  <p class="prose-text">Exemptions are not a concession or a shortcut. They are a recognition of genuine equivalence — verified by qualified assessors, governed by clear criteria, and subject to defined limits. The integrity of a CILG qualification depends on ensuring that every module credited to a candidate — whether through examination or through exemption — represents real professional competence.</p>
+
+  <div class="highlight-box">
+    <h3>Edition 1.0 | 2024</h3>
+    <p>This policy has been developed with reference to internationally recognised best practices in exemptions and Recognition of Prior Learning (RPL), including frameworks applied by leading international professional bodies across accountancy, human resources, governance, and related disciplines. It is reviewed by the CILG Examinations and Standards Committee at least every three years.</p>
+  </div>
+
+  <h2 class="section-title mt-2">1.1 Purpose of This Policy</h2>
+  <p class="prose-text">This Exemption Policy governs all applications by candidates seeking exemption from one or more modules within the CILG Professional Qualification Framework. It sets out the types of exemption available, the criteria that must be met, the evidence that must be submitted, the process for assessment, the limits on exemptions, and the rights and obligations of both applicants and the Institute.</p>
+
+  <p class="prose-text">The Policy applies to all five levels of the CILG Qualification Framework:</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-accent" style="background:var(--forest);"></div>
+      <div class="card-icon" style="background:var(--g100); color:var(--forest);">①</div>
+      <h3>Level 1 — Foundation</h3>
+      <p>Open entry level. Full level exemption available under defined conditions.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--teal);"></div>
+      <div class="card-icon" style="background:var(--teal-lt); color:var(--teal);">②</div>
+      <h3>Level 2 — Knowledge Level</h3>
+      <p>Up to 3 modules may be exempted; minimum 2 by CILG assessment.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--green);"></div>
+      <div class="card-icon" style="background:var(--green-lt); color:var(--green);">③</div>
+      <h3>Level 3 — Skilled Level</h3>
+      <p>Up to 2 modules may be exempted; minimum 3 by CILG assessment.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--gold);"></div>
+      <div class="card-icon" style="background:var(--gold-pale); color:var(--gold);">④</div>
+      <h3>Level 4 — Professional Level</h3>
+      <p>Maximum 1 module exemption; PLE basis only. PEE may supplement only.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--burgundy);"></div>
+      <div class="card-icon" style="background:var(--burg-lt); color:var(--burgundy);">⑤</div>
+      <h3>Level 5 — Expert Level</h3>
+      <p>No exemptions available. Absolute bar under all circumstances.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title mt-2">1.2 Scope and Application</h2>
+  <p class="prose-text">This policy applies to: new candidates registering with CILG for the first time; existing CILG Student or Affiliate Members who have not yet completed all modules at a given level; candidates applying on the basis of qualifications from universities, colleges, international professional bodies, or other recognised learning institutions; candidates applying on the basis of substantial and verifiable professional experience; and candidates benefiting from Mutual Recognition Agreements (MRAs) between CILG and other professional bodies.</p>
+
+  <div class="info-box burg">
+    <div class="info-box-title">⚠ This Policy Does Not Apply To</div>
+    <ul>
+      <li>Candidates seeking to bypass the entire CILG qualification framework — no such pathway exists</li>
+      <li>Candidates at Level 5 (Expert Level), where no exemptions are permitted under any circumstances</li>
+      <li>Candidates seeking retrospective exemption after they have already sat and passed the relevant module examination</li>
+      <li>Academic institutions seeking accreditation of their programmes — this is governed by a separate CILG Accreditation Policy</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">1.5 Key Definitions</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Exemption</td><td>A formal determination by CILG that a candidate is not required to sit the examination for a specified module, on the basis of verified prior learning or professional experience equivalent to that module's learning outcomes</td></tr>
+        <tr><td>Prior Learning</td><td>Knowledge and competence acquired through formal education, training, qualifications, or professional practice prior to applying to the CILG framework</td></tr>
+        <tr><td>Recognition of Prior Learning (RPL)</td><td>The formal process by which CILG evaluates and accredits prior learning as equivalent to specified components of the CILG qualification framework</td></tr>
+        <tr><td>Prior Learning Exemption (PLE)</td><td>An exemption granted on the basis of a formally awarded qualification from a recognised institution</td></tr>
+        <tr><td>Professional Experience Exemption (PEE)</td><td>An exemption granted on the basis of substantial, verified, and directly relevant professional experience</td></tr>
+        <tr><td>Mutual Recognition Agreement (MRA)</td><td>A formal bilateral agreement between CILG and another professional body providing for the automatic or expedited recognition of specified designations or qualifications</td></tr>
+        <tr><td>Exemptions Committee</td><td>The CILG body responsible for assessing and deciding all exemption applications</td></tr>
+        <tr><td>Equivalence</td><td>A determination that a candidate's prior learning or experience demonstrates the same standard of knowledge, skill, or competence as the relevant CILG module learning outcomes</td></tr>
+        <tr><td>Credit</td><td>Formal recognition that a module has been completed — whether by examination pass or by approved exemption</td></tr>
+        <tr><td>Transcript</td><td>The official CILG record of all modules completed (by examination or exemption) and results obtained</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2 — GUIDING PRINCIPLES
+═══════════════════════════════════════════════════════════════ -->
+<section id="principles" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 2</div>
+      <h2>Guiding Principles</h2>
+      <p>Twelve governing principles that guide every decision made under this Exemption Policy — from the design and administration of the system to individual application outcomes.</p>
+    </div>
+    <div class="part-number">02</div>
+  </div>
+
+  <div class="principles-grid">
+    <div class="principle-card" data-num="1">
+      <h4>Equivalence</h4>
+      <p>Exemptions are granted only where genuine equivalence to CILG module learning outcomes has been established — not merely on the basis of thematic similarity or subject area overlap. Topical overlap is necessary but not sufficient; depth, level, and professional relevance must also align.</p>
+    </div>
+    <div class="principle-card" data-num="2">
+      <h4>Evidence-Based Assessment</h4>
+      <p>Every exemption decision must be grounded in documentary evidence that can be independently verified. CILG does not grant exemptions on the basis of self-declaration alone. Where documentation cannot be produced, the exemption will not be granted.</p>
+    </div>
+    <div class="principle-card" data-num="3">
+      <h4>Professional Orientation</h4>
+      <p>CILG is a professionally — not academically — oriented qualification body. Exemptions reflect professional competence, not merely academic knowledge. Where a qualification is primarily theoretical and lacks the professional application dimension, a full exemption may not be appropriate.</p>
+    </div>
+    <div class="principle-card" data-num="4">
+      <h4>Currency of Knowledge</h4>
+      <p>Prior learning must be sufficiently current to be relevant to contemporary professional practice. The fields of leadership and governance evolve continuously. CILG applies currency requirements to ensure exemptions reflect learning that remains professionally current.</p>
+    </div>
+    <div class="principle-card" data-num="5">
+      <h4>Protection of Qualification Integrity</h4>
+      <p>The granting of exemptions must not compromise the rigour, credibility, or market value of CILG qualifications. The Institute will always err on the side of protecting qualification integrity when making borderline decisions.</p>
+    </div>
+    <div class="principle-card" data-num="6">
+      <h4>Fairness and Consistency</h4>
+      <p>All applicants are assessed fairly, consistently, and without prejudice, using the same criteria, standards, and processes. Comparable qualifications and experience from different institutions, countries, or contexts must receive comparable treatment.</p>
+    </div>
+    <div class="principle-card" data-num="7">
+      <h4>Transparency</h4>
+      <p>Applicants are entitled to a clear explanation of how their application has been assessed and why any decision has been reached. Every decision — whether approved, partially approved, or declined — is accompanied by a written Decision Notice.</p>
+    </div>
+    <div class="principle-card" data-num="8">
+      <h4>Confidentiality</h4>
+      <p>All information submitted in support of an exemption application is treated with the strictest professional confidence and used solely for the purpose of assessing that application, in accordance with applicable data protection laws.</p>
+    </div>
+    <div class="principle-card" data-num="9">
+      <h4>No Retrospective Exemption After Examination</h4>
+      <p>Once a candidate has sat and passed a CILG module examination, that module is credited by examination result — not by exemption. A candidate who has already passed a module cannot later be granted a retrospective exemption for that module.</p>
+    </div>
+    <div class="principle-card" data-num="10">
+      <h4>Non-Transferability</h4>
+      <p>An exemption is personal to the applicant. It cannot be transferred, assigned, or shared. The sharing or assignment of exemption decisions is not permitted and would constitute academic fraud.</p>
+    </div>
+    <div class="principle-card" data-num="11">
+      <h4>No Automatic Exemption</h4>
+      <p>Holding a recognised qualification or designation does not automatically confer an exemption. A formal application is always required — even where a Mutual Recognition Agreement exists or a qualification appears on CILG's Schedule of Recognised Qualifications.</p>
+    </div>
+    <div class="principle-card" data-num="12">
+      <h4>Absolute Bar at Level 5</h4>
+      <p>No exemptions are available at Level 5 — the Expert Level — under any circumstances. Its integrity demands that every holder of the Chartered Professional designation (FCILG) has completed every Level 5 component through CILG's own assessment processes.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4 — ELIGIBILITY CRITERIA
+═══════════════════════════════════════════════════════════════ -->
+<section id="eligibility" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 4</div>
+      <h2>Exemption Eligibility Criteria</h2>
+      <p>General eligibility requirements, qualification-specific criteria for Prior Learning Exemptions, currency rules, and Professional Experience Exemption eligibility thresholds.</p>
+    </div>
+    <div class="part-number">04</div>
+  </div>
+
+  <h2 class="section-title">4.1 General Eligibility Requirements</h2>
+  <p class="prose-text">To be eligible to apply for any exemption under this policy, a candidate must satisfy all of the following general eligibility requirements:</p>
+  <div class="info-box green">
+    <div class="info-box-title">✓ All Six Requirements Must Be Met</div>
+    <ul>
+      <li>The candidate must be a registered CILG member (at minimum, a Student Member — SCILG) at the time of application, or submitting simultaneously with their initial membership enrollment</li>
+      <li>The exemption application must be submitted before the candidate sits the examination for the module(s) in question — retrospective applications will not be considered</li>
+      <li>The candidate must not have previously failed the examination for any module for which they are seeking exemption</li>
+      <li>The applicable Exemption Assessment Fee must be paid in full before the application will be formally processed</li>
+      <li>All documents submitted must be genuine, certified, and current — submission of fraudulent documentation is a serious breach of the CILG Code of Professional Conduct</li>
+      <li>The candidate must complete the official CILG Exemption Application Form in full — incomplete applications will be returned and will not be assessed until complete</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">4.2 Qualification-Specific Eligibility (PLE)</h2>
+  <p class="prose-text">In addition to the general eligibility requirements, candidates applying under the Prior Learning Exemption pathway must demonstrate that: the qualification has been formally awarded and conferred; the awarding institution is a recognised university, college, or professional body; the qualification is at a level of complexity broadly comparable to or above the CILG level sought; it covers the subject matter and learning outcomes of the relevant CILG module to a standard sufficient for equivalence; and it was awarded within the applicable currency window.</p>
+
+  <h2 class="section-title mt-2">4.3 Currency of Prior Learning — The Ten-Year Rule</h2>
+  <p class="prose-text">Knowledge in the fields of leadership and governance evolves continuously. For this reason, CILG applies a standard currency window to prior learning claims.</p>
+
+  <div class="highlight-box">
+    <h3>Standard Currency Rule</h3>
+    <p>The default currency window for Prior Learning Exemptions is <strong style="color:var(--lime)">TEN (10) YEARS</strong> from the date of award of the qualification to the date of the exemption application. Qualifications awarded more than ten years before the application date are presumed to have fallen below the currency threshold and will not ordinarily be accepted.</p>
+    <ul>
+      <li>The ten-year rule applies to the date of qualification award, not the date of study</li>
+      <li>Where the subject matter remains substantively unchanged, the Committee has discretion to accept qualifications up to 15 years old</li>
+      <li>Where the applicant has been continuously practising in the field, qualifications up to 15 years may be accepted with supporting evidence</li>
+      <li>Qualifications over 15 years old will not ordinarily be considered for PLE — applicants should apply under the PEE pathway instead</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">4.3.2 Currency and Level-Specific Rules</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>CILG Level</th><th>Standard Currency Window</th><th>Extended Window (with evidence)</th><th>Hard Limit</th></tr></thead>
+      <tbody>
+        <tr><td>Level 1 — Foundation</td><td>10 years</td><td>Up to 12 years with active CPD evidence</td><td>15 years</td></tr>
+        <tr><td>Level 2 — Knowledge</td><td>10 years</td><td>Up to 12 years with active CPD evidence</td><td>15 years</td></tr>
+        <tr><td>Level 3 — Skills</td><td>8 years</td><td>Up to 10 years with active practice evidence</td><td>12 years</td></tr>
+        <tr><td>Level 4 — Professional</td><td>7 years</td><td>Up to 8 years with senior-level practice evidence</td><td>10 years</td></tr>
+        <tr><td>Level 5 — Expert</td><td colspan="3" style="text-align:center; color:var(--burgundy); font-weight:700;">No exemptions available</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">4.4 Professional Experience Eligibility (PEE)</h2>
+  <p class="prose-text">Candidates applying under the Professional Experience Exemption pathway must demonstrate that: the experience is professionally relevant; it meets the minimum duration thresholds; it is recent (active within the last 5 years for Levels 1–3, and within the last 3 years for Level 4); it is verifiable by an independent professional referee; and the candidate can articulate how the experience maps to the CILG module learning outcomes through a written Professional Experience Statement.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5 — EXEMPTION LIMITS
+═══════════════════════════════════════════════════════════════ -->
+<section id="limits" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 5</div>
+      <h2>Exemption Limits by Qualification Level</h2>
+      <p>Absolute maximum limits on the number of modules that may be exempted at each level, ensuring every CILG graduate has completed a meaningful proportion of their qualification through CILG's own assessment processes.</p>
+    </div>
+    <div class="part-number">05</div>
+  </div>
+
+  <h2 class="section-title">5.1 The Rationale for Exemption Caps</h2>
+  <p class="prose-text">CILG imposes absolute maximum limits on the number of modules that may be exempted at each level of the qualification framework. These caps exist to ensure that every CILG graduate has completed a meaningful proportion of their qualification through CILG's own assessment processes — and therefore that CILG qualifications represent a genuine and consistent standard of professional learning, not merely an aggregation of prior credentials.</p>
+  <p class="prose-text">The caps reflect the fact that each level of the CILG framework has its own distinctive learning outcomes, professional development philosophy, and competency standards — elements that cannot be fully replicated by qualifications designed for other purposes.</p>
+
+  <h2 class="section-title mt-2">5.2 Maximum Exemption Limits</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Level</th><th>Total Modules</th><th>Maximum Exemptable</th><th>Minimum by CILG Assessment</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Level 1 — Foundation</td><td style="text-align:center;">5</td>
+          <td><span class="cap-badge open">5 (full level)</span></td>
+          <td style="text-align:center;">0</td>
+          <td>Full Level 1 exemption available to strong prior learners — see conditions in 5.3</td>
+        </tr>
+        <tr>
+          <td>Level 2 — Knowledge</td><td style="text-align:center;">5</td>
+          <td><span class="cap-badge partial">3 modules</span></td>
+          <td style="text-align:center;">2</td>
+          <td>Maximum 3 exemptions; at least 2 modules must be examined by CILG</td>
+        </tr>
+        <tr>
+          <td>Level 3 — Skills</td><td style="text-align:center;">5</td>
+          <td><span class="cap-badge partial">2 modules</span></td>
+          <td style="text-align:center;">3</td>
+          <td>Maximum 2 exemptions; at least 3 modules must be examined by CILG</td>
+        </tr>
+        <tr>
+          <td>Level 4 — Professional</td><td style="text-align:center;">5</td>
+          <td><span class="cap-badge partial">1 module</span></td>
+          <td style="text-align:center;">4</td>
+          <td>Maximum 1 exemption and only on PLE basis; PEE may supplement but not substitute</td>
+        </tr>
+        <tr>
+          <td>Level 5 — Expert</td><td style="text-align:center;">5</td>
+          <td><span class="cap-badge closed">0 — No Exemptions</span></td>
+          <td style="text-align:center;">5</td>
+          <td>Absolute bar; no exceptions under any circumstances</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">5.3 Full Level 1 Exemption — Conditions</h2>
+  <p class="prose-text">A full Level 1 exemption — exemption from all five Foundation Certificate modules — is available only in limited circumstances. Even where approved, the candidate is not entirely absolved of engagement with Level 1 content.</p>
+  <div class="info-box gold">
+    <div class="info-box-title">✦ Conditions for Full Level 1 Exemption</div>
+    <ul>
+      <li>The candidate must hold a recognised degree-level qualification in a relevant field (business, management, public administration, law, governance, or a closely related discipline), OR a recognised professional qualification at an equivalent level</li>
+      <li>The qualification must be within the ten-year currency window</li>
+      <li>The candidate must complete the CILG Level 1 Professional Orientation Programme (4-hour online module) — mandatory and non-exemptable, though not examined</li>
+      <li>The candidate must pay the full Level 1 Exemption Assessment Fee (five module fees, or the Level Exemption rate where applicable)</li>
+      <li>The candidate must submit certified transcripts covering all five Level 1 module topics to demonstrate breadth of prior coverage</li>
+      <li>The Exemptions Committee retains discretion to require the candidate to complete one or more Level 1 modules where coverage gaps are identified</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">5.4 Cumulative Exemption Tracking</h2>
+  <p class="prose-text">Exemption limits are tracked across a candidate's entire journey through the CILG framework. The exemption caps are per-level — a candidate who uses the maximum exemptions at Level 2 does not thereby affect the caps at Level 3. Exemptions are recorded permanently on the candidate's CILG transcript, clearly distinguished from modules completed by examination.</p>
+
+  <h2 class="section-title mt-2">5.5 Exemption Limits and Membership Grade Implications</h2>
+  <div class="info-box teal">
+    <div class="info-box-title">ℹ Membership Grade Interaction</div>
+    <ul>
+      <li>A candidate granted full Level 1 exemption may enroll as a Student Member without first sitting any Level 1 examination</li>
+      <li>Completion of Level 3 (through examination, exemption up to the cap, or a combination) confers eligibility for Associate Membership (ACILG) — provided all other membership eligibility requirements are met</li>
+      <li>Membership upgrade applications will note the proportion of modules completed by examination versus exemption</li>
+      <li>For Fellowship applications, the Fellowship Interview Panel will be aware of the candidate's exemption history</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6 — RECOGNISED QUALIFICATIONS
+═══════════════════════════════════════════════════════════════ -->
+<section id="recognised" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 6 — Schedule A</div>
+      <h2>Recognised Qualifications, Institutions &amp; Bodies</h2>
+      <p>CILG recognises qualifications from institutions and professional bodies that meet defined standards of educational quality, professional credibility, and regulatory standing. Recognition applies at the qualification level, not the institutional level.</p>
+    </div>
+    <div class="part-number">06</div>
+  </div>
+
+  <h2 class="section-title">6.2.1 Category A — Accredited Universities and Higher Education Institutions</h2>
+  <p class="prose-text">Degrees, diplomas, and certificates from universities and higher education institutions that are: regionally accredited in the United States (by bodies recognised by the US Department of Education or CHEA); nationally recognised and accredited by a competent authority in their home country; or members of recognised international university associations (AACSB, EQUIS, AMBA, or equivalent). Qualifications from Category A institutions qualify for assessment — not automatic exemption.</p>
+
+  <h2 class="section-title mt-2">6.2.2 Category B — Recognised Professional Bodies</h2>
+  <p class="prose-text">Qualifications and designations awarded by professional bodies that are chartered or formally recognised by a government or statutory authority in their home jurisdiction, members of recognised international federations of professional bodies, or signatories to a CILG Mutual Recognition Agreement.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Professional Body Category</th><th>Typical Applicable CILG Levels</th></tr></thead>
+      <tbody>
+        <tr><td>Accountancy and Finance Bodies</td><td>Levels 1–3 (financial modules)</td></tr>
+        <tr><td>Governance and Company Secretarial</td><td>Levels 1–4 (governance modules)</td></tr>
+        <tr><td>Human Resource Management</td><td>Levels 1–3 (people/HR modules)</td></tr>
+        <tr><td>Risk Management</td><td>Levels 2–4 (risk modules)</td></tr>
+        <tr><td>Project Management</td><td>Level 3 (project module)</td></tr>
+        <tr><td>Legal and Compliance</td><td>Levels 2–3 (law and compliance modules)</td></tr>
+        <tr><td>Strategy and Management</td><td>Levels 1–3 (strategy/leadership modules)</td></tr>
+        <tr><td>Public Administration</td><td>Levels 1–3 (public governance modules)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-caption">Inclusion of a body category does not guarantee exemption — it indicates that qualifications from bodies in that category will be considered for assessment. Decisions are made at the module level based on content equivalence.</p>
+
+  <h2 class="section-title mt-2">6.2.3 Category C — Other Recognised Learning</h2>
+  <p class="prose-text">The following additional categories of formal learning may be considered for PLE assessment on a case-by-case basis: postgraduate certificates and diplomas in business, management, law, public policy, or governance from recognised institutions; executive education programmes of significant duration (minimum 120 contact/learning hours) from recognised business schools; government-sponsored professional development programmes with formal certification; and military leadership and command programmes with formally awarded qualifications.</p>
+
+  <h2 class="section-title mt-2">6.3 Qualifications and Institutions NOT Recognised</h2>
+  <div class="info-box burg">
+    <div class="info-box-title">✗ Not Recognised for CILG Exemption Purposes</div>
+    <ul>
+      <li>Qualifications from unaccredited, diploma mill, or commercially discredited institutions</li>
+      <li>Online micro-credentials, digital badges, or short course completions (fewer than 40 learning hours) — unless components of a formally recognised qualification</li>
+      <li>Internal corporate training programmes or in-house certificates not formally endorsed by a recognised awarding body</li>
+      <li>Qualifications from institutions currently under investigation by, or sanctioned by, their home accreditation authority</li>
+      <li>Qualifications that cannot be independently verified through the awarding institution's official records</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7 — PROFESSIONAL EXPERIENCE EXEMPTION
+═══════════════════════════════════════════════════════════════ -->
+<section id="pee" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 7</div>
+      <h2>Professional Experience Exemption</h2>
+      <p>Detailed criteria, minimum experience thresholds, the Professional Experience Statement format, and verification and referee requirements for the PEE pathway.</p>
+    </div>
+    <div class="part-number">07</div>
+  </div>
+
+  <h2 class="section-title">7.2 Minimum Experience Thresholds by Level</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>CILG Level</th><th>Min. Relevant Experience</th><th>Min. Level of Role</th><th>Recency Requirement</th><th>Max Modules via PEE</th></tr></thead>
+      <tbody>
+        <tr><td>Level 1 — Foundation</td><td>2 years</td><td>Any professional or supervisory role in a relevant field</td><td>Active within last 7 years</td><td>Up to 5 (full level)</td></tr>
+        <tr><td>Level 2 — Knowledge</td><td>3 years</td><td>Professional or junior management role in leadership/governance/management context</td><td>Active within last 5 years</td><td>Up to 3</td></tr>
+        <tr><td>Level 3 — Skills</td><td>5 years (min. 2 years in management or senior professional role)</td><td>Management, senior professional, or governance advisory role</td><td>Active within last 5 years</td><td>Up to 2</td></tr>
+        <tr><td>Level 4 — Professional</td><td>8 years (min. 4 years at senior/director level)</td><td>Director, senior manager, executive, or board role</td><td>Active within last 3 years</td><td>1 only — must combine with PLE</td></tr>
+        <tr><td>Level 5 — Expert</td><td colspan="4" style="text-align:center; color:var(--burgundy); font-weight:700;">Not applicable — no PEE available. Absolute bar.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">7.3 What Constitutes 'Relevant Experience'</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>CILG Module Area</th><th>Examples of Relevant Professional Experience</th></tr></thead>
+      <tbody>
+        <tr><td>Leadership Theory and Practice</td><td>Holding a leadership role with direct reports; leading teams through change; executive or management responsibility; coaching or mentoring staff</td></tr>
+        <tr><td>Corporate Governance</td><td>Service as a board member, trustee, company secretary, or governance advisor; governance committee participation; compliance with governance codes in a professional capacity</td></tr>
+        <tr><td>Financial Management</td><td>Financial management responsibility; budget oversight; preparation or review of financial statements; treasury function; audit committee service</td></tr>
+        <tr><td>Corporate Law and Compliance</td><td>Legal practice in corporate, employment, or regulatory law; compliance officer or MLRO role; regulatory affairs; company secretarial practice</td></tr>
+        <tr><td>Human Resource Management</td><td>HR management responsibility; people strategy; workforce planning; employee relations; talent development programmes; HR business partner or director role</td></tr>
+        <tr><td>Organizational Strategy</td><td>Strategy development or execution roles; strategic planning; business development; competitive analysis; board-level strategy contribution</td></tr>
+        <tr><td>Risk Management</td><td>Risk function leadership; enterprise risk management; audit; business continuity; crisis management; risk committee participation</td></tr>
+        <tr><td>Stakeholder and Communication</td><td>Corporate communications; investor relations; public affairs; board secretary function; external reporting; crisis communications</td></tr>
+        <tr><td>Project and Programme Leadership</td><td>Programme director or project sponsor roles; complex project governance; project board membership; programme office leadership</td></tr>
+        <tr><td>Governance Culture and Ethics</td><td>Ethics and compliance programme design; whistleblowing policy management; code of conduct development; integrity and anti-corruption programmes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">7.4 The Professional Experience Statement (PES)</h2>
+  <p class="prose-text">The Professional Experience Statement is the central document of every PEE application — a structured reflective account in which the applicant makes the case for equivalence between their professional experience and the CILG module's learning outcomes.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Element</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>Length</td><td>Minimum 800 words per module claimed; maximum 1,500 words per module</td></tr>
+        <tr><td>Structure</td><td>Must be structured around the CILG module's stated learning outcomes — addressing each outcome specifically, not generally</td></tr>
+        <tr><td>Evidence of Practice</td><td>Must include concrete examples of work done — accounts of specific activities, decisions, or outputs demonstrating competence, not merely descriptions of roles held</td></tr>
+        <tr><td>Reflection</td><td>Must include a reflective dimension — how the experience developed or tested the relevant competence, what was learned, and how practice evolved</td></tr>
+        <tr><td>Limitations</td><td>Must honestly acknowledge any areas of the module's learning outcomes where the candidate's experience is limited — a PES that claims comprehensive coverage without nuance is less credible</td></tr>
+        <tr><td>References to Evidence</td><td>Should reference specific documents, outputs, or verifications that support the claims made (e.g., 'as evidenced in the board minutes of March 2021, attached at Annexure C')</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">7.5 Verification and Referee Requirements</h2>
+  <div class="info-box teal">
+    <div class="info-box-title">ℹ Referee Requirements — All PEE Applications</div>
+    <ul>
+      <li>The referee must have direct professional knowledge of the applicant's work in the area being claimed — attesting to the nature, scope, quality, and level of the experience</li>
+      <li>Acceptable referees include: current or former employer, client, board chair, fellow board member, professional supervisor, or senior professional colleague with direct knowledge of the work</li>
+      <li>The referee must be independent — family members, personal friends without a professional relationship, and subordinates are not acceptable referees</li>
+      <li>For Level 4 PEE applications, the referee must hold a board-level or equivalent senior position with direct professional knowledge of the applicant's executive or governance practice</li>
+      <li>Referees may be contacted directly by the CILG Exemptions Committee to verify the content of their statement</li>
+      <li>False or misleading statements by referees constitute professional misconduct and will be reported to the relevant professional body or employer</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8 — FEES
+═══════════════════════════════════════════════════════════════ -->
+<section id="fees" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 8</div>
+      <h2>Exemption Assessment Fee Schedule</h2>
+      <p>All exemption assessment fees cover administrative, quality assurance, and professional assessment costs. Fees are non-refundable once an application has been formally submitted and acknowledged by the Registrar.</p>
+    </div>
+    <div class="part-number">08</div>
+  </div>
+
+  <div class="info-box orange">
+    <div class="info-box-title">⚠ Important Fee Policy Notes</div>
+    <ul>
+      <li>Fees are non-refundable upon submission — even if the exemption is declined</li>
+      <li>Fees are charged per module application, not per exemption approved — you pay to have the claim assessed, not to have it granted</li>
+      <li>Where a 'deferred' decision is issued (not declined), one free resubmission is permitted within 12 months</li>
+      <li>Where an application is declined and the candidate reapplies with new evidence, a fresh fee applies</li>
+      <li>The Level Exemption Fee (covering all modules at a single level) offers a discount versus applying for modules separately</li>
+      <li>All fees quoted in USD. Concessionary rates apply for LMIC members — see Section 8.3</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">8.2 Fee Schedule</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Application Type</th><th>Fee per Module (USD)</th><th>Level Package Fee</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Level 1 — Single Module Exemption</td><td>USD 50</td><td>USD 200 (all 5 modules)</td><td>Level package offers saving of USD 50 vs 5 individual applications</td></tr>
+        <tr><td>Level 2 — Single Module Exemption</td><td>USD 50</td><td>USD 125 (up to 3 modules — max allowed)</td><td>Package covers the maximum 3 modules at Level 2</td></tr>
+        <tr><td>Level 3 — Single Module Exemption</td><td>USD 50</td><td>USD 90 (up to 2 modules — max allowed)</td><td>Package covers the maximum 2 modules at Level 3</td></tr>
+        <tr><td>Level 4 — Single Module Exemption</td><td>USD 50</td><td>N/A — maximum 1 module only</td><td>Only 1 exemption permitted at Level 4; no package rate</td></tr>
+        <tr><td>Level 5 — Exemption Application</td><td colspan="3" style="color:var(--burgundy); font-weight:700;">N/A — no exemptions available. Applications will not be processed.</td></tr>
+        <tr><td>MRA Expedited Assessment</td><td>USD 30 per module</td><td>USD 100 (full level package)</td><td>Reduced rate for MRA-covered designations due to streamlined process</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">8.3 Concessionary Rates</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-accent" style="background:var(--green);"></div>
+      <div class="card-icon" style="background:var(--green-lt); color:var(--green);">🌍</div>
+      <h3>LMIC Concession</h3>
+      <p>Members resident in World Bank-classified low- or middle-income countries receive a <strong>50% reduction</strong> on all exemption assessment fees.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--gold);"></div>
+      <div class="card-icon" style="background:var(--gold-pale); color:var(--gold);">🤝</div>
+      <h3>Hardship Waiver</h3>
+      <p>Members who have been granted a CILG Hardship Fund award may apply for exemption fee support as part of that award.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--blue);"></div>
+      <div class="card-icon" style="background:#EEF3FB; color:var(--blue);">🏢</div>
+      <h3>Volume Discount</h3>
+      <p>Organisations under CILG Corporate Membership enrolling multiple employees simultaneously receive a <strong>20% discount</strong> on all exemption fees for the cohort.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 9 — APPLICATION PROCESS
+═══════════════════════════════════════════════════════════════ -->
+<section id="process" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 9</div>
+      <h2>The Exemption Application Process</h2>
+      <p>A seven-stage process — clear, structured, and efficient — with specific inputs, outputs, timelines, and responsibilities at each stage.</p>
+    </div>
+    <div class="part-number">09</div>
+  </div>
+
+  <div class="highlight-box" style="margin-bottom:2rem;">
+    <h3>Pre-Application Guidance Service</h3>
+    <p>Before submitting a formal exemption application, candidates may request a free Pre-Application Guidance Consultation with a member of the CILG Membership Services team. The advisor will review qualifications and experience at a high level, indicate which modules may be viable for exemption, advise on the appropriate exemption type (PLE, PEE, or MRAE), and provide guidance on evidence requirements and PES structure. This consultation is advisory only — it does not prejudge or guarantee any outcome.</p>
+    <ul><li>Contact: <strong style="color:var(--lime)">exemptions@cilg.org</strong></li></ul>
+  </div>
+
+  <ol class="steps-list">
+    <li class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-body">
+        <h4>Eligibility Check and Module Selection</h4>
+        <p>Review the CILG Module Learning Outcomes for each module to be claimed. For each module, identify the basis for the claim (PLE, PEE, or MRAE), the specific qualification or experience being relied upon, and the documentary evidence available. Confirm that general eligibility requirements are met and that the module(s) fall within the exemption cap for the relevant level.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <h4>Preparation of Application Documents</h4>
+        <p>Prepare all required documents for the application. At a minimum, every application must include:</p>
+        <ul>
+          <li>Completed CILG Exemption Application Form — one form covers all modules in the application</li>
+          <li>Certified copies of all qualification certificates and transcripts being relied upon (for PLE/MRAE)</li>
+          <li>Professional Experience Statement(s) as required (for PEE)</li>
+          <li>Completed CILG Referee Verification Form(s) from all required referees</li>
+          <li>Proof of identity (government-issued photo ID)</li>
+          <li>Current CV/résumé</li>
+          <li>Any additional supporting documents specific to the modules claimed</li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-body">
+        <h4>Submission and Fee Payment</h4>
+        <p>Submit the completed application and all supporting documents through the CILG Members' Portal (or by post to the CILG Registrar's Office for candidates without portal access). The portal generates a fee invoice. The application enters the queue once payment is confirmed. Applications submitted with missing documents are returned as incomplete — the candidate has 14 days to supply missing documents before the application is closed.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">4</div>
+      <div class="step-body">
+        <h4>Completeness Review by Registrar's Office</h4>
+        <p>The CILG Registrar's Office conducts a completeness review within five (5) working days of submission, checking that all required documents have been submitted and adequately certified, the application is within the exemption cap, the candidate has not previously sat the examination for any module being claimed, and all fees have been paid. If passed, the application is forwarded to the Exemptions Committee.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">5</div>
+      <div class="step-body">
+        <h4>Assessment by the Exemptions Committee</h4>
+        <p>The Exemptions Committee assesses each module claim against the relevant CILG module learning outcomes, applies the Equivalence Assessment Criteria, and prepares the Decision Record for each module. The Committee may request additional documentation during the assessment period. Assessment timelines:</p>
+        <ul>
+          <li>PLE — Levels 1 and 2: 15 working days</li>
+          <li>PLE — Levels 3 and 4: 20 working days</li>
+          <li>PEE — All levels: 25 working days (additional time for referee verification)</li>
+          <li>MRAE — Expedited: 10 working days</li>
+          <li>Complex or contested applications: Up to 35 working days; candidate notified</li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">6</div>
+      <div class="step-body">
+        <h4>Decision and Notification</h4>
+        <p>The Registrar issues the Decision Notice within five (5) working days of the Committee's decision. The notice contains the decision for each module claimed (Approved, Approved with Conditions, Deferred, or Declined), with full written reasons, and the updated candidate transcript reflecting all approved exemptions.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">7</div>
+      <div class="step-body">
+        <h4>Exemption Recording and Transcript Update</h4>
+        <p>All approved exemptions are recorded on the candidate's official CILG transcript within five (5) working days of the Decision Notice. The transcript clearly distinguishes between modules completed by examination ('Exam') and modules credited by exemption ('Exemption — PLE', 'Exemption — PEE', or 'Exemption — MRA'), ensuring full transparency.</p>
+      </div>
+    </li>
+  </ol>
+
+  <h2 class="section-title mt-2">10. Evidence Requirements by Exemption Type</h2>
+  <p class="prose-text">All documents submitted must be certified as true copies of the original, certified by a notary public, commissioner for oaths, justice of the peace, solicitor, attorney, or authorised CILG Membership Services officer.</p>
+
+  <div class="subsection-title">10.2 Evidence Checklist — Prior Learning Exemption (PLE)</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Document</th><th>Requirement</th><th>Certification Required?</th></tr></thead>
+      <tbody>
+        <tr><td>CILG Exemption Application Form</td><td>Fully completed; signed by applicant</td><td>No — original signature required</td></tr>
+        <tr><td>Qualification Certificate(s)</td><td>Official certificate for each qualification relied upon</td><td>Yes — certified true copy</td></tr>
+        <tr><td>Official Transcripts</td><td>Full academic or professional transcript showing all modules/units studied and grades obtained</td><td>Yes — certified by awarding institution's records office or notary</td></tr>
+        <tr><td>Programme Specification / Module Outline</td><td>Official document showing the syllabus, learning outcomes, and content of the qualification(s)</td><td>No — must be current version from the year of study</td></tr>
+        <tr><td>Proof of Identity</td><td>Government-issued photo ID (passport, national ID card, or driving licence)</td><td>Yes — certified true copy</td></tr>
+        <tr><td>Current CV / Résumé</td><td>Comprehensive professional CV; must include all qualifications and employment history</td><td>No — self-declaration; cross-referenced with other evidence</td></tr>
+        <tr><td>Fee Payment Confirmation</td><td>Payment receipt from CILG Members' Portal</td><td>No</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-title">10.3 Evidence Checklist — Professional Experience Exemption (PEE)</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Document</th><th>Requirement</th><th>Certification Required?</th></tr></thead>
+      <tbody>
+        <tr><td>CILG Exemption Application Form</td><td>Fully completed; signed by applicant</td><td>No — original signature required</td></tr>
+        <tr><td>Professional Experience Statement (PES)</td><td>Minimum 800 words per module; structured around CILG module learning outcomes</td><td>No — candidate's own document</td></tr>
+        <tr><td>CILG Referee Verification Form</td><td>Completed by a minimum of one independent professional referee</td><td>No — but referee must submit directly or sign in presence of candidate with attestation</td></tr>
+        <tr><td>Proof of Employment / Professional Engagement</td><td>Employment contracts, appointment letters, board resolution, client engagement letters, or other official documents confirming relevant roles and dates</td><td>Yes — certified true copies</td></tr>
+        <tr><td>Supporting Work Evidence</td><td>Where available: board minutes, committee reports, strategy documents, or other professional outputs evidencing the competencies claimed</td><td>No — may be provided as anonymised or excerpted extracts where confidentiality requires</td></tr>
+        <tr><td>Proof of Identity</td><td>Government-issued photo ID</td><td>Yes — certified true copy</td></tr>
+        <tr><td>Current CV / Résumé</td><td>Full CV with detailed description of responsibilities in each role</td><td>No</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-title">10.4 Evidence Checklist — Mutual Recognition Agreement Exemption (MRAE)</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Document</th><th>Requirement</th><th>Certification Required?</th></tr></thead>
+      <tbody>
+        <tr><td>CILG Exemption Application Form</td><td>Fully completed; signed by applicant; indicate MRA partner body and designation</td><td>No</td></tr>
+        <tr><td>Current Designation Certificate from MRA Partner Body</td><td>Official certificate confirming current designation in good standing</td><td>Yes — certified true copy</td></tr>
+        <tr><td>Good Standing Letter / Certificate of Currency</td><td>Official letter or online verification from the MRA partner body confirming the designation is current and in good standing</td><td>No — must be issued within 90 days of the application date</td></tr>
+        <tr><td>Proof of Identity</td><td>Government-issued photo ID</td><td>Yes — certified true copy</td></tr>
+        <tr><td>Fee Payment Confirmation</td><td>Payment receipt (reduced MRAE rate applies)</td><td>No</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 12 — ASSESSMENT STANDARDS
+═══════════════════════════════════════════════════════════════ -->
+<section id="assessment-standards" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 12</div>
+      <h2>Assessment Standards &amp; Equivalence Criteria</h2>
+      <p>The structured, multi-dimensional equivalence framework applied by CILG assessors when evaluating each module exemption claim — five weighted dimensions assessed on a four-point scale.</p>
+    </div>
+    <div class="part-number">12</div>
+  </div>
+
+  <h2 class="section-title">12.1 The Equivalence Assessment Framework</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dimension</th><th>Description</th><th>Relative Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Content Coverage</td><td>The extent to which the prior learning or experience covers the substantive knowledge and topic areas addressed by the CILG module learning outcomes</td><td style="text-align:center; font-family:var(--ff-mono); font-weight:700; color:var(--forest);">30%</td></tr>
+        <tr><td>Depth and Complexity</td><td>The level of analytical depth, critical thinking, and intellectual rigour demonstrated — whether the learning was superficial or substantive, introductory or advanced</td><td style="text-align:center; font-family:var(--ff-mono); font-weight:700; color:var(--forest);">25%</td></tr>
+        <tr><td>Professional Application</td><td>The extent to which the learning or experience is oriented toward professional practice — not merely academic understanding — and demonstrates the ability to apply knowledge in real-world professional contexts</td><td style="text-align:center; font-family:var(--ff-mono); font-weight:700; color:var(--forest);">25%</td></tr>
+        <tr><td>Currency</td><td>The recency of the learning or experience relative to current professional standards, regulatory frameworks, and best practice in the relevant field</td><td style="text-align:center; font-family:var(--ff-mono); font-weight:700; color:var(--forest);">10%</td></tr>
+        <tr><td>Evidence Quality</td><td>The quality, completeness, and verifiability of the evidence submitted in support of the claim</td><td style="text-align:center; font-family:var(--ff-mono); font-weight:700; color:var(--forest);">10%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">12.2 Scoring and Threshold</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Score</th><th>Descriptor</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td style="font-family:var(--ff-mono); color:var(--green); font-weight:700;">4 — Strong</td><td>Excellent alignment</td><td>The prior learning or experience fully and clearly satisfies this dimension of equivalence</td></tr>
+        <tr><td style="font-family:var(--ff-mono); color:var(--blue); font-weight:700;">3 — Adequate</td><td>Sufficient alignment</td><td>The prior learning or experience substantially satisfies this dimension with minor gaps</td></tr>
+        <tr><td style="font-family:var(--ff-mono); color:var(--gold); font-weight:700;">2 — Partial</td><td>Significant gaps</td><td>The prior learning or experience partially satisfies this dimension but material gaps exist</td></tr>
+        <tr><td style="font-family:var(--ff-mono); color:var(--burgundy); font-weight:700;">1 — Weak</td><td>Insufficient alignment</td><td>The prior learning or experience does not adequately satisfy this dimension</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-box gold">
+    <div class="info-box-title">✦ Threshold for Approval</div>
+    <ul>
+      <li>Weighted score of <strong>3.0 or above out of 4.0</strong> → Full exemption approved</li>
+      <li>Weighted score of <strong>2.5–2.9</strong> → May result in a conditional or partial exemption</li>
+      <li>Weighted score <strong>below 2.5</strong> → Declined; module must be completed by examination</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 13 — DECISIONS
+═══════════════════════════════════════════════════════════════ -->
+<section id="decisions" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 13</div>
+      <h2>Decisions, Notifications &amp; Outcomes</h2>
+      <p>Four possible decision types, notification timelines, and how exemption decisions are recorded on the official CILG transcript.</p>
+    </div>
+    <div class="part-number">13</div>
+  </div>
+
+  <h2 class="section-title">13.1 Types of Decision</h2>
+  <div class="decision-grid">
+    <div class="decision-card d-approved">
+      <div class="decision-header">
+        <div class="decision-type">Decision Type 1</div>
+        <div class="decision-name">Approved</div>
+      </div>
+      <div class="decision-body">
+        <p>Full exemption granted — module credited without examination. Issued where the weighted equivalence score is 3.0 or above and all evidence is complete and verified. The candidate proceeds to the next module or level as if they had passed the examination.</p>
+      </div>
+    </div>
+    <div class="decision-card d-condition">
+      <div class="decision-header">
+        <div class="decision-type">Decision Type 2</div>
+        <div class="decision-name">Approved With Conditions</div>
+      </div>
+      <div class="decision-body">
+        <p>Exemption granted subject to completion of a specified bridging requirement. Issued where the weighted score is 3.0 or above but a specific, identified gap requires bridging. The full exemption is confirmed upon completion of the bridging requirement within the specified timeframe.</p>
+      </div>
+    </div>
+    <div class="decision-card d-deferred">
+      <div class="decision-header">
+        <div class="decision-type">Decision Type 3</div>
+        <div class="decision-name">Deferred</div>
+      </div>
+      <div class="decision-body">
+        <p>Application not yet decided — specific additional information or evidence required. Not a decline — it is a pause. The Decision Notice specifies exactly what is needed. One free resubmission is available within 12 months of a deferral.</p>
+      </div>
+    </div>
+    <div class="decision-card d-declined">
+      <div class="decision-header">
+        <div class="decision-type">Decision Type 4</div>
+        <div class="decision-name">Declined</div>
+      </div>
+      <div class="decision-body">
+        <p>Exemption not granted — module must be completed by examination. Issued where the weighted equivalence score is below 2.5, or where evidence has been found to be fraudulent or unverifiable. A fresh application with new evidence may be submitted in a future cycle — a new fee will apply.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title mt-2">13.2 Notification Timeline</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Stage</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>Completeness review confirmation</td><td>Within 5 working days of submission</td></tr>
+        <tr><td>Standard PLE assessment decision</td><td>Within 15–20 working days of complete application</td></tr>
+        <tr><td>PEE assessment decision</td><td>Within 25 working days of complete application</td></tr>
+        <tr><td>MRAE expedited decision</td><td>Within 10 working days of complete application</td></tr>
+        <tr><td>Transcript update following approval</td><td>Within 5 working days of Decision Notice</td></tr>
+        <tr><td>Certificate of exemption issued</td><td>Within 15 working days of approval</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">13.3 Recording on the Official Transcript</h2>
+  <p class="prose-text">All exemption decisions are recorded on the candidate's CILG internal file. Only approved exemptions appear on the candidate's official external transcript. The transcript uses the following notation:</p>
+  <div class="info-box teal">
+    <div class="info-box-title">📋 Transcript Notation</div>
+    <ul>
+      <li>'Exemption (PLE) — [Module Name] — Approved [Date]'</li>
+      <li>'Exemption (PEE) — [Module Name] — Approved [Date]'</li>
+      <li>'Exemption (MRA — [Partner Body Name]) — [Module Name] — Approved [Date]'</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">14. Conditions Attached to Exemptions</h2>
+  <p class="prose-text">Where an exemption is approved with conditions, the following types of bridging or supplementary requirement may be imposed:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Condition Type</th><th>Description</th><th>Typical Application</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>Bridging Module</td><td>Completion of a specified CILG online bridging module (typically 4–8 hours) covering the identified gap area</td><td>Where the prior qualification covers 80%+ of the module but lacks a specific component</td><td>Within 60 days of Decision Notice</td></tr>
+        <tr><td>Reflective Assignment</td><td>Submission of a 1,000–1,500-word written reflective assignment demonstrating professional application in the gap area</td><td>Where the gap is in professional orientation rather than content knowledge</td><td>Within 45 days of Decision Notice</td></tr>
+        <tr><td>CPD Updating Requirement</td><td>Completion of a minimum number of verifiable CPD hours in the specific topic area within a defined timeframe</td><td>Where the qualification is near or slightly beyond the currency window</td><td>Within 90 days of Decision Notice</td></tr>
+        <tr><td>Professional Workshop Attendance</td><td>Attendance at a CILG-approved professional workshop, seminar, or event covering the gap area</td><td>Where the gap is in current practice awareness rather than foundational knowledge</td><td>Within 90 days or next available event</td></tr>
+        <tr><td>Supplementary Interview</td><td>A brief professional discussion (20–30 minutes) with a CILG assessor to clarify and verify specific aspects of the claimed experience or knowledge</td><td>Where the PES is credible but requires clarification on specific competency claims</td><td>Scheduled within 30 days of Decision Notice</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 16 — MODULE-BY-MODULE MAP
+═══════════════════════════════════════════════════════════════ -->
+<section id="module-map" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 16</div>
+      <h2>Module-by-Module Exemption Map</h2>
+      <p>Indicative guidance on the types of prior learning and professional experience most commonly associated with successful exemption applications for each CILG module. All decisions are made through individual assessment — no prior learning automatically confers an exemption.</p>
+    </div>
+    <div class="part-number">16</div>
+  </div>
+
+  <!-- Level 1 -->
+  <div class="level-banner">
+    <span class="level-badge">Level 1</span>
+    <div>
+      <h3>Foundation Certificate Modules</h3>
+      <p>Exemption cap: Up to 5 modules (full level)</p>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Commonly Associated PLE Qualifications</th><th>Commonly Associated PEE Experience</th><th>Min. PEE Duration</th></tr></thead>
+      <tbody>
+        <tr><td>1.1 Fundamentals of Leadership</td><td>Degree in management, business, public admin, HR; management or leadership qualifications at Level 3 or above; HR foundation credentials</td><td>Any supervisory or management role with direct reports; team leadership experience</td><td>2 years in leadership role</td></tr>
+        <tr><td>1.2 Introduction to Corporate Governance</td><td>Degree in law, business, or accounting; governance institute certificate; company secretarial qualification</td><td>Company secretary, board administrator, compliance officer, or governance committee member role</td><td>2 years in governance-related role</td></tr>
+        <tr><td>1.3 Organizational Behavior and Culture</td><td>Degree in psychology, HR, business, or OB; HR foundation credentials</td><td>HR management, organizational development, change management experience</td><td>2 years in people/OB role</td></tr>
+        <tr><td>1.4 Business Communication and Ethics</td><td>Degree in communications, business, or law; professional communications certificate; ethics and compliance training with formal award</td><td>Communications, PR, compliance, or customer-facing professional management role</td><td>2 years professional role with significant communication responsibility</td></tr>
+        <tr><td>1.5 Introduction to Strategy and Organizations</td><td>Degree in business, management, economics, strategy; MBA (any component); management or leadership certificate</td><td>Business development, strategic planning, or management consulting role; senior administrator with organizational management scope</td><td>2 years with organizational/strategy exposure</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Level 2 -->
+  <div class="level-banner" style="background: linear-gradient(135deg, #1B5F6B, #2A8A9E);">
+    <span class="level-badge">Level 2</span>
+    <div>
+      <h3>Knowledge Level Modules</h3>
+      <p>Exemption cap: Up to 3 modules</p>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Commonly Associated PLE Qualifications</th><th>Commonly Associated PEE Experience</th><th>Min. PEE Duration</th></tr></thead>
+      <tbody>
+        <tr><td>2.1 Advanced Leadership Theories and Practice</td><td>Degree or postgraduate certificate in leadership/management; management or leadership qualifications at Level 5 or above; HR qualifications at Level 5 or above</td><td>Middle to senior management role; team leadership in complex or change environment; coaching/mentoring role</td><td>3 years in leadership capacity</td></tr>
+        <tr><td>2.2 Corporate Law and Regulatory Compliance</td><td>Law degree; governance institute qualification; compliance certificate; solicitor/attorney admission</td><td>In-house legal counsel, compliance officer, MLRO, company secretary, regulatory affairs role</td><td>3 years in legal/compliance function</td></tr>
+        <tr><td>2.3 Financial Management for Leaders</td><td>Chartered accountancy or finance qualification (recognised international body); accounting degree; finance MBA</td><td>Finance manager, FD, CFO, budget holder, or management accountant with P&amp;L responsibility</td><td>3 years in financial management role</td></tr>
+        <tr><td>2.4 HR Management and Talent Leadership</td><td>HR qualifications at Level 5 or above; SHRM-CP or above; HR degree; HRCI certification</td><td>HR manager, HR business partner, Head of People, talent acquisition or development leader</td><td>3 years in HR management</td></tr>
+        <tr><td>2.5 Organizational Strategy and Competitive Analysis</td><td>MBA; MSc Strategy; management qualifications at Level 7; governance institute certificate; senior strategy programme (accredited business school)</td><td>Strategy manager, business analyst, management consultant, or senior manager with strategic planning responsibility</td><td>3 years in strategy or senior management</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Level 3 -->
+  <div class="level-banner" style="background: linear-gradient(135deg, #134F37, #1B6B4A);">
+    <span class="level-badge">Level 3</span>
+    <div>
+      <h3>Skilled Level Modules</h3>
+      <p>Exemption cap: Up to 2 modules</p>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Commonly Associated PLE Qualifications</th><th>Commonly Associated PEE Experience</th><th>Min. PEE Duration</th></tr></thead>
+      <tbody>
+        <tr><td>3.1 Strategic Leadership in Practice</td><td>MBA (Leadership stream); management qualifications at Level 7; executive leadership programmes (accredited business school); advanced governance leadership programmes</td><td>Director, VP, C-suite, or equivalent executive role; leadership of major strategic initiative or transformation</td><td>5 years, min 2 years at director/senior level</td></tr>
+        <tr><td>3.2 Corporate Governance in Practice</td><td>Chartered governance/company secretary qualification; directorship programme; advanced governance diploma</td><td>Board director, trustee, company secretary, head of governance, or governance consultant with board-level engagement</td><td>5 years governance practice, min 2 years board-level</td></tr>
+        <tr><td>3.3 Risk Management and Organizational Resilience</td><td>Chartered risk management qualification; risk management certification (recognised international body); MBA with risk stream; accountancy qualification with risk module</td><td>Chief Risk Officer, risk director, head of internal audit, BCP manager, or enterprise risk lead</td><td>5 years, min 2 years in senior risk role</td></tr>
+        <tr><td>3.4 Stakeholder Management and Communication</td><td>MBA (Communications); accredited PR or IR qualification; advanced communications qualification</td><td>Head of Communications, Investor Relations Director, Public Affairs Director, or Board Secretary function</td><td>5 years in senior communications or stakeholder role</td></tr>
+        <tr><td>3.5 Project and Programme Leadership</td><td>Project Management Professional (PMP); internationally recognised project management practitioner qualification; MSP Practitioner</td><td>Programme Director, Project Sponsor, PMO Head, or equivalent large-scale project governance role</td><td>5 years, min 2 years as programme director or sponsor</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Level 4 -->
+  <div class="level-banner" style="background: linear-gradient(135deg, #6B4D0F, #C9A84C);">
+    <span class="level-badge">Level 4</span>
+    <div>
+      <h3>Professional Level Modules</h3>
+      <p>Exemption cap: Maximum 1 module — PLE only</p>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Module</th><th>Commonly Associated PLE Qualifications</th><th>PEE Availability</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>4.1 Executive Leadership and Organizational Transformation</td><td>Executive MBA; senior leadership fellowship programmes (accredited business school); management chartered designations</td><td>PEE may supplement PLE only</td><td>C-suite or equivalent with 8+ years; cannot be sole basis</td></tr>
+        <tr><td>4.2 Board Governance and Director Effectiveness</td><td>Chartered director designation; chartered governance secretary; equivalent chartered governance designation</td><td>PEE may supplement PLE only</td><td>Non-executive or executive director with 5+ board years; cannot be sole basis</td></tr>
+        <tr><td>4.3 Strategic Finance and Governance Reporting</td><td>Chartered accountancy (recognised international body, final level); Chartered Financial Analyst; equivalent chartered finance designation</td><td>PEE may supplement PLE only</td><td>CFO, Finance Director, or equivalent with 8+ years; cannot be sole basis</td></tr>
+        <tr><td>4.4 Public Policy, Governance and Regulatory Affairs</td><td>Postgraduate degree in public policy, law, or regulation; senior civil service qualification; regulatory fellowship</td><td>PEE may supplement PLE only</td><td>Senior public servant, regulator, or policy director with 8+ years; cannot be sole basis</td></tr>
+        <tr><td>4.5 Organizational Ethics and Governance Culture</td><td>Postgraduate ethics qualification; chartered compliance designation; advanced CSR/ESG programme</td><td>PEE may supplement PLE only</td><td>Chief Ethics Officer, Head of Compliance/Integrity with 8+ years; cannot be sole basis</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box burg">
+    <div class="info-box-title">⚠ Level 5 — Absolute Bar</div>
+    <p>No exemptions are available at Level 5 — the Expert Level — under any circumstances. No exemption from any Level 5 module will be considered or granted, regardless of the applicant's prior qualifications, experience, or professional standing. Applications for Level 5 exemptions will not be processed and fees are not applicable.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 17 — MRA
+═══════════════════════════════════════════════════════════════ -->
+<section id="mra" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 17</div>
+      <h2>Mutual Recognition Agreements (MRAs)</h2>
+      <p>Formal bilateral agreements between CILG and peer professional bodies providing for the recognition of specified designations or qualifications as meeting defined components of the CILG qualification framework.</p>
+    </div>
+    <div class="part-number">17</div>
+  </div>
+
+  <p class="prose-text">MRAs are established to reduce duplication of assessment for professionals who already hold a comparable professional designation, and to build bridges between allied professional communities. Every MRA is negotiated and documented at the institutional level, signed by authorised representatives of both institutions.</p>
+
+  <h2 class="section-title mt-2">17.2 MRA Governance</h2>
+  <div class="info-box teal">
+    <div class="info-box-title">ℹ MRA Administration</div>
+    <ul>
+      <li>MRAs are negotiated by the CILG Secretary-General in consultation with the Examinations and Standards Committee and ratified by the CILG Board of Governors</li>
+      <li>All current MRA arrangements are published in Appendix D of this Policy and on the CILG website</li>
+      <li>MRAs are reviewed at least every three years or upon significant change in the partner body's qualification structure</li>
+      <li>Either party may suspend or terminate an MRA with ninety (90) days' written notice — existing exemptions granted prior to suspension remain valid</li>
+      <li>CILG is actively pursuing new MRA arrangements with professional bodies in governance, risk management, and public administration</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">17.3 MRA Exemption — Important Limitations</h2>
+  <div class="info-box orange">
+    <div class="info-box-title">⚠ Critical Limitations of MRA Exemptions</div>
+    <ul>
+      <li>An MRA exemption applies only to the specific designations named in the MRA Agreement — not to all qualifications from the partner body</li>
+      <li>The MRA exemption applies to the specific CILG modules named in the Agreement — not to all modules at a given level</li>
+      <li>MRA exemptions are subject to the same level caps as all other exemptions</li>
+      <li>The applicant's designation from the partner body must be current and in good standing at the time of application</li>
+      <li>Even under an MRA, a formal CILG exemption application must be submitted — exemptions are not applied automatically</li>
+      <li>Where the specific designation or modules fall outside the precise scope of the MRA, the application is assessed under standard PLE criteria</li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 15 — APPEALS
+═══════════════════════════════════════════════════════════════ -->
+<section id="appeals" class="section-wrap">
+  <div class="part-header">
+    <div class="part-stripe"></div>
+    <div class="part-content">
+      <div class="part-label">Section 15</div>
+      <h2>Appeals Against Exemption Decisions</h2>
+      <p>The right of appeal, valid grounds for appeal, and the full appeals process for candidates who receive a decision of 'Declined' or 'Approved with Conditions' (where conditions are disputed).</p>
+    </div>
+    <div class="part-number">15</div>
+  </div>
+
+  <h2 class="section-title">15.2 Grounds for Appeal</h2>
+  <p class="prose-text">An appeal may only be lodged on one or more of the following grounds. General dissatisfaction with the decision outcome, or a disagreement with the Committee's professional judgment on a matter of equivalence where the criteria were correctly applied, does not constitute a valid ground of appeal.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-accent" style="background:var(--blue);"></div>
+      <div class="card-icon" style="background:#EEF3FB; color:var(--blue);">⚖</div>
+      <h3>Procedural Error</h3>
+      <p>The assessment process was not conducted in accordance with this Exemption Policy, and this materially affected the outcome.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--teal);"></div>
+      <div class="card-icon" style="background:var(--teal-lt); color:var(--teal);">📄</div>
+      <h3>Evidence Not Considered</h3>
+      <p>Material evidence submitted by the candidate was not considered by the Exemptions Committee, or was incorrectly characterised in the Decision Notice.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--gold);"></div>
+      <div class="card-icon" style="background:var(--gold-pale); color:var(--gold);">🔍</div>
+      <h3>Incorrect Application of Criteria</h3>
+      <p>The Exemptions Committee applied the wrong equivalence criteria or made a demonstrably incorrect factual finding in applying those criteria.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--green);"></div>
+      <div class="card-icon" style="background:var(--green-lt); color:var(--green);">🆕</div>
+      <h3>New Evidence</h3>
+      <p>Material evidence that was not available at the time of the original application has become available and, if considered, would be likely to change the outcome.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title mt-2">15.3 Appeal Process</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Stage</th><th>Description</th><th>Timeline / Fee</th></tr></thead>
+      <tbody>
+        <tr><td>Submit Notice of Appeal</td><td>Written Notice of Appeal submitted to the CILG Registrar's Office, stating the ground(s) of appeal, identifying the specific error or evidence at issue, and including any new evidence being relied upon</td><td>Within 30 working days of receiving the Decision Notice</td></tr>
+        <tr><td>Appeal Fee</td><td>Appeal administration fee payable upon submission</td><td>USD 40 — refunded in full if the appeal is successful</td></tr>
+        <tr><td>Forwarded to Appeals Committee</td><td>The Registrar forwards the appeal to the CILG Appeals Committee, which is independent of the Exemptions Committee</td><td>Within 5 working days of receipt</td></tr>
+        <tr><td>Appeals Committee Review</td><td>The Appeals Committee reviews the appeal file, the original Decision Notice, and the Decision Record. It may request further submissions from the candidate</td><td>—</td></tr>
+        <tr><td>Decision Issued</td><td>The Appeals Committee may uphold the original decision, overturn it (and approve the exemption), or remit the matter back to the Exemptions Committee with specific directions</td><td>Within 20 working days of receiving a complete appeal file</td></tr>
+        <tr><td>Final Decision</td><td>The decision of the Appeals Committee is final and binding. No further internal appeal is available</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title mt-2">19. Fraud, Misrepresentation &amp; Revocation</h2>
+  <div class="info-box burg">
+    <div class="info-box-title">⚠ Zero-Tolerance Policy — Fraudulent Applications</div>
+    <ul>
+      <li>Any exemptions obtained as a result of a fraudulent application will be immediately revoked</li>
+      <li>Any membership grade or qualification obtained in reliance on the fraudulent exemption will be reviewed and may be revoked</li>
+      <li>The member will be subject to full disciplinary proceedings under the CILG Professional Standards and Disciplinary Regulations</li>
+      <li>Where the fraud involves criminal conduct (forgery, fraud, impersonation), CILG will refer the matter to the relevant law enforcement authorities</li>
+      <li>The member will be permanently disqualified from holding CILG membership</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title mt-2">20. Policy Review and Amendments</h2>
+  <p class="prose-text">This Exemption Policy is reviewed by the CILG Examinations and Standards Committee at least every three (3) years, or sooner if significant changes occur in the professional or regulatory landscape, material changes are made to the CILG Qualification Framework, systemic issues emerge in the application of the policy, or feedback from candidates, assessors, or the Appeals Committee identifies areas requiring improvement.</p>
+  <p class="prose-text">Proposed amendments are developed by the Examinations and Standards Committee, subject to consultation with CILG Fellows and Corporate Members, and ratified by the CILG Board of Governors. CILG will provide at least sixty (60) days' notice of material changes before they take effect.</p>
+
+  <div class="highlight-box" style="margin-top:2rem;">
+    <h3>Need Assistance?</h3>
+    <p>For pre-application guidance, contact the CILG Membership Services team before submitting a formal application. Consultations are free and advisory.</p>
+    <ul>
+      <li>Email: <strong style="color:var(--lime)">exemptions@cilg.org</strong></li>
+      <li>Accessibility: <strong style="color:var(--lime)">accessibility@cilg.org</strong></li>
+      <li>Welfare &amp; Hardship: <strong style="color:var(--lime)">hardship@cilg.org</strong></li>
+      <li>Members' Portal: <strong style="color:var(--lime)">www.cilgglobal.org</strong></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <h3>
+          <img src="assets/icons/cilg-global.jpg" height="72" width="72" alt="CILG Logo" style="border-radius:8px"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span style="display:none">CILG</span>
+        </h3>
+        <p style="margin-top:.65rem">Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.4rem;font-size:.72rem;color:rgba(255,255,255,.4)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+        <div class="footer-socials">
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-btn" title="Facebook">&#xf09a;</a>
+          <a href="https://x.com" target="_blank" rel="noopener" class="footer-social-btn" title="X / Twitter">&#x58;</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-social-btn" title="LinkedIn">in</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-btn" title="Instagram">&#x40;</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="footer-social-btn" title="YouTube">&#x25b6;</a>
+          <a href="https://wa.me/15753298396" target="_blank" rel="noopener" class="footer-social-btn" title="WhatsApp">&#x2709;</a>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="mov.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="news.html">News &amp; Updates</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <!-- ABOUT THE INSTITUTE -->
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="about.html#mission">Vision &amp; Mission</a>
+        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="about.html#objectives">Objectives</a>
+        <a href="about.html#governors">Board of Governors</a>
+        <a href="about.html#directors">Country Directors</a>
+        <a href="about.html#global">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <!-- MEMBER PORTALS -->
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="appn.html">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">CPD Portal</a>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.5rem">Office Hours (ET)</div>
+          <div style="font-size:.74rem;color:rgba(255,255,255,.55);line-height:1.8">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.3);font-size:.68rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="tel:+15753298396">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:.9rem;font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.75">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico · Alaska · Michigan · United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="scroll-top" id="scrollTop">↑</a>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL TO TOP
+const scrollBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ACTIVE NAV LINK ON SCROLL
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 100) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('act');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('act');
+  });
+});
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.principle-card, .card, .step-item, .decision-card');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity .5s ease ${(i % 5) * 0.07}s, transform .5s ease ${(i % 5) * 0.07}s, border-color .25s, box-shadow .25s`;
+  revealObserver.observe(el);
+});
+</script>
+</body>
+</html>
