@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Global Presence | Chartered Institute of Leadership and Governance</title>
+<meta name="description" content="CILG's worldwide reach — from our US base across Africa, Asia, Europe, Latin America, the Middle East, and North America through Accredited Learning Partners and Mutual Recognition Agreements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --gold:        #C9A84C;
+  --gold-lt:     #F0D080;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h); display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200); transition: all var(--tr);
+}
+.nav.scrolled { height: 58px; background: rgba(247,248,243,0.98); box-shadow: 0 2px 24px rgba(13,43,31,.08); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link { display: flex; align-items: center; gap: 4px; font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; padding: 6px 11px; border-radius: 6px; border: 1px solid transparent; color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer; }
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--forest) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 210px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(13,43,31,.12); }
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover, .nav-dropdown a.active-sub { color: var(--forest); background: var(--g100); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; overflow-y: auto; padding: 1.5rem 1.5rem 3rem; transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none; }
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--nav-h);
+  background: linear-gradient(135deg, rgba(13,43,31,.62), rgba(13,43,31,.78)), url('assets/images/hero4.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(200,241,53,.07) 0%, transparent 55%),
+              radial-gradient(ellipse at 20% 70%, rgba(201,168,76,.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+/* Subtle grid overlay */
+.page-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 900px;
+  text-align: center;
+  padding: 4rem 3rem;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(200,241,53,.2); border: 1px solid var(--lime-dk);
+  color: var(--lime); padding: 6px 16px; border-radius: 40px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 1.5rem; opacity: 0; animation: slideUp .6s ease .2s forwards;
+}
+.hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.hero-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 800; line-height: 1.05;
+  color: var(--white); letter-spacing: -.03em;
+  margin-bottom: 1.1rem;
+  opacity: 0; animation: slideUp .7s ease .3s forwards;
+}
+.hero-title em { font-style: normal; color: var(--lime); }
+.hero-subtitle {
+  font-size: clamp(.95rem, 1.5vw, 1.15rem);
+  color: rgba(255,255,255,.82); max-width: 660px;
+  margin: 0 auto 2.5rem; line-height: 1.85;
+  opacity: 0; animation: slideUp .7s ease .4s forwards;
+}
+.hero-reg-row {
+  display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: slideUp .7s ease .55s forwards;
+}
+.hero-reg-badge {
+  padding: 5px 14px; background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2); border-radius: 30px;
+  font-size: .68rem; font-weight: 600; color: rgba(255,255,255,.8);
+}
+.hero-reg-badge.hl { background: rgba(200,241,53,.15); border-color: var(--lime-dk); color: var(--lime); }
+@keyframes slideUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════ */
+.stats-bar { background: var(--lime); padding: 0; }
+.stats-bar-inner {
+  max-width: 1260px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
+.stat-block {
+  padding: 1.8rem 1rem;
+  border-right: 1px solid rgba(13,43,31,.12);
+  transition: background var(--tr);
+}
+.stat-block:last-child { border-right: none; }
+.stat-block:hover { background: var(--lime-dk); }
+.stat-val { font-family: var(--ff-head); font-size: 2.2rem; font-weight: 800; color: var(--forest); line-height: 1; letter-spacing: -.05em; }
+.stat-lab { font-size: .68rem; font-weight: 600; color: var(--forest-mid); margin-top: .25rem; opacity: .75; }
+
+/* ═══════════════════════════════════════════
+   SECTION HELPERS
+═══════════════════════════════════════════ */
+.sec { padding: 5.5rem 3rem; }
+.sec-inner { max-width: 1260px; margin: 0 auto; }
+.sec-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--forest-lt); margin-bottom: .75rem;
+}
+.sec-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 1px; }
+.sec-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 2.8vw, 2.6rem); font-weight: 800; color: var(--forest); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .9rem; }
+.sec-h2 em { font-style: normal; color: var(--forest-lt); }
+.sec-lead { font-size: .97rem; color: var(--text2); max-width: 680px; line-height: 1.85; margin-bottom: 3rem; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════
+   MAP SECTION
+═══════════════════════════════════════════ */
+.map-sec { background: var(--forest); position: relative; overflow: hidden; }
+.map-sec::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(200,241,53,.05) 0%, transparent 65%);
+}
+.map-sec .sec-label { color: var(--lime-pale); }
+.map-sec .sec-label::before { background: var(--lime); }
+.map-sec .sec-h2 { color: var(--white); }
+.map-sec .sec-lead { color: rgba(255,255,255,.65); }
+.map-layout { display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: start; }
+.map-wrap {
+  position: relative; border-radius: 16px; overflow: hidden;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+  padding: 1.5rem;
+}
+.map-svg { width: 100%; height: auto; display: block; }
+/* Map dots pulse animation */
+.map-dot { animation: dotPulse 3s ease-in-out infinite; }
+.map-dot:nth-child(2) { animation-delay: .4s; }
+.map-dot:nth-child(3) { animation-delay: .8s; }
+.map-dot:nth-child(4) { animation-delay: 1.2s; }
+.map-dot:nth-child(5) { animation-delay: 1.6s; }
+.map-dot:nth-child(6) { animation-delay: 2s; }
+@keyframes dotPulse {
+  0%,100% { r: 5; opacity: 1; }
+  50% { r: 8; opacity: .7; }
+}
+.map-legend { display: flex; flex-direction: column; gap: 1rem; }
+.map-legend-title {
+  font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); margin-bottom: .5rem;
+}
+.region-chip {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 1.1rem 1.3rem;
+  display: flex; align-items: center; gap: 1rem;
+  transition: all var(--tr); cursor: default;
+}
+.region-chip:hover { background: rgba(255,255,255,.09); border-color: rgba(200,241,53,.3); transform: translateX(4px); }
+.region-flag { font-size: 1.4rem; flex-shrink: 0; line-height: 1; }
+.region-info {}
+.region-name { font-family: var(--ff-head); font-size: .9rem; font-weight: 700; color: var(--white); line-height: 1.1; }
+.region-desc { font-size: .72rem; color: rgba(255,255,255,.5); margin-top: .2rem; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
+   PARTNERSHIPS SECTION
+═══════════════════════════════════════════ */
+.partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+.partner-card {
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 16px; padding: 2rem 2rem;
+  transition: all var(--tr); position: relative; overflow: hidden;
+}
+.partner-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--g200); transition: background var(--tr);
+}
+.partner-card:hover { border-color: var(--lime-dk); box-shadow: 0 12px 36px rgba(13,43,31,.09); transform: translateY(-3px); }
+.partner-card:hover::before { background: var(--lime-dk); }
+.partner-icon { font-size: 2.2rem; margin-bottom: 1rem; line-height: 1; }
+.partner-title { font-family: var(--ff-head); font-size: 1.15rem; font-weight: 800; color: var(--forest); margin-bottom: .7rem; letter-spacing: -.01em; }
+.partner-body { font-size: .85rem; color: var(--text2); line-height: 1.8; }
+
+/* ═══════════════════════════════════════════
+   REGIONS DETAIL SECTION
+═══════════════════════════════════════════ */
+.regions-sec { background: var(--bg-off); }
+.regions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.region-card {
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 16px; padding: 1.8rem; overflow: hidden;
+  position: relative; transition: all var(--tr);
+}
+.region-card:hover { border-color: var(--lime-dk); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(13,43,31,.1); }
+.region-card-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.1rem; }
+.region-emoji { font-size: 2rem; line-height: 1; }
+.region-card-name { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; }
+.region-card-text { font-size: .82rem; color: var(--text2); line-height: 1.8; }
+.region-card-tag {
+  display: inline-block; margin-top: 1rem;
+  padding: 3px 10px; background: var(--lime-pale); border: 1px solid var(--lime-dk);
+  border-radius: 4px; font-size: .6rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--forest-lt);
+}
+/* US registrations card spans 3 cols */
+.region-card.us-card { grid-column: span 3; background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%); border-color: var(--forest-lt); }
+.region-card.us-card .region-card-name { color: var(--white); }
+.region-card.us-card .region-card-text { color: rgba(255,255,255,.65); }
+.region-card.us-card::before { background: var(--lime); }
+.region-card.us-card:hover { border-color: var(--lime-dk); }
+.us-states { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.2rem; }
+.us-state-badge {
+  padding: 6px 16px; background: rgba(200,241,53,.15);
+  border: 1px solid rgba(200,241,53,.3); border-radius: 30px;
+  font-size: .72rem; font-weight: 700; color: var(--lime-pale);
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* ═══════════════════════════════════════════
+   CREDENTIALS SECTION
+═══════════════════════════════════════════ */
+.creds-sec { background: var(--bg); }
+.creds-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.creds-body p { font-size: .95rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem; }
+.creds-body p strong { color: var(--forest); font-weight: 600; }
+.creds-list { display: flex; flex-direction: column; gap: .9rem; margin-top: 2rem; }
+.cred-row {
+  display: flex; align-items: center; gap: 1.4rem;
+  background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px;
+  padding: 1.4rem 1.6rem; transition: all var(--tr);
+}
+.cred-row:hover { border-color: var(--lime-dk); transform: translateX(5px); }
+.cred-letters {
+  font-family: var(--ff-head); font-size: 1.35rem; font-weight: 800;
+  color: var(--forest); min-width: 80px; letter-spacing: -.02em;
+}
+.cred-sep { width: 1px; height: 36px; background: var(--g200); flex-shrink: 0; }
+.cred-info {}
+.cred-grade { font-family: var(--ff-head); font-size: .88rem; font-weight: 700; color: var(--forest); }
+.cred-note { font-size: .75rem; color: var(--text2); margin-top: .15rem; }
+.cred-badge-col { margin-left: auto; }
+.cred-level {
+  padding: 4px 12px; border-radius: 20px; font-size: .6rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; white-space: nowrap;
+}
+.cred-level.assoc { background: var(--g100); color: var(--g500); border: 1px solid var(--g200); }
+.cred-level.full  { background: var(--lime-pale); color: var(--forest-lt); border: 1px solid var(--lime-dk); }
+.cred-level.fell  { background: var(--forest); color: var(--lime); border: 1px solid var(--forest-lt); }
+
+/* Aside cards */
+.aside-cards { display: flex; flex-direction: column; gap: 1rem; }
+.aside-card {
+  background: var(--g100); border: 1px solid var(--g200);
+  border-radius: 14px; padding: 1.6rem 1.8rem; transition: all var(--tr);
+}
+.aside-card:hover { border-color: var(--lime-dk); background: var(--lime-pale); }
+.aside-card-icon { font-size: 1.5rem; margin-bottom: .7rem; }
+.aside-card-title { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: var(--forest); margin-bottom: .5rem; }
+.aside-card-text { font-size: .8rem; color: var(--text2); line-height: 1.75; }
+
+/* ═══════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════ */
+.cta-sec {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 55%, var(--forest-lt) 100%);
+  padding: 6rem 3rem; text-align: center; position: relative; overflow: hidden;
+}
+.cta-sec::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(200,241,53,.07) 0%, transparent 55%),
+              radial-gradient(ellipse at 80% 50%, rgba(201,168,76,.05) 0%, transparent 55%);
+}
+.cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.cta-eyebrow { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); margin-bottom: 1rem; }
+.cta-title { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--white); letter-spacing: -.03em; line-height: 1.15; margin-bottom: 1rem; }
+.cta-title em { font-style: normal; color: var(--lime); }
+.cta-body { font-size: .95rem; color: rgba(255,255,255,.72); line-height: 1.9; margin-bottom: 2.5rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-lime { padding: 13px 28px; background: var(--lime); color: var(--forest); font-family: var(--ff-head); font-size: .82rem; font-weight: 700; border-radius: 9px; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
+.btn-lime:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,241,53,.4); }
+.btn-ghost { padding: 13px 22px; background: rgba(255,255,255,.1); color: #fff; font-size: .82rem; font-weight: 600; border-radius: 9px; border: 1.5px solid rgba(255,255,255,.3); transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.2); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s; }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .map-layout { grid-template-columns: 1fr; }
+  .map-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .map-legend-title { grid-column: 1/-1; }
+  .regions-grid { grid-template-columns: repeat(2, 1fr); }
+  .region-card.us-card { grid-column: span 2; }
+  .creds-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+  .nav { padding: 0 1.5rem; }
+  .stats-bar-inner { grid-template-columns: repeat(3, 1fr); }
+  .stat-block:nth-child(4), .stat-block:nth-child(5) { border-top: 1px solid rgba(13,43,31,.12); }
+  .partner-grid { grid-template-columns: 1fr; }
+  .sec { padding: 4rem 2rem; }
+  .map-legend { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .hero-content { padding: 3rem 1.5rem; }
+  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-block:nth-child(5) { grid-column: span 2; border-top: 1px solid rgba(13,43,31,.12); }
+  .regions-grid { grid-template-columns: 1fr; }
+  .region-card.us-card { grid-column: span 1; }
+  .map-legend { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .sec { padding: 3.5rem 1.2rem; }
+  .cta-sec { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">CILG<span class="nav-logo-sub">Leadership &amp; Governance</span></div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link act">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html" class="active-sub">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="mov.html">Overview</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mup.html">Membership Upgrade</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">CPD</a>
+        <a href="cod.html">Code of Conduct</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="qul.html">Qualification Levels</a>
+        <a href="psf.html">Professional Standard Framework</a>
+        <a href="exp.html">Exemption Policy</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="news.html">News &amp; Updates</a>
+        <a href="cev.html">Certification Verification</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="vms.html" class="mob-link">Vision &amp; Mission</a>
+    <a href="ves.html" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="gp.html" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="mov.html" class="mob-link">Overview</a>
+    <a href="mg.html" class="mob-link">Membership Grades</a>
+    <a href="mf.html" class="mob-link">Membership Fees</a>
+    <a href="cpd.html" class="mob-link">CPD</a>
+    <a href="cod.html" class="mob-link">Code of Conduct</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications &amp; Certifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="certifications.html" class="mob-link">Professional Certifications</a>
+    <a href="exp.html" class="mob-link">Exemption Policy</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources</div>
+    <a href="news.html" class="mob-link">News &amp; Updates</a>
+    <a href="cev.html" class="mob-link">Certification Verification</a>
+    <a href="faq.html" class="mob-link">FAQs</a>
+  </div>
+  <a href="appn.html" class="mob-cta">Apply for Membership →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Worldwide Reach</div>
+    <h1 class="hero-title">A Professional Body with<br><em>Global Presence</em></h1>
+    <p class="hero-subtitle">From our United States base, CILG extends its professional community to governance practitioners across every continent — through Accredited Learning Partners, Mutual Recognition Agreements, and digital delivery.</p>
+    <div class="hero-reg-row">
+      <span class="hero-reg-badge hl">🇺🇸 Registered USA</span>
+      <span class="hero-reg-badge">🌍 Africa</span>
+      <span class="hero-reg-badge">🌏 Asia Pacific</span>
+      <span class="hero-reg-badge">🌍 Europe</span>
+      <span class="hero-reg-badge">🌎 Latin America</span>
+      <span class="hero-reg-badge">🌍 Middle East</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-block reveal">
+      <div class="stat-val">40+</div>
+      <div class="stat-lab">Countries Represented</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-val">6</div>
+      <div class="stat-lab">Strategic Regions</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-val">3</div>
+      <div class="stat-lab">US State Registrations</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-val">3</div>
+      <div class="stat-lab">Designatory Credentials</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-val">24/7</div>
+      <div class="stat-lab">Digital Access Portal</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP SECTION -->
+<section class="sec map-sec" id="map">
+  <div class="sec-inner">
+    <div class="sec-label">Our Global Presence</div>
+    <h2 class="sec-h2">CILG on Every <em>Continent</em></h2>
+    <p class="sec-lead">CILG's global network enables consistent, rigorous qualifications for governance professionals regardless of location, while remaining sensitive to local governance contexts and institutional environments.</p>
+
+    <div class="map-layout">
+      <!-- SVG World Map -->
+      <div class="map-wrap">
+        <svg class="map-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="glowUS" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#C8F135" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#C8F135" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="glowRegion" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#AEDB1A" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#AEDB1A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Continents — simplified silhouettes -->
+          <!-- North America -->
+          <path d="M60,80 L170,70 L190,90 L200,120 L185,150 L160,170 L140,200 L120,220 L100,230 L90,210 L70,190 L55,160 L50,130 Z" fill="rgba(45,99,71,.35)" stroke="rgba(200,241,53,.15)" stroke-width="1"/>
+          <!-- South America -->
+          <path d="M140,240 L175,235 L195,255 L200,290 L195,330 L175,360 L155,370 L140,350 L130,320 L125,285 L128,260 Z" fill="rgba(45,99,71,.35)" stroke="rgba(200,241,53,.15)" stroke-width="1"/>
+          <!-- Europe -->
+          <path d="M380,65 L430,58 L445,75 L440,100 L420,115 L400,118 L380,108 L370,90 Z" fill="rgba(45,99,71,.35)" stroke="rgba(200,241,53,.15)" stroke-width="1"/>
+          <!-- Africa -->
+          <path d="M390,130 L430,125 L460,140 L468,175 L460,220 L440,265 L415,285 L395,280 L375,260 L365,220 L368,175 L375,145 Z" fill="rgba(45,99,71,.35)" stroke="rgba(200,241,53,.15)" stroke-width="1"/>
+          <!-- Middle East / West Asia -->
+          <path d="M450,110 L500,105 L520,125 L515,155 L490,165 L462,155 L448,135 Z" fill="rgba(45,99,71,.28)" stroke="rgba(200,241,53,.12)" stroke-width="1"/>
+          <!-- Asia -->
+          <path d="M520,60 L660,55 L690,75 L695,110 L680,140 L650,155 L610,160 L570,150 L540,130 L520,105 Z" fill="rgba(45,99,71,.35)" stroke="rgba(200,241,53,.15)" stroke-width="1"/>
+          <!-- South/SE Asia -->
+          <path d="M560,165 L630,160 L655,180 L650,215 L630,230 L600,235 L572,220 L555,195 Z" fill="rgba(45,99,71,.3)" stroke="rgba(200,241,53,.12)" stroke-width="1"/>
+          <!-- Australia -->
+          <path d="M660,270 L730,265 L760,285 L755,330 L720,350 L685,345 L658,320 L652,295 Z" fill="rgba(45,99,71,.3)" stroke="rgba(200,241,53,.12)" stroke-width="1"/>
+
+          <!-- Connection lines from US to regions (dashed, subtle) -->
+          <line x1="130" y1="155" x2="415" y2="200" stroke="rgba(200,241,53,.12)" stroke-width="1" stroke-dasharray="4,6"/>
+          <line x1="130" y1="155" x2="405" y2="88" stroke="rgba(200,241,53,.12)" stroke-width="1" stroke-dasharray="4,6"/>
+          <line x1="130" y1="155" x2="480" y2="133" stroke="rgba(200,241,53,.12)" stroke-width="1" stroke-dasharray="4,6"/>
+          <line x1="130" y1="155" x2="610" y2="100" stroke="rgba(200,241,53,.12)" stroke-width="1" stroke-dasharray="4,6"/>
+
+          <!-- Glow halos for active regions -->
+          <circle cx="130" cy="155" r="22" fill="url(#glowUS)" opacity="0.8"/>
+          <circle cx="415" cy="200" r="18" fill="url(#glowRegion)" opacity="0.6"/>
+          <circle cx="405" cy="88" r="16" fill="url(#glowRegion)" opacity="0.5"/>
+          <circle cx="480" cy="133" r="15" fill="url(#glowRegion)" opacity="0.5"/>
+          <circle cx="610" cy="105" r="16" fill="url(#glowRegion)" opacity="0.5"/>
+          <circle cx="162" cy="290" r="14" fill="url(#glowRegion)" opacity="0.45"/>
+          <circle cx="700" cy="305" r="13" fill="url(#glowRegion)" opacity="0.4"/>
+
+          <!-- Region dots -->
+          <!-- US (HQ) -->
+          <circle class="map-dot" cx="130" cy="155" r="7" fill="#C8F135"/>
+          <circle cx="130" cy="155" r="4" fill="#0D2B1F"/>
+          <!-- Africa -->
+          <circle class="map-dot" cx="415" cy="200" r="6" fill="#AEDB1A"/>
+          <circle cx="415" cy="200" r="3" fill="#0D2B1F"/>
+          <!-- Europe -->
+          <circle class="map-dot" cx="405" cy="88" r="5.5" fill="#AEDB1A"/>
+          <circle cx="405" cy="88" r="2.5" fill="#0D2B1F"/>
+          <!-- Middle East -->
+          <circle class="map-dot" cx="480" cy="133" r="5.5" fill="#AEDB1A"/>
+          <circle cx="480" cy="133" r="2.5" fill="#0D2B1F"/>
+          <!-- Asia -->
+          <circle class="map-dot" cx="610" cy="105" r="5.5" fill="#AEDB1A"/>
+          <circle cx="610" cy="105" r="2.5" fill="#0D2B1F"/>
+          <!-- Latin America -->
+          <circle class="map-dot" cx="162" cy="290" r="5.5" fill="#AEDB1A"/>
+          <circle cx="162" cy="290" r="2.5" fill="#0D2B1F"/>
+          <!-- Australia/Asia Pacific -->
+          <circle class="map-dot" cx="700" cy="305" r="5" fill="#AEDB1A"/>
+          <circle cx="700" cy="305" r="2.5" fill="#0D2B1F"/>
+
+          <!-- Labels -->
+          <text x="88" y="150" fill="rgba(200,241,53,.7)" font-size="9" font-family="system-ui" font-weight="700" letter-spacing="0.5">USA HQ</text>
+          <text x="390" y="222" fill="rgba(174,219,26,.65)" font-size="8" font-family="system-ui" font-weight="600">Africa</text>
+          <text x="385" y="78" fill="rgba(174,219,26,.65)" font-size="8" font-family="system-ui" font-weight="600">Europe</text>
+          <text x="460" y="123" fill="rgba(174,219,26,.65)" font-size="8" font-family="system-ui" font-weight="600">M. East</text>
+          <text x="588" y="95" fill="rgba(174,219,26,.65)" font-size="8" font-family="system-ui" font-weight="600">Asia</text>
+          <text x="130" y="308" fill="rgba(174,219,26,.65)" font-size="8" font-family="system-ui" font-weight="600">Lat. Am.</text>
+        </svg>
+        <!-- Map caption -->
+        <div style="margin-top:1rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:.65rem;color:rgba(255,255,255,.4)">
+            <span style="width:8px;height:8px;background:#C8F135;border-radius:50%;display:inline-block"></span> HQ — New Mexico, Alaska &amp; Michigan, USA
+          </span>
+          <span style="color:rgba(255,255,255,.2);font-size:.65rem">·</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:.65rem;color:rgba(255,255,255,.4)">
+            <span style="width:7px;height:7px;background:#AEDB1A;border-radius:50%;display:inline-block"></span> Active Regions
+          </span>
+        </div>
+      </div>
+
+      <!-- Region chips legend -->
+      <div class="map-legend">
+        <div class="map-legend-title">Strategic Regions</div>
+        <div class="region-chip reveal">
+          <div class="region-flag">🌍</div>
+          <div class="region-info">
+            <div class="region-name">Africa</div>
+            <div class="region-desc">Sub-Saharan &amp; North Africa</div>
+          </div>
+        </div>
+        <div class="region-chip reveal">
+          <div class="region-flag">🌏</div>
+          <div class="region-info">
+            <div class="region-name">Asia Pacific</div>
+            <div class="region-desc">South, East &amp; Southeast Asia</div>
+          </div>
+        </div>
+        <div class="region-chip reveal">
+          <div class="region-flag">🌍</div>
+          <div class="region-info">
+            <div class="region-name">Europe</div>
+            <div class="region-desc">Western, Central &amp; Eastern</div>
+          </div>
+        </div>
+        <div class="region-chip reveal">
+          <div class="region-flag">🌎</div>
+          <div class="region-info">
+            <div class="region-name">Latin America</div>
+            <div class="region-desc">Spanish &amp; Portuguese-speaking</div>
+          </div>
+        </div>
+        <div class="region-chip reveal">
+          <div class="region-flag">🌍</div>
+          <div class="region-info">
+            <div class="region-name">Middle East</div>
+            <div class="region-desc">GCC &amp; wider MENA region</div>
+          </div>
+        </div>
+        <div class="region-chip reveal">
+          <div class="region-flag">🌎</div>
+          <div class="region-info">
+            <div class="region-name">North America</div>
+            <div class="region-desc">USA, Canada &amp; Mexico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIPS SECTION -->
+<section class="sec" id="partnerships" style="background:var(--bg)">
+  <div class="sec-inner">
+    <div class="sec-label">Global Mechanisms</div>
+    <h2 class="sec-h2">How CILG <em>Extends Its Reach</em></h2>
+    <p class="sec-lead">Two primary mechanisms enable CILG to deliver consistent, rigorous professional standards to governance practitioners worldwide.</p>
+    <div class="partner-grid">
+      <div class="partner-card reveal">
+        <div class="partner-icon">🏫</div>
+        <h3 class="partner-title">Accredited Learning Partners</h3>
+        <p class="partner-body">CILG collaborates with universities, professional associations, training institutes, and corporate learning organisations worldwide to deliver CILG qualifications. Accredited Learning Partners are vetted and approved to ensure they meet CILG's exacting standards for teaching, assessment, and professional conduct. Regular monitoring and evaluation ensure consistent delivery at every partner institution.</p>
+      </div>
+      <div class="partner-card reveal" style="transition-delay:.1s">
+        <div class="partner-icon">🤝</div>
+        <h3 class="partner-title">Mutual Recognition Agreements</h3>
+        <p class="partner-body">CILG maintains Mutual Recognition Agreements with peer professional bodies in governance and related fields globally. These agreements facilitate recognition of qualifications and professional standing across jurisdictions — strengthening the professional community and extending the reach of governance excellence to every corner of the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONS DETAIL -->
+<section class="sec regions-sec" id="regions">
+  <div class="sec-inner">
+    <div class="sec-label">Strategic Focus</div>
+    <h2 class="sec-h2">Regional <em>Programmes</em></h2>
+    <p class="sec-lead">CILG tailors its approach to each region's unique governance context, institutional environment, and development needs.</p>
+
+    <div class="regions-grid">
+
+      <!-- US Registration (featured wide card) -->
+      <div class="region-card us-card reveal">
+        <div class="region-card-top" style="margin-bottom:0.6rem">
+          <div class="region-emoji">🇺🇸</div>
+          <div class="region-card-name">United States of America — Registered Seat</div>
+        </div>
+        <p class="region-card-text">CILG is duly registered as a professional body in the United States of America. Our US registration provides the legal and institutional foundation from which CILG extends its professional community globally. All CILG qualifications are issued under US-registered institutional authority.</p>
+        <div class="us-states">
+          <span class="us-state-badge">🏔️ New Mexico</span>
+          <span class="us-state-badge">🌿 Alaska</span>
+          <span class="us-state-badge">🏙️ Michigan</span>
+        </div>
+      </div>
+
+      <div class="region-card reveal">
+        <div class="region-card-top">
+          <div class="region-emoji">🌍</div>
+          <div class="region-card-name">Africa</div>
+        </div>
+        <p class="region-card-text">Supporting governance development across sub-Saharan Africa through qualifications, capacity building, and partnership with African governance institutions and professional bodies.</p>
+        <span class="region-card-tag">Active Region</span>
+      </div>
+
+      <div class="region-card reveal" style="transition-delay:.08s">
+        <div class="region-card-top">
+          <div class="region-emoji">🌏</div>
+          <div class="region-card-name">Asia Pacific</div>
+        </div>
+        <p class="region-card-text">Serving governance professionals across Asia Pacific through partnerships with leading governance, business, and public administration organisations.</p>
+        <span class="region-card-tag">Active Region</span>
+      </div>
+
+      <div class="region-card reveal" style="transition-delay:.16s">
+        <div class="region-card-top">
+          <div class="region-emoji">🌍</div>
+          <div class="region-card-name">Europe</div>
+        </div>
+        <p class="region-card-text">Collaborating with European governance institutions, professional bodies, and training providers to deliver governance qualifications aligned with European governance standards.</p>
+        <span class="region-card-tag">Active Region</span>
+      </div>
+
+      <div class="region-card reveal" style="transition-delay:.24s">
+        <div class="region-card-top">
+          <div class="region-emoji">🌎</div>
+          <div class="region-card-name">Latin America</div>
+        </div>
+        <p class="region-card-text">Building governance capacity in Latin America through Spanish-language and region-specific governance programmes tailored to local institutional contexts.</p>
+        <span class="region-card-tag">Active Region</span>
+      </div>
+
+      <div class="region-card reveal" style="transition-delay:.32s">
+        <div class="region-card-top">
+          <div class="region-emoji">🌍</div>
+          <div class="region-card-name">Middle East</div>
+        </div>
+        <p class="region-card-text">Supporting governance development in the Middle East region through tailored governance programmes and strategic partnerships with regional institutions.</p>
+        <span class="region-card-tag">Active Region</span>
+      </div>
+
+      <div class="region-card reveal" style="transition-delay:.40s">
+        <div class="region-card-top">
+          <div class="region-emoji">🌎</div>
+          <div class="region-card-name">North America</div>
+        </div>
+        <p class="region-card-text">Serving governance professionals across North America through US-based registration and partnerships with Canadian and Mexican governance organisations.</p>
+        <span class="region-card-tag">Active Region</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS & QUALITY SECTION -->
+<section class="sec creds-sec" id="credentials">
+  <div class="sec-inner">
+    <div class="sec-label">International Recognition</div>
+    <h2 class="sec-h2">Credentials &amp; <em>Designatory Letters</em></h2>
+    <p class="sec-lead">CILG membership is evidenced through designatory letters that reflect professional standing and expertise — recognised by governance institutions, boards, and employers worldwide.</p>
+
+    <div class="creds-layout">
+      <div>
+        <div class="creds-body">
+          <p>CILG qualifications and professional credentials are recognised by <strong>governance institutions, boards, and employers worldwide</strong> as evidence of professional competence in governance and leadership. CILG maintains partnerships with peer professional bodies in governance and related disciplines, facilitating mutual recognition of qualifications and supporting the global development of governance professionals.</p>
+          <p>All CILG members commit to maintaining the professional standards set out in the <strong>CILG Code of Ethics and Professional Standards Framework</strong>, including ongoing Continuing Professional Development to ensure current knowledge of governance practice and emerging issues.</p>
+        </div>
+
+        <div class="creds-list">
+          <div class="cred-row reveal">
+            <div class="cred-letters">ACILG</div>
+            <div class="cred-sep"></div>
+            <div class="cred-info">
+              <div class="cred-grade">Associate Member</div>
+              <div class="cred-note">Entry-level professional recognition for governance practitioners</div>
+            </div>
+            <div class="cred-badge-col">
+              <span class="cred-level assoc">Associate</span>
+            </div>
+          </div>
+          <div class="cred-row reveal" style="transition-delay:.08s">
+            <div class="cred-letters">MCILG</div>
+            <div class="cred-sep"></div>
+            <div class="cred-info">
+              <div class="cred-grade">Full Member</div>
+              <div class="cred-note">Full professional membership for qualified practitioners</div>
+            </div>
+            <div class="cred-badge-col">
+              <span class="cred-level full">Full</span>
+            </div>
+          </div>
+          <div class="cred-row reveal" style="transition-delay:.16s">
+            <div class="cred-letters">FCILG</div>
+            <div class="cred-sep"></div>
+            <div class="cred-info">
+              <div class="cred-grade">Fellow</div>
+              <div class="cred-note">Fellowship for distinguished governance leaders and contributors</div>
+            </div>
+            <div class="cred-badge-col">
+              <span class="cred-level fell">Fellow</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="aside-cards">
+        <div class="aside-card reveal">
+          <div class="aside-card-icon">🔒</div>
+          <div class="aside-card-title">Quality Assurance</div>
+          <p class="aside-card-text">CILG maintains robust quality assurance processes for all qualifications, assessments, and learning delivery. Accredited Learning Partners are subject to regular monitoring, review, and evaluation to ensure consistent delivery of high-quality education in line with CILG standards.</p>
+        </div>
+        <div class="aside-card reveal" style="transition-delay:.1s">
+          <div class="aside-card-icon">📋</div>
+          <div class="aside-card-title">Continuing Professional Development</div>
+          <p class="aside-card-text">All members participate in CILG's CPD framework, ensuring ongoing competence in governance practice, emerging regulatory developments, and evolving professional standards across sectors and geographies.</p>
+        </div>
+        <div class="aside-card reveal" style="transition-delay:.2s">
+          <div class="aside-card-icon">✔️</div>
+          <div class="aside-card-title">Certification Verification</div>
+          <p class="aside-card-text">CILG's online verification portal allows employers, boards, and institutions to instantly verify the credentials and standing of any CILG member, providing public assurance of professional standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Ready to Join?</div>
+    <h2 class="cta-title">Advance Your <em>Governance Career</em></h2>
+    <p class="cta-body">Join thousands of governance and leadership professionals who trust CILG to credential their expertise and elevate their careers — across every sector and every continent.</p>
+    <div class="cta-btns">
+      <a href="appn.html" class="btn-lime">Apply for Membership →</a>
+      <a href="qualifications.html" class="btn-ghost">Explore Qualifications</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>
+          <img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span style="display:none">CILG</span>
+        </h3>
+        <p style="margin-top:.75rem">Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.45)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" aria-label="X/Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="mov.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="news.html">News &amp; Updates</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">CPD Portal</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">Mon – Fri: 9:00 AM – 5:00 PM<br>Sat – Sun: Closed<br><span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4><a href="contact.html" style="color:inherit">Contact Us</a></h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="tel:+15753298396">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">2222 W. Grand River Ave STE A<br>Okemos, MI 48864<br>United States of America</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico · Alaska · Michigan · United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>

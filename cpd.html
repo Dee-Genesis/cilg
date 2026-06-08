@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>CPD Framework | Chartered Institute of Leadership and Governance</title>
+<meta name="description" content="The CILG Continuing Professional Development (CPD) Framework — mandatory requirements, activity types, recording, audit, and compliance for all CILG members.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --gold:        #C9A84C;
+  --gold-lt:     #F0D080;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--forest) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; overflow-y: auto; padding: 1.5rem 1.5rem 3rem; transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none; }
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--nav-h);
+  background: linear-gradient(135deg, rgba(13,43,31,.62), rgba(13,43,31,.78)),
+              url('assets/images/hero3.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+.page-hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 5rem 3rem 6rem;
+  width: 100%;
+}
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(200,241,53,.18); border: 1px solid var(--lime-dk);
+  color: #fff; padding: 4px 14px; border-radius: 40px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+.page-hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.page-hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  max-width: 780px;
+  margin-bottom: 1.2rem;
+}
+.page-hero h1 em { font-style: normal; color: var(--lime); }
+.page-hero-sub {
+  font-size: clamp(.9rem, 1.3vw, 1.05rem);
+  font-weight: 500;
+  color: rgba(255,255,255,.82);
+  max-width: 620px;
+  line-height: 1.85;
+  border-left: 3px solid var(--lime);
+  padding-left: .85rem;
+  margin-bottom: 2rem;
+}
+.page-hero-postnoms { display: flex; gap: .45rem; flex-wrap: wrap; }
+.pnom { padding: 3px 10px; background: rgba(200,241,53,.12); border: 1px solid rgba(200,241,53,.35); border-radius: 4px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; color: var(--lime-pale); }
+
+/* ═══════════════════════════════════════════
+   BREADCRUMB
+═══════════════════════════════════════════ */
+.breadcrumb-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--g200);
+  padding: .7rem 3rem;
+}
+.breadcrumb-inner {
+  max-width: 1260px; margin: 0 auto;
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .72rem; color: var(--g500);
+}
+.breadcrumb-inner a { color: var(--forest-lt); font-weight: 500; }
+.breadcrumb-inner a:hover { color: var(--forest); }
+.breadcrumb-inner span { opacity: .4; }
+
+/* ═══════════════════════════════════════════
+   SECTION SCAFFOLDING
+═══════════════════════════════════════════ */
+.section { padding: 5rem 3rem; }
+.section-inner { max-width: 1260px; margin: 0 auto; }
+.section-label { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--forest-lt); margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 1px; }
+.section-h2 { font-family: var(--ff-head); font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 800; color: var(--forest); letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1rem; }
+.section-h2 em { font-style: normal; color: var(--forest-lt); }
+.section-lead { font-size: .97rem; color: var(--text2); max-width: 720px; line-height: 1.85; margin-bottom: 2.5rem; }
+
+/* ═══════════════════════════════════════════
+   INTRO — 3.1 & 3.2
+═══════════════════════════════════════════ */
+.intro-section { background: var(--bg); }
+.intro-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start; }
+.intro-body p { font-size: .95rem; color: var(--text2); line-height: 1.95; margin-bottom: 1.2rem; }
+.intro-body p strong { color: var(--forest); font-weight: 700; }
+.objectives-panel {
+  background: var(--forest);
+  border-radius: 18px;
+  padding: 2rem;
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+.objectives-panel h3 {
+  font-family: var(--ff-head); font-size: 1rem; font-weight: 700;
+  color: var(--lime); margin-bottom: 1.2rem; letter-spacing: -.01em;
+}
+.obj-list { list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+.obj-list li {
+  display: flex; gap: .75rem; align-items: flex-start;
+  font-size: .84rem; color: rgba(255,255,255,.8); line-height: 1.65;
+}
+.obj-list li::before {
+  content: '✓';
+  color: var(--lime);
+  font-weight: 700;
+  font-size: .8rem;
+  flex-shrink: 0;
+  margin-top: .18rem;
+}
+.align-note {
+  margin-top: 1.5rem; padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+  font-size: .74rem; color: rgba(255,255,255,.45); line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════
+   CPD REQUIREMENTS TABLE — 3.3
+═══════════════════════════════════════════ */
+.table-section { background: var(--bg-off); }
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1.5px solid var(--g200); box-shadow: 0 4px 24px rgba(13,43,31,.06); }
+table { width: 100%; border-collapse: collapse; background: var(--white); font-size: .84rem; }
+thead tr { background: var(--forest); }
+thead th {
+  padding: 1rem 1.2rem; text-align: left;
+  font-family: var(--ff-head); font-size: .7rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.7); white-space: nowrap;
+}
+thead th:first-child { border-radius: 12px 0 0 0; }
+thead th:last-child { border-radius: 0 12px 0 0; }
+tbody tr { border-bottom: 1px solid var(--g200); transition: background var(--tr); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--g100); }
+tbody td { padding: .9rem 1.2rem; color: var(--text2); line-height: 1.65; vertical-align: top; }
+tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var(--forest); }
+.badge-grade {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(200,241,53,.12); border: 1px solid rgba(174,219,26,.35);
+  color: var(--forest-lt); padding: 2px 9px; border-radius: 4px;
+  font-size: .67rem; font-weight: 700; letter-spacing: .08em;
+}
+.badge-grade.fellow { background: rgba(201,168,76,.1); border-color: rgba(201,168,76,.3); color: var(--gold); }
+.table-note {
+  margin-top: 1.2rem;
+  padding: 1.1rem 1.4rem;
+  background: var(--lime-pale);
+  border: 1px solid var(--lime-dk);
+  border-radius: 10px;
+  font-size: .82rem; color: var(--forest-mid); line-height: 1.75;
+}
+.table-note strong { font-weight: 700; color: var(--forest); }
+
+/* ═══════════════════════════════════════════
+   WHAT COUNTS — 3.4
+═══════════════════════════════════════════ */
+.counts-section { background: var(--bg); }
+.counts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
+.count-card {
+  background: var(--white);
+  border: 1.5px solid var(--g200);
+  border-radius: 16px;
+  padding: 1.8rem 1.6rem;
+  transition: all var(--tr);
+  position: relative; overflow: hidden;
+}
+.count-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--g200); transition: background var(--tr);
+}
+.count-card:hover { border-color: var(--lime-dk); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,43,31,.09); }
+.count-card:hover::before { background: var(--lime-dk); }
+.count-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+.count-num { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--forest-lt); margin-bottom: .4rem; }
+.count-title { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .7rem; line-height: 1.2; }
+.count-body { font-size: .83rem; color: var(--text2); line-height: 1.75; margin-bottom: 1rem; }
+.count-examples { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.count-examples li { font-size: .79rem; color: var(--text2); display: flex; gap: .55rem; align-items: flex-start; line-height: 1.5; }
+.count-examples li::before { content: '→'; color: var(--forest-lt); font-size: .75rem; flex-shrink: 0; margin-top: .12rem; }
+.count-rule {
+  background: var(--g100); border: 1px solid var(--g200);
+  border-radius: 8px; padding: .65rem .9rem;
+  font-size: .75rem; color: var(--forest); line-height: 1.6;
+}
+.count-rule strong { font-weight: 700; }
+
+/* Does NOT count */
+.not-counts-section { background: var(--bg-off); }
+.not-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+.not-card {
+  background: var(--white);
+  border: 1.5px solid var(--g200);
+  border-radius: 12px; padding: 1.2rem 1.4rem;
+  display: flex; gap: .75rem; align-items: flex-start;
+}
+.not-x { width: 24px; height: 24px; flex-shrink: 0; background: rgba(200,0,0,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; color: #c0392b; font-weight: 700; margin-top: .1rem; }
+.not-card p { font-size: .83rem; color: var(--text2); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════
+   RECORDING — 3.6
+═══════════════════════════════════════════ */
+.recording-section { background: var(--bg); }
+.recording-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.rec-block { margin-bottom: 2rem; }
+.rec-block h3 {
+  font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700;
+  color: var(--forest); margin-bottom: .9rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.rec-block h3 span {
+  display: inline-flex; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--lime); color: var(--forest);
+  font-size: .72rem; font-weight: 800; align-items: center; justify-content: center;
+}
+.rec-block p { font-size: .88rem; color: var(--text2); line-height: 1.85; margin-bottom: .8rem; }
+.portal-features { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.portal-features li { display: flex; gap: .7rem; align-items: flex-start; font-size: .83rem; color: var(--text2); line-height: 1.55; }
+.portal-features li::before { content: '✓'; color: var(--lime-dk); font-weight: 800; flex-shrink: 0; }
+.late-table { width: 100%; border-collapse: collapse; margin-top: .8rem; font-size: .82rem; }
+.late-table th { background: var(--g100); padding: .7rem 1rem; text-align: left; font-weight: 700; color: var(--forest); border-bottom: 1px solid var(--g200); font-size: .76rem; letter-spacing: .03em; }
+.late-table td { padding: .75rem 1rem; border-bottom: 1px solid var(--g200); color: var(--text2); vertical-align: top; line-height: 1.55; }
+.late-table tr:last-child td { border-bottom: none; }
+.late-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: .67rem; font-weight: 700; }
+.late-badge.warn { background: rgba(230,160,0,.1); border: 1px solid rgba(230,160,0,.3); color: #a87800; }
+.late-badge.suspend { background: rgba(200,60,0,.08); border: 1px solid rgba(200,60,0,.25); color: #b83300; }
+.late-badge.lapse { background: rgba(150,0,0,.08); border: 1px solid rgba(150,0,0,.2); color: #8b0000; }
+
+/* ═══════════════════════════════════════════
+   PORTFOLIO REQUIREMENTS — 3.6.3
+═══════════════════════════════════════════ */
+.portfolio-section { background: var(--bg-off); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
+.port-card {
+  background: var(--white);
+  border: 1.5px solid var(--g200);
+  border-radius: 16px; padding: 1.8rem 1.6rem;
+  transition: all var(--tr); position: relative; overflow: hidden;
+}
+.port-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--g200); transition: background var(--tr); }
+.port-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 30px rgba(13,43,31,.08); }
+.port-card:hover::before { background: var(--lime-dk); }
+.port-card.fcilg-card { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%); border-color: transparent; }
+.port-card.fcilg-card::before { background: var(--lime); }
+.port-grade {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--forest-lt); margin-bottom: .65rem;
+}
+.fcilg-card .port-grade { color: var(--lime-pale); }
+.port-postn {
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+  color: var(--lime-dk); margin-bottom: .75rem;
+}
+.fcilg-card .port-postn { color: var(--lime); }
+.port-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--forest); margin-bottom: 1rem; line-height: 1.2; }
+.fcilg-card .port-title { color: #fff; }
+.port-req { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.port-req li { font-size: .82rem; color: var(--text2); display: flex; gap: .6rem; align-items: flex-start; line-height: 1.55; }
+.port-req li::before { content: '›'; color: var(--lime-dk); font-size: 1rem; flex-shrink: 0; font-weight: 700; line-height: 1.3; }
+.fcilg-card .port-req li { color: rgba(255,255,255,.78); }
+.fcilg-card .port-req li::before { color: var(--lime); }
+
+/* ═══════════════════════════════════════════
+   AUDIT — 3.7
+═══════════════════════════════════════════ */
+.audit-section { background: var(--bg); }
+.audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; margin-top: 2rem; }
+.audit-intro p { font-size: .9rem; color: var(--text2); line-height: 1.9; margin-bottom: 1rem; }
+.audit-outcomes h3 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: 1.2rem; }
+.outcome-list { display: flex; flex-direction: column; gap: .85rem; }
+.outcome-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: .9rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid var(--g200);
+  background: var(--white);
+  transition: all var(--tr);
+}
+.outcome-item:hover { border-color: var(--lime-dk); background: var(--lime-pale); }
+.outcome-label {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+  margin-top: .1rem;
+}
+.outcome-label.pass { background: rgba(45,99,71,.1); color: var(--forest-lt); border: 1px solid rgba(45,99,71,.25); }
+.outcome-label.rec { background: rgba(200,168,0,.1); color: #7a6400; border: 1px solid rgba(200,168,0,.25); }
+.outcome-label.refer { background: rgba(180,100,0,.1); color: #8b4c00; border: 1px solid rgba(180,100,0,.25); }
+.outcome-label.fail { background: rgba(160,0,0,.08); color: #8b0000; border: 1px solid rgba(160,0,0,.2); }
+.outcome-desc { font-size: .82rem; color: var(--text2); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════
+   DEFERRAL & RENEWAL — 3.8 & 3.9
+═══════════════════════════════════════════ */
+.deferral-section { background: var(--bg-off); }
+.deferral-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2rem; }
+.info-block {
+  background: var(--white); border: 1.5px solid var(--g200);
+  border-radius: 16px; padding: 1.8rem;
+}
+.info-block h3 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .9rem; display: flex; align-items: center; gap: .6rem; }
+.info-block h3 .sec-num { font-size: .65rem; font-weight: 800; color: var(--forest-lt); background: var(--lime-pale); padding: 2px 7px; border-radius: 4px; letter-spacing: .05em; }
+.info-block p { font-size: .88rem; color: var(--text2); line-height: 1.85; margin-bottom: .75rem; }
+.info-block p:last-child { margin-bottom: 0; }
+.info-block strong { color: var(--forest); font-weight: 700; }
+
+/* ═══════════════════════════════════════════
+   APPROVED PROVIDERS — 3.10
+═══════════════════════════════════════════ */
+.providers-section { background: var(--bg); }
+.providers-panel {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+  border-radius: 20px; padding: 3rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+}
+.providers-left h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: -.02em; margin-bottom: .9rem; line-height: 1.2; }
+.providers-left h3 em { font-style: normal; color: var(--lime); }
+.providers-left p { font-size: .88rem; color: rgba(255,255,255,.75); line-height: 1.85; margin-bottom: .75rem; }
+.providers-left p:last-child { margin-bottom: 0; }
+.providers-right { display: flex; flex-direction: column; gap: .85rem; }
+.prov-feature { display: flex; gap: .85rem; align-items: flex-start; }
+.prov-icon { width: 36px; height: 36px; background: rgba(200,241,53,.15); border: 1px solid rgba(200,241,53,.25); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.prov-feature h4 { font-family: var(--ff-head); font-size: .88rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
+.prov-feature p { font-size: .79rem; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════════ */
+.cta-section { padding: 6rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(200,241,53,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 3rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .6rem; position: relative; }
+.cta-section h2 em { font-style: normal; color: var(--lime); }
+.cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.5rem; position: relative; max-width: 540px; margin-left: auto; margin-right: auto; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-btn-main { padding: 15px 34px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .86rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,241,53,.35); }
+.cta-btn-alt { padding: 15px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .86rem; font-weight: 600; transition: all var(--tr); }
+.cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand p { font-size: .78rem; color: rgba(255,255,255,.72); line-height: 1.8; }
+.footer-col h4 { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.75); padding: 3px 0; transition: color var(--tr); }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
+.footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
+.footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(200,241,53,.3); }
+.footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .nav-links { gap: .02rem; }
+  .nav-link { font-size: .67rem; padding: 5px 8px; }
+  .intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .objectives-panel { position: static; }
+  .counts-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .providers-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-sep { display: none; }
+  .recording-grid { grid-template-columns: 1fr; }
+  .audit-grid { grid-template-columns: 1fr; }
+  .deferral-grid { grid-template-columns: 1fr; }
+  .not-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  :root { --nav-h: 58px; }
+  .nav { padding: 0 1.2rem; }
+  .section { padding: 3.5rem 1.2rem; }
+  .table-section, .not-counts-section, .portfolio-section, .deferral-section, .providers-section, .recording-section, .audit-section, .counts-section, .intro-section { padding: 3.5rem 1.2rem; }
+  .cta-section { padding: 4rem 1.2rem; }
+  .page-hero-inner { padding: 3.5rem 1.2rem 5rem; }
+  .breadcrumb-bar { padding: .7rem 1.2rem; }
+  .counts-grid { grid-template-columns: 1fr; }
+  .not-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  footer { padding: 3rem 1.2rem 1.5rem; }
+  .cta-btns { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">
+      CILG
+      <span class="nav-logo-sub">Leadership &amp; Governance</span>
+    </div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link act">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="mov.html">Overview</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mup.html">Membership Upgrade</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">Continuous Professional Development</a>
+        <a href="cod.html">Code of Conduct</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Professional Qualification Framework</a>
+        <a href="qul.html">Qualification Levels</a>
+        <a href="psf.html">Professional Standard Framework</a>
+        <a href="exp.html">Exemption Policy</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="news.html">News &amp; Updates</a>
+        <a href="cev.html">Certification Verification</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="vms.html" class="mob-link">Vision &amp; Mission</a>
+    <a href="ves.html" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="gp.html" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="mov.html" class="mob-link">Overview</a>
+    <a href="mg.html" class="mob-link">Membership Grades</a>
+    <a href="mup.html" class="mob-link">Membership Upgrade</a>
+    <a href="mf.html" class="mob-link">Membership Fees</a>
+    <a href="cpd.html" class="mob-link">CPD</a>
+    <a href="cod.html" class="mob-link">Code of Conduct</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="qul.html" class="mob-link">Qualification Levels</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+    <a href="exp.html" class="mob-link">Exemption Policy</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources</div>
+    <a href="certifications.html" class="mob-link">Professional Certification</a>
+    <a href="news.html" class="mob-link">News &amp; Updates</a>
+    <a href="cev.html" class="mob-link">Certification Verification</a>
+    <a href="faq.html" class="mob-link">FAQs</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Portal</div>
+    <a href="appn.html" class="mob-link">Application Portal</a>
+    <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
+  </div>
+  <a href="appn.html" class="mob-cta">Apply for Membership →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span> Section 3 · Member Framework</div>
+    <h1>Continuing Professional <em>Development</em> Framework</h1>
+    <p class="page-hero-sub">CPD is not optional — it is a professional obligation and a condition of continued membership at all grades above Student. Stay competent, current, and effective throughout your career.</p>
+    <div class="page-hero-postnoms">
+      <span class="pnom">AfCILG</span>
+      <span class="pnom">ACILG</span>
+      <span class="pnom">MCILG</span>
+      <span class="pnom">FCILG</span>
+      <span style="font-size:.62rem;color:rgba(255,255,255,.4);align-self:center;margin-left:.3rem">— CPD mandatory at all these grades</span>
+    </div>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <a href="mov.html">Membership</a>
+    <span>›</span>
+    <span style="color:var(--forest);font-weight:600">CPD Framework</span>
+  </div>
+</div>
+
+
+<!-- ══════════════ 3.1 & 3.2 INTRODUCTION ══════════════ -->
+<section class="intro-section section">
+  <div class="section-inner">
+    <div class="intro-grid">
+      <div class="intro-body">
+        <div class="section-label">3.1 Introduction and Mandate</div>
+        <h2 class="section-h2">What is <em>CPD</em> and Why Does It Matter?</h2>
+        <p>Continuing Professional Development (CPD) is the ongoing, structured process by which professionals maintain, enhance, and extend their knowledge, skills, and competence throughout their careers. For members of the Chartered Institute of Leadership and Governance (CILG), CPD is not optional — it is a professional obligation and a condition of continued membership at all grades above Student.</p>
+        <p>The CILG CPD Framework is designed to ensure that every CILG member remains competent, current, and effective in their professional practice. In the rapidly evolving fields of leadership and governance, where regulatory environments, organizational structures, stakeholder expectations, and best practices change continuously, commitment to CPD is a fundamental expression of professionalism.</p>
+        <p>The CILG CPD Framework aligns with internationally recognized CPD standards, including those of the <strong>CPD Certification Service (CPDUK)</strong>, the <strong>International Professional Development Association (IPDA)</strong>, and comparable requirements of major professional bodies such as CIPD, ICSA (The Governance Institute), and the IoD.</p>
+      </div>
+      <div>
+        <div class="objectives-panel">
+          <h3>3.2 CPD Objectives</h3>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">The CILG CPD Framework is designed to achieve the following professional objectives:</p>
+          <ul class="obj-list">
+            <li>Ensure that CILG members remain competent and effective practitioners in their fields throughout their careers.</li>
+            <li>Promote a culture of reflective professional practice and continuous self-improvement.</li>
+            <li>Provide a structured mechanism for members to demonstrate ongoing learning to employers, clients, regulators, and the public.</li>
+            <li>Support CILG's regulatory function as a professional body by maintaining quality standards across the membership.</li>
+            <li>Contribute to the overall advancement of leadership and governance practice through a community of continuously developing professionals.</li>
+          </ul>
+          <div class="align-note">Aligned with CPDUK · IPDA · CIPD · ICSA · IoD international standards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.3 REQUIREMENTS TABLE ══════════════ -->
+<section class="table-section section">
+  <div class="section-inner">
+    <div class="section-label">3.3 CPD Requirements by Membership Grade</div>
+    <h2 class="section-h2">Annual CPD <em>Requirements</em></h2>
+    <p class="section-lead">CPD obligations differ by membership grade. The table below sets out the annual hours required, the format of evidence, submission deadlines, and the audit risk applicable to each grade.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Annual CPD Hours Required</th>
+            <th>Format of Evidence</th>
+            <th>Submission Deadline</th>
+            <th>Audit Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Student (SCILG)</td>
+            <td>Not mandatory — encouraged</td>
+            <td>Voluntary CPD log (online portal)</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>Affiliate (AfCILG) <span class="badge-grade">AfCILG</span></td>
+            <td>Minimum 20 hours/year</td>
+            <td>CPD Log via CILG portal + brief annual reflection statement</td>
+            <td>31 January each year (for preceding calendar year)</td>
+            <td>Random 10% audit</td>
+          </tr>
+          <tr>
+            <td>Associate (ACILG) <span class="badge-grade">ACILG</span></td>
+            <td>Minimum 30 hours/year</td>
+            <td>CPD Log + Annual Reflection + evidence attachments</td>
+            <td>31 January each year</td>
+            <td>Random 20% audit</td>
+          </tr>
+          <tr>
+            <td>Full Member (MCILG) <span class="badge-grade">MCILG</span></td>
+            <td>Minimum 40 hours/year</td>
+            <td>Full CPD Portfolio — structured reflection, evidence, and development plan</td>
+            <td>31 January each year</td>
+            <td>Random 30% audit</td>
+          </tr>
+          <tr>
+            <td>Fellow (FCILG) <span class="badge-grade fellow">FCILG</span></td>
+            <td>Minimum 40 hours/year</td>
+            <td>Full CPD Portfolio + peer review component + contribution evidence</td>
+            <td>31 January each year</td>
+            <td>Mandatory audit every 3 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-note">
+      <strong>Note:</strong> CPD hours are measured as verifiable professional learning hours. Passive attendance at an event counts as CPD; active facilitation or speaking at an event counts at <strong>1.5× the hours</strong>. Teaching, writing, and mentoring CPD activities have specific counting rules — see Section 3.6.
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.4 WHAT COUNTS ══════════════ -->
+<section class="counts-section section">
+  <div class="section-inner">
+    <div class="section-label">3.4 What Counts as CPD</div>
+    <h2 class="section-h2">Qualifying <em>CPD Activities</em></h2>
+    <p class="section-lead">CILG recognises six categories of qualifying CPD activity. Each carries specific counting rules and evidence requirements, as set out below.</p>
+
+    <div class="counts-grid">
+
+      <!-- 3.4.1 -->
+      <div class="count-card">
+        <div class="count-icon">🎓</div>
+        <div class="count-num">3.4.1</div>
+        <div class="count-title">Formal Learning Activities</div>
+        <p class="count-body">Formal learning activities are structured, provider-delivered educational experiences with defined learning outcomes. These typically account for the largest proportion of a member's CPD hours. Examples include:</p>
+        <ul class="count-examples">
+          <li>Attendance at CILG-approved courses, seminars, masterclasses, and training programs</li>
+          <li>Completion of additional professional qualifications or award programs (at CILG or other recognized bodies)</li>
+          <li>University courses, executive education programs, or professional certificates</li>
+          <li>Structured e-learning modules with verified completion records</li>
+          <li>In-house training programs with demonstrable learning outcomes</li>
+        </ul>
+        <div class="count-rule"><strong>Hours counting rule:</strong> 1 hour of formal learning = 1 CPD hour.<br><strong>Evidence required:</strong> Certificate of completion or attendance confirmation from the provider.</div>
+      </div>
+
+      <!-- 3.4.2 -->
+      <div class="count-card">
+        <div class="count-icon">🏛️</div>
+        <div class="count-num">3.4.2</div>
+        <div class="count-title">Professional Events and Conferences</div>
+        <p class="count-body">Attendance at professional events provides exposure to current thinking, best practices, emerging issues, and peer perspectives. Examples include:</p>
+        <ul class="count-examples">
+          <li>CILG Annual Conference, Regional Chapter Events, and Professional Forums</li>
+          <li>External professional body conferences (IoD, NACD, ICSA, ACFE, etc.)</li>
+          <li>Board governance seminars, executive roundtables, and leadership summits</li>
+          <li>Industry-specific governance and compliance events</li>
+        </ul>
+        <div class="count-rule"><strong>Hours counting rule:</strong> Maximum of 10 CPD hours per year from conference attendance alone (to ensure breadth of CPD activity).<br><strong>Evidence required:</strong> Conference registration confirmation or attendance badge/certificate.</div>
+      </div>
+
+      <!-- 3.4.3 -->
+      <div class="count-card">
+        <div class="count-icon">💼</div>
+        <div class="count-num">3.4.3</div>
+        <div class="count-title">Work-Based Learning</div>
+        <p class="count-body">Structured learning arising from professional practice — provided it is deliberate, reflects on outcomes, and extends competence beyond routine activity. Examples include:</p>
+        <ul class="count-examples">
+          <li>Undertaking a significant new professional project outside one's existing expertise</li>
+          <li>Serving as a board member, trustee, or governance advisor for the first time in a new context</li>
+          <li>Managing a major organizational change or transformation program</li>
+          <li>Shadowing or secondment in a new professional context</li>
+          <li>Research assignments or professional investigations</li>
+        </ul>
+        <div class="count-rule"><strong>Hours counting rule:</strong> Work-based learning is self-assessed; maximum of 15 CPD hours per year from work-based learning. A reflective account is required explaining what was learned and how it extends professional competence.</div>
+      </div>
+
+      <!-- 3.4.4 -->
+      <div class="count-card">
+        <div class="count-icon">📚</div>
+        <div class="count-num">3.4.4</div>
+        <div class="count-title">Self-Directed Learning</div>
+        <p class="count-body">Independent reading, research, and reflection that meaningfully extends professional knowledge. Examples include:</p>
+        <ul class="count-examples">
+          <li>Reading professional journals, governance reports, policy papers, and academic research</li>
+          <li>Following regulatory updates, legislative changes, or governance code revisions</li>
+          <li>Studying case studies of governance and leadership in practice</li>
+          <li>Listening to professional podcasts or watching verified professional development webinars</li>
+        </ul>
+        <div class="count-rule"><strong>Hours counting rule:</strong> Maximum of 10 CPD hours per year from self-directed learning. Requires a reading/reflection log with dates, sources, and brief notes on learning outcomes.</div>
+      </div>
+
+      <!-- 3.4.5 -->
+      <div class="count-card">
+        <div class="count-icon">✍️</div>
+        <div class="count-num">3.4.5</div>
+        <div class="count-title">Teaching, Writing, and Knowledge Contribution</div>
+        <p class="count-body">Contributing to the profession through the creation and dissemination of professional knowledge carries enhanced CPD value. Examples include:</p>
+        <ul class="count-examples">
+          <li>Writing articles for CILG's Journal of Leadership and Governance or other peer-reviewed publications</li>
+          <li>Authoring books, governance guides, or professional policy papers</li>
+          <li>Delivering training, lectures, or workshops as a facilitator</li>
+          <li>Presenting at conferences or professional events as a speaker</li>
+          <li>Contributing to CILG technical committees or working groups</li>
+        </ul>
+        <div class="count-rule"><strong>Hours counting rule:</strong> Writing and presenting activities count at <strong>1.5× preparation and delivery time</strong> (e.g., 4 hours of preparation for a workshop = 6 CPD hours).<br><strong>Evidence required:</strong> Publication record, program confirmation, or committee minutes confirming contribution.</div>
+      </div>
+
+      <!-- 3.4.6 -->
+      <div class="count-card">
+        <div class="count-icon">🤝</div>
+        <div class="count-num">3.4.6</div>
+        <div class="count-title">Mentoring and Coaching</div>
+        <p class="count-body">Mentoring and coaching junior professionals is a key professional obligation at Associate grade and above, and counts as formal CPD:</p>
+        <ul class="count-examples">
+          <li>Formal mentoring of a CILG Student, Affiliate, or Associate member: up to 8 CPD hours per year per mentee (for a minimum 12-month structured mentoring relationship)</li>
+          <li>Formal executive coaching sessions (as coach): up to 6 CPD hours per year</li>
+          <li>Participation in CILG's formal Mentoring Programme as a mentor is automatically verified in the CPD portal</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.5 WHAT DOES NOT COUNT ══════════════ -->
+<section class="not-counts-section section">
+  <div class="section-inner">
+    <div class="section-label">3.5 Exclusions</div>
+    <h2 class="section-h2">What Does <em>NOT</em> Count as CPD</h2>
+    <p class="section-lead">The following activities do not qualify as CPD hours under the CILG CPD Framework:</p>
+    <div class="not-grid">
+      <div class="not-card">
+        <div class="not-x">✕</div>
+        <p>Routine day-to-day work tasks and normal job duties</p>
+      </div>
+      <div class="not-card">
+        <div class="not-x">✕</div>
+        <p>Social or networking activities without a structured learning component</p>
+      </div>
+      <div class="not-card">
+        <div class="not-x">✕</div>
+        <p>Entertainment or hospitality events</p>
+      </div>
+      <div class="not-card">
+        <div class="not-x">✕</div>
+        <p>Volunteer activities with no professional learning dimension</p>
+      </div>
+      <div class="not-card">
+        <div class="not-x">✕</div>
+        <p>Unverified or unrecorded learning (where no evidence can be produced)</p>
+      </div>
+      <div class="not-card">
+        <div class="not-x">✕</div>
+        <p>Activities completed before becoming a CILG member (except where recorded as part of an exemption application)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.6 RECORDING ══════════════ -->
+<section class="recording-section section">
+  <div class="section-inner">
+    <div class="section-label">3.6 CPD Recording and Submission</div>
+    <h2 class="section-h2">Recording, Submitting, and <em>Managing</em> Your CPD</h2>
+    <p class="section-lead">All members are required to record their CPD activities using the CILG CPD Online Portal and submit their Annual CPD Return by 31 January each year.</p>
+
+    <div class="recording-grid">
+      <div>
+        <div class="rec-block">
+          <h3><span>1</span> 3.6.1 The CILG CPD Portal</h3>
+          <p>All members are required to record their CPD activities using the CILG CPD Online Portal, accessible via the CILG Members' Portal. The portal allows members to:</p>
+          <ul class="portal-features">
+            <li>Log CPD activities in real time, categorized by activity type</li>
+            <li>Upload supporting evidence documents (certificates, confirmation emails, reflection notes, publication records)</li>
+            <li>Track progress toward the annual CPD target</li>
+            <li>Generate CPD Returns for submission at year-end</li>
+            <li>View CPD records for preceding years</li>
+            <li>Receive automated reminders and alerts regarding CPD deadlines</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="rec-block">
+          <h3><span>2</span> 3.6.2 The Annual CPD Return</h3>
+          <p>Members must submit their CPD Return by <strong>31 January each year</strong>, covering CPD activities undertaken in the preceding calendar year (1 January to 31 December). Late submissions without prior approved deferral are subject to the following consequences:</p>
+          <table class="late-table">
+            <thead>
+              <tr>
+                <th>Lateness</th>
+                <th>Consequence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="late-badge warn">1–30 days late</span></td>
+                <td>Written warning issued; member placed under 'CPD Notice'</td>
+              </tr>
+              <tr>
+                <td><span class="late-badge suspend">31–90 days late</span></td>
+                <td>Membership suspended pending submission; member placed on the CPD Defaulter Register</td>
+              </tr>
+              <tr>
+                <td><span class="late-badge lapse">Over 90 days late</span></td>
+                <td>Membership lapsed for CPD non-compliance (without response to CILG communications)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.6.3 PORTFOLIO REQUIREMENTS ══════════════ -->
+<section class="portfolio-section section">
+  <div class="section-inner">
+    <div class="section-label">3.6.3 CPD Portfolio Requirements</div>
+    <h2 class="section-h2">Portfolio Requirements <em>by Grade</em></h2>
+    <p class="section-lead">Each membership grade carries specific portfolio submission requirements. These escalate in depth and scope from Affiliate through to Fellow, reflecting the seniority and professional responsibility of each grade.</p>
+
+    <div class="portfolio-grid">
+
+      <!-- Affiliate -->
+      <div class="port-card">
+        <div class="port-grade">Affiliate Members</div>
+        <div class="port-postn">AfCILG</div>
+        <div class="port-title">Affiliate Member CPD Portfolio</div>
+        <ul class="port-req">
+          <li>Completed CPD Activity Log via the portal (minimum 20 hours recorded)</li>
+          <li>Brief Annual Reflection Statement (200–400 words): What did I learn? How did I apply it? What will I do differently?</li>
+        </ul>
+      </div>
+
+      <!-- Associate -->
+      <div class="port-card">
+        <div class="port-grade">Associate Members</div>
+        <div class="port-postn">ACILG</div>
+        <div class="port-title">Associate Member CPD Portfolio</div>
+        <ul class="port-req">
+          <li>Completed CPD Activity Log (minimum 30 hours)</li>
+          <li>Annual Reflection Statement (400–600 words) addressing learning outcomes and professional impact</li>
+          <li>Copies of at least three evidence items (e.g., certificates, program confirmations, published articles)</li>
+          <li>Personal Development Plan (PDP) for the forthcoming year: minimum three learning objectives with target completion dates</li>
+        </ul>
+      </div>
+
+      <!-- Full Member -->
+      <div class="port-card">
+        <div class="port-grade">Full Members</div>
+        <div class="port-postn">MCILG</div>
+        <div class="port-title">Full Member CPD Portfolio</div>
+        <ul class="port-req">
+          <li>Full CPD Portfolio including activity log (minimum 40 hours), categorized by CPD type</li>
+          <li>Structured Annual Reflection (600–1,000 words) covering professional learning, leadership practice application, and governance contribution</li>
+          <li>Evidence file: minimum five evidence items across at least three CPD categories</li>
+          <li>Personal Development Plan for forthcoming year: minimum five learning objectives</li>
+          <li>Statement of Professional Contribution (200 words): evidence of contribution to CILG or the profession during the year</li>
+        </ul>
+      </div>
+
+      <!-- Fellow -->
+      <div class="port-card fcilg-card">
+        <div class="port-grade">Fellows</div>
+        <div class="port-postn">FCILG</div>
+        <div class="port-title">Fellow CPD Portfolio</div>
+        <ul class="port-req">
+          <li>Full CPD Portfolio with all components as per Full Member requirements</li>
+          <li>Extended Annual Reflection (1,000–1,500 words) demonstrating thought leadership, professional contribution, and commitment to the advancement of governance and leadership</li>
+          <li>Peer Review component: CPD portfolio must be reviewed by one other FCILG Fellow, who provides a one-page assessment for submission alongside the portfolio</li>
+          <li>Mentoring evidence: log of mentoring activity completed during the year</li>
+          <li>Contribution statement: evidence of speaking, writing, committee participation, or other profession-building activities</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.7 AUDIT ══════════════ -->
+<section class="audit-section section">
+  <div class="section-inner">
+    <div class="section-label">3.7 CPD Audit Process</div>
+    <h2 class="section-h2">The CPD <em>Audit</em> Process</h2>
+
+    <div class="audit-grid">
+      <div class="audit-intro">
+        <p>CILG operates a random CPD Audit process to ensure the integrity of the CPD system. Members selected for audit receive written notification and are required to submit their complete CPD Portfolio (including all evidence documents) within <strong>twenty-one (21) days</strong>.</p>
+        <p>The audit is conducted by two CILG CPD Auditors (MCILG or FCILG designates) who assess whether the recorded CPD activities are genuine, verifiable, and appropriate. The auditors may request additional documentation or a brief clarification call.</p>
+      </div>
+      <div class="audit-outcomes">
+        <h3>Outcomes of CPD Audit</h3>
+        <div class="outcome-list">
+          <div class="outcome-item">
+            <span class="outcome-label pass">Pass</span>
+            <p class="outcome-desc">No action required; member notified in writing.</p>
+          </div>
+          <div class="outcome-item">
+            <span class="outcome-label rec">Pass with Recommendations</span>
+            <p class="outcome-desc">CPD return is accepted but the auditors provide guidance on improving future CPD quality or balance.</p>
+          </div>
+          <div class="outcome-item">
+            <span class="outcome-label refer">Refer</span>
+            <p class="outcome-desc">Specific activities require further evidence. Member given 21 days to provide additional documentation.</p>
+          </div>
+          <div class="outcome-item">
+            <span class="outcome-label fail">Fail</span>
+            <p class="outcome-desc">CPD return is found to be materially deficient, misleading, or fraudulent. The matter is referred to the CILG Professional Standards Committee for investigation and potential disciplinary action.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.8 & 3.9 DEFERRAL & RENEWAL ══════════════ -->
+<section class="deferral-section section">
+  <div class="section-inner">
+    <div class="section-label">3.8 &amp; 3.9 Special Circumstances &amp; Renewal</div>
+    <h2 class="section-h2">CPD Deferral and <em>Membership Renewal</em></h2>
+
+    <div class="deferral-grid">
+      <div class="info-block">
+        <h3><span class="sec-num">3.8</span> CPD Deferral and Special Circumstances</h3>
+        <p>CILG recognizes that members may face exceptional circumstances — including serious illness, bereavement, maternity/paternity leave, or significant personal crisis — that prevent them from meeting CPD requirements in a given year. In such cases, members may apply to the CPD Committee for a CPD Deferral.</p>
+        <p>A CPD Deferral suspends the CPD requirement for up to <strong>twelve (12) months</strong>. A deferred year does not count toward the member's CPD compliance record; the member's CPD clock simply pauses. Applications must be submitted before or within <strong>sixty (60) days</strong> of the CPD Return deadline, with supporting documentation.</p>
+      </div>
+      <div class="info-block">
+        <h3><span class="sec-num">3.9</span> CPD and Membership Renewal</h3>
+        <p>Annual membership subscription renewal is conditional upon CPD compliance. Members who have not submitted a compliant CPD Return for the preceding year will not have their membership renewed until the CPD obligation has been met.</p>
+        <p>The CILG system automatically flags non-compliant members at renewal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ 3.10 APPROVED PROVIDERS ══════════════ -->
+<section class="providers-section section">
+  <div class="section-inner">
+    <div class="section-label">3.10 CILG-Approved CPD Providers</div>
+    <h2 class="section-h2" style="margin-bottom:2rem">Approved CPD <em>Provider</em> Register</h2>
+    <div class="providers-panel">
+      <div class="providers-left">
+        <h3>Pre-Verified <em>CPD Providers</em></h3>
+        <p>CILG maintains an Approved CPD Provider Register — a list of organizations whose programs, courses, and events are pre-verified as qualifying CPD activities. Members attending events or completing programs from CILG-Approved Providers have their CPD automatically verified without requiring individual evidence submission.</p>
+        <p>Organizations wishing to be listed as CILG-Approved CPD Providers may apply to the CILG CPD Committee. Approved status is reviewed annually and may be withdrawn if standards fall below the required level.</p>
+      </div>
+      <div class="providers-right">
+        <div class="prov-feature">
+          <div class="prov-icon">✅</div>
+          <div>
+            <h4>Auto-Verified CPD</h4>
+            <p>CPD hours from Approved Providers are automatically verified in the portal — no individual evidence submission required.</p>
+          </div>
+        </div>
+        <div class="prov-feature">
+          <div class="prov-icon">📋</div>
+          <div>
+            <h4>Annual Review</h4>
+            <p>Approved status is reviewed every year. Providers that fall below required standards may have their approval withdrawn.</p>
+          </div>
+        </div>
+        <div class="prov-feature">
+          <div class="prov-icon">🏢</div>
+          <div>
+            <h4>Apply for Approved Status</h4>
+            <p>Organizations may apply to the CILG CPD Committee to be listed on the Approved CPD Provider Register.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <h2>Ready to <em>Record Your CPD?</em></h2>
+  <p>Log in to the CILG Members' Portal to access the CPD Online Portal, track your progress, and submit your Annual CPD Return.</p>
+  <div class="cta-btns">
+    <a href="appn.html" class="cta-btn-main">Access CPD Portal →</a>
+    <a href="mg.html" class="cta-btn-alt">Membership Grades</a>
+    <a href="appn.html" class="cta-btn-alt">Apply for Membership</a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <!-- BRAND -->
+      <div class="footer-brand">
+        <h3>
+          <img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span style="display:none">CILG</span>
+        </h3>
+        <p style="margin-top:.75rem">Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.45)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/cilgglobal" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+          <a href="https://www.twitter.com/cilgglobal" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/company/cilgglobal" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.instagram.com/cilgglobal" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://www.youtube.com/@cilgglobal" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://wa.me/15753298396" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="mov.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="standards.html">Professional Standards</a>
+        <a href="news.html">News &amp; Updates</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+
+      <!-- ABOUT THE INSTITUTE -->
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+
+      <!-- MEMBER PORTALS -->
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="appn.html">Apply for Membership</a>
+        <a href="cev.html">Certification Verification</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">CPD Portal</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
+            Mon – Fri: 9:00 AM – 5:00 PM<br>
+            Sat – Sun: Closed<br>
+            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="footer-col">
+        <h4><a href="contact.html" style="color:inherit">Contact Us</a></h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
+          2222 W. Grand River Ave STE A<br>
+          Okemos, MI 48864<br>
+          United States of America
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico · Alaska · Michigan · United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25);">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.count-card, .port-card, .not-card, .outcome-item, .info-block, .prov-feature');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+revealEls.forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity .5s ease ${(i % 6) * 0.07}s, transform .5s ease ${(i % 6) * 0.07}s, border-color .25s, box-shadow .25s, background .25s`;
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

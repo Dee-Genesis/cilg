@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpg" href="assets/icons/cilg-global.jpg">
+<title>Values & Ethics | Chartered Institute of Leadership and Governance</title>
+<meta name="description" content="CILG's eight core values and ethical framework — the standards against which we hold ourselves and all our members accountable.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C8F135;
+  --lime-dk:     #AEDB1A;
+  --lime-pale:   #EDF9B8;
+  --white:       #FFFFFF;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
+  --gold:        #C9A84C;
+  --gold-lt:     #F0D080;
+  --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --tr:          .25s cubic-bezier(.4,0,.2,1);
+  --nav-h:       68px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--g100); }
+::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  padding: 0 3rem;
+  background: rgba(247,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--g200);
+  transition: all var(--tr);
+}
+.nav.scrolled {
+  height: 58px;
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 38px; width: auto; }
+.nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
+.nav-logo-sub { font-size: .5rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--g300); display: block; margin-top: 2px; }
+.nav-sep { width: 1px; height: 26px; background: var(--g200); margin: 0 1.2rem; flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: .1rem; margin-left: auto; }
+.nav-item { position: relative; }
+.nav-link {
+  display: flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: 6px 11px; border-radius: 6px; border: 1px solid transparent;
+  color: var(--text2); transition: all var(--tr); white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
+.nav-item:hover .arrow { transform: rotate(180deg); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--forest) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--white); border: 1px solid var(--g200);
+  border-radius: 12px; padding: 6px; min-width: 210px;
+  opacity: 0; pointer-events: none; transition: all var(--tr);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+}
+.nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
+.nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
+.nav-dropdown a:hover { color: var(--forest); background: var(--g100); }
+.nav-dropdown .dd-divider { height: 1px; background: var(--g200); margin: 4px 0; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; margin-left: auto; background: none; border: none; }
+.nav-hamburger span { width: 22px; height: 2px; background: var(--forest); border-radius: 2px; transition: all var(--tr); display: block; }
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; overflow-y: auto; padding: 1.5rem 1.5rem 3rem; transform: translateY(-10px); opacity: 0; transition: all .3s ease; pointer-events: none; }
+.nav-mobile.open { transform: translateY(0); opacity: 1; pointer-events: auto; display: block; }
+.mob-section { margin-bottom: 1.5rem; }
+.mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
+.mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
+.mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   PAGE HERO
+═══════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--nav-h);
+  background: linear-gradient(135deg, rgba(13,43,31,.60), rgba(13,43,31,.75)), url('assets/images/hero2.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(200,241,53,.08) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(201,168,76,.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  text-align: center;
+  padding: 4rem 3rem;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(200,241,53,.2);
+  border: 1px solid var(--lime-dk);
+  color: var(--lime);
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: slideUp .6s ease .2s forwards;
+}
+.hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
+.hero-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--white);
+  letter-spacing: -.02em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: slideUp .7s ease .3s forwards;
+}
+.hero-title em { font-style: normal; color: var(--lime); }
+.hero-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: rgba(255,255,255,.85);
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 400;
+  opacity: 0;
+  animation: slideUp .7s ease .4s forwards;
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  color: rgba(255,255,255,.4);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: slideUp .7s ease .8s forwards;
+}
+.hero-scroll-hint::after {
+  content: '';
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent);
+  animation: scrollLine 1.8s ease infinite;
+}
+@keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom} }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   INTRO STRIP
+═══════════════════════════════════════════ */
+.intro-strip {
+  background: var(--forest);
+  padding: 3rem;
+}
+.intro-strip-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+}
+.intro-eyebrow {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: .75rem;
+}
+.intro-head {
+  font-family: var(--ff-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+.intro-body {
+  font-size: .95rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.9;
+  border-left: 2px solid var(--lime-dk);
+  padding-left: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════════ */
+.page-content {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 5rem 3rem;
+}
+
+/* SECTION SCAFFOLDING */
+.ves-section {
+  margin-bottom: 7rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--forest-lt);
+  margin-bottom: .75rem;
+}
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 1px; }
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin-bottom: .75rem;
+}
+.section-title em { font-style: normal; color: var(--forest-lt); }
+.section-lead {
+  font-size: .95rem;
+  color: var(--text2);
+  line-height: 1.9;
+  max-width: 700px;
+  margin-bottom: 3.5rem;
+}
+
+/* ═══════════════════════════════════════════
+   VALUES GRID
+═══════════════════════════════════════════ */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+.value-card {
+  background: var(--white);
+  border: 1.5px solid var(--g200);
+  border-radius: 16px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--tr);
+  cursor: default;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--g200);
+  transition: background var(--tr);
+}
+.value-card:hover {
+  border-color: var(--lime-dk);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(13,43,31,.1);
+}
+.value-card:hover::before { background: var(--lime-dk); }
+.value-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+  line-height: 1;
+}
+.value-name {
+  font-family: var(--ff-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: .6rem;
+  letter-spacing: -.01em;
+}
+.value-desc {
+  font-size: .8rem;
+  color: var(--text2);
+  line-height: 1.75;
+}
+/* Featured value card */
+.value-card.featured {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+  border-color: var(--forest-lt);
+  grid-column: span 2;
+}
+.value-card.featured::before { background: var(--lime); }
+.value-card.featured .value-name { color: var(--white); }
+.value-card.featured .value-desc { color: rgba(255,255,255,.7); }
+.value-card.featured:hover { border-color: var(--lime-dk); }
+
+/* ═══════════════════════════════════════════
+   ETHICS SECTION — DIVIDER
+═══════════════════════════════════════════ */
+.ethics-divider {
+  background: var(--bg-off);
+  border-top: 1px solid var(--g200);
+  border-bottom: 1px solid var(--g200);
+  padding: 4rem 3rem;
+  margin-bottom: 7rem;
+}
+.ethics-divider-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 5rem;
+  align-items: center;
+}
+.ethics-div-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--forest-lt);
+  margin-bottom: .75rem;
+}
+.ethics-div-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 1px; }
+.ethics-div-title {
+  font-family: var(--ff-head);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin-bottom: 1rem;
+}
+.ethics-div-body {
+  font-size: .9rem;
+  color: var(--text2);
+  line-height: 1.9;
+}
+.ethics-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.ethics-stat {
+  background: var(--white);
+  border: 1px solid var(--g200);
+  border-radius: 12px;
+  padding: 1.4rem;
+  transition: all var(--tr);
+}
+.ethics-stat:hover { border-color: var(--lime-dk); }
+.ethics-stat-num {
+  font-family: var(--ff-head);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+.ethics-stat-num span { color: var(--lime-dk); }
+.ethics-stat-label {
+  font-size: .72rem;
+  color: var(--text2);
+  margin-top: .3rem;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════
+   ETHICAL PRINCIPLES — TABLE
+═══════════════════════════════════════════ */
+.principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.principle-row {
+  background: var(--white);
+  border: 1.5px solid var(--g200);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  transition: all var(--tr);
+  opacity: 0;
+  transform: translateX(-16px);
+}
+.principle-row:hover {
+  border-color: var(--lime-dk);
+  box-shadow: 0 8px 28px rgba(13,43,31,.08);
+}
+.principle-left {
+  background: var(--g100);
+  padding: 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--g200);
+  transition: background var(--tr);
+}
+.principle-row:hover .principle-left { background: var(--lime-pale); }
+.principle-num {
+  font-family: var(--ff-head);
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--g300);
+  margin-bottom: .4rem;
+}
+.principle-name {
+  font-family: var(--ff-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+.principle-right {
+  padding: 1.8rem 2rem;
+  display: flex;
+  align-items: center;
+}
+.principle-desc {
+  font-size: .87rem;
+  color: var(--text2);
+  line-height: 1.85;
+}
+/* Alternating accent */
+.principle-row:nth-child(odd) .principle-left { border-left: 3px solid var(--lime-dk); }
+.principle-row:nth-child(even) .principle-left { border-left: 3px solid var(--gold); }
+
+/* ═══════════════════════════════════════════
+   COMMITMENT BANNER
+═══════════════════════════════════════════ */
+.commitment-banner {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 55%, var(--forest-lt) 100%);
+  border-radius: 20px;
+  padding: 4rem;
+  margin-top: 5rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.commitment-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(200,241,53,.07) 0%, transparent 60%),
+              radial-gradient(circle at 80% 50%, rgba(201,168,76,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.commitment-banner-eyebrow {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1rem;
+}
+.commitment-banner-title {
+  font-family: var(--ff-head);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin-bottom: 1.2rem;
+}
+.commitment-banner-body {
+  font-size: .95rem;
+  color: rgba(255,255,255,.75);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.9;
+}
+.commitment-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  padding: 13px 26px;
+  background: var(--lime);
+  color: var(--forest);
+  font-family: var(--ff-head);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(174,219,26,.45); }
+.btn-secondary {
+  padding: 13px 22px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 600;
+  border-radius: 9px;
+  border: 1.5px solid rgba(255,255,255,.3);
+  cursor: pointer;
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,.2); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--forest);
+  color: var(--white);
+  padding: 3.5rem;
+  margin-top: 4rem;
+}
+.footer-inner { max-width: 1260px; margin: 0 auto; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+.footer-col h4 {
+  font-family: var(--ff-head);
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+.footer-col a {
+  display: block;
+  font-size: .8rem;
+  color: rgba(255,255,255,.65);
+  margin-bottom: .6rem;
+  transition: color var(--tr);
+}
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: .75rem;
+  color: rgba(255,255,255,.45);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .values-grid { grid-template-columns: repeat(3, 1fr); }
+  .value-card.featured { grid-column: span 1; }
+}
+@media (max-width: 900px) {
+  .nav { padding: 0 2rem; }
+  .intro-strip-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .ethics-divider-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .value-card.featured { grid-column: span 2; }
+  .principle-row { grid-template-columns: 1fr; }
+  .principle-left { border-right: none; border-bottom: 1px solid var(--g200); }
+  .page-content { padding: 3.5rem 2rem; }
+}
+@media (max-width: 650px) {
+  .nav { padding: 0 1.5rem; height: 60px; }
+  .nav-logo img { height: 32px; }
+  .nav-logo-fallback { font-size: 1rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .page-hero { min-height: 50vh; }
+  .hero-content { padding: 3rem 1.5rem; }
+  .values-grid { grid-template-columns: 1fr; }
+  .value-card.featured { grid-column: span 1; }
+  .intro-strip { padding: 2.5rem 1.5rem; }
+  .ethics-divider { padding: 3rem 1.5rem; }
+  .page-content { padding: 2.5rem 1.5rem; }
+  .commitment-banner { padding: 2.5rem 1.5rem; border-radius: 14px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="nav-logo-fallback" style="display:none">CILG<span class="nav-logo-sub">Leadership &amp; Governance</span></div>
+  </a>
+  <div class="nav-sep"></div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <div class="nav-item">
+      <span class="nav-link act">About <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html" class="active-sub">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html">Global Presence</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="mov.html">Overview</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mup.html">Membership Upgrade</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">CPD</a>
+        <a href="cod.html">Code of Conduct</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="qualifications.html">Qualification Framework</a>
+        <a href="qul.html">Qualification Levels</a>
+        <a href="psf.html">Professional Standard Framework</a>
+        <a href="exp.html">Exemption Policy</a>
+      </div>
+    </div>
+    <a href="certifications.html" class="nav-link">Professional Certification</a>
+    <div class="nav-item">
+      <span class="nav-link">Resources <span class="arrow"></span></span>
+      <div class="nav-dropdown">
+        <a href="news.html">News &amp; Updates</a>
+        <a href="cev.html">Certification Verification</a>
+        <a href="faq.html">FAQs</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px">
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section">
+    <div class="mob-section-title">About</div>
+    <a href="about.html" class="mob-link">Institute Overview</a>
+    <a href="vms.html" class="mob-link">Vision &amp; Mission</a>
+    <a href="ves.html" class="mob-link">Values &amp; Ethics</a>
+    <a href="obj.html" class="mob-link">Objectives</a>
+    <a href="bod.html" class="mob-link">Board of Governors</a>
+    <a href="cd.html" class="mob-link">Country Directors</a>
+    <a href="gp.html" class="mob-link">Global Presence</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Membership</div>
+    <a href="mov.html" class="mob-link">Overview</a>
+    <a href="mg.html" class="mob-link">Membership Grades</a>
+    <a href="mf.html" class="mob-link">Membership Fees</a>
+    <a href="cpd.html" class="mob-link">CPD</a>
+    <a href="cod.html" class="mob-link">Code of Conduct</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Qualifications &amp; Certifications</div>
+    <a href="qualifications.html" class="mob-link">Qualification Framework</a>
+    <a href="certifications.html" class="mob-link">Professional Certifications</a>
+    <a href="exp.html" class="mob-link">Exemption Policy</a>
+  </div>
+  <div class="mob-section">
+    <div class="mob-section-title">Resources</div>
+    <a href="news.html" class="mob-link">News &amp; Updates</a>
+    <a href="cev.html" class="mob-link">Certification Verification</a>
+    <a href="faq.html" class="mob-link">FAQs</a>
+  </div>
+  <a href="appn.html" class="mob-cta">Apply for Membership →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Our Foundation</div>
+    <h1 class="hero-title">Values &amp; <em>Ethics</em></h1>
+    <p class="hero-subtitle">Not merely aspirational statements — operationalised standards against which CILG holds itself, its staff, and all its members accountable.</p>
+  </div>
+  <div class="hero-scroll-hint">Scroll</div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-strip-inner">
+    <div>
+      <div class="intro-eyebrow">Why Values Matter</div>
+      <h2 class="intro-head">Standards, Not Slogans</h2>
+    </div>
+    <p class="intro-body">CILG's values underpin every institutional decision, every professional standard, and every interaction with the professional community. They are not decorative commitments — they are the criteria by which CILG's conduct is measured and the basis on which members hold the Institute to account.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="page-content">
+
+  <!-- CORE VALUES SECTION -->
+  <section class="ves-section" id="values">
+    <div class="section-label">Section Six</div>
+    <h2 class="section-title">The Eight <em>Core Values</em> of CILG</h2>
+    <p class="section-lead">The institutional values that guide every aspect of CILG's work and every standard it promotes in the profession. Each value is a binding institutional commitment — not an aspiration.</p>
+
+    <div class="values-grid">
+
+      <!-- Integrity — featured -->
+      <div class="value-card featured">
+        <span class="value-icon">⚖️</span>
+        <div class="value-name">Integrity</div>
+        <p class="value-desc">CILG maintains absolute honesty and transparency in all its activities — in the accuracy of its communications, the rigour of its assessments, the independence of its governance, and the courage to uphold standards even when doing so is inconvenient or commercially costly.</p>
+      </div>
+
+      <div class="value-card">
+        <span class="value-icon">🏆</span>
+        <div class="value-name">Excellence</div>
+        <p class="value-desc">CILG is committed to the highest achievable standard in everything it does — from qualification quality and assessment rigour, to member services and research calibre. Good enough is never good enough.</p>
+      </div>
+
+      <div class="value-card">
+        <span class="value-icon">🛡️</span>
+        <div class="value-name">Accountability</div>
+        <p class="value-desc">CILG holds itself to the same accountability standards it promotes in the profession. Board, Secretariat, and Committee members are individually and collectively accountable — publicly and transparently.</p>
+      </div>
+
+      <div class="value-card">
+        <span class="value-icon">🔍</span>
+        <div class="value-name">Transparency</div>
+        <p class="value-desc">CILG operates with maximum feasible transparency in its governance, finances, standards, and decision-making. Members, employers, and the public should always understand how CILG makes decisions and deploys resources.</p>
+      </div>
+
+      <!-- Purpose — featured -->
+      <div class="value-card featured">
+        <span class="value-icon">🌱</span>
+        <div class="value-name">Purpose</div>
+        <p class="value-desc">Every decision CILG makes is guided by its ultimate purpose: the advancement of the public interest through excellent governance and leadership. Commercial considerations, reputational pressures, and institutional convenience are always subordinated to this purpose.</p>
+      </div>
+
+      <div class="value-card">
+        <span class="value-icon">🌍</span>
+        <div class="value-name">Inclusivity</div>
+        <p class="value-desc">CILG is committed to making world-class governance education accessible to every qualified professional regardless of geography, background, gender, ethnicity, or disability. Governance excellence should not be the exclusive domain of the privileged.</p>
+      </div>
+
+      <div class="value-card">
+        <span class="value-icon">💡</span>
+        <div class="value-name">Innovation</div>
+        <p class="value-desc">CILG actively seeks new and better ways to fulfil its mission — in qualification design, technology application, new governance frameworks for emerging challenges, and advancement of governance research methodologies.</p>
+      </div>
+
+      <div class="value-card">
+        <span class="value-icon">🤝</span>
+        <div class="value-name">Stewardship</div>
+        <p class="value-desc">CILG understands its role as a steward of the governance profession — not its owner. This orientation informs CILG's humility in standard-setting, its commitment to consultation, and its obligation to develop the next generation of governance professionals.</p>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- ETHICS DIVIDER STRIP -->
+<div class="ethics-divider">
+  <div class="ethics-divider-inner">
+    <div>
+      <div class="ethics-div-label">Ethical Framework</div>
+      <h2 class="ethics-div-title">Seven Principles. One Standard.</h2>
+      <p class="ethics-div-body">The CILG Code of Professional Conduct sets seven binding ethical principles to which all members are held. These are not guidelines — they are conditions of membership and professional recognition.</p>
+    </div>
+    <div class="ethics-stats">
+      <div class="ethics-stat">
+        <div class="ethics-stat-num">7<span>+</span></div>
+        <div class="ethics-stat-label">Binding Ethical Principles</div>
+      </div>
+      <div class="ethics-stat">
+        <div class="ethics-stat-num">8<span></span></div>
+        <div class="ethics-stat-label">Core Institutional Values</div>
+      </div>
+      <div class="ethics-stat">
+        <div class="ethics-stat-num">3<span>yr</span></div>
+        <div class="ethics-stat-label">Independent Governance Review Cycle</div>
+      </div>
+      <div class="ethics-stat">
+        <div class="ethics-stat-num">1<span></span></div>
+        <div class="ethics-stat-label">Standard for All Sectors & Geographies</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-content" style="padding-top: 0;">
+
+  <!-- ETHICAL PRINCIPLES SECTION -->
+  <section class="ves-section" id="ethics">
+    <div class="section-label">6.2 — The Ethical Framework</div>
+    <h2 class="section-title">The CILG Code of <em>Professional Conduct</em></h2>
+    <p class="section-lead">These seven principles constitute the binding ethical standard to which all CILG members are held — across every sector, every geography, and every career stage.</p>
+
+    <div class="principles-list">
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 01</div>
+          <div class="principle-name">Integrity</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Being honest, truthful, and transparent in all professional dealings — rejecting dishonesty, deception, and misrepresentation in any form. For governance professionals, this means providing boards and stakeholders with complete, accurate, and appropriately presented information at all times.</p>
+        </div>
+      </div>
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 02</div>
+          <div class="principle-name">Professional Competence</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Maintaining the level of professional knowledge and skill required for the responsibilities undertaken — through continuous professional development, honest self-assessment, and the willingness to seek support when facing challenges beyond current competence.</p>
+        </div>
+      </div>
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 03</div>
+          <div class="principle-name">Accountability</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Accepting responsibility for professional decisions and their consequences — not deflecting accountability to others or to circumstances. Governance professionals have a specific accountability obligation to the stakeholders they serve.</p>
+        </div>
+      </div>
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 04</div>
+          <div class="principle-name">Transparency</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Proactively sharing information that stakeholders need to make informed decisions — not selectively withholding information to protect professional or organisational interests at the expense of those stakeholders.</p>
+        </div>
+      </div>
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 05</div>
+          <div class="principle-name">Respect &amp; Inclusivity</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Treating all people — regardless of background, identity, or organisational position — with dignity and respect. Actively promoting inclusion in governance bodies and the organisations they govern.</p>
+        </div>
+      </div>
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 06</div>
+          <div class="principle-name">Professional Independence</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Maintaining the independence of professional judgment that governance roles require — resisting undue pressure from executives, major shareholders, or other powerful stakeholders to compromise professional assessments or advice.</p>
+        </div>
+      </div>
+
+      <div class="principle-row">
+        <div class="principle-left">
+          <div class="principle-num">Principle 07</div>
+          <div class="principle-name">Stewardship</div>
+        </div>
+        <div class="principle-right">
+          <p class="principle-desc">Exercising governance responsibilities as a steward of the interests of all legitimate stakeholders — not as an agent of the most powerful, the most vocal, or those most able to reward or harm the governance professional personally.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMMITMENT BANNER -->
+  <div class="commitment-banner">
+    <div class="commitment-banner-eyebrow">Hold Us to These Standards</div>
+    <h2 class="commitment-banner-title">CILG Practises What It Promotes</h2>
+    <p class="commitment-banner-body">Every value and every ethical principle on this page is a standard against which CILG invites scrutiny — from its members, from regulators, and from the public. Our institutional governance is subject to independent external review on a triennial basis.</p>
+    <div class="commitment-links">
+      <a href="cod.html" class="btn-primary">View Code of Conduct →</a>
+      <a href="about.html" class="btn-secondary">About the Institute</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>
+          <img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span style="display:none">CILG</span>
+        </h3>
+        <p style="margin-top:.75rem;font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.8">Chartered Institute of Leadership and Governance — a registered professional body advancing world-class standards in leadership education, governance practice, professional credentialing, and evidence-based research.</p>
+        <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.45)">Registered in New Mexico, Alaska &amp; Michigan, USA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About CILG</a>
+        <a href="mov.html">Membership</a>
+        <a href="qualifications.html">Qualifications</a>
+        <a href="certifications.html">Professional Certification</a>
+        <a href="news.html">News &amp; Updates</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>About the Institute</h4>
+        <a href="about.html">Institute Overview</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
+        <a href="obj.html">Objectives</a>
+        <a href="bod.html">Board of Governors</a>
+        <a href="cd.html">Country Directors</a>
+        <a href="gp.html">Global Presence</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Member Portals</h4>
+        <a href="appn.html">Application Portal</a>
+        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">CPD Portal</a>
+        <a href="cev.html">Certification Verification</a>
+        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">Mon – Fri: 9:00 AM – 5:00 PM<br>Sat – Sun: Closed<br><span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span></div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4><a href="contact.html" style="color:inherit">Contact Us</a></h4>
+        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
+        <a href="tel:+15753298396">📞 +1 (575) 329-8396</a>
+        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
+        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">2222 W. Grand River Ave STE A<br>Okemos, MI 48864<br>United States of America</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico · Alaska · Michigan · United States of America</span>
+      <span style="display:flex;gap:1rem;align-items:center;">
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <span style="color:rgba(255,255,255,.25)">·</span>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// SCROLL REVEAL
+const sections = document.querySelectorAll('.ves-section');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+
+      // Stagger value cards
+      const valueCards = entry.target.querySelectorAll('.value-card');
+      valueCards.forEach((card, i) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+          card.style.transition = 'opacity .5s ease, transform .5s ease, border-color .25s, box-shadow .25s';
+        }, i * 80);
+      });
+
+      // Stagger principle rows
+      const principleRows = entry.target.querySelectorAll('.principle-row');
+      principleRows.forEach((row, i) => {
+        setTimeout(() => {
+          row.style.opacity = '1';
+          row.style.transform = 'translateX(0)';
+          row.style.transition = 'opacity .5s ease, transform .5s ease, border-color .25s, box-shadow .25s';
+        }, i * 90);
+      });
+
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+sections.forEach(section => sectionObserver.observe(section));
+</script>
+</body>
+</html>
