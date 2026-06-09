@@ -12,21 +12,21 @@
    ROOT & RESET — CILG PALETTE
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F7F8F3;
-  --bg-off:      #EEEEE8;
-  --forest:      #0D2B1F;
-  --forest-mid:  #1A4030;
-  --forest-lt:   #2D6347;
-  --lime:        #C8F135;
-  --lime-dk:     #AEDB1A;
-  --lime-pale:   #EDF9B8;
+  --bg:          #f4f2ee;
+  --bg-off:      #e8e4de;
+  --forest:      #1e2a3a;
+  --forest-mid:  #26374d;
+  --forest-lt:   #3a5068;
+  --lime:        #b52a3a;
+  --lime-dk:     #951e2c;
+  --lime-pale:   #f7e8ea;
   --white:       #FFFFFF;
-  --g100:        #F0F1EB;
-  --g200:        #DDDFD6;
-  --g300:        #B8BDB0;
-  --g500:        #7A8070;
-  --text:        #0D2B1F;
-  --text2:       #4A5445;
+  --g100:        #f0ede8;
+  --g200:        #e8e4de;
+  --g300:        #c4bfb8;
+  --g500:        #8a847c;
+  --text:        #1e2a3a;
+  --text2:       #4a4540;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -49,15 +49,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(247,248,243,0.92);
+  background: rgba(244,242,238,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(247,248,243,0.98);
-  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+  background: rgba(244,242,238,0.98);
+  box-shadow: 0 2px 24px rgba(30,42,58,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -81,13 +81,13 @@ img { max-width: 100%; display: block; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
 .nav-cta {
   margin-left: .5rem; padding: 8px 18px !important;
-  background: var(--lime) !important; color: var(--forest) !important;
+  background: var(--lime) !important; color: #fff !important;
   border: 1px solid var(--lime) !important; border-radius: 8px !important;
   font-weight: 700 !important; transition: all var(--tr) !important;
 }
 .nav-cta:hover {
   background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
-  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35);
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(181,42,58,.35);
 }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -95,7 +95,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+  box-shadow: 0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -118,7 +118,7 @@ img { max-width: 100%; display: block; }
 .mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
 .mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
 .mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
-.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: #fff; font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
 .mob-cta:hover { background: var(--lime-dk); }
 
 /* ═══════════════════════════════════════════
@@ -131,7 +131,7 @@ img { max-width: 100%; display: block; }
 }
 .page-hero::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(200,241,53,.12) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 70% 50%, rgba(181,42,58,.1) 0%, transparent 60%);
   pointer-events: none;
 }
 .page-hero-inner {
@@ -154,7 +154,7 @@ img { max-width: 100%; display: block; }
 .stat-row { display: flex; flex-direction: column; gap: 1.2rem; }
 .stat-row-item { display: flex; align-items: center; gap: 1rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,.07); }
 .stat-row-item:last-child { border-bottom: none; padding-bottom: 0; }
-.stat-row-num { font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800; color: var(--lime); letter-spacing: -.04em; line-height: 1; min-width: 70px; }
+.stat-row-num { font-family: var(--ff-head); font-size: 1.8rem; font-weight: 800; color: #c9a84c; letter-spacing: -.04em; line-height: 1; min-width: 70px; }
 .stat-row-label { font-size: .75rem; color: rgba(255,255,255,.5); line-height: 1.45; }
 
 /* ═══════════════════════════════════════════
@@ -196,13 +196,13 @@ img { max-width: 100%; display: block; }
 }
 .president-card::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 20% 50%, rgba(200,241,53,.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 20% 50%, rgba(181,42,58,.08) 0%, transparent 60%);
   pointer-events: none;
 }
-.president-card:hover { border-color: rgba(200,241,53,.25); background: rgba(255,255,255,.09); }
+.president-card:hover { border-color: rgba(181,42,58,.3); background: rgba(255,255,255,.09); }
 .president-avatar {
   width: 100px; height: 100px; flex-shrink: 0;
-  background: rgba(200,241,53,.12); border: 2px solid rgba(200,241,53,.3);
+  background: rgba(181,42,58,.15); border: 2px solid rgba(181,42,58,.35);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--ff-head); font-size: 1.6rem; font-weight: 800; color: var(--lime);
@@ -211,7 +211,7 @@ img { max-width: 100%; display: block; }
 .president-info { position: relative; z-index: 1; }
 .president-role-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(200,241,53,.15); border: 1px solid rgba(200,241,53,.25);
+  background: rgba(181,42,58,.15); border: 1px solid rgba(181,42,58,.3);
   padding: 4px 12px; border-radius: 40px;
   font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   color: var(--lime); margin-bottom: 1rem;
@@ -237,13 +237,13 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(90deg, var(--lime-dk), var(--lime));
   transform: scaleX(0); transform-origin: left; transition: transform var(--tr);
 }
-.board-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 32px rgba(13,43,31,.1); transform: translateY(-3px); }
+.board-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 32px rgba(30,42,58,.1); transform: translateY(-3px); }
 .board-card:hover::before { transform: scaleX(1); }
 .board-avatar {
   width: 60px; height: 60px;
   background: var(--forest); border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--ff-head); font-size: .9rem; font-weight: 800; color: var(--lime);
+  font-family: var(--ff-head); font-size: .9rem; font-weight: 800; color: #c9a84c;
   margin-bottom: 1.3rem; letter-spacing: .04em;
 }
 .board-name { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--forest); margin-bottom: .3rem; line-height: 1.25; }
@@ -263,7 +263,7 @@ img { max-width: 100%; display: block; }
   border-radius: 14px; padding: 1.8rem 1.6rem;
   transition: all var(--tr);
 }
-.mandate-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 28px rgba(13,43,31,.08); transform: translateY(-3px); }
+.mandate-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 28px rgba(30,42,58,.08); transform: translateY(-3px); }
 .mandate-icon { width: 42px; height: 42px; background: var(--lime-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
 .mandate-title { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: var(--forest); margin-bottom: .4rem; }
 .mandate-desc { font-size: .78rem; color: var(--text2); line-height: 1.7; }
@@ -274,17 +274,17 @@ img { max-width: 100%; display: block; }
 .cta-band-section { padding: 5rem 3rem; background: var(--forest); }
 .cta-band {
   max-width: 1260px; margin: 0 auto;
-  background: rgba(200,241,53,.08); border: 1.5px solid rgba(200,241,53,.2);
+  background: rgba(181,42,58,.1); border: 1.5px solid rgba(181,42,58,.25);
   border-radius: 16px; padding: 3rem 3.5rem;
   display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
   position: relative; overflow: hidden;
 }
-.cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(200,241,53,.1) 0%, transparent 60%); pointer-events: none; }
+.cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(181,42,58,.08) 0%, transparent 60%); pointer-events: none; }
 .cta-band-text { position: relative; }
 .cta-band-label { font-family: var(--ff-head); font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -.02em; display: block; margin-bottom: .4rem; }
 .cta-band-sub { font-size: .88rem; color: rgba(255,255,255,.5); }
 .cta-band-actions { display: flex; gap: .9rem; flex-wrap: wrap; position: relative; }
-.cta-btn-lime { padding: 13px 26px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .82rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
+.cta-btn-lime { padding: 13px 26px; background: var(--lime); color: #fff; border-radius: 9px; font-family: var(--ff-head); font-size: .82rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
 .cta-btn-lime:hover { background: var(--lime-dk); transform: translateY(-2px); }
 .cta-btn-ghost { padding: 13px 22px; background: transparent; color: rgba(255,255,255,.75); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .82rem; font-weight: 600; transition: all var(--tr); }
 .cta-btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
@@ -292,10 +292,10 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.07); padding: 4rem 3rem 2rem; }
+footer { background: #111c28; border-top: 1px solid rgba(255,255,255,.07); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
+.footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: #c9a84c; letter-spacing: -.02em; margin-bottom: .75rem; }
 .footer-brand p { font-size: .78rem; color: rgba(255,255,255,.3); line-height: 1.8; }
 .footer-col h4 { font-family: var(--ff-head); font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .9rem; }
 .footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.5); margin-bottom: .45rem; transition: color var(--tr); }
@@ -304,7 +304,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.07); paddi
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,255,255,.06); border-radius: 8px; transition: all var(--tr); }
 .footer-social a svg { width: 14px; height: 14px; fill: rgba(255,255,255,.4); }
 .footer-social a:hover { background: var(--lime); }
-.footer-social a:hover svg { fill: var(--forest); }
+.footer-social a:hover svg { fill: #fff; }
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.07); font-size: .72rem; color: rgba(255,255,255,.2); flex-wrap: wrap; gap: .75rem; }
 
 /* ═══════════════════════════════════════════
@@ -355,41 +355,45 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.07); paddi
   <div class="nav-sep"></div>
   <nav class="nav-links">
     <a href="index.html" class="nav-link act">Home</a>
-
     <div class="nav-item">
       <span class="nav-link">About <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="about.html">Institute Overview</a>
-        <a href="about.html#vision">Vision &amp; Mission</a>
-        <a href="about.html#values">Values &amp; Ethics</a>
+        <a href="vms.html">Vision &amp; Mission</a>
+        <a href="ves.html">Values &amp; Ethics</a>
         <a href="obj.html">Objectives</a>
         <a href="bod.html">Board of Governors</a>
         <a href="cd.html">Country Directors</a>
-        <div class="dd-divider"></div>
-        <a href="about.html#presence">Global Presence</a>
+        <a href="gp.html">Global Presence</a>
       </div>
     </div>
     <div class="nav-item">
       <span class="nav-link">Membership <span class="arrow"></span></span>
       <div class="nav-dropdown">
-        <a href="membership.html">Membership Framework</a>
-        <a href="membership.html#supplementary">Supplementary Standard Framework</a>
+        <a href="mov.html">Overview</a>
+        <a href="mg.html">Membership Grades</a>
+        <a href="mup.html">Membership Upgrade</a>
+        <a href="mf.html">Membership Fees</a>
+        <a href="cpd.html">Continuous Professional Development</a>
+        <a href="cod.html">Code of Conduct</a>
       </div>
     </div>
     <div class="nav-item">
       <span class="nav-link">Qualifications <span class="arrow"></span></span>
       <div class="nav-dropdown">
-        <a href="qualifications.html">Qualification Framework</a>
+        <a href="qualifications.html">Professional Qualification Framework</a>
+        <a href="qul.html">Qualification Levels</a>
         <a href="psf.html">Professional Standard Framework</a>
+        <a href="exp.html">Exemption Policy</a>
       </div>
     </div>
     <a href="certifications.html" class="nav-link">Professional Certification</a>
-
     <div class="nav-item">
-      <span class="nav-link">Resources &amp; Insights <span class="arrow"></span></span>
+      <span class="nav-link">Resources <span class="arrow"></span></span>
       <div class="nav-dropdown">
-        <a href="cev.html">Certification Verification Guidelines</a>
-        <a href="faq.html">FAQ</a>
+        <a href="news.html">News &amp; Updates</a>
+        <a href="cev.html">Certificate Verification Guidelines</a>
+        <a href="faq.html">FAQs</a>
       </div>
     </div>
     <div class="nav-item">
@@ -405,45 +409,51 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.07); paddi
   </button>
 </nav>
 
-<!-- Mobile Menu -->
+<!-- MOBILE MENU -->
 <div class="nav-mobile" id="mobileMenu">
-    <a href="index.html" class="mob-link">Home</a>
-
+  <a href="index.html" class="mob-link">Home</a>
   <div class="mob-section">
     <div class="mob-section-title">About</div>
     <a href="about.html" class="mob-link">Institute Overview</a>
-    <a href="about.html#vision" class="mob-link">Vision &amp; Mission</a>
-    <a href="about.html#values" class="mob-link">Values &amp; Ethics</a>
+    <a href="vms.html" class="mob-link">Vision &amp; Mission</a>
+    <a href="ves.html" class="mob-link">Values &amp; Ethics</a>
     <a href="obj.html" class="mob-link">Objectives</a>
     <a href="bod.html" class="mob-link">Board of Governors</a>
     <a href="cd.html" class="mob-link">Country Directors</a>
-    <a href="about.html#presence" class="mob-link">Global Presence</a>
+    <a href="gp.html" class="mob-link">Global Presence</a>
   </div>
   <div class="mob-section">
     <div class="mob-section-title">Membership</div>
-    <a href="membership.html" class="mob-link">Membership Framework</a>
-    <a href="membership.html#supplementary" class="mob-link">Supplementary Standard Framework</a>
+    <a href="mov.html" class="mob-link">Overview</a>
+    <a href="mg.html" class="mob-link">Membership Grades</a>
+    <a href="mup.html" class="mob-link">Membership Upgrade</a>
+    <a href="mf.html" class="mob-link">Membership Fees</a>
+    <a href="cpd.html" class="mob-link">CPD</a>
+    <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
     <div class="mob-section-title">Qualifications</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
-    <a href="qualifications.html#professional" class="mob-link">Professional Standard Framework</a>
+    <a href="qul.html" class="mob-link">Qualification Levels</a>
+    <a href="psf.html" class="mob-link">Professional Standard Framework</a>
+    <a href="exp.html" class="mob-link">Exemption Policy</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">More</div>
+    <div class="mob-section-title">Resources</div>
     <a href="certifications.html" class="mob-link">Professional Certification</a>
-  </div>
-  <div class="mob-section">
-    <div class="mob-section-title">Resources &amp; Insights</div>
-    <a href="cev.html" class="mob-link">Certification Verification Guidelines</a>
-    <a href="faq.html" class="mob-link">FAQ</a>
+    <a href="news.html" class="mob-link">News &amp; Updates</a>
+    <a href="cev.html" class="mob-link">Certificate Verification Guidelines</a>
+    <a href="faq.html" class="mob-link">FAQs</a>
   </div>
   <div class="mob-section">
     <div class="mob-section-title">Portal</div>
     <a href="appn.html" class="mob-link">Application Portal</a>
     <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener" class="mob-link">Verification Portal</a>
   </div>
+  <a href="appn.html" class="mob-cta">Apply for Membership →</a>
 </div>
+
+
 
 
 <!-- PAGE HERO -->
@@ -655,11 +665,11 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.07); paddi
       </div>
 
       <div class="footer-col">
-        <h4>Member Portals</h4>
+        <h4>Member Portal</h4>
         <a href="appn.html">Application Portal</a>
         <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
         <a href="membership.html#apply">Apply for Membership</a>
-        <a href="cev.html">Certification Verification</a>
+        <a href="cev.html">Certificate Verification Guidelines</a>
         <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
           <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
           <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">

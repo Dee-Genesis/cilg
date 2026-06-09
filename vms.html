@@ -13,23 +13,23 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F7F8F3;
-  --bg-off:      #EEEEE8;
-  --forest:      #0D2B1F;
-  --forest-mid:  #1A4030;
-  --forest-lt:   #2D6347;
-  --lime:        #C8F135;
-  --lime-dk:     #AEDB1A;
-  --lime-pale:   #EDF9B8;
-  --white:       #FFFFFF;
-  --g100:        #F0F1EB;
-  --g200:        #DDDFD6;
-  --g300:        #B8BDB0;
-  --g500:        #7A8070;
-  --text:        #0D2B1F;
-  --text2:       #4A5445;
-  --gold:        #C9A84C;
-  --gold-lt:     #F0D080;
+  --bg:          #f4f2ee;
+  --bg-off:      #e8e4de;
+  --forest:      #1e2a3a;
+  --forest-mid:  #243241;
+  --forest-lt:   #2c3e4e;
+  --lime:        #b52a3a;
+  --lime-dk:     #9e1f2e;
+  --lime-pale:   #fbe9eb;
+  --white:       #ffffff;
+  --g100:        #e8e4de;
+  --g200:        #ddd6ce;
+  --g300:        #c4bcb2;
+  --g500:        #8b857c;
+  --text:        #1e2a3a;
+  --text2:       #3a4045;
+  --gold:        #c9a84c;
+  --gold-lt:     #e0c47a;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -52,15 +52,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(247,248,243,0.92);
+  background: rgba(244,242,238,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(247,248,243,0.98);
-  box-shadow: 0 2px 24px rgba(13,43,31,.08);
+  background: rgba(244,242,238,0.98);
+  box-shadow: 0 2px 24px rgba(30,42,58,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -78,15 +78,16 @@ img { max-width: 100%; display: block; }
 .nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
-.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--forest) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(174,219,26,.35); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
+.nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
   transform: translateX(-50%) translateY(6px);
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(13,43,31,.12);
+  box-shadow: 0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -104,7 +105,7 @@ img { max-width: 100%; display: block; }
 .mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
 .mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
 .mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
-.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--forest); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
 .mob-cta:hover { background: var(--lime-dk); }
 
 /* ═══════════════════════════════════════════
@@ -117,14 +118,14 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(13,43,31,.58), rgba(13,43,31,.72)), url('assets/images/hero1.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(30,42,58,.58), rgba(30,42,58,.72)), url('assets/images/hero1.jpg') center/cover no-repeat;
   overflow: hidden;
 }
 .page-hero::before {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(200,241,53,.08) 0%, transparent 50%),
+  background: radial-gradient(circle at 80% 20%, rgba(181,42,58,.08) 0%, transparent 50%),
               radial-gradient(circle at 20% 80%, rgba(201,168,76,.06) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -139,7 +140,7 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(200,241,53,.2);
+  background: rgba(181,42,58,.2);
   border: 1px solid var(--lime-dk);
   color: var(--lime);
   padding: 6px 16px;
@@ -294,7 +295,7 @@ img { max-width: 100%; display: block; }
 }
 .mechanism-card:hover {
   border-color: var(--lime-dk);
-  box-shadow: 0 8px 24px rgba(13,43,31,.1);
+  box-shadow: 0 8px 24px rgba(30,42,58,.1);
 }
 .mechanism-icon {
   font-size: 2.5rem;
@@ -439,8 +440,7 @@ footer {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity .6s ease, transform .6s ease;
-}
-</style>
+}</style>
 </head>
 <body>
 
@@ -491,7 +491,7 @@ footer {
       <span class="nav-link">Resources <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="news.html">News &amp; Updates</a>
-        <a href="cev.html">Certification Verification</a>
+        <a href="cev.html">Certificate Verification Guidelines</a>
         <a href="faq.html">FAQs</a>
       </div>
     </div>
@@ -538,7 +538,7 @@ footer {
   <div class="mob-section">
     <div class="mob-section-title">Resources</div>
     <a href="news.html" class="mob-link">News &amp; Updates</a>
-    <a href="cev.html" class="mob-link">Certification Verification</a>
+        <a href="cev.html">Certificate Verification Guidelines</a>
     <a href="faq.html" class="mob-link">FAQs</a>
   </div>
   <a href="appn.html" class="mob-cta">Apply for Membership →</a>
@@ -663,13 +663,13 @@ footer {
         <a href="terms.html">Terms of Use</a>
       </div>
       <div class="footer-col">
-        <h4>Member Portals</h4>
+        <h4>Member Portal</h4>
         <a href="appn.html">Application Portal</a>
         <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
         <a href="mg.html">Membership Grades</a>
         <a href="mf.html">Membership Fees</a>
         <a href="cpd.html">CPD Portal</a>
-        <a href="cev.html">Certification Verification</a>
+        <a href="cev.html">Certificate Verification GUidelines</a>
         <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
           <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
           <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">Mon – Fri: 9:00 AM – 5:00 PM<br>Sat – Sun: Closed<br><span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span></div>

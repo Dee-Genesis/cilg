@@ -9,24 +9,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
-   ROOT & RESET — FINZO PALETTE
+   ROOT & RESET — CILG PALETTE
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F7F8F3;
-  --bg-off:      #EEEEE8;
-  --forest:      #0D2B1F;
-  --forest-mid:  #1A4030;
-  --forest-lt:   #2D6347;
-  --lime:        #C8F135;
-  --lime-dk:     #AEDB1A;
-  --lime-pale:   #EDF9B8;
+  --bg:          #f4f2ee;
+  --bg-off:      #e8e4de;
+  --forest:      #1e2a3a;
+  --forest-mid:  #26374d;
+  --forest-lt:   #2e4560;
+  --lime:        #b52a3a;
+  --lime-dk:     #921e2c;
+  --lime-pale:   #f5dde0;
   --white:       #FFFFFF;
-  --g100:        #F0F1EB;
-  --g200:        #DDDFD6;
-  --g300:        #B8BDB0;
-  --g500:        #7A8070;
-  --text:        #0D2B1F;
-  --text2:       #4A5445;
+  --g100:        #f4f2ee;
+  --g200:        #e8e4de;
+  --g300:        #c9bfb0;
+  --g500:        #8a8070;
+  --text:        #1e2a3a;
+  --text2:       #4a4035;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -66,12 +66,12 @@ img{max-width:100%;display:block}
   height:var(--nav-h);
   display:flex;align-items:center;
   padding:0 3rem;
-  background:rgba(247,248,243,0.92);
+  background:rgba(244,242,238,0.92);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--g200);
   transition:all var(--tr);
 }
-.nav.scrolled{height:58px;background:rgba(247,248,243,0.98);box-shadow:0 2px 24px rgba(13,43,31,.08)}
+.nav.scrolled{height:58px;background:rgba(244,242,238,0.98);box-shadow:0 2px 24px rgba(30,42,58,.08)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .nav-logo img{height:38px;width:auto}
 .nav-logo-fallback{font-family:var(--ff-head);font-size:1.2rem;font-weight:800;color:var(--forest);letter-spacing:-.01em;line-height:1}
@@ -90,11 +90,11 @@ img{max-width:100%;display:block}
 .nav-item:hover .arrow{transform:rotate(180deg)}
 .nav-cta{
   margin-left:.5rem;padding:8px 18px !important;
-  background:var(--lime) !important;color:var(--forest) !important;
+  background:var(--lime) !important;color:#ffffff !important;
   border:1px solid var(--lime) !important;border-radius:8px !important;
   font-weight:700 !important;transition:all var(--tr) !important;
 }
-.nav-cta:hover{background:var(--lime-dk) !important;border-color:var(--lime-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(174,219,26,.35)}
+.nav-cta:hover{background:var(--lime-dk) !important;border-color:var(--lime-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(181,42,58,.35)}
 .nav-item:hover .nav-cta{transform:none;box-shadow:none}
 .nav-dropdown{
   position:absolute;top:calc(100% + 8px);left:50%;
@@ -102,7 +102,7 @@ img{max-width:100%;display:block}
   background:var(--white);border:1px solid var(--g200);
   border-radius:12px;padding:6px;min-width:210px;
   opacity:0;pointer-events:none;transition:all var(--tr);
-  box-shadow:0 16px 48px rgba(13,43,31,.12);
+  box-shadow:0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before{content:'';position:absolute;bottom:100%;left:0;right:0;height:12px}
 .nav-item:hover .nav-dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
@@ -125,7 +125,7 @@ img{max-width:100%;display:block}
 .mob-section-title{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g300);padding:0 4px;margin-bottom:.5rem}
 .mob-link{display:block;padding:10px 14px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--text2);transition:all var(--tr);border:1px solid transparent}
 .mob-link:hover{color:var(--forest);background:var(--g100);border-color:var(--g200)}
-.mob-cta{display:block;width:100%;padding:14px;margin-top:1rem;background:var(--lime);color:var(--forest);font-weight:700;font-size:.9rem;letter-spacing:.02em;border-radius:10px;text-align:center;transition:all var(--tr)}
+.mob-cta{display:block;width:100%;padding:14px;margin-top:1rem;background:var(--lime);color:#ffffff;font-weight:700;font-size:.9rem;letter-spacing:.02em;border-radius:10px;text-align:center;transition:all var(--tr)}
 .mob-cta:hover{background:var(--lime-dk)}
 
 /* ═══════════════════════════════════════════
@@ -134,7 +134,7 @@ img{max-width:100%;display:block}
 .page-hero{
   padding-top:calc(var(--nav-h) + 4rem);
   padding-bottom:4rem;
-  background:linear-gradient(160deg,#06111F 0%,#0D2B1F 55%,#081420 100%);
+  background:linear-gradient(160deg,#111a26 0%,#1e2a3a 55%,#0d1520 100%);
   position:relative;overflow:hidden;
 }
 .page-hero::before{
@@ -146,13 +146,13 @@ img{max-width:100%;display:block}
 }
 .page-hero::after{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 70% at 50% 110%,rgba(200,241,53,.1) 0%,transparent 65%);
+  background:radial-gradient(ellipse 70% 70% at 50% 110%,rgba(181,42,58,.1) 0%,transparent 65%);
   pointer-events:none;
 }
 .page-hero-inner{max-width:1260px;margin:0 auto;padding:0 3rem;position:relative;z-index:2;text-align:center}
 .page-hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(200,241,53,.12);border:1px solid rgba(200,241,53,.3);
+  background:rgba(181,42,58,.12);border:1px solid rgba(181,42,58,.3);
   color:var(--lime);padding:6px 20px;border-radius:40px;
   font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
   margin-bottom:1.5rem;
@@ -161,24 +161,24 @@ img{max-width:100%;display:block}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .page-hero-seal{
   width:88px;height:88px;border-radius:16px;
-  background:linear-gradient(135deg,rgba(200,241,53,.2),rgba(200,241,53,.06));
-  border:2px solid rgba(200,241,53,.35);
+  background:linear-gradient(135deg,rgba(181,42,58,.2),rgba(181,42,58,.06));
+  border:2px solid rgba(181,42,58,.35);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 1.5rem;box-shadow:0 8px 32px rgba(200,241,53,.12);
+  margin:0 auto 1.5rem;box-shadow:0 8px 32px rgba(181,42,58,.12);
 }
 .page-hero-seal-text{font-family:var(--ff-head);font-size:1.6rem;font-weight:800;color:var(--lime);letter-spacing:.04em}
 .page-hero h1{font-family:var(--ff-head);font-size:clamp(2rem,4.5vw,3.6rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.03em;margin-bottom:.7rem}
-.page-hero-sub{font-family:var(--ff-head);font-size:clamp(.95rem,1.8vw,1.2rem);color:rgba(200,241,53,.8);font-style:italic;margin-bottom:1.2rem}
+.page-hero-sub{font-family:var(--ff-head);font-size:clamp(.95rem,1.8vw,1.2rem);color:rgba(201,168,76,.8);font-style:italic;margin-bottom:1.2rem}
 .page-hero-desc{font-size:.95rem;color:rgba(255,255,255,.55);max-width:640px;margin:0 auto 2.5rem;line-height:1.9}
 .page-hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap}
-.page-hero-stat-num{font-family:var(--ff-head);font-size:2.2rem;font-weight:800;color:var(--lime);line-height:1}
+.page-hero-stat-num{font-family:var(--ff-head);font-size:2.2rem;font-weight:800;color:#c9a84c;line-height:1}
 .page-hero-stat-lbl{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem}
 .page-hero-rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);margin:2.5rem auto 0}
 
 /* ═══════════════════════════════════════════
    CERT INDEX
 ═══════════════════════════════════════════ */
-.cert-index-section{background:var(--forest);padding:5rem 3rem;border-bottom:1px solid rgba(200,241,53,.1)}
+.cert-index-section{background:var(--forest);padding:5rem 3rem;border-bottom:1px solid rgba(181,42,58,.1)}
 .cert-index-inner{max-width:1260px;margin:0 auto}
 .section-label{
   display:inline-flex;align-items:center;gap:8px;
@@ -204,36 +204,6 @@ img{max-width:100%;display:block}
 .cert-tile-name{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.8);line-height:1.4}
 
 /* ═══════════════════════════════════════════
-   SYLLABUS DOWNLOAD SECTION
-═══════════════════════════════════════════ */
-.syllabus-section{background:var(--bg-off);padding:5rem 3rem;border-bottom:1px solid var(--g200)}
-.syllabus-inner{max-width:1260px;margin:0 auto}
-.syllabus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:2.5rem}
-.syllabus-card{
-  background:var(--white);border:1.5px solid var(--g200);border-radius:14px;
-  padding:1.4rem 1.2rem;display:flex;flex-direction:column;gap:.8rem;
-  transition:all var(--tr);
-}
-.syllabus-card:hover{border-color:var(--lime-dk);transform:translateY(-3px);box-shadow:0 10px 32px rgba(13,43,31,.08)}
-.syllabus-level-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:4px 10px;border-radius:20px;width:fit-content;
-}
-.syllabus-title{font-family:var(--ff-head);font-size:.95rem;font-weight:700;color:var(--forest);line-height:1.35}
-.syllabus-desc{font-size:.76rem;color:var(--text2);line-height:1.6;flex:1}
-.syllabus-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:9px 16px;border-radius:8px;
-  font-size:.76rem;font-weight:700;letter-spacing:.02em;
-  background:var(--lime);color:var(--forest);
-  transition:all var(--tr);border:none;cursor:pointer;text-decoration:none;width:100%;justify-content:center;
-  margin-top:auto;
-}
-.syllabus-btn:hover{background:var(--lime-dk);transform:translateY(-1px);box-shadow:0 4px 14px rgba(174,219,26,.35)}
-.syllabus-btn svg{width:15px;height:15px;flex-shrink:0}
-
-/* ═══════════════════════════════════════════
    CERT SECTIONS
 ═══════════════════════════════════════════ */
 .cert-section{padding:5.5rem 3rem;border-bottom:1px solid var(--g200)}
@@ -254,7 +224,7 @@ img{max-width:100%;display:block}
 .cert-acorn{
   width:96px;height:96px;border-radius:14px;flex-shrink:0;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(13,43,31,.12);
+  box-shadow:0 4px 20px rgba(30,42,58,.12);
 }
 .cert-acorn-abbr{font-family:var(--ff-head);font-size:1rem;font-weight:800;color:#fff;letter-spacing:.04em}
 .cert-acorn-line{width:36px;height:1px;background:rgba(255,255,255,.3);margin:4px 0}
@@ -285,10 +255,10 @@ img{max-width:100%;display:block}
 }
 .elig-icon{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
 .outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
-.outcome-tag{font-size:.8rem;padding:.5rem .75rem;border-radius:6px;background:var(--lime-pale);border:1px solid rgba(174,219,26,.3);color:var(--forest);font-weight:600;line-height:1.45}
+.outcome-tag{font-size:.8rem;padding:.5rem .75rem;border-radius:6px;background:var(--lime-pale);border:1px solid rgba(181,42,58,.3);color:var(--forest);font-weight:600;line-height:1.45}
 
 /* sidebar */
-.scard{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem;margin-bottom:1.1rem;box-shadow:0 2px 12px rgba(13,43,31,.05)}
+.scard{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem;margin-bottom:1.1rem;box-shadow:0 2px 12px rgba(30,42,58,.05)}
 .scard-head{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--g200)}
 .scard-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--g200);gap:1rem}
 .scard-row:last-child{border-bottom:none}
@@ -324,10 +294,10 @@ img{max-width:100%;display:block}
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4rem 3rem 2rem}
+footer{background:#0d141e;border-top:1px solid rgba(255,255,255,.12);padding:4rem 3rem 2rem}
 .footer-inner{max-width:1260px;margin:0 auto}
 .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
-.footer-brand h3{font-family:var(--ff-head);font-size:1.3rem;font-weight:800;color:var(--lime);letter-spacing:-.02em;margin-bottom:.75rem}
+.footer-brand h3{font-family:var(--ff-head);font-size:1.3rem;font-weight:800;color:#c9a84c;letter-spacing:-.02em;margin-bottom:.75rem}
 .footer-brand p{font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.8}
 .footer-col h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem}
 .footer-col a{display:block;font-size:.78rem;color:rgba(255,255,255,.75);padding:3px 0;transition:color var(--tr)}
@@ -335,11 +305,11 @@ footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4re
 .footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.72rem;color:rgba(255,255,255,.5)}
 .footer-social{display:flex;gap:.65rem;align-items:center;margin-top:1.4rem}
 .footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);transition:all .25s cubic-bezier(.4,0,.2,1);text-decoration:none}
-.footer-social a:hover{background:var(--lime);border-color:var(--lime);color:var(--forest);transform:translateY(-2px);box-shadow:0 6px 18px rgba(200,241,53,.3)}
+.footer-social a:hover{background:var(--lime);border-color:var(--lime);color:#fff;transform:translateY(-2px);box-shadow:0 6px 18px rgba(181,42,58,.3)}
 .footer-social a svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
 
 /* scroll-to-top */
-.st{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--lime);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--forest);font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(174,219,26,.4);transition:all var(--tr);opacity:0;visibility:hidden;z-index:100}
+.st{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--lime);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(181,42,58,.4);transition:all var(--tr);opacity:0;visibility:hidden;z-index:100}
 .st.on{opacity:1;visibility:visible}
 .st:hover{background:var(--lime-dk);transform:translateY(-3px)}
 
@@ -366,8 +336,7 @@ footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4re
   .page-hero-stats{gap:1.5rem}
   footer{padding:3rem 1.5rem 1.5rem}
   .footer-grid{grid-template-columns:1fr}
-}
-</style>
+}</style>
 </head>
 <body id="top">
 
@@ -421,7 +390,7 @@ footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4re
       <span class="nav-link">Resources <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="news.html">News &amp; Updates</a>
-        <a href="cev.html">Certification Verification</a>
+        <a href="cev.html">Certificate Verification Guidelines</a>
         <a href="faq.html">FAQs</a>
       </div>
     </div>
@@ -471,7 +440,7 @@ footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4re
     <div class="mob-section-title">Resources</div>
     <a href="certifications.html" class="mob-link">Professional Certification</a>
     <a href="news.html" class="mob-link">News &amp; Updates</a>
-    <a href="cev.html" class="mob-link">Certification Verification</a>
+        <a href="cev.html">Certificate Verification Guidelines</a>
     <a href="faq.html" class="mob-link">FAQs</a>
   </div>
   <div class="mob-section">
@@ -531,63 +500,7 @@ footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4re
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SYLLABUS DOWNLOADS
-═══════════════════════════════════════ -->
-<section class="syllabus-section" id="syllabi">
-  <div class="syllabus-inner">
-    <div class="section-label">Programme Syllabi</div>
-    <h2 style="font-family:var(--ff-head);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:var(--forest);letter-spacing:-.03em;margin-bottom:.5rem">Download Syllabi</h2>
-    <p style="font-size:.9rem;color:var(--text2);max-width:620px;line-height:1.85">Download the official CILG Level Syllabi below. Each syllabus contains the full learning outcomes, module breakdowns, assessment specifications, and eligibility requirements for the corresponding qualification level.</p>
-    <div class="syllabus-grid">
-      <div class="syllabus-card">
-        <div class="syllabus-level-badge" style="background:var(--lime-pale);color:var(--forest);border:1px solid rgba(174,219,26,.4)">Level 1</div>
-        <div class="syllabus-title">CILG Level 1 Syllabus</div>
-        <p class="syllabus-desc">Foundation level qualification — introducing core principles of leadership and governance for early-career professionals.</p>
-        <a href="assets/documents/CILG_Level1_Syllabus.pdf" download class="syllabus-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Syllabus
-        </a>
-      </div>
-      <div class="syllabus-card">
-        <div class="syllabus-level-badge" style="background:#EDF9F5;color:#1B5E4A;border:1px solid rgba(27,94,74,.25)">Level 2</div>
-        <div class="syllabus-title">CILG Level 2 Syllabus</div>
-        <p class="syllabus-desc">Certificate level — developing practitioner competencies in governance frameworks and leadership application.</p>
-        <a href="assets/documents/CILG_Level2_Syllabus.pdf" download class="syllabus-btn" style="background:#1B5E4A;color:#fff">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Syllabus
-        </a>
-      </div>
-      <div class="syllabus-card">
-        <div class="syllabus-level-badge" style="background:#F0EDFB;color:#5C2D91;border:1px solid rgba(92,45,145,.25)">Level 3</div>
-        <div class="syllabus-title">CILG Level 3 Syllabus</div>
-        <p class="syllabus-desc">Diploma level — advanced study in strategic leadership, corporate governance, and professional practice standards.</p>
-        <a href="assets/documents/CILG_Level3_Syllabus.pdf" download class="syllabus-btn" style="background:#5C2D91;color:#fff">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Syllabus
-        </a>
-      </div>
-      <div class="syllabus-card">
-        <div class="syllabus-level-badge" style="background:#FEF0E8;color:#7A2D00;border:1px solid rgba(122,45,0,.25)">Level 4</div>
-        <div class="syllabus-title">CILG Level 4 Syllabus</div>
-        <p class="syllabus-desc">Advanced diploma — complex governance structures, board-level leadership, risk, and stakeholder management.</p>
-        <a href="assets/documents/CILG_Level4_Syllabus.pdf" download class="syllabus-btn" style="background:#7A2D00;color:#fff">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Syllabus
-        </a>
-      </div>
-      <div class="syllabus-card">
-        <div class="syllabus-level-badge" style="background:#E8F1FE;color:#0F4C75;border:1px solid rgba(15,76,117,.25)">Level 5</div>
-        <div class="syllabus-title">CILG Level 5 Syllabus</div>
-        <p class="syllabus-desc">Masters level — governance mastery, executive leadership, organisational strategy, and global governance standards.</p>
-        <a href="assets/documents/CILG_Level5_Syllabus.pdf" download class="syllabus-btn" style="background:#0F4C75;color:#fff">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Syllabus
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ═══════════════════════════════════════
      CERT 01 — CAIGP
@@ -1727,11 +1640,11 @@ footer{background:#0a1f15;border-top:1px solid rgba(255,255,255,.12);padding:4re
 
       <!-- PORTALS -->
       <div class="footer-col">
-        <h4>Member Portals</h4>
+        <h4>Member Portal</h4>
         <a href="appn.html">Application Portal</a>
         <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
         <a href="membership.html#apply">Apply for Membership</a>
-        <a href="cev.html">Certification Verification</a>
+        <a href="cev.html">Certificate Verification guidelines</a>
         <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
           <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
           <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
