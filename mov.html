@@ -13,23 +13,23 @@
    ROOT & RESET
 ══════════════════════════════════════════ */
 :root {
-  --bg:         #f4f2ee;
-  --bg-off:     #e8e4de;
-  --forest:     #1e2a3a;
-  --forest-mid: #243241;
-  --forest-lt:  #2c3e4e;
-  --lime:       #b52a3a;
-  --lime-dk:    #9e1f2e;
-  --lime-pale:  #fbe9eb;
-  --white:      #ffffff;
-  --g100:       #e8e4de;
-  --g200:       #ddd6ce;
-  --g300:       #c4bcb2;
-  --g500:       #8b857c;
-  --text:       #1e2a3a;
-  --text2:      #3a4045;
-  --gold:       #c9a84c;
-  --gold-lt:    #e0c47a;
+  --bg:         #F5F4F1;  /* Warm off-white — page background */
+  --bg-off:     #EAE8E4;  /* Slightly darker warm off-white */
+  --forest:     #212121;  /* Near-black — all dark surfaces, panels, table headers */
+  --forest-mid: #2E2E2E;  /* Slightly lighter near-black — gradients, helpline panel */
+  --forest-lt:  #4A4A4A;  /* Mid-grey — secondary text, labels */
+  --lime:       #A00000;  /* Rich red — CTAs, accents, highlights */
+  --lime-dk:    #720000;  /* Deep red — hover states, borders */
+  --lime-pale:  #F5E6E6;  /* Pale red background */
+  --white:      #FFFFFF;
+  --g100:       #EAE8E4;
+  --g200:       #DDD9D3;
+  --g300:       #C4BCB2;
+  --g500:       #8B857C;
+  --text:       #212121;
+  --text2:      #4A4A4A;
+  --gold:       #C9A84C;
+  --gold-lt:    #E0C47A;
   --ff-head:    'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:    'DM Sans', system-ui, sans-serif;
   --tr:         .25s cubic-bezier(.4,0,.2,1);
@@ -52,12 +52,12 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(244,242,238,0.92);
+  background: rgba(245,244,241,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
-.nav.scrolled { height: 58px; background: rgba(244,242,238,0.98); box-shadow: 0 2px 24px rgba(30,42,58,.08); }
+.nav.scrolled { height: 58px; background: rgba(245,244,241,0.98); box-shadow: 0 2px 24px rgba(33,33,33,.08); }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
 .nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
@@ -70,8 +70,8 @@ img { max-width: 100%; display: block; }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
 .nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
-.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 210px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(30,42,58,.12); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
+.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 210px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(33,33,33,.12); }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 .nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
@@ -98,14 +98,14 @@ img { max-width: 100%; display: block; }
   position: relative;
   min-height: 68vh;
   padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(30,42,58,.62) 0%, rgba(30,42,58,.78) 100%),
+  background: linear-gradient(135deg, rgba(33,33,33,.62) 0%, rgba(33,33,33,.78) 100%),
               url('assets/images/hero2.jpg') center/cover no-repeat;
   display: flex; align-items: center; overflow: hidden;
 }
 .page-hero::after {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(181,42,58,.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(160,0,0,.08) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-inner {
@@ -115,7 +115,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(181,42,58,.15); border: 1px solid var(--lime-dk);
+  background: rgba(160,0,0,.15); border: 1px solid var(--lime-dk);
   color: var(--lime-pale); padding: 4px 14px; border-radius: 40px;
   font-size: .63rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
   margin-bottom: 1.4rem;
@@ -140,7 +140,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; animation: fadeUp .7s ease .42s both; }
 .btn-primary { padding: 13px 26px; background: var(--lime); color: var(--white); font-family: var(--ff-head); font-size: .82rem; font-weight: 700; letter-spacing: -.01em; border-radius: 9px; border: none; cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(158,31,46,.45); }
+.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(114,0,0,.45); }
 .btn-secondary { padding: 13px 22px; background: rgba(255,255,255,.1); color: #fff; font-size: .82rem; font-weight: 600; border-radius: 9px; border: 1.5px solid rgba(255,255,255,.3); cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
 .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,.2); }
 
@@ -157,7 +157,7 @@ img { max-width: 100%; display: block; }
 .pnom-badge { font-family: var(--ff-head); font-size: .7rem; font-weight: 700; color: var(--forest); background: var(--lime); padding: 3px 9px; border-radius: 5px; letter-spacing: .06em; min-width: 76px; text-align: center; }
 .pnom-badge.gold { background: var(--gold); }
 .pnom-badge.silver { background: var(--g200); color: var(--text); }
-.pnom-badge.outline { background: transparent; color: var(--lime-pale); border: 1px solid rgba(181,42,58,.4); }
+.pnom-badge.outline { background: transparent; color: var(--lime-pale); border: 1px solid rgba(160,0,0,.4); }
 .pnom-label { font-size: .75rem; color: rgba(255,255,255,.8); font-weight: 500; }
 .pnom-grade { font-size: .62rem; color: rgba(255,255,255,.4); margin-top: .1rem; }
 
@@ -211,11 +211,11 @@ img { max-width: 100%; display: block; }
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
   background: var(--g200); transition: background var(--tr);
 }
-.grade-card:hover { border-color: var(--lime-dk); transform: translateY(-5px); box-shadow: 0 14px 44px rgba(30,42,58,.1); }
+.grade-card:hover { border-color: var(--lime-dk); transform: translateY(-5px); box-shadow: 0 14px 44px rgba(33,33,33,.1); }
 .grade-card:hover::before { background: var(--lime-dk); }
 .grade-card.featured { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%); border-color: var(--lime-dk); }
 .grade-card.featured::before { background: var(--lime); }
-.grade-card.featured:hover { box-shadow: 0 14px 44px rgba(30,42,58,.25); }
+.grade-card.featured:hover { box-shadow: 0 14px 44px rgba(33,33,33,.25); }
 .grade-card.honor { border-color: var(--gold); }
 .grade-card.honor::before { background: var(--gold); }
 .grade-card.honor:hover { border-color: var(--gold); box-shadow: 0 14px 44px rgba(201,168,76,.18); }
@@ -226,9 +226,9 @@ img { max-width: 100%; display: block; }
   display: inline-block; font-family: var(--ff-head); font-size: .68rem; font-weight: 800;
   letter-spacing: .1em; padding: 4px 11px; border-radius: 5px;
   background: var(--lime-pale); color: var(--lime-dk);
-  border: 1px solid rgba(158,31,46,.4); margin-bottom: 1rem;
+  border: 1px solid rgba(114,0,0,.4); margin-bottom: 1rem;
 }
-.grade-card.featured .gc-postnominal { background: rgba(181,42,58,.15); color: var(--lime); border-color: rgba(181,42,58,.35); }
+.grade-card.featured .gc-postnominal { background: rgba(160,0,0,.15); color: var(--lime); border-color: rgba(160,0,0,.35); }
 .grade-card.honor .gc-postnominal { background: rgba(201,168,76,.1); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
 .gc-dash { display: inline-block; font-family: var(--ff-head); font-size: .68rem; font-weight: 700; padding: 4px 11px; border-radius: 5px; background: var(--g100); color: var(--g300); border: 1px solid var(--g200); margin-bottom: 1rem; letter-spacing: .06em; }
 
@@ -250,7 +250,7 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem;
 }
-.gc-corner.lime { background: rgba(181,42,58,.15); }
+.gc-corner.lime { background: rgba(160,0,0,.15); }
 .gc-corner.white { background: rgba(255,255,255,.1); }
 .gc-corner.gold { background: rgba(201,168,76,.12); }
 
@@ -264,10 +264,10 @@ img { max-width: 100%; display: block; }
 .grades-table tr:last-child td { border-bottom: none; }
 .grades-table tr:hover td { background: var(--g100); }
 .tbl-badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: .67rem; font-weight: 700; letter-spacing: .08em; font-family: var(--ff-head); }
-.tbl-badge.lime { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(158,31,46,.35); }
+.tbl-badge.lime { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(114,0,0,.35); }
 .tbl-badge.gold { background: rgba(201,168,76,.1); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
 .tbl-badge.none { background: var(--g100); color: var(--g300); border: 1px solid var(--g200); }
-.tbl-badge.green { background: rgba(44,62,78,.1); color: var(--forest-lt); border: 1px solid rgba(44,62,78,.25); }
+.tbl-badge.green { background: rgba(74,74,74,.1); color: var(--forest-lt); border: 1px solid rgba(74,74,74,.25); }
 
 /* ══════════════════════════════════════════
    BENEFITS SECTION
@@ -276,7 +276,7 @@ img { max-width: 100%; display: block; }
 .benefits-inner { max-width: 1260px; margin: 0 auto; }
 .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin-top: 3rem; }
 .benefit-card { background: var(--white); border: 1.5px solid var(--g200); border-radius: 16px; padding: 1.6rem 1.4rem; transition: all var(--tr); text-align: center; }
-.benefit-card:hover { border-color: var(--lime-dk); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(30,42,58,.09); }
+.benefit-card:hover { border-color: var(--lime-dk); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(33,33,33,.09); }
 .benefit-icon { width: 50px; height: 50px; border-radius: 14px; background: var(--lime-pale); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; transition: background var(--tr); }
 .benefit-card:hover .benefit-icon { background: var(--lime); }
 .benefit-title { font-family: var(--ff-head); font-size: .88rem; font-weight: 700; color: var(--forest); margin-bottom: .4rem; }
@@ -288,14 +288,14 @@ img { max-width: 100%; display: block; }
 .conduct-strip { background: var(--forest); padding: 4.5rem 3rem; }
 .conduct-inner { max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .conduct-left {}
-.conduct-label { font-size: .6rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(181,42,58,.6); margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
+.conduct-label { font-size: .6rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(160,0,0,.6); margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
 .conduct-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 1px; }
 .conduct-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 2.8vw, 2.6rem); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 1rem; }
 .conduct-h2 em { font-style: normal; color: var(--lime); }
 .conduct-lead { font-size: .93rem; color: rgba(255,255,255,.72); line-height: 1.85; margin-bottom: 2rem; }
 .conduct-right { display: grid; gap: .8rem; }
 .conduct-item { display: flex; gap: .9rem; align-items: flex-start; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 1rem 1.2rem; transition: all var(--tr); }
-.conduct-item:hover { background: rgba(181,42,58,.06); border-color: rgba(181,42,58,.2); }
+.conduct-item:hover { background: rgba(160,0,0,.06); border-color: rgba(160,0,0,.2); }
 .conduct-num { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--lime); line-height: 1; flex-shrink: 0; min-width: 24px; }
 .conduct-text h4 { font-family: var(--ff-head); font-size: .84rem; font-weight: 700; color: #fff; margin-bottom: .25rem; }
 .conduct-text p { font-size: .76rem; color: rgba(255,255,255,.6); line-height: 1.65; }
@@ -327,7 +327,7 @@ img { max-width: 100%; display: block; }
 .cpd-rung:first-child::before { display: none; }
 .cpd-rung.active::before { background: var(--lime-dk); }
 .cpd-rung-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--g200); flex-shrink: 0; }
-.cpd-rung.active .cpd-rung-dot { background: var(--lime-dk); box-shadow: 0 0 0 3px rgba(158,31,46,.25); }
+.cpd-rung.active .cpd-rung-dot { background: var(--lime-dk); box-shadow: 0 0 0 3px rgba(114,0,0,.25); }
 .cpd-rung-label { font-family: var(--ff-head); font-size: .82rem; font-weight: 700; color: var(--forest); }
 .cpd-rung.active .cpd-rung-label { color: var(--forest); }
 .cpd-rung-sub { font-size: .7rem; color: var(--text2); }
@@ -338,21 +338,21 @@ img { max-width: 100%; display: block; }
    CTA SECTION
 ══════════════════════════════════════════ */
 .cta-section { padding: 6rem 3rem; background: var(--lime); position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(30,42,58,.06); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(33,33,33,.06); pointer-events: none; }
 .cta-inner { max-width: 1260px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; position: relative; }
 .cta-left {}
-.cta-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--forest); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .6rem; }
-.cta-lead { font-size: .95rem; color: var(--forest-mid); max-width: 520px; }
+.cta-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--white); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .6rem; }
+.cta-lead { font-size: .95rem; color: rgba(255,255,255,.85); max-width: 520px; }
 .cta-btns { display: flex; gap: .9rem; flex-wrap: wrap; }
 .btn-dark { padding: 13px 26px; background: var(--forest); color: #fff; font-family: var(--ff-head); font-size: .82rem; font-weight: 700; border-radius: 9px; border: none; cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-dark:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,42,58,.35); }
-.btn-outline-dark { padding: 13px 22px; background: transparent; color: var(--forest); font-size: .82rem; font-weight: 600; border-radius: 9px; border: 2px solid rgba(30,42,58,.3); cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-outline-dark:hover { border-color: var(--forest); background: rgba(30,42,58,.06); }
+.btn-dark:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(33,33,33,.35); }
+.btn-outline-dark { padding: 13px 22px; background: transparent; color: #fff; font-size: .82rem; font-weight: 600; border-radius: 9px; border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
+.btn-outline-dark:hover { border-color: #fff; background: rgba(255,255,255,.06); }
 
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
-footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem 3rem 2rem; }
+footer { background: #212121; color: rgba(255,255,255,.7); padding: 4.5rem 3rem 2rem; }
 .footer-grid { max-width: 1260px; margin: 0 auto 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
 .footer-brand { }
 .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
@@ -366,7 +366,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; max-width: 1260px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.4); }
 .footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s; }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: #fff; transform: translateY(-2px); }
 
 /* ══════════════════════════════════════════
    RESPONSIVE
@@ -440,7 +440,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link">Qualification Framework <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>
@@ -545,7 +545,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
           </div>
         </div>
         <div class="pnom-row">
-          <div class="pnom-badge outline">AfCILG</div>
+          <div class="pnom-badge outline">AffCILG</div>
           <div>
             <div class="pnom-label">Affiliate Member</div>
             <div class="pnom-grade">Level 2 or Qualifying Experience</div>
@@ -566,7 +566,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
           </div>
         </div>
         <div class="pnom-row">
-          <div class="pnom-badge" style="background:var(--forest);color:#fff">FCILG</div>
+          <div class="pnom-badge" style="background:var(--forest);color:#fff">-</div>
           <div>
             <div class="pnom-label">Fellow</div>
             <div class="pnom-grade">Level 5 / Chartered Professional</div>
@@ -668,7 +668,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       <!-- Affiliate -->
       <div class="grade-card">
         <div class="gc-corner lime">🔗</div>
-        <div class="gc-postnominal">AfCILG</div>
+        <div class="gc-postnominal">AffCILG</div>
         <div class="gc-title">Affiliate</div>
         <div class="gc-designation">Affiliate Member</div>
         <div class="gc-divider"></div>
@@ -690,7 +690,8 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       <!-- Full Member — Featured -->
       <div class="grade-card featured">
         <div class="gc-corner white">⭐</div>
-        <div class="gc-postnominal">MCILG</div>
+        <div class="btn-primary">MCILG</div>
+<div class="gc-entry-label">  </div>
         <div class="gc-title">Full Member</div>
         <div class="gc-designation">Member</div>
         <div class="gc-divider"></div>
@@ -701,7 +702,6 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       <!-- Fellow -->
       <div class="grade-card featured">
         <div class="gc-corner white">🏆</div>
-        <div class="gc-postnominal">FCILG</div>
         <div class="gc-title">Fellow</div>
         <div class="gc-designation">Fellow</div>
         <div class="gc-divider"></div>
@@ -759,7 +759,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
           <tr>
             <td>Affiliate</td>
             <td>Affiliate Member</td>
-            <td><span class="tbl-badge lime">AfCILG</span></td>
+            <td><span class="tbl-badge lime">AffCILG</span></td>
             <td>Completion of Level 2 or qualifying experience</td>
           </tr>
           <tr>
@@ -777,7 +777,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
           <tr>
             <td>Fellow</td>
             <td>Fellow</td>
-            <td><span class="tbl-badge green">FCILG</span></td>
+            <td><span class="tbl-badge green">-</span></td>
             <td>Completion of Level 5 / Chartered Professional</td>
           </tr>
           <tr>
@@ -853,7 +853,8 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 <section class="conduct-strip">
   <div class="conduct-inner">
     <div class="conduct-left">
-      <div class="conduct-label">Professional Standards</div>
+      <div class="btn-primary">Professional Standards</div>
+<div class="gc-entry-label"> </div>
       <h2 class="conduct-h2">The CILG Code of<br><em>Professional Conduct</em></h2>
       <p class="conduct-lead">All CILG members commit to upholding a rigorous code of professional conduct — the ethical backbone of the Institute's global standing and public trust.</p>
       <a href="cod.html" class="btn-primary" style="display:inline-flex;">Read Full Code →</a>
@@ -934,7 +935,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
             <div class="cpd-rung-label">Affiliate Membership</div>
             <div class="cpd-rung-sub">Level 2 / Qualifying Experience</div>
           </div>
-          <div class="cpd-rung-pnom">AfCILG</div>
+          <div class="cpd-rung-pnom">AffCILG</div>
         </div>
         <div class="cpd-rung">
           <div class="cpd-rung-dot"></div>
@@ -958,7 +959,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
             <div class="cpd-rung-label">Fellowship</div>
             <div class="cpd-rung-sub">Level 5 / Chartered Professional</div>
           </div>
-          <div class="cpd-rung-pnom">FCILG</div>
+          <div class="cpd-rung-pnom">-</div>
         </div>
       </div>
     </div>

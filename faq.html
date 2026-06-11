@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,25 +9,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════
-   ROOT & RESET
-═══════════════════════════════════════════ */
 :root {
-  --bg:          #f4f2ee;
-  --bg-off:      #e8e4de;
-  --forest:      #1e2a3a;
-  --forest-mid:  #243241;
-  --forest-lt:   #2c3e4e;
-  --lime:        #b52a3a;
-  --lime-dk:     #9e1f2e;
-  --lime-pale:   #fbe9eb;
-  --white:       #ffffff;
-  --g100:        #e8e4de;
-  --g200:        #ddd6ce;
-  --g300:        #c4bcb2;
-  --g500:        #8b857c;
-  --text:        #1e2a3a;
-  --text2:       #3a4045;
+  --bg:          #F5F4F1;
+  --bg-off:      #EAE8E4;
+  --forest:      #212121;
+  --forest-mid:  #2E2E2E;
+  --forest-lt:   #4A4A4A;
+  --lime:        #A00000;
+  --lime-dk:     #720000;
+  --lime-pale:   #F5E6E6;
+  --white:       #FFFFFF;
+  --g100:        #EAE8E4;
+  --g200:        #DDD9D3;
+  --g300:        #C4BCB2;
+  --g500:        #8B857C;
+  --text:        #212121;
+  --text2:       #4A4A4A;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -41,20 +39,17 @@ body { font-family: var(--ff-body); background: var(--bg); color: var(--text); l
 a { text-decoration: none; }
 img { max-width: 100%; display: block; }
 
-/* ═══════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(244,242,238,0.92);
+  background: rgba(245,244,241,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
-.nav.scrolled { height: 58px; background: rgba(244,242,238,0.98); box-shadow: 0 2px 24px rgba(30,42,58,.08); }
+.nav.scrolled { height: 58px; background: rgba(245,244,241,0.98); box-shadow: 0 2px 24px rgba(33,33,33,.08); }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
 .nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
@@ -77,7 +72,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--lime) !important; border-radius: 8px !important;
   font-weight: 700 !important; transition: all var(--tr) !important;
 }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -85,7 +80,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(30,42,58,.12);
+  box-shadow: 0 16px 48px rgba(33,33,33,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -111,9 +106,6 @@ img { max-width: 100%; display: block; }
 .mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
 .mob-cta:hover { background: var(--lime-dk); }
 
-/* ═══════════════════════════════════════════
-   SHARED UTILITIES
-═══════════════════════════════════════════ */
 .section-label {
   font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
   color: var(--forest-lt); margin-bottom: .7rem;
@@ -123,23 +115,20 @@ img { max-width: 100%; display: block; }
 .section-h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 800; color: var(--forest); line-height: 1.1; letter-spacing: -.03em; margin-bottom: .9rem; }
 .section-lead { font-size: .95rem; color: var(--text2); max-width: 680px; line-height: 1.85; }
 
-/* ═══════════════════════════════════════════
-   PAGE HERO / BANNER
-═══════════════════════════════════════════ */
 .page-hero {
   padding-top: var(--nav-h);
-  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, #2c3e4e 100%);
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, #4A4A4A 100%);
   position: relative; overflow: hidden;
 }
 .page-hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(181,42,58,.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(160,0,0,.08) 0%, transparent 70%);
   pointer-events: none;
 }
 .page-hero-grid {
   position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(181,42,58,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(181,42,58,.04) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(160,0,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(160,0,0,.04) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
 }
@@ -151,7 +140,7 @@ img { max-width: 100%; display: block; }
 }
 .page-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(181,42,58,.15); border: 1px solid rgba(181,42,58,.3);
+  background: rgba(160,0,0,.15); border: 1px solid rgba(160,0,0,.3);
   color: var(--lime); padding: 4px 14px; border-radius: 40px;
   font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: 1.4rem;
@@ -176,7 +165,6 @@ img { max-width: 100%; display: block; }
 .breadcrumb a:hover { color: var(--lime); }
 .breadcrumb-sep { opacity: .35; }
 
-/* Search bar */
 .faq-search-wrap {
   margin-top: 2.2rem; width: 100%; max-width: 560px;
   position: relative;
@@ -189,15 +177,12 @@ img { max-width: 100%; display: block; }
   backdrop-filter: blur(8px);
 }
 .faq-search::placeholder { color: rgba(255,255,255,.4); }
-.faq-search:focus { border-color: var(--lime); background: rgba(255,255,255,.13); box-shadow: 0 0 0 3px rgba(181,42,58,.15); }
+.faq-search:focus { border-color: var(--lime); background: rgba(255,255,255,.13); box-shadow: 0 0 0 3px rgba(160,0,0,.15); }
 .faq-search-icon {
   position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
   color: rgba(255,255,255,.4); pointer-events: none;
 }
 
-/* ═══════════════════════════════════════════
-   CATEGORY TABS
-═══════════════════════════════════════════ */
 .faq-tabs-section { background: var(--white); border-bottom: 1px solid var(--g200); position: sticky; top: var(--nav-h); z-index: 100; }
 .faq-tabs-inner { max-width: 1260px; margin: 0 auto; padding: 0 3rem; display: flex; gap: .3rem; overflow-x: auto; }
 .faq-tabs-inner::-webkit-scrollbar { display: none; }
@@ -218,12 +203,8 @@ img { max-width: 100%; display: block; }
 }
 .faq-tab.active .faq-tab-count { background: var(--lime-pale); color: var(--lime-dk); }
 
-/* ═══════════════════════════════════════════
-   FAQ BODY LAYOUT
-═══════════════════════════════════════════ */
 .faq-body { padding: 4rem 3rem 6rem; max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: 240px 1fr; gap: 3.5rem; }
 
-/* Sidebar */
 .faq-sidebar { position: sticky; top: calc(var(--nav-h) + 56px); align-self: start; }
 .faq-sidebar-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); margin-bottom: .8rem; }
 .faq-sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
@@ -233,7 +214,7 @@ img { max-width: 100%; display: block; }
   color: var(--text2); transition: all var(--tr); border: 1px solid transparent; cursor: pointer;
 }
 .faq-sidebar-link:hover { color: var(--forest); background: var(--g100); }
-.faq-sidebar-link.active { color: var(--forest); background: var(--lime-pale); border-color: rgba(158,31,46,.3); font-weight: 600; }
+.faq-sidebar-link.active { color: var(--forest); background: var(--lime-pale); border-color: rgba(114,0,0,.3); font-weight: 600; }
 .faq-sidebar-link .sidebar-icon { font-size: 1rem; flex-shrink: 0; }
 .faq-sidebar-divider { height: 1px; background: var(--g200); margin: 1rem 0; }
 .faq-sidebar-cta {
@@ -241,11 +222,8 @@ img { max-width: 100%; display: block; }
   border-radius: 10px; font-size: .78rem; font-weight: 700; text-align: center;
   letter-spacing: .02em; transition: all var(--tr); margin-top: .5rem;
 }
-.faq-sidebar-cta:hover { background: var(--forest-mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(30,42,58,.2); }
+.faq-sidebar-cta:hover { background: var(--forest-mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(33,33,33,.2); }
 
-/* ═══════════════════════════════════════════
-   FAQ SECTIONS & ACCORDION
-═══════════════════════════════════════════ */
 .faq-sections { display: flex; flex-direction: column; gap: 3.5rem; }
 .faq-section-block {}
 .faq-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--g200); }
@@ -264,7 +242,7 @@ img { max-width: 100%; display: block; }
   border-radius: 12px; overflow: hidden; transition: border-color var(--tr), box-shadow var(--tr);
 }
 .faq-item:hover { border-color: var(--g300); }
-.faq-item.open { border-color: var(--lime-dk); box-shadow: 0 4px 20px rgba(158,31,46,.12); }
+.faq-item.open { border-color: var(--lime-dk); box-shadow: 0 4px 20px rgba(114,0,0,.12); }
 
 .faq-q {
   display: flex; align-items: center; gap: 1rem;
@@ -286,24 +264,20 @@ img { max-width: 100%; display: block; }
   transition: max-height .45s cubic-bezier(.4,0,.2,1), padding .35s ease;
   padding: 0 1.3rem;
 }
-.faq-a-inner { padding-bottom: 1.3rem; font-size: .88rem; color: var(--text2); line-height: 1.9; border-top: 1px solid rgba(158,31,46,.25); padding-top: .9rem; }
+.faq-a-inner { padding-bottom: 1.3rem; font-size: .88rem; color: var(--text2); line-height: 1.9; border-top: 1px solid rgba(114,0,0,.25); padding-top: .9rem; }
 .faq-a-inner p { margin-bottom: .7rem; }
 .faq-a-inner p:last-child { margin-bottom: 0; }
-.faq-a-inner a { color: var(--lime-dk); font-weight: 600; border-bottom: 1px solid rgba(158,31,46,.2); transition: border-color var(--tr); }
+.faq-a-inner a { color: var(--lime-dk); font-weight: 600; border-bottom: 1px solid rgba(114,0,0,.2); transition: border-color var(--tr); }
 .faq-a-inner a:hover { border-color: var(--lime-dk); }
 .faq-a-inner ul { padding-left: 1.2rem; margin-top: .4rem; }
 .faq-a-inner ul li { margin-bottom: .3rem; }
 .faq-item.open .faq-a { max-height: 800px; padding: 0 1.3rem; }
 
-/* No results */
 .faq-no-results { display: none; text-align: center; padding: 4rem 2rem; }
 .faq-no-results svg { width: 56px; height: 56px; stroke: var(--g300); stroke-width: 1.5; fill: none; margin: 0 auto 1.2rem; }
 .faq-no-results h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--forest); margin-bottom: .5rem; }
 .faq-no-results p { font-size: .88rem; color: var(--text2); }
 
-/* ═══════════════════════════════════════════
-   CTA BAND
-═══════════════════════════════════════════ */
 .cta-band { background: var(--forest); padding: 5rem 3rem; }
 .cta-band-inner { max-width: 1260px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3rem; }
 .cta-band-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); margin-bottom: .6rem; }
@@ -311,14 +285,11 @@ img { max-width: 100%; display: block; }
 .cta-band p { font-size: .9rem; color: rgba(255,255,255,.6); max-width: 520px; line-height: 1.8; }
 .cta-band-actions { display: flex; gap: .9rem; flex-wrap: wrap; flex-shrink: 0; }
 .btn-lime { padding: 13px 26px; background: var(--lime); color: var(--white); font-family: var(--ff-head); font-size: .82rem; font-weight: 700; border-radius: 9px; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-lime:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(158,31,46,.45); }
+.btn-lime:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(114,0,0,.45); }
 .btn-outline-white { padding: 13px 22px; background: transparent; color: #fff; font-size: .82rem; font-weight: 600; border-radius: 9px; border: 1.5px solid rgba(255,255,255,.3); transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
 .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.08); }
 
-/* ═══════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════ */
-footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07); }
+footer { background: #212121; border-top: 1px solid rgba(255,255,255,.07); }
 .footer-grid { max-width: 1260px; margin: 0 auto; padding: 4rem 3rem 2.5rem; display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr; gap: 2.5rem; }
 .footer-col h4 { font-family: var(--ff-head); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 1rem; }
 .footer-col a { display: block; font-size: .8rem; color: rgba(255,255,255,.6); margin-bottom: .45rem; transition: color var(--tr); }
@@ -330,12 +301,9 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
 .footer-socials a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); transition: all var(--tr); margin-bottom: 0; }
 .footer-socials a:hover { background: var(--lime); border-color: var(--lime); }
 .footer-socials svg { width: 14px; height: 14px; fill: rgba(255,255,255,.6); transition: fill var(--tr); }
-.footer-socials a:hover svg { fill: var(--forest); }
+.footer-socials a:hover svg { fill: #fff; }
 .footer-bottom { max-width: 1260px; margin: 0 auto; padding: 1.5rem 3rem; border-top: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .72rem; color: rgba(255,255,255,.35); }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
   .faq-body { grid-template-columns: 1fr; }
@@ -356,7 +324,8 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
   .footer-grid { grid-template-columns: 1fr; }
   .page-hero h1 { font-size: 2rem; }
   .faq-body { padding: 2.5rem 1.2rem 4rem; }
-}</style>
+}
+</style>
 </head>
 <body>
 
@@ -397,7 +366,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link">Qualification Framework <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>
@@ -472,11 +441,10 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
 </div>
 
 
-<!-- ═══════ PAGE HERO ═══════ -->
+<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
-    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span> Help Centre</div>
     <h1>Frequently Asked <span>Questions</span></h1>
     <p>Find clear, authoritative answers about CILG membership, qualifications, professional certification, governance standards, and more.</p>
     <div class="faq-search-wrap">
@@ -493,7 +461,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
   </div>
 </section>
 
-<!-- ═══════ CATEGORY TABS ═══════ -->
+<!-- CATEGORY TABS -->
 <div class="faq-tabs-section">
   <div class="faq-tabs-inner">
     <button class="faq-tab active" data-cat="all">All Questions <span class="faq-tab-count" id="count-all">34</span></button>
@@ -506,7 +474,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
   </div>
 </div>
 
-<!-- ═══════ FAQ BODY ═══════ -->
+<!-- FAQ BODY -->
 <div style="background:var(--bg)">
   <div class="faq-body">
 
@@ -525,13 +493,13 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
       <div class="faq-sidebar-divider"></div>
       <div class="faq-sidebar-title">Still have questions?</div>
       <a href="contact.html" class="faq-sidebar-cta">Contact Us →</a>
-      <a href="membership.html#apply" class="faq-sidebar-cta" style="margin-top:.5rem;background:var(--lime);color:var(--forest)">Apply for Membership →</a>
+      <a href="appn.html" class="faq-sidebar-cta" style="margin-top:.5rem;background:var(--white);color:var(--forest)">Apply for Membership →</a>
     </aside>
 
     <!-- QUESTIONS -->
     <div id="faqSections" class="faq-sections">
 
-      <!-- ── ABOUT CILG ── -->
+      <!-- ABOUT CILG -->
       <div class="faq-section-block" data-section="about">
         <div class="faq-section-header">
           <div class="faq-section-icon">🏛️</div>
@@ -548,8 +516,8 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>The Chartered Institute of Leadership and Governance (CILG) is a globally recognised professional body dedicated to developing outstanding leaders and governance professionals. Registered in the United States (New Mexico, Alaska, and Michigan), CILG advances leadership and governance practice through internationally accredited qualifications, rigorous professional standards, structured membership pathways, and a growing global community of practitioners.</p>
-              <p>CILG's mission is to uphold the highest standards of professional conduct and competence in leadership and governance across all sectors — public, private, and non-profit.</p>
+              <p>The Chartered Institute of Leadership and Governance (CILG) is a globally recognised professional body dedicated to advancing professional excellence in leadership, corporate governance, organisational management, and public administration. Incorporated in the United States of America, CILG serves as a standard-setting institution that benchmarks leadership and governance competencies against internationally recognised best practices.</p>
+              <p>CILG advances the profession through an internationally accredited Professional Qualification Framework, rigorous membership pathways, structured CPD requirements, and a growing global community of practitioners across the public, private, and non-profit sectors.</p>
             </div></div>
           </div>
 
@@ -607,9 +575,9 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
           </div>
 
         </div>
-      </div><!-- /about -->
+      </div>
 
-      <!-- ── MEMBERSHIP ── -->
+      <!-- MEMBERSHIP -->
       <div class="faq-section-block" data-section="membership">
         <div class="faq-section-header">
           <div class="faq-section-icon">🎓</div>
@@ -626,15 +594,15 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>CILG offers a structured, progressive membership framework with the following grades and designatory letters:</p>
+              <p>CILG's membership framework is structured as a progressive professional pathway aligned to its five-level Qualification Framework:</p>
               <ul>
-                <li><strong>Student Member</strong> — for those currently enrolled in a CILG qualification programme</li>
-                <li><strong>Associate Member (ACILG)</strong> — entry-level professional membership</li>
-                <li><strong>Member (MCILG)</strong> — full professional membership</li>
-                <li><strong>Senior Member (SMCILG)</strong> — for experienced governance professionals</li>
-                <li><strong>Fellow (FCILG)</strong> — the highest individual membership grade, recognising distinguished contribution</li>
+                <li><strong>Student Member </strong> — for individuals enrolled in the CILG qualification programme at Levels 1 or 2</li>
+                <li><strong>Affiliate Member (AfCILG)</strong> — awarded upon completion of Level 2 (Knowledge Level)</li>
+                <li><strong>Associate Member (ACILG)</strong> — awarded upon completion of Level 3 (Skills Level)</li>
+                <li><strong>Full Member (MCILG)</strong> — awarded upon completion of Level 4 (Professional Level)</li>
+                <li><strong>Fellow </strong> — the highest designation, awarded upon completion of Level 5 (Expert Level); confers the Chartered title of Chartered Professional in Leadership and Governance</li>
               </ul>
-              <p>Each grade carries specific designatory letters that members are entitled to use after their names. Visit the <a href="membership.html">Membership Framework</a> page for full entry criteria.</p>
+              <p>Each grade carries specific post-nominal designatory letters that members are entitled to use after their names. Visit the <a href="mg.html">Membership Grades</a> page for full entry criteria.</p>
             </div></div>
           </div>
 
@@ -644,14 +612,14 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Eligibility varies by membership grade. In general, applicants are assessed against a combination of:</p>
+              <p>Eligibility is linked directly to progression through the CILG Qualification Framework. In general, each membership grade requires:</p>
               <ul>
-                <li>Academic qualifications (relevant degrees, diplomas, or CILG qualifications)</li>
-                <li>Professional experience in leadership, governance, or related disciplines</li>
-                <li>Commitment to CILG's Code of Ethics and professional standards</li>
-                <li>Continuing Professional Development (CPD) engagement (for senior grades)</li>
+                <li>Completion of the corresponding CILG qualification level (or approved Recognition of Prior Learning)</li>
+                <li>Relevant professional experience (increasing with each grade — from 2 years at Associate level to 8+ years at Fellow level)</li>
+                <li>Commitment to CILG's Code of Professional Conduct</li>
+                <li>CPD compliance (for Affiliate level and above)</li>
               </ul>
-              <p>Full grade-specific criteria are detailed on the <a href="membership.html">Membership Framework</a> page. If you are unsure which grade applies to you, contact <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a> for guidance.</p>
+              <p>If you are unsure which grade applies to you, contact <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a> for guidance.</p>
             </div></div>
           </div>
 
@@ -665,10 +633,11 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <ul>
                 <li>Selecting the appropriate membership grade</li>
                 <li>Completing the online application form</li>
-                <li>Uploading supporting documents (certificates, CV, references)</li>
-                <li>Paying the applicable application fee</li>
+                <li>Uploading supporting documents (qualification certificates, CV, professional references)</li>
+                <li>Paying the applicable membership fee</li>
+                <li>Signing the CILG Code of Professional Conduct</li>
               </ul>
-              <p>Once submitted, your application will be reviewed by the Membership Committee. Successful applicants will receive a formal acceptance letter along with their digital certificate and membership number. Start your application at the <a href="appn.html">Application Portal</a>.</p>
+              <p>Once submitted, your application will be reviewed by the Admissions and Standards Committee. Successful applicants will receive a formal acceptance letter along with their digital certificate and membership number. Start your application at the <a href="appn.html">Application Portal</a>.</p>
             </div></div>
           </div>
 
@@ -680,23 +649,23 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
             <div class="faq-a"><div class="faq-a-inner">
               <p>CILG members are entitled to use the following post-nominal designatory letters corresponding to their membership grade:</p>
               <ul>
+                <li>Affiliate Member: <strong>AfCILG</strong></li>
                 <li>Associate Member: <strong>ACILG</strong></li>
-                <li>Member: <strong>MCILG</strong></li>
-                <li>Senior Member: <strong>SMCILG</strong></li>
-                <li>Fellow: <strong>FCILG</strong></li>
+                <li>Full Member: <strong>MCILG</strong></li>
+                <li>Fellow: <strong>FCILG</strong> (also carries the Chartered title: Chartered Professional in Leadership and Governance)</li>
               </ul>
-              <p>These designatory letters are internationally recognised marks of professional distinction in leadership and governance. Members must maintain their membership in good standing to continue using them.</p>
+              <p>These designatory letters are internationally recognised marks of professional distinction in leadership and governance. Members must maintain their membership in good standing and meet annual CPD requirements to continue using them.</p>
             </div></div>
           </div>
 
           <div class="faq-item" data-cat="membership">
             <div class="faq-q">
-              <span class="faq-q-text">Can I upgrade my membership grade over time?</span>
+              <span class="faq-q-text">Can I progress to a higher membership grade over time?</span>
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Yes. CILG's membership framework is designed as a progressive career pathway. Members are encouraged to advance through grades as their professional experience, qualifications, and contributions to the field grow. Upgrade applications follow the same assessment process as initial applications and require demonstration of the competencies and criteria associated with the target grade.</p>
-              <p>Contact <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a> to discuss your upgrade eligibility.</p>
+              <p>Yes. CILG's membership framework is explicitly designed as a progressive career pathway. Members advance through grades by completing the corresponding qualification level, accumulating the required professional experience, and demonstrating continued CPD compliance. Each progression is subject to a formal application and assessment process.</p>
+              <p>Contact <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a> to discuss your progression eligibility.</p>
             </div></div>
           </div>
 
@@ -708,7 +677,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
             <div class="faq-a"><div class="faq-a-inner">
               <p>CILG membership offers a wide range of professional benefits, including:</p>
               <ul>
-                <li>Internationally recognised designatory letters</li>
+                <li>Internationally recognised post-nominal designatory letters</li>
                 <li>Access to CILG's global professional network</li>
                 <li>CPD resources, webinars, and governance knowledge tools</li>
                 <li>Listing in the CILG Member Directory</li>
@@ -716,6 +685,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
                 <li>Eligibility to sit for CILG professional certification examinations</li>
                 <li>Priority access to CILG events, conferences, and forums</li>
                 <li>Professional recognition and credibility in leadership and governance roles</li>
+                <li>For Fellows: use of the Chartered title — Chartered Professional in Leadership and Governance</li>
               </ul>
             </div></div>
           </div>
@@ -726,26 +696,26 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Yes, CILG membership is subject to annual renewal. Renewal requires members to: pay the annual subscription fee for their membership grade; demonstrate completion of their CPD obligations for the year; and confirm their continued adherence to CILG's Code of Ethics and Professional Standards.</p>
+              <p>Yes, CILG membership is subject to annual renewal. Renewal requires members to: pay the annual subscription fee for their membership grade; demonstrate completion of their CPD obligations for the year; and confirm continued adherence to CILG's Code of Professional Conduct.</p>
               <p>Members who fail to renew may lose their right to use CILG designatory letters until membership is reinstated.</p>
             </div></div>
           </div>
 
           <div class="faq-item" data-cat="membership">
             <div class="faq-q">
-              <span class="faq-q-text">What is the Supplementary Standard Framework?</span>
+              <span class="faq-q-text">What is the Recognition of Prior Learning (RPL) policy?</span>
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>The Supplementary Standard Framework provides additional pathways and criteria for membership assessment beyond the primary academic and experiential requirements. It accommodates professionals whose backgrounds involve non-traditional routes to leadership and governance excellence — for example, those with extensive community governance roles, executive leadership in specialised sectors, or significant contributions to governance through research and publication.</p>
-              <p>Full details are available on the <a href="membership.html#supplementary">Membership page</a>.</p>
+              <p>CILG's Recognition of Prior Learning (RPL) policy allows candidates with substantial professional experience or prior qualifications to apply for exemptions from specific modules at Levels 2–4. RPL applications are assessed by the CILG Exemptions Committee. At Level 4, RPL is limited to a maximum of one module. No exemptions are permitted at Level 5 (Expert Level), which must be completed in full.</p>
+              <p>Contact <a href="mailto:admissions@cilgglobal.org">admissions@cilgglobal.org</a> to enquire about RPL eligibility.</p>
             </div></div>
           </div>
 
         </div>
-      </div><!-- /membership -->
+      </div>
 
-      <!-- ── QUALIFICATIONS ── -->
+      <!-- QUALIFICATIONS -->
       <div class="faq-section-block" data-section="qualifications">
         <div class="faq-section-header">
           <div class="faq-section-icon">📜</div>
@@ -762,15 +732,15 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>CILG operates a five-level Qualification Framework in Leadership and Governance, designed as a progressive academic and professional pathway:</p>
+              <p>CILG operates a five-level Professional Qualification Framework (PQF) in Leadership and Governance, structured as a progressive competency-based pathway:</p>
               <ul>
-                <li><strong>Level 1:</strong> Foundation Certificate in Leadership &amp; Governance</li>
-                <li><strong>Level 2:</strong> Certificate in Leadership &amp; Governance</li>
-                <li><strong>Level 3:</strong> Diploma in Leadership &amp; Governance</li>
-                <li><strong>Level 4:</strong> Advanced Diploma in Leadership &amp; Governance</li>
-                <li><strong>Level 5:</strong> Postgraduate Diploma / Strategic Leadership &amp; Governance</li>
+                <li><strong>Level 1 — Foundation:</strong> Certificate in Leadership and Governance (3–6 months)</li>
+                <li><strong>Level 2 — Knowledge:</strong> Diploma in Leadership and Governance (6–9 months) → Affiliate Member (AfCILG)</li>
+                <li><strong>Level 3 — Skills:</strong> Advanced Diploma in Leadership and Governance (9–12 months) → Associate Member (ACILG)</li>
+                <li><strong>Level 4 — Professional:</strong> Executive Diploma in Leadership and Governance (12–18 months) → Full Member (MCILG)</li>
+                <li><strong>Level 5 — Expert:</strong> Chartered Professional in Leadership and Governance (18–24 months) → Fellow (FCILG)</li>
               </ul>
-              <p>Each qualification builds competence progressively from foundational principles through to strategic mastery. See the <a href="qualifications.html">Qualification Framework</a> for full programme outlines.</p>
+              <p>Each level comprises five modules. See the <a href="qualifications.html">Qualification Framework</a> for full programme outlines.</p>
             </div></div>
           </div>
 
@@ -780,8 +750,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Yes. CILG qualifications are designed to meet international standards in professional education and are recognised across CILG's global membership network. As CILG continues to grow its partnerships and formal recognition agreements with institutions and regulatory bodies worldwide, the standing of its qualifications is continually strengthened.</p>
-              <p>Employers and institutions recognising CILG qualifications span multiple countries across Africa, North America, Europe, and Asia.</p>
+              <p>Yes. CILG qualifications are designed to meet international standards in professional education and draw conceptual alignment from globally respected frameworks including those of ACCA, CIMA, CIPD, and the Institute of Directors (IoD). They are recognised across CILG's global membership network, with employers and institutions spanning multiple countries across Africa, North America, Europe, and Asia.</p>
             </div></div>
           </div>
 
@@ -791,13 +760,15 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Entry requirements differ by qualification level. Generally:</p>
+              <p>Entry requirements differ by qualification level:</p>
               <ul>
-                <li>Levels 1–2 are accessible to individuals with secondary education or foundational professional experience</li>
-                <li>Levels 3–4 require prior qualifications at a lower level or relevant professional experience</li>
-                <li>Level 5 typically requires a bachelor's degree or equivalent, plus relevant professional experience</li>
+                <li><strong>Level 1:</strong> Minimum age 18; high school diploma or equivalent; no prior professional experience required</li>
+                <li><strong>Level 2:</strong> Completion of Level 1, or recognised prior learning equivalent; OR 2+ years' relevant experience plus a post-secondary certificate</li>
+                <li><strong>Level 3:</strong> Completion of Level 2 (or approved RPL equivalent); minimum 2 years' relevant professional experience</li>
+                <li><strong>Level 4:</strong> Completion of Level 3 and current Associate Membership; minimum 5 years' experience (3 in a senior leadership/governance role)</li>
+                <li><strong>Level 5:</strong> Completion of Level 4 and current Full Membership; minimum 8 years' progressive experience (5 at senior/executive level); endorsement by two existing FCILG Fellows</li>
               </ul>
-              <p>CILG also considers the Recognition of Prior Learning (RPL) for candidates with substantial professional experience but without formal academic prerequisites. Full entry criteria are on the <a href="qualifications.html">Qualifications page</a>.</p>
+              <p>Full criteria are on the <a href="qualifications.html">Qualifications page</a>.</p>
             </div></div>
           </div>
 
@@ -807,18 +778,25 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Assessment methodologies vary by level and programme but typically include a combination of: written assignments and case studies; examinations (online or invigilated); reflective professional portfolios; and project or research work at higher levels. All assessments are designed to evaluate both theoretical knowledge and practical application of leadership and governance principles.</p>
+              <p>Assessment methods increase in rigour and complexity at each level. The minimum pass mark is 50% per module across all levels:</p>
+              <ul>
+                <li><strong>Level 1:</strong> Written examinations (multiple choice and short answer)</li>
+                <li><strong>Level 2:</strong> Written examinations and short case study responses</li>
+                <li><strong>Level 3:</strong> Case study reports, professional practice assignments, and examination</li>
+                <li><strong>Level 4:</strong> Strategic assignments, portfolio evidence, and an oral/viva assessment component</li>
+                <li><strong>Level 5:</strong> Strategic dissertation/research report, executive portfolio, peer assessment, and oral defence before an examiners panel</li>
+              </ul>
             </div></div>
           </div>
 
           <div class="faq-item" data-cat="qualifications">
             <div class="faq-q">
-              <span class="faq-q-text">What is the Professional Standard Framework for qualifications?</span>
+              <span class="faq-q-text">What is the Professional Qualification Framework (PQF)?</span>
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>The Professional Standard Framework (PSF) defines the competencies, knowledge, and professional behaviours expected at each qualification level. It ensures that CILG qualifications map to real-world governance and leadership roles and that graduates are equipped with measurable, practitioner-relevant skills.</p>
-              <p>The PSF is integral to both programme design and assessment. More information is available on the <a href="qualifications.html#professional">Qualifications page</a>.</p>
+              <p>The CILG Professional Qualification Framework (PQF) is a competency-based model — rather than a purely academic credits model — meaning progression is determined by demonstrated professional knowledge, practical application, and real-world competence. It is built around five progressive levels, each comprising five rigorously designed modules that align leadership and governance theory with contemporary professional practice.</p>
+              <p>More information is available on the <a href="qualifications.html">Qualifications page</a>.</p>
             </div></div>
           </div>
 
@@ -828,14 +806,14 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Completion of a CILG qualification is a strong basis for membership application and may satisfy the academic criteria for specific membership grades. However, membership requires a separate application and assessment, including evaluation of professional experience, ethical commitment, and CPD engagement. Qualification holders are encouraged to apply for the membership grade appropriate to their overall professional profile.</p>
+              <p>Completion of a CILG qualification level is the primary pathway to the corresponding membership grade — for example, passing Level 3 leads to Associate Membership (ACILG). However, membership conferral requires a separate application process including verification of professional experience, professional references, payment of the membership fee, and signing of the Code of Professional Conduct. Qualification alone does not automatically confer membership.</p>
             </div></div>
           </div>
 
         </div>
-      </div><!-- /qualifications -->
+      </div>
 
-      <!-- ── PROFESSIONAL CERTIFICATION ── -->
+      <!-- PROFESSIONAL CERTIFICATION -->
       <div class="faq-section-block" data-section="certification">
         <div class="faq-section-header">
           <div class="faq-section-icon">🏅</div>
@@ -863,8 +841,8 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>CILG <strong>qualifications</strong> are structured academic programmes (Levels 1–5) that provide a comprehensive educational pathway in leadership and governance, building knowledge and skills progressively.</p>
-              <p>CILG <strong>certifications</strong> are competency-based credentials that validate demonstrated professional expertise in specific domains. They are generally shorter, assessment-focused, and targeted at practitioners with existing experience who wish to gain formal recognition in a particular area of practice.</p>
+              <p>CILG <strong>qualifications</strong> are structured, competency-based programmes (Levels 1–5) that provide a comprehensive professional pathway in leadership and governance, with each level linked to a specific membership grade.</p>
+              <p>CILG <strong>certifications</strong> are competency-based credentials that validate demonstrated professional expertise in specific governance or leadership domains. They are generally shorter, assessment-focused, and targeted at practitioners with existing experience who wish to gain formal recognition in a particular area of practice.</p>
               <p>Both qualifications and certifications can support membership applications and career advancement.</p>
             </div></div>
           </div>
@@ -875,7 +853,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Eligibility for CILG certifications typically requires: current CILG membership (at Associate level or above); relevant professional experience in the certification's domain; and, in some cases, completion of a prerequisite qualification or programme. Specific eligibility criteria are listed for each certification on the <a href="certifications.html">certifications page</a>.</p>
+              <p>Eligibility for CILG certifications typically requires: current CILG membership (at Affiliate level or above); relevant professional experience in the certification's domain; and, in some cases, completion of a prerequisite qualification or programme. Specific eligibility criteria are listed for each certification on the <a href="certifications.html">certifications page</a>.</p>
             </div></div>
           </div>
 
@@ -910,9 +888,9 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
           </div>
 
         </div>
-      </div><!-- /certification -->
+      </div>
 
-      <!-- ── GOVERNANCE & STANDARDS ── -->
+      <!-- GOVERNANCE & STANDARDS -->
       <div class="faq-section-block" data-section="governance">
         <div class="faq-section-header">
           <div class="faq-section-icon">⚖️</div>
@@ -925,12 +903,12 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
 
           <div class="faq-item" data-cat="governance">
             <div class="faq-q">
-              <span class="faq-q-text">What is CILG's Code of Ethics?</span>
+              <span class="faq-q-text">What is CILG's Code of Professional Conduct?</span>
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>CILG's Code of Ethics sets out the core principles of professional conduct expected of all members, certification holders, and representatives of the Institute. These principles include: integrity and honesty in all professional dealings; accountability to stakeholders and the public; transparency in governance processes; respect for persons and diversity; and commitment to continuous professional development.</p>
-              <p>All members are required to uphold the Code as a condition of membership. Breach of the Code may result in disciplinary action, including suspension or revocation of membership.</p>
+              <p>CILG's Code of Professional Conduct sets out the core principles of professional behaviour expected of all members, certification holders, and representatives of the Institute. These principles include: integrity and honesty in all professional dealings; accountability to stakeholders and the public; transparency in governance processes; respect for persons and diversity; and commitment to continuous professional development.</p>
+              <p>All members are required to sign and uphold the Code as a condition of membership. Breach of the Code may result in disciplinary action, including suspension or revocation of membership.</p>
             </div></div>
           </div>
 
@@ -940,8 +918,8 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>CILG's Professional Standards Framework (PSF) defines the knowledge, competencies, and behaviours expected of leadership and governance professionals at each stage of their career. It underpins CILG's qualifications, membership criteria, and professional certification assessments, ensuring all CILG-recognised professionals meet a consistent, high standard of practice.</p>
-              <p>The PSF is structured around core competency domains including strategic leadership, governance architecture, ethical accountability, stakeholder management, and organisational resilience.</p>
+              <p>CILG's Professional Standards Framework defines the competencies, knowledge, and professional behaviours expected of leadership and governance professionals at each stage of their career. It underpins CILG's qualifications, membership criteria, and professional certification assessments, ensuring all CILG-recognised professionals meet a consistent, high standard of practice.</p>
+              <p>More information is available on the <a href="psf.html">Professional Standard Framework</a> page.</p>
             </div></div>
           </div>
 
@@ -978,9 +956,9 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
           </div>
 
         </div>
-      </div><!-- /governance -->
+      </div>
 
-      <!-- ── VERIFICATION & CPD ── -->
+      <!-- VERIFICATION & CPD -->
       <div class="faq-section-block" data-section="verification">
         <div class="faq-section-header">
           <div class="faq-section-icon">✅</div>
@@ -1008,8 +986,8 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>Continuing Professional Development (CPD) refers to the ongoing learning and professional activities that members undertake to maintain and enhance their knowledge, skills, and professional competence. CILG requires all members to engage in CPD as a condition of membership renewal, reflecting the Institute's commitment to lifelong professional growth and the currency of governance practice.</p>
-              <p>CPD activities recognised by CILG include formal training, conferences, workshops, peer learning, published research, mentoring, and governance roles. Members must log and evidence their CPD activities annually.</p>
+              <p>Continuing Professional Development (CPD) refers to the ongoing learning and professional activities that members undertake to maintain and enhance their knowledge, skills, and professional competence. CILG requires all members from Affiliate level upwards to engage in CPD as a condition of annual membership renewal.</p>
+              <p>CPD activities recognised by CILG include attending conferences and seminars, completing additional qualifications or training, publishing articles or papers, mentoring junior professionals, board service, committee participation, and verified self-directed learning. Members must log and evidence their CPD activities annually via the CILG CPD Online Portal.</p>
             </div></div>
           </div>
 
@@ -1019,8 +997,14 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
               <span class="faq-q-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </div>
             <div class="faq-a"><div class="faq-a-inner">
-              <p>CILG's CPD requirements vary by membership grade. Higher membership grades typically carry greater CPD obligations reflecting the increased professional responsibilities associated with senior designations. Specific annual CPD hour requirements for each grade are outlined in the CILG Membership Framework and the Professional Standards Framework documentation.</p>
-              <p>For grade-specific CPD requirements, refer to the <a href="membership.html">Membership Framework</a> or contact <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>.</p>
+              <p>Annual CPD requirements vary by membership grade as follows:</p>
+              <ul>
+                <li><strong>Affiliate Member (AfCILG):</strong> 20 hours per year — recorded via the CILG CPD Online Portal</li>
+                <li><strong>Associate Member (ACILG):</strong> 30 hours per year — recorded via CILG CPD Online Portal and Annual Return</li>
+                <li><strong>Full Member (MCILG):</strong> 40 hours per year — recorded via CPD Portfolio and Annual Return</li>
+                <li><strong>Fellow (FCILG):</strong> 40 hours per year — recorded via CPD Portfolio, Annual Return, and Peer Review</li>
+              </ul>
+              <p>Student Members are not subject to a formal CPD requirement. For further details, contact <a href="mailto:membership@cilgglobal.org">membership@cilgglobal.org</a>.</p>
             </div></div>
           </div>
 
@@ -1035,7 +1019,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
           </div>
 
         </div>
-      </div><!-- /verification -->
+      </div>
 
       <!-- No results message -->
       <div class="faq-no-results" id="noResults">
@@ -1044,11 +1028,11 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
         <p>Try a different search term, or <a href="contact.html" style="color:var(--forest-lt);font-weight:600">contact us</a> and we'll answer your question directly.</p>
       </div>
 
-    </div><!-- /faqSections -->
+    </div>
   </div>
 </div>
 
-<!-- ═══════ CTA BAND ═══════ -->
+<!-- CTA BAND -->
 <section class="cta-band">
   <div class="cta-band-inner">
     <div>
@@ -1057,17 +1041,17 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
       <p>Join a global community of governance and leadership professionals. Gain internationally recognised designatory letters, CPD access, and the credentials that set you apart.</p>
     </div>
     <div class="cta-band-actions">
-      <a href="membership.html#apply" class="btn-lime">Apply for Membership →</a>
+      <a href="appn.html" class="btn-lime">Apply for Membership →</a>
       <a href="contact.html" class="btn-outline-white">Contact Us</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-        <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
+      <h3><img src="assets/icons/cilg-global.jpg" height="80" width="80" alt="CILG Logo" style="border-radius:8px"></h3>
       <div class="footer-brand-sub">Chartered Institute of Leadership and Governance</div>
       <p class="footer-brand-desc">A globally recognised professional body advancing excellence in leadership and governance through internationally accredited qualifications, rigorous standards, and a worldwide professional community.</p>
       <div class="footer-socials">
@@ -1081,7 +1065,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
       <h4>Quick Links</h4>
       <a href="index.html">Home</a>
       <a href="about.html">About CILG</a>
-      <a href="membership.html">Membership</a>
+      <a href="mov.html">Membership</a>
       <a href="qualifications.html">Qualifications</a>
       <a href="certifications.html">Professional Certification</a>
       <a href="faq.html">FAQs</a>
@@ -1089,7 +1073,7 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
     <div class="footer-col">
       <h4>About the Institute</h4>
       <a href="about.html">Institute Overview</a>
-      <a href="about.html#vision">Vision &amp; Mission</a>
+      <a href="vms.html">Vision &amp; Mission</a>
       <a href="obj.html">Objectives</a>
       <a href="bod.html">Board of Governors</a>
       <a href="cd.html">Country Directors</a>
@@ -1100,13 +1084,13 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
       <h4>Member Portal</h4>
       <a href="appn.html">Application Portal</a>
       <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
-      <a href="membership.html#apply">Apply for Membership</a>
+      <a href="appn.html">Apply for Membership</a>
       <a href="cev.html">Certificate Verification Guidelines</a>
     </div>
     <div class="footer-col">
       <h4><a href="contact.html" style="color:rgba(255,255,255,.35)">Contact Us</a></h4>
       <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
-            <a href="tel:+15753298396">📞 +1 (575) 329-8396</a>
+      <a href="tel:+15753298396">📞 +1 (575) 329-8396</a>
       <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
       <div style="margin-top:.8rem;font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.7">
         2222 W. Grand River Ave STE A<br>Okemos, MI 48864<br>United States of America
@@ -1124,11 +1108,9 @@ footer { background: var(--forest); border-top: 1px solid rgba(255,255,255,.07);
 </footer>
 
 <script>
-// ── NAV SCROLL ──
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-// ── HAMBURGER ──
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
@@ -1142,26 +1124,20 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   document.body.style.overflow = '';
 }));
 
-// ── ACCORDION ──
 document.querySelectorAll('.faq-q').forEach(q => {
   q.addEventListener('click', () => {
     const item = q.closest('.faq-item');
     const wasOpen = item.classList.contains('open');
-    // close all
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!wasOpen) item.classList.add('open');
   });
 });
 
-// ── TABS & SIDEBAR FILTER ──
 function filterCat(cat) {
-  // update tab active
   document.querySelectorAll('.faq-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
   document.querySelectorAll('.faq-sidebar-link').forEach(l => l.classList.toggle('active', l.dataset.cat === cat));
-
   const sections = document.querySelectorAll('.faq-section-block');
   const items = document.querySelectorAll('.faq-item');
-
   if (cat === 'all') {
     sections.forEach(s => s.style.display = '');
     items.forEach(i => i.style.display = '');
@@ -1177,35 +1153,28 @@ document.querySelectorAll('.faq-tab, .faq-sidebar-link').forEach(el => {
   el.addEventListener('click', () => filterCat(el.dataset.cat));
 });
 
-// ── SEARCH ──
 document.getElementById('faqSearch').addEventListener('input', function() {
   const q = this.value.toLowerCase().trim();
   const sections = document.querySelectorAll('.faq-section-block');
   const items = document.querySelectorAll('.faq-item');
-
-  // reset tabs
   document.querySelectorAll('.faq-tab, .faq-sidebar-link').forEach(t => t.classList.toggle('active', t.dataset.cat === 'all'));
-
   if (!q) {
     sections.forEach(s => s.style.display = '');
     items.forEach(i => i.style.display = '');
     document.getElementById('noResults').style.display = 'none';
     return;
   }
-
   let anyVisible = false;
   items.forEach(item => {
     const text = item.textContent.toLowerCase();
     const match = text.includes(q);
     item.style.display = match ? '' : 'none';
-    if (match) { anyVisible = true; if (match) item.classList.remove('open'); }
+    if (match) { anyVisible = true; item.classList.remove('open'); }
   });
-
   sections.forEach(s => {
     const visible = [...s.querySelectorAll('.faq-item')].some(i => i.style.display !== 'none');
     s.style.display = visible ? '' : 'none';
   });
-
   document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
 });
 </script>

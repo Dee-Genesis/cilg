@@ -13,23 +13,23 @@
    ROOT & RESET
 ══════════════════════════════════════════ */
 :root {
-  --bg:         #f4f2ee;
-  --bg-off:     #e8e4de;
-  --forest:     #1e2a3a;
-  --forest-mid: #243241;
-  --forest-lt:  #2c3e4e;
-  --lime:       #b52a3a;
-  --lime-dk:    #9e1f2e;
-  --lime-pale:  #fbe9eb;
-  --white:      #ffffff;
-  --g100:       #e8e4de;
-  --g200:       #ddd6ce;
-  --g300:       #c4bcb2;
-  --g500:       #8b857c;
-  --text:       #1e2a3a;
-  --text2:      #3a4045;
-  --gold:       #c9a84c;
-  --gold-lt:    #e0c47a;
+  --bg:         #F5F4F1;  /* Warm off-white — page background */
+  --bg-off:     #EAE8E4;  /* Slightly darker warm off-white */
+  --forest:     #212121;  /* Near-black — all dark surfaces, panels, table headers */
+  --forest-mid: #2E2E2E;  /* Slightly lighter near-black — gradients, helpline panel */
+  --forest-lt:  #4A4A4A;  /* Mid-grey — secondary text, labels */
+  --lime:       #A00000;  /* Rich red — CTAs, accents, highlights */
+  --lime-dk:    #720000;  /* Deep red — hover states, borders */
+  --lime-pale:  #F5E6E6;  /* Pale red background */
+  --white:      #FFFFFF;
+  --g100:       #EAE8E4;
+  --g200:       #DDD9D3;
+  --g300:       #C4BCB2;
+  --g500:       #8B857C;
+  --text:       #212121;
+  --text2:      #4A4A4A;
+  --gold:       #C9A84C;
+  --gold-lt:    #E0C47A;
   --ff-head:    'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:    'DM Sans', system-ui, sans-serif;
   --tr:         .25s cubic-bezier(.4,0,.2,1);
@@ -52,12 +52,12 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(244,242,238,0.92);
+  background: rgba(245,244,241,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
-.nav.scrolled { height: 58px; background: rgba(244,242,238,0.98); box-shadow: 0 2px 24px rgba(30,42,58,.08); }
+.nav.scrolled { height: 58px; background: rgba(245,244,241,0.98); box-shadow: 0 2px 24px rgba(33,33,33,.08); }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
 .nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
@@ -70,8 +70,8 @@ img { max-width: 100%; display: block; }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
 .nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
-.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 220px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(30,42,58,.12); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
+.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 220px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(33,33,33,.12); }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 .nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
@@ -95,13 +95,13 @@ img { max-width: 100%; display: block; }
 ══════════════════════════════════════════ */
 .page-hero {
   position: relative; min-height: 52vh; padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(30,42,58,.65) 0%, rgba(30,42,58,.80) 100%),
+  background: linear-gradient(135deg, rgba(33,33,33,.65) 0%, rgba(33,33,33,.80) 100%),
               url('assets/images/hero3.jpg') center/cover no-repeat;
   display: flex; align-items: center; overflow: hidden;
 }
-.page-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(181,42,58,.07) 0%, transparent 70%); pointer-events: none; }
+.page-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(160,0,0,.07) 0%, transparent 70%); pointer-events: none; }
 .hero-inner { position: relative; z-index: 2; max-width: 1260px; margin: 0 auto; padding: 4.5rem 3rem; width: 100%; }
-.hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(181,42,58,.15); border: 1px solid var(--lime-dk); color: var(--lime-pale); padding: 4px 14px; border-radius: 40px; font-size: .63rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1.4rem; animation: fadeUp .6s ease both; }
+.hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(160,0,0,.15); border: 1px solid var(--lime-dk); color: var(--lime-pale); padding: 4px 14px; border-radius: 40px; font-size: .63rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1.4rem; animation: fadeUp .6s ease both; }
 .hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
 .hero-desc { font-size: .97rem; color: rgba(255,255,255,.8); line-height: 1.85; max-width: 620px; margin-bottom: 2rem; border-left: 3px solid var(--lime); padding-left: .9rem; animation: fadeUp .7s ease .3s both; }
 .hero-grades-strip { display: flex; gap: .5rem; flex-wrap: wrap; animation: fadeUp .7s ease .45s both; }
 .hgs-pill { padding: 5px 14px; border-radius: 40px; font-size: .66rem; font-weight: 700; letter-spacing: .08em; font-family: var(--ff-head); cursor: pointer; transition: all var(--tr); border: 1.5px solid rgba(255,255,255,.2); color: rgba(255,255,255,.75); background: rgba(255,255,255,.08); }
-.hgs-pill:hover { border-color: var(--lime); color: var(--lime); background: rgba(181,42,58,.1); }
+.hgs-pill:hover { border-color: var(--lime); color: var(--lime); background: rgba(160,0,0,.1); }
 .hero-bar { height: 3px; background: var(--lime-dk); }
 
 /* ══════════════════════════════════════════
@@ -125,13 +125,13 @@ img { max-width: 100%; display: block; }
 /* ══════════════════════════════════════════
    STICKY GRADE NAV
 ══════════════════════════════════════════ */
-.grade-nav { position: sticky; top: var(--nav-h); z-index: 500; background: var(--white); border-bottom: 1px solid var(--g200); padding: 0 3rem; box-shadow: 0 2px 12px rgba(30,42,58,.06); }
+.grade-nav { position: sticky; top: var(--nav-h); z-index: 500; background: var(--white); border-bottom: 1px solid var(--g200); padding: 0 3rem; box-shadow: 0 2px 12px rgba(33,33,33,.06); }
 .grade-nav-inner { max-width: 1260px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
 .grade-nav-inner::-webkit-scrollbar { display: none; }
 .gnav-link { display: flex; align-items: center; gap: 6px; padding: 1rem 1.1rem; font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--text2); border-bottom: 2.5px solid transparent; white-space: nowrap; transition: all var(--tr); cursor: pointer; }
 .gnav-link:hover { color: var(--forest); border-bottom-color: var(--g200); }
 .gnav-link.active { color: var(--forest); border-bottom-color: var(--lime-dk); }
-.gnav-pill { display: inline-block; font-size: .58rem; font-weight: 800; font-family: var(--ff-head); padding: 2px 7px; border-radius: 4px; background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(158,31,46,.3); letter-spacing: .06em; }
+.gnav-pill { display: inline-block; font-size: .58rem; font-weight: 800; font-family: var(--ff-head); padding: 2px 7px; border-radius: 4px; background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(114,0,0,.3); letter-spacing: .06em; }
 .gnav-pill.gold { background: rgba(201,168,76,.1); color: var(--gold); border-color: rgba(201,168,76,.3); }
 .gnav-pill.dk { background: var(--forest); color: var(--lime); }
 
@@ -143,7 +143,7 @@ img { max-width: 100%; display: block; }
 .grade-section:nth-child(odd) { background: var(--bg); }
 /* Override for specific sections */
 .grade-section.dark { background: var(--forest); }
-.grade-section.honor { background: linear-gradient(135deg, #1e2a3a 0%, #243241 100%); }
+.grade-section.honor { background: linear-gradient(135deg, #212121 0%, #2E2E2E 100%); }
 
 .gs-inner { max-width: 1260px; margin: 0 auto; }
 
@@ -153,7 +153,7 @@ img { max-width: 100%; display: block; }
 .grade-section.honor .grade-header { border-bottom-color: rgba(201,168,76,.2); }
 .gh-num { font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--forest-lt); margin-bottom: .6rem; display: flex; align-items: center; gap: .5rem; }
 .gh-num::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 1px; }
-.grade-section.dark .gh-num, .grade-section.honor .gh-num { color: rgba(181,42,58,.6); }
+.grade-section.dark .gh-num, .grade-section.honor .gh-num { color: rgba(160,0,0,.6); }
 .grade-section.dark .gh-num::before, .grade-section.honor .gh-num::before { background: var(--lime); }
 .gh-title { font-family: var(--ff-head); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 800; color: var(--forest); letter-spacing: -.03em; line-height: 1.05; margin-bottom: .5rem; }
 .grade-section.dark .gh-title, .grade-section.honor .gh-title { color: #fff; }
@@ -165,11 +165,11 @@ img { max-width: 100%; display: block; }
 
 .gh-badge-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
 .gh-postnominal { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 800; letter-spacing: .08em; padding: .6rem 1.4rem; border-radius: 10px; background: var(--lime); color: var(--white); border: none; }
-.gh-postnominal.dark-bg { background: rgba(181,42,58,.12); color: var(--lime); border: 1.5px solid rgba(181,42,58,.35); }
+.gh-postnominal.dark-bg { background: rgba(160,0,0,.12); color: var(--lime); border: 1.5px solid rgba(160,0,0,.35); }
 .gh-postnominal.gold-bg { background: rgba(201,168,76,.15); color: var(--gold); border: 1.5px solid rgba(201,168,76,.4); font-size: 1.2rem; }
 .gh-postnominal.none { background: var(--g100); color: var(--g300); border: 1.5px solid var(--g200); font-size: 1.1rem; letter-spacing: .04em; }
 .gh-tag { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 5px; text-align: center; }
-.gh-tag.lime { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(158,31,46,.35); }
+.gh-tag.lime { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(114,0,0,.35); }
 .gh-tag.white { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.15); }
 .gh-tag.gold { background: rgba(201,168,76,.1); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
 
@@ -186,7 +186,7 @@ img { max-width: 100%; display: block; }
 .info-block.full { grid-column: 1 / -1; }
 .ib-title { font-family: var(--ff-head); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.4rem; display: flex; align-items: center; gap: .6rem; }
 .ib-title .ib-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--lime-pale); display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
-.grade-section.dark .ib-title .ib-icon { background: rgba(181,42,58,.1); }
+.grade-section.dark .ib-title .ib-icon { background: rgba(160,0,0,.1); }
 .grade-section.honor .ib-title .ib-icon { background: rgba(201,168,76,.12); }
 .ib-title span { color: var(--forest); }
 .grade-section.dark .ib-title span { color: #fff; }
@@ -198,7 +198,7 @@ img { max-width: 100%; display: block; }
 .grade-section.dark .route-block { border-bottom-color: rgba(255,255,255,.08); }
 .grade-section.honor .route-block { border-bottom-color: rgba(201,168,76,.12); }
 .route-label { display: inline-flex; align-items: center; gap: 6px; font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 3px 10px; border-radius: 5px; margin-bottom: 1rem; }
-.route-label.a { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(158,31,46,.35); }
+.route-label.a { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(114,0,0,.35); }
 .route-label.b { background: rgba(201,168,76,.1); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
 .route-label.both { background: var(--g100); color: var(--text2); border: 1px solid var(--g200); }
 .grade-section.dark .route-label.both { background: rgba(255,255,255,.06); color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.12); }
@@ -213,8 +213,8 @@ img { max-width: 100%; display: block; }
 .grade-section.honor .spec-list li::before { background: var(--gold); }
 
 /* Sub note style */
-.spec-note { font-size: .8rem; color: var(--lime-dk); background: var(--lime-pale); border: 1px solid rgba(158,31,46,.3); border-radius: 8px; padding: .7rem 1rem; margin-top: 1rem; display: flex; gap: .6rem; align-items: flex-start; }
-.grade-section.dark .spec-note { background: rgba(181,42,58,.07); border-color: rgba(181,42,58,.2); color: var(--lime); }
+.spec-note { font-size: .8rem; color: var(--lime-dk); background: var(--lime-pale); border: 1px solid rgba(114,0,0,.3); border-radius: 8px; padding: .7rem 1rem; margin-top: 1rem; display: flex; gap: .6rem; align-items: flex-start; }
+.grade-section.dark .spec-note { background: rgba(160,0,0,.07); border-color: rgba(160,0,0,.2); color: var(--lime); }
 .grade-section.honor .spec-note { background: rgba(201,168,76,.08); border-color: rgba(201,168,76,.2); color: rgba(240,208,128,.85); }
 .spec-note::before { content: 'ℹ'; font-size: .85rem; flex-shrink: 0; line-height: 1.2; }
 
@@ -243,9 +243,9 @@ img { max-width: 100%; display: block; }
 .corp-tiers tr:last-child td { border-bottom: none; }
 .corp-tiers tr:hover td { background: var(--g100); }
 .tier-badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: .67rem; font-weight: 800; font-family: var(--ff-head); letter-spacing: .08em; }
-.tier-badge.a { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(158,31,46,.35); }
-.tier-badge.f { background: rgba(44,62,78,.1); color: var(--forest-lt); border: 1px solid rgba(44,62,78,.2); }
-.tier-badge.p { background: var(--forest); color: var(--lime); border: 1px solid rgba(181,42,58,.2); }
+.tier-badge.a { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(114,0,0,.35); }
+.tier-badge.f { background: rgba(74,74,74,.1); color: var(--forest-lt); border: 1px solid rgba(74,74,74,.2); }
+.tier-badge.p { background: var(--forest); color: var(--lime); border: 1px solid rgba(160,0,0,.2); }
 
 /* ══════════════════════════════════════════
    SUMMARY GLANCE TABLE (top)
@@ -254,14 +254,14 @@ img { max-width: 100%; display: block; }
 .glance-inner { max-width: 1260px; margin: 0 auto; }
 .glance-table-wrap { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; margin-top: 2.5rem; }
 .glance-table { width: 100%; border-collapse: collapse; }
-.glance-table th { background: rgba(181,42,58,.12); color: var(--lime-pale); font-family: var(--ff-head); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .9rem 1.2rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,.08); }
+.glance-table th { background: rgba(160,0,0,.12); color: var(--lime-pale); font-family: var(--ff-head); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .9rem 1.2rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,.08); }
 .glance-table th:first-child { padding-left: 1.6rem; }
 .glance-table td { padding: .85rem 1.2rem; font-size: .83rem; color: rgba(255,255,255,.75); border-bottom: 1px solid rgba(255,255,255,.06); vertical-align: middle; }
 .glance-table td:first-child { padding-left: 1.6rem; font-weight: 700; color: #fff; font-family: var(--ff-head); }
 .glance-table tr:last-child td { border-bottom: none; }
 .glance-table tr:hover td { background: rgba(255,255,255,.03); }
 .gt-badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: .67rem; font-weight: 700; letter-spacing: .07em; font-family: var(--ff-head); }
-.gt-badge.lime { background: rgba(181,42,58,.15); color: var(--lime); border: 1px solid rgba(181,42,58,.3); }
+.gt-badge.lime { background: rgba(160,0,0,.15); color: var(--lime); border: 1px solid rgba(160,0,0,.3); }
 .gt-badge.gold { background: rgba(201,168,76,.12); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
 .gt-badge.none { background: rgba(255,255,255,.05); color: rgba(255,255,255,.35); border: 1px solid rgba(255,255,255,.1); }
 
@@ -269,24 +269,24 @@ img { max-width: 100%; display: block; }
    CTA
 ══════════════════════════════════════════ */
 .cta-section { padding: 5.5rem 3rem; background: var(--lime); position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(30,42,58,.06); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: rgba(33,33,33,.06); pointer-events: none; }
 .cta-inner { max-width: 1260px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; position: relative; }
-.cta-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--forest); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .6rem; }
-.cta-lead { font-size: .95rem; color: var(--forest-mid); max-width: 520px; }
+.cta-h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--white); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .6rem; }
+.cta-lead { font-size: .95rem; color: rgba(255,255,255,.85); max-width: 520px; }
 .cta-btns { display: flex; gap: .9rem; flex-wrap: wrap; }
 .btn-dark { padding: 13px 26px; background: var(--forest); color: #fff; font-family: var(--ff-head); font-size: .82rem; font-weight: 700; border-radius: 9px; border: none; cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-dark:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,42,58,.35); }
-.btn-outline-dark { padding: 13px 22px; background: transparent; color: var(--forest); font-size: .82rem; font-weight: 600; border-radius: 9px; border: 2px solid rgba(30,42,58,.3); cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-outline-dark:hover { border-color: var(--forest); background: rgba(30,42,58,.06); }
+.btn-dark:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(33,33,33,.35); }
+.btn-outline-dark { padding: 13px 22px; background: transparent; color: #fff; font-size: .82rem; font-weight: 600; border-radius: 9px; border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
+.btn-outline-dark:hover { border-color: #fff; background: rgba(255,255,255,.06); }
 .btn-primary { padding: 13px 26px; background: var(--lime); color: var(--white); font-family: var(--ff-head); font-size: .82rem; font-weight: 700; border-radius: 9px; border: none; cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(158,31,46,.45); }
+.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(114,0,0,.45); }
 .btn-white { padding: 13px 22px; background: rgba(255,255,255,.1); color: #fff; font-size: .82rem; font-weight: 600; border-radius: 9px; border: 1.5px solid rgba(255,255,255,.3); cursor: pointer; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
 .btn-white:hover { border-color: #fff; background: rgba(255,255,255,.2); }
 
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
-footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem 3rem 2rem; }
+footer { background: #212121; color: rgba(255,255,255,.7); padding: 4.5rem 3rem 2rem; }
 .footer-grid { max-width: 1260px; margin: 0 auto 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
 .footer-brand p { font-size: .8rem; line-height: 1.85; color: rgba(255,255,255,.55); max-width: 300px; margin-bottom: 1rem; }
 .footer-logo-text { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
@@ -296,7 +296,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; max-width: 1260px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.4); }
 .footer-social { display: flex; gap: .65rem; margin-top: 1.4rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s; }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: #fff; transform: translateY(-2px); }
 .footer-social a svg { width: 16px; height: 16px; fill: currentColor; }
 
 /* ══════════════════════════════════════════
@@ -364,7 +364,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link">Qualification Framework <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>
@@ -445,11 +445,11 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
     <h1 class="hero-h1">CILG Membership<br><em>Grades &amp; Designations</em></h1>
     <p class="hero-desc">Complete eligibility requirements, benefits, obligations, and entry routes for every CILG membership grade — from Student to Honorary Fellow.</p>
     <div class="hero-grades-strip">
-      <a class="hgs-pill" href="#grade-student">SCILG — Student</a>
+      <a class="hgs-pill" href="#grade-student"> Student</a>
       <a class="hgs-pill" href="#grade-affiliate">AffCILG — Affiliate</a>
       <a class="hgs-pill" href="#grade-associate">ACILG — Associate</a>
       <a class="hgs-pill" href="#grade-member">MCILG — Full Member</a>
-      <a class="hgs-pill" href="#grade-fellow">FCILG — Fellow</a>
+      <a class="hgs-pill" href="#grade-fellow">  Fellow</a>
       <a class="hgs-pill" href="#grade-honorary">Hon. FCILG — Honorary</a>
       <a class="hgs-pill" href="#grade-corporate">CCILG — Corporate</a>
     </div>
@@ -471,11 +471,11 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 <!-- ═══ STICKY GRADE NAV ═══ -->
 <div class="grade-nav" id="gradeNav">
   <div class="grade-nav-inner">
-    <a class="gnav-link" href="#grade-student"><span class="gnav-pill none">SCILG</span> Student</a>
+    <a class="gnav-link" href="#grade-student"><span class="gnav-pill none">-</span> Student</a>
     <a class="gnav-link" href="#grade-affiliate"><span class="gnav-pill">AffCILG</span> Affiliate</a>
     <a class="gnav-link" href="#grade-associate"><span class="gnav-pill">ACILG</span> Associate</a>
-    <a class="gnav-link" href="#grade-member"><span class="gnav-pill dk">MCILG</span> Full Member</a>
-    <a class="gnav-link" href="#grade-fellow"><span class="gnav-pill dk">FCILG</span> Fellow</a>
+    <a class="gnav-link" href="#grade-member"><span class="tier-badge a">MCILG</span> Full Member</a>
+    <a class="gnav-link" href="#grade-fellow"><span class="gnav-pill dk">-</span> Fellow</a>
     <a class="gnav-link" href="#grade-honorary"><span class="gnav-pill gold">Hon. FCILG</span> Honorary</a>
     <a class="gnav-link" href="#grade-corporate"><span class="gnav-pill">CCILG</span> Corporate</a>
   </div>
@@ -508,35 +508,35 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
           <tr>
             <td>Student</td>
             <td>Student Member</td>
-            <td><span class="gt-badge none">SCILG</span></td>
+            <td><span class="gt-badge none">-</span></td>
             <td>Enrollment in CILG PQF Level 1 or 2</td>
             <td>Active enrollment</td>
           </tr>
           <tr>
             <td>Affiliate</td>
             <td>Affiliate Member</td>
-            <td><span class="gt-badge lime">AffCILG</span></td>
+            <td><span class="gh-tag white">AffCILG</span></td>
             <td>Level 2 completion or 3+ years experience</td>
             <td>20 hours/year</td>
           </tr>
           <tr>
             <td>Associate</td>
             <td>Associate Member</td>
-            <td><span class="gt-badge lime">ACILG</span></td>
+            <td><span class="gh-tag white"">ACILG</span></td>
             <td>Level 3 Advanced Diploma or 5+ years experience</td>
             <td>30 hours/year</td>
           </tr>
           <tr>
             <td>Full Member</td>
             <td>Member</td>
-            <td><span class="gt-badge lime">MCILG</span></td>
+            <td><span class="gh-tag white">MCILG</span></td>
             <td>Level 4 Executive Diploma or 10+ years senior experience</td>
             <td>40 hours/year</td>
           </tr>
           <tr>
             <td>Fellow</td>
             <td>Fellow</td>
-            <td><span class="gt-badge lime">FCILG</span></td>
+            <td><span class="gt-badge lime">-</span></td>
             <td>Level 5 / Chartered Professional or 15+ years distinguished practice</td>
             <td>40 hours/year + portfolio</td>
           </tr>
@@ -550,7 +550,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
           <tr>
             <td>Corporate Member</td>
             <td>Corporate Member</td>
-            <td><span class="gt-badge lime">CCILG</span></td>
+            <td><span class="gh-tag white">CCILG</span></td>
             <td>Organisational application</td>
             <td>Annual survey</td>
           </tr>
@@ -574,7 +574,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
         <div class="gh-designation">Entry to the CILG Professional Community</div>
       </div>
       <div class="gh-badge-wrap">
-        <div class="gh-postnominal none">SCILG</div>
+        <div class="gh-postnominal none">-</div>
         <div class="gh-tag lime">Entry Grade</div>
       </div>
     </div>
@@ -588,7 +588,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       <!-- Eligibility -->
       <div class="info-block">
         <div class="ib-title"><div class="ib-icon">✅</div><span>Eligibility Requirements</span></div>
-        <div class="route-label both">Student Member (SCILG) — Eligibility Criteria</div>
+        <div class="route-label both">Student Member  — Eligibility Criteria</div>
         <ul class="spec-list">
           <li>Be a minimum of 18 years of age</li>
           <li>Have enrolled in and paid for at least one CILG qualification module at Level 1 or Level 2</li>
@@ -831,12 +831,12 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 
     <div class="grade-header">
       <div>
-        <div class="gh-num">Grade 4 — Senior Qualified Professional</div>
+        <div class="gh-tag white">Grade 4 — Senior Qualified Professional</div>
         <h2 class="gh-title">Full <em>Member</em></h2>
         <div class="gh-designation">MCILG | Senior Qualified Professional</div>
       </div>
       <div class="gh-badge-wrap">
-        <div class="gh-postnominal dark-bg">MCILG</div>
+        <div class="gh-postnominal ">MCILG</div>
         <div class="gh-tag white">Senior Professional</div>
       </div>
     </div>
@@ -927,27 +927,27 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 
     <div class="grade-header">
       <div>
-        <div class="gh-num">Grade 5 — The Highest Honour</div>
+        <div class="gh-designation">Grade 5 — The Highest Honour</div>
         <h2 class="gh-title">Fellow — <em>Chartered Professional</em></h2>
-        <div class="gh-designation">FCILG — Chartered Professional in Leadership and Governance</div>
+        <div class="gh-designation">  Chartered Professional in Leadership and Governance</div>
       </div>
       <div class="gh-badge-wrap">
-        <div class="gh-postnominal dark-bg">FCILG</div>
+        <div class="gh-postnominal dark-bg">-</div>
         <div class="gh-tag white">Chartered Professional</div>
       </div>
     </div>
 
     <div class="grade-overview">
-      Fellowship is the pinnacle of CILG membership and the most prestigious recognition the Institute confers upon individual members. The Fellow designation (FCILG) is awarded to those who have demonstrated exceptional mastery across the full breadth of leadership and governance practice, who have made a meaningful contribution to the advancement of the profession, and who exemplify the values and standards of CILG. Fellows are the standard-bearers of the Institute and ambassadors of the profession.
+      Fellowship is the pinnacle of CILG membership and the most prestigious recognition the Institute confers upon individual members. The Fellow designation is awarded to those who have demonstrated exceptional mastery across the full breadth of leadership and governance practice, who have made a meaningful contribution to the advancement of the profession, and who exemplify the values and standards of CILG. Fellows are the standard-bearers of the Institute and ambassadors of the profession.
       <br><br>
-      The conferral of FCILG carries with it the Chartered Professional title, placing FCILG holders in the same standing as other internationally recognized chartered professionals.
+      The conferral of fellowship carries with it the Chartered Professional title, placing FCILG holders in the same standing as other internationally recognized chartered professionals.
     </div>
 
     <div class="info-grid">
 
       <!-- Eligibility -->
       <div class="info-block full">
-        <div class="ib-title"><div class="ib-icon">✅</div><span>Eligibility Requirements — Fellow (FCILG)</span></div>
+        <div class="ib-title"><div class="ib-icon">✅</div><span>Eligibility Requirements — Fellow </span></div>
 
         <div class="route-block">
           <div class="route-label a">Route A — Standard Professional Qualification Route</div>
@@ -970,7 +970,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
             <li>Demonstrated national or international impact in the field of leadership or governance</li>
             <li>Significant publications, thought leadership, board service, policy contributions, or institutional leadership</li>
             <li>Completion of a portfolio demonstrating contribution to the profession</li>
-            <li>Nomination by three (3) existing FCILG Fellows</li>
+            <li>Nomination by three (3) existing Fellows</li>
             <li>Approval by the CILG Fellowship Admissions Committee and ratification by the CILG Board</li>
           </ul>
         </div>
@@ -981,7 +981,6 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
       <div class="info-block">
         <div class="ib-title"><div class="ib-icon">🏆</div><span>Benefits and Privileges</span></div>
         <ul class="spec-list">
-          <li>Use of post-nominal 'FCILG' — the chartered designation of CILG</li>
           <li>Right to use the title 'Chartered Professional in Leadership and Governance'</li>
           <li>CILG Fellowship Certificate, Fellowship Medal, and official designation letter</li>
           <li>Listing in the CILG Fellows Register — a publicly searchable directory of the most distinguished members</li>
@@ -1021,7 +1020,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
 
     <div class="grade-header">
       <div>
-        <div class="gh-num">Honorary Grade — By Award of the Board</div>
+        <div class="tier-badge a">Honorary Grade — By Award of the Board</div>
         <h2 class="gh-title">Honorary <em>Fellow</em></h2>
         <div class="gh-designation">Hon. FCILG | By Award of the CILG Board of Governors</div>
       </div>
@@ -1119,7 +1118,7 @@ footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 4.5rem
             </tr>
             <tr>
               <td>Premier Corporate</td>
-              <td><span class="tier-badge p">PCorp-CILG</span></td>
+              <td><span class="tier-badge a">PCorp-CILG</span></td>
               <td>Large enterprises and public bodies (500+ staff)</td>
               <td>Unlimited individual memberships</td>
             </tr>

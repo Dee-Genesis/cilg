@@ -13,21 +13,22 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #f4f2ee;
+  --bg:          #F5F4F1;  /* Warm off-white — page background */
   --bg-off:      #e8e4de;
-  --forest:      #1e2a3a;
-  --forest-mid:  #243241;
-  --forest-lt:   #2c3e4e;
-  --lime:        #b52a3a;
-  --lime-dk:     #9e1f2e;
+  --forest:      #212121;  /* Near-black — all dark surfaces, panels, table headers */
+  --forest-mid:  #2E2E2E;  /* Slightly lighter near-black — gradients, helpline panel */
+  --forest-lt:   #4A4A4A;  /* Mid-grey — secondary text, labels */
+  --lime:        #A00000;  /* Rich red — CTAs, accents, highlights */
+  --lime-dk:     #720000;  /* Deep red — hover states, borders */
   --lime-pale:   #fbe9eb;
   --white:       #ffffff;
+  --footer-bg:   #0D0D0D;  /* Near-pure black — deepest surface */
   --g100:        #e8e4de;
   --g200:        #ddd6ce;
   --g300:        #c4bcb2;
   --g500:        #8b857c;
-  --text:        #1e2a3a;
-  --text2:       #3a4045;
+  --text:        #212121;
+  --text2:       #4A4A4A;
   --gold:        #c9a84c;
   --gold-lt:     #e0c47a;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
@@ -52,15 +53,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(244,242,238,0.92);
+  background: rgba(245,244,241,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(244,242,238,0.98);
-  box-shadow: 0 2px 24px rgba(30,42,58,.08);
+  background: rgba(245,244,241,0.98);
+  box-shadow: 0 2px 24px rgba(33,33,33,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -79,7 +80,7 @@ img { max-width: 100%; display: block; }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
 .nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -87,7 +88,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(30,42,58,.12);
+  box-shadow: 0 16px 48px rgba(33,33,33,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -118,14 +119,14 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(30,42,58,.60), rgba(30,42,58,.75)), url('assets/images/hero2.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(33,33,33,.60), rgba(33,33,33,.75)), url('assets/images/hero2.jpg') center/cover no-repeat;
   overflow: hidden;
 }
 .page-hero::before {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(181,42,58,.08) 0%, transparent 50%),
+  background: radial-gradient(circle at 80% 20%, rgba(160,0,0,.08) 0%, transparent 50%),
               radial-gradient(circle at 20% 80%, rgba(201,168,76,.06) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -140,7 +141,7 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(181,42,58,.2);
+  background: rgba(160,0,0,.2);
   border: 1px solid var(--lime-dk);
   color: var(--lime);
   padding: 6px 16px;
@@ -323,7 +324,7 @@ img { max-width: 100%; display: block; }
 .value-card:hover {
   border-color: var(--lime-dk);
   transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(30,42,58,.1);
+  box-shadow: 0 16px 48px rgba(33,33,33,.1);
 }
 .value-card:hover::before { background: var(--lime-dk); }
 .value-icon {
@@ -450,7 +451,7 @@ img { max-width: 100%; display: block; }
 }
 .principle-row:hover {
   border-color: var(--lime-dk);
-  box-shadow: 0 8px 28px rgba(30,42,58,.08);
+  box-shadow: 0 8px 28px rgba(33,33,33,.08);
 }
 .principle-left {
   background: var(--g100);
@@ -497,7 +498,7 @@ img { max-width: 100%; display: block; }
    COMMITMENT BANNER
 ═══════════════════════════════════════════ */
 .commitment-banner {
-  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 55%, var(--forest-lt) 100%);
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 55%, #3a3a3a 100%);
   border-radius: 20px;
   padding: 4rem;
   margin-top: 5rem;
@@ -509,7 +510,7 @@ img { max-width: 100%; display: block; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(181,42,58,.07) 0%, transparent 60%),
+  background: radial-gradient(circle at 20% 50%, rgba(160,0,0,.07) 0%, transparent 60%),
               radial-gradient(circle at 80% 50%, rgba(201,168,76,.06) 0%, transparent 60%);
   pointer-events: none;
 }
@@ -559,7 +560,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 7px;
 }
-.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(158,31,46,.45); }
+.btn-primary:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(114,0,0,.45); }
 .btn-secondary {
   padding: 13px 22px;
   background: rgba(255,255,255,.1);
@@ -580,7 +581,7 @@ img { max-width: 100%; display: block; }
    FOOTER
 ═══════════════════════════════════════════ */
 footer {
-  background: var(--forest);
+  background: #0D0D0D;
   color: var(--white);
   padding: 3.5rem;
   margin-top: 4rem;
@@ -690,9 +691,9 @@ footer {
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link">Qualification Framework <span class="arrow"></span></span>
       <div class="nav-dropdown">
-        <a href="qualifications.html">Qualification Framework</a>
+        <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>
         <a href="psf.html">Professional Standard Framework</a>
         <a href="exp.html">Exemption Policy</a>
@@ -759,7 +760,6 @@ footer {
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span>Our Foundation</div>
     <h1 class="hero-title">Values &amp; <em>Ethics</em></h1>
     <p class="hero-subtitle">Not merely aspirational statements — operationalised standards against which CILG holds itself, its staff, and all its members accountable.</p>
   </div>

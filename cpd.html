@@ -13,29 +13,29 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --cilg-navy: #1e2a3a;
-  --cilg-crimson: #b52a3a;
-  --cilg-warm-white: #f4f2ee;
-  --cilg-warm-grey: #e8e4de;
-  --cilg-gold: #c9a84c;
+  --cilg-navy: #212121;
+  --cilg-crimson: #A00000;
+  --cilg-warm-white: #F5F4F1;
+  --cilg-warm-grey: #EAE8E4;
+  --cilg-gold: #C9A84C;
 
   --bg:          var(--cilg-warm-white);
   --bg-off:      var(--cilg-warm-grey);
   --forest:      var(--cilg-navy);
-  --forest-mid:  #2c3c4e;
-  --forest-lt:   #3f5066;
+  --forest-mid:  #2E2E2E;
+  --forest-lt:   #4A4A4A;
   --lime:        var(--cilg-crimson);
-  --lime-dk:     #9e1f2e;
-  --lime-pale:   #fbe6e8;
+  --lime-dk:     #720000;
+  --lime-pale:   #F5E6E6;
   --white:       #FFFFFF;
-  --g100:        #f0ede9;
-  --g200:        #dfdbd5;
-  --g300:        #b9b4ac;
-  --g500:        #8a847c;
+  --g100:        #EAE8E4;
+  --g200:        #DDD9D3;
+  --g300:        #C4BCB2;
+  --g500:        #8B857C;
   --text:        var(--cilg-navy);
-  --text2:       #5a554d;
+  --text2:       #4A4A4A;
   --gold:        var(--cilg-gold);
-  --gold-lt:     #e6d2a4;
+  --gold-lt:     #E6D2A4;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -58,15 +58,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(244,242,238,0.92);
+  background: rgba(245,244,241,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(244,242,238,0.98);
-  box-shadow: 0 2px 24px rgba(30,42,58,.08);
+  background: rgba(245,244,241,0.98);
+  box-shadow: 0 2px 24px rgba(33,33,33,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -85,7 +85,7 @@ img { max-width: 100%; display: block; }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
 .nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: white !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(181,42,58,.35); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -93,7 +93,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(30,42,58,.12);
+  box-shadow: 0 16px 48px rgba(33,33,33,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -123,7 +123,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(30,42,58,.62), rgba(30,42,58,.78)),
+  background: linear-gradient(135deg, rgba(33,33,33,.62), rgba(33,33,33,.78)),
               url('assets/images/hero3.jpg') center/cover no-repeat;
   overflow: hidden;
 }
@@ -143,7 +143,7 @@ img { max-width: 100%; display: block; }
 }
 .page-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(181,42,58,.18); border: 1px solid var(--lime-dk);
+  background: rgba(160,0,0,.18); border: 1px solid var(--lime-dk);
   color: #fff; padding: 4px 14px; border-radius: 40px;
   font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: 1.4rem;
@@ -172,7 +172,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2rem;
 }
 .page-hero-postnoms { display: flex; gap: .45rem; flex-wrap: wrap; }
-.pnom { padding: 3px 10px; background: rgba(181,42,58,.12); border: 1px solid rgba(181,42,58,.35); border-radius: 4px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; color: var(--lime-pale); }
+.pnom { padding: 3px 10px; background: rgba(160,0,0,.12); border: 1px solid rgba(160,0,0,.35); border-radius: 4px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; color: var(--lime-pale); }
 
 /* ═══════════════════════════════════════════
    BREADCRUMB
@@ -243,7 +243,7 @@ img { max-width: 100%; display: block; }
    CPD REQUIREMENTS TABLE — 3.3
 ═══════════════════════════════════════════ */
 .table-section { background: var(--bg-off); }
-.table-wrap { overflow-x: auto; border-radius: 14px; border: 1.5px solid var(--g200); box-shadow: 0 4px 24px rgba(30,42,58,.06); }
+.table-wrap { overflow-x: auto; border-radius: 14px; border: 1.5px solid var(--g200); box-shadow: 0 4px 24px rgba(33,33,33,.06); }
 table { width: 100%; border-collapse: collapse; background: var(--white); font-size: .84rem; }
 thead tr { background: var(--forest); }
 thead th {
@@ -261,7 +261,7 @@ tbody td { padding: .9rem 1.2rem; color: var(--text2); line-height: 1.65; vertic
 tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var(--forest); }
 .badge-grade {
   display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(181,42,58,.12); border: 1px solid rgba(158,31,46,.35);
+  background: rgba(160,0,0,.12); border: 1px solid rgba(114,0,0,.35);
   color: var(--forest-lt); padding: 2px 9px; border-radius: 4px;
   font-size: .67rem; font-weight: 700; letter-spacing: .08em;
 }
@@ -293,7 +293,7 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: var(--g200); transition: background var(--tr);
 }
-.count-card:hover { border-color: var(--lime-dk); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,42,58,.09); }
+.count-card:hover { border-color: var(--lime-dk); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(33,33,33,.09); }
 .count-card:hover::before { background: var(--lime-dk); }
 .count-icon { font-size: 1.8rem; margin-bottom: .8rem; }
 .count-num { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--forest-lt); margin-bottom: .4rem; }
@@ -318,7 +318,7 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
   border-radius: 12px; padding: 1.2rem 1.4rem;
   display: flex; gap: .75rem; align-items: flex-start;
 }
-.not-x { width: 24px; height: 24px; flex-shrink: 0; background: rgba(200,0,0,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; color: #c0392b; font-weight: 700; margin-top: .1rem; }
+.not-x { width: 24px; height: 24px; flex-shrink: 0; background: rgba(200,0,0,.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; color: #C0392B; font-weight: 700; margin-top: .1rem; }
 .not-card p { font-size: .83rem; color: var(--text2); line-height: 1.65; }
 
 /* ═══════════════════════════════════════════
@@ -346,9 +346,9 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
 .late-table td { padding: .75rem 1rem; border-bottom: 1px solid var(--g200); color: var(--text2); vertical-align: top; line-height: 1.55; }
 .late-table tr:last-child td { border-bottom: none; }
 .late-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: .67rem; font-weight: 700; }
-.late-badge.warn { background: rgba(230,160,0,.1); border: 1px solid rgba(230,160,0,.3); color: #a87800; }
-.late-badge.suspend { background: rgba(200,60,0,.08); border: 1px solid rgba(200,60,0,.25); color: #b83300; }
-.late-badge.lapse { background: rgba(150,0,0,.08); border: 1px solid rgba(150,0,0,.2); color: #8b0000; }
+.late-badge.warn { background: rgba(230,160,0,.1); border: 1px solid rgba(230,160,0,.3); color: #A87800; }
+.late-badge.suspend { background: rgba(200,60,0,.08); border: 1px solid rgba(200,60,0,.25); color: #B83300; }
+.late-badge.lapse { background: rgba(150,0,0,.08); border: 1px solid rgba(150,0,0,.2); color: #8B0000; }
 
 /* ═══════════════════════════════════════════
    PORTFOLIO REQUIREMENTS — 3.6.3
@@ -362,7 +362,7 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
   transition: all var(--tr); position: relative; overflow: hidden;
 }
 .port-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--g200); transition: background var(--tr); }
-.port-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 30px rgba(30,42,58,.08); }
+.port-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 30px rgba(33,33,33,.08); }
 .port-card:hover::before { background: var(--lime-dk); }
 .port-card.fcilg-card { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%); border-color: transparent; }
 .port-card.fcilg-card::before { background: var(--lime); }
@@ -407,10 +407,10 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
   padding: 2px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
   margin-top: .1rem;
 }
-.outcome-label.pass { background: rgba(63,80,102,.1); color: var(--forest-lt); border: 1px solid rgba(63,80,102,.25); }
-.outcome-label.rec { background: rgba(200,168,0,.1); color: #7a6400; border: 1px solid rgba(200,168,0,.25); }
-.outcome-label.refer { background: rgba(180,100,0,.1); color: #8b4c00; border: 1px solid rgba(180,100,0,.25); }
-.outcome-label.fail { background: rgba(160,0,0,.08); color: #8b0000; border: 1px solid rgba(160,0,0,.2); }
+.outcome-label.pass { background: rgba(74,74,74,.1); color: var(--forest-lt); border: 1px solid rgba(74,74,74,.25); }
+.outcome-label.rec { background: rgba(200,168,0,.1); color: #7A6400; border: 1px solid rgba(200,168,0,.25); }
+.outcome-label.refer { background: rgba(180,100,0,.1); color: #8B4C00; border: 1px solid rgba(180,100,0,.25); }
+.outcome-label.fail { background: rgba(160,0,0,.08); color: #8B0000; border: 1px solid rgba(160,0,0,.2); }
 .outcome-desc { font-size: .82rem; color: var(--text2); line-height: 1.65; }
 
 /* ═══════════════════════════════════════════
@@ -443,7 +443,7 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
 .providers-left p:last-child { margin-bottom: 0; }
 .providers-right { display: flex; flex-direction: column; gap: .85rem; }
 .prov-feature { display: flex; gap: .85rem; align-items: flex-start; }
-.prov-icon { width: 36px; height: 36px; background: rgba(181,42,58,.15); border: 1px solid rgba(181,42,58,.25); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.prov-icon { width: 36px; height: 36px; background: rgba(160,0,0,.15); border: 1px solid rgba(160,0,0,.25); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
 .prov-feature h4 { font-family: var(--ff-head); font-size: .88rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
 .prov-feature p { font-size: .79rem; color: rgba(255,255,255,.65); line-height: 1.6; }
 
@@ -451,20 +451,20 @@ tbody td:first-child { font-family: var(--ff-head); font-weight: 700; color: var
    CTA BANNER
 ═══════════════════════════════════════════ */
 .cta-section { padding: 6rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(181,42,58,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(160,0,0,.15) 0%, transparent 65%); pointer-events: none; }
 .cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 3rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .6rem; position: relative; }
 .cta-section h2 em { font-style: normal; color: var(--lime); }
 .cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.5rem; position: relative; max-width: 540px; margin-left: auto; margin-right: auto; }
 .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 .cta-btn-main { padding: 15px 34px; background: var(--lime); color: white; border-radius: 9px; font-family: var(--ff-head); font-size: .86rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
-.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,42,58,.35); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(160,0,0,.35); }
 .cta-btn-alt { padding: 15px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .86rem; font-weight: 600; transition: all var(--tr); }
 .cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
 
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
@@ -475,7 +475,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
 .footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: white; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(181,42,58,.3); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: white; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(160,0,0,.3); }
 .footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════
@@ -557,7 +557,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link">Qualification Framework </span></span>
       <div class="nav-dropdown">
         <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>
@@ -638,11 +638,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
     <h1>Continuing Professional <em>Development</em> Framework</h1>
     <p class="page-hero-sub">CPD is not optional — it is a professional obligation and a condition of continued membership at all grades above Student. Stay competent, current, and effective throughout your career.</p>
     <div class="page-hero-postnoms">
-      <span class="pnom">AfCILG</span>
-      <span class="pnom">ACILG</span>
-      <span class="pnom">MCILG</span>
-      <span class="pnom">FCILG</span>
-      <span style="font-size:.62rem;color:rgba(255,255,255,.4);align-self:center;margin-left:.3rem">— CPD mandatory at all these grades</span>
+   
     </div>
   </div>
 </section>
@@ -709,21 +705,21 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
         </thead>
         <tbody>
           <tr>
-            <td>Student (SCILG)</td>
+            <td>Student </td>
             <td>Not mandatory — encouraged</td>
             <td>Voluntary CPD log (online portal)</td>
             <td>N/A</td>
             <td>N/A</td>
           </tr>
           <tr>
-            <td>Affiliate (AfCILG) <span class="badge-grade">AfCILG</span></td>
+            <td>Affiliate  <span class="badge-grade">AffCILG</span></td>
             <td>Minimum 20 hours/year</td>
             <td>CPD Log via CILG portal + brief annual reflection statement</td>
             <td>31 January each year (for preceding calendar year)</td>
             <td>Random 10% audit</td>
           </tr>
           <tr>
-            <td>Associate (ACILG) <span class="badge-grade">ACILG</span></td>
+            <td>Associate  <span class="badge-grade">ACILG</span></td>
             <td>Minimum 30 hours/year</td>
             <td>CPD Log + Annual Reflection + evidence attachments</td>
             <td>31 January each year</td>
@@ -737,7 +733,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
             <td>Random 30% audit</td>
           </tr>
           <tr>
-            <td>Fellow (FCILG) <span class="badge-grade fellow">FCILG</span></td>
+            <td>Fellow  <span class="badge-grade fellow">-</span></td>
             <td>Minimum 40 hours/year</td>
             <td>Full CPD Portfolio + peer review component + contribution evidence</td>
             <td>31 January each year</td>
@@ -787,7 +783,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
         <p class="count-body">Attendance at professional events provides exposure to current thinking, best practices, emerging issues, and peer perspectives. Examples include:</p>
         <ul class="count-examples">
           <li>CILG Annual Conference, Regional Chapter Events, and Professional Forums</li>
-          <li>External professional body conferences (IoD, NACD, ICSA, ACFE, etc.)</li>
+          <li>External professional body conferences </li>
           <li>Board governance seminars, executive roundtables, and leadership summits</li>
           <li>Industry-specific governance and compliance events</li>
         </ul>
@@ -963,7 +959,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
       <!-- Affiliate -->
       <div class="port-card">
         <div class="port-grade">Affiliate Members</div>
-        <div class="port-postn">AfCILG</div>
+        <div class="port-postn">AffCILG</div>
         <div class="port-title">Affiliate Member CPD Portfolio</div>
         <ul class="port-req">
           <li>Completed CPD Activity Log via the portal (minimum 20 hours recorded)</li>
@@ -1001,7 +997,7 @@ footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); paddi
       <!-- Fellow -->
       <div class="port-card fcilg-card">
         <div class="port-grade">Fellows</div>
-        <div class="port-postn">FCILG</div>
+        <div class="port-postn"></div>
         <div class="port-title">Fellow CPD Portfolio</div>
         <ul class="port-req">
           <li>Full CPD Portfolio with all components as per Full Member requirements</li>

@@ -13,21 +13,21 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #f4f2ee;
-  --bg-off:      #e8e4de;
-  --forest:      #1e2a3a;
-  --forest-mid:  #243241;
-  --forest-lt:   #2c3e4e;
-  --lime:        #b52a3a;
-  --lime-dk:     #9e1f2e;
-  --lime-pale:   #fbe9eb;
+  --bg:          #F5F4F1;
+  --bg-off:      #ece9e4;
+  --forest:      #212121;
+  --forest-mid:  #2E2E2E;
+  --forest-lt:   #4A4A4A;
+  --lime:        #A00000;
+  --lime-dk:     #720000;
+  --lime-pale:   #fce8e8;
   --white:       #ffffff;
   --g100:        #e8e4de;
   --g200:        #ddd6ce;
   --g300:        #c4bcb2;
   --g500:        #8b857c;
-  --text:        #1e2a3a;
-  --text2:       #3a4045;
+  --text:        #212121;
+  --text2:       #3a3a3a;
   --gold:        #c9a84c;
   --gold-lt:     #e0c47a;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
@@ -52,15 +52,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(244,242,238,0.92);
+  background: rgba(245,244,241,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(244,242,238,0.98);
-  box-shadow: 0 2px 24px rgba(30,42,58,.08);
+  background: rgba(245,244,241,0.98);
+  box-shadow: 0 2px 24px rgba(33,33,33,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -79,7 +79,7 @@ img { max-width: 100%; display: block; }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
 .nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(30,42,58,.12);
+  box-shadow: 0 16px 48px rgba(33,33,33,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -112,7 +112,7 @@ img { max-width: 100%; display: block; }
 ═══════════════════════════════════════════ */
 .page-hero {
   position: relative; min-height: 52vh; padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(30,42,58,.62), rgba(30,42,58,.78)),
+  background: linear-gradient(135deg, rgba(33,33,33,.62), rgba(33,33,33,.78)),
               url('assets/images/hmpp3.jpg') center/cover no-repeat;
   display: flex; align-items: center; overflow: hidden;
 }
@@ -122,7 +122,7 @@ img { max-width: 100%; display: block; }
 }
 .page-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(181,42,58,.2); border: 1px solid var(--lime-dk);
+  background: rgba(160,0,0,.2); border: 1px solid var(--lime-dk);
   color: #fff; padding: 4px 14px; border-radius: 40px;
   font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: 1.4rem;
@@ -167,7 +167,7 @@ img { max-width: 100%; display: block; }
 .level-nav-link:hover { color: var(--forest); border-bottom-color: var(--g300); }
 .level-nav-link.act { color: var(--forest); border-bottom-color: var(--lime-dk); }
 .level-nav-num { width: 20px; height: 20px; border-radius: 50%; background: var(--g100); color: var(--forest); font-size: .6rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background var(--tr); }
-.level-nav-link:hover .level-nav-num, .level-nav-link.act .level-nav-num { background: var(--lime); }
+.level-nav-link:hover .level-nav-num, .level-nav-link.act .level-nav-num { background: var(--lime); color: var(--white); }
 
 /* ═══════════════════════════════════════════
    SHARED SECTION SCAFFOLDING
@@ -183,7 +183,6 @@ img { max-width: 100%; display: block; }
 .level-section { padding: 5.5rem 3rem; }
 .level-section:nth-child(odd) { background: var(--bg); }
 .level-section:nth-child(even) { background: var(--bg-off); border-top: 1px solid var(--g200); border-bottom: 1px solid var(--g200); }
-/* Level 5 always dark */
 .level-section.level-5-section { background: var(--forest); }
 .level-section.level-5-section .section-label { color: var(--lime-pale); }
 .level-section.level-5-section .section-label::before { background: var(--lime); }
@@ -212,11 +211,11 @@ img { max-width: 100%; display: block; }
 .level-tag.lime { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid var(--lime-dk); }
 .level-tag.forest { background: var(--forest); color: var(--lime); border: 1px solid var(--forest-lt); }
 .level-tag.gold { background: rgba(201,168,76,.1); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
-.level-5-section .level-tag.lime { background: rgba(181,42,58,.15); color: var(--lime); border-color: rgba(181,42,58,.3); }
+.level-5-section .level-tag.lime { background: rgba(160,0,0,.15); color: var(--lime); border-color: rgba(160,0,0,.3); }
 
 /* MILESTONE BANNER */
 .milestone-banner {
-  background: linear-gradient(135deg, var(--lime-pale) 0%, var(--lime) 100%);
+  background: linear-gradient(135deg, var(--lime-pale) 0%, #f9c0c0 100%);
   border: 1.5px solid var(--lime-dk); border-radius: 14px;
   padding: 1.2rem 1.8rem; margin-bottom: 2.5rem;
   display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
@@ -274,14 +273,14 @@ img { max-width: 100%; display: block; }
   overflow: hidden; transition: all var(--tr);
 }
 .level-5-section .module-card { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1); }
-.module-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 28px rgba(30,42,58,.08); }
-.level-5-section .module-card:hover { border-color: rgba(181,42,58,.3); box-shadow: 0 6px 28px rgba(0,0,0,.2); }
+.module-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 28px rgba(33,33,33,.08); }
+.level-5-section .module-card:hover { border-color: rgba(160,0,0,.3); box-shadow: 0 6px 28px rgba(0,0,0,.2); }
 .module-card-head {
   display: flex; align-items: center; gap: 1rem;
   padding: 1.1rem 1.5rem; cursor: pointer; user-select: none;
 }
 .module-num { width: 32px; height: 32px; border-radius: 8px; background: var(--lime-pale); color: var(--lime-dk); font-family: var(--ff-head); font-size: .72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: -.01em; }
-.level-5-section .module-num { background: rgba(181,42,58,.2); color: var(--lime); }
+.level-5-section .module-num { background: rgba(160,0,0,.2); color: var(--lime); }
 .module-title { font-family: var(--ff-head); font-size: .92rem; font-weight: 700; color: var(--forest); flex: 1; }
 .level-5-section .module-title { color: #fff; }
 .module-toggle { width: 24px; height: 24px; border-radius: 50%; background: var(--g100); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--tr); font-size: .75rem; color: var(--forest); }
@@ -325,7 +324,7 @@ img { max-width: 100%; display: block; }
 ═══════════════════════════════════════════ */
 .cpd-section { padding: 5rem 3rem; background: var(--bg); }
 .cpd-inner { max-width: 1260px; margin: 0 auto; }
-.cpd-table-wrap { margin-top: 2rem; overflow-x: auto; border-radius: 14px; border: 1.5px solid var(--g200); background: var(--white); box-shadow: 0 4px 20px rgba(30,42,58,.05); }
+.cpd-table-wrap { margin-top: 2rem; overflow-x: auto; border-radius: 14px; border: 1.5px solid var(--g200); background: var(--white); box-shadow: 0 4px 20px rgba(33,33,33,.05); }
 .cpd-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
 .cpd-table thead tr { background: var(--forest); }
 .cpd-table thead th { padding: 1rem 1.4rem; text-align: left; font-family: var(--ff-head); font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); }
@@ -346,19 +345,19 @@ img { max-width: 100%; display: block; }
 .exemption-text h3 { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -.02em; margin-bottom: .4rem; }
 .exemption-text p { font-size: .85rem; color: rgba(255,255,255,.65); max-width: 560px; line-height: 1.75; }
 .exemption-cta { padding: 13px 28px; background: var(--lime); color: var(--white); font-family: var(--ff-head); font-size: .82rem; font-weight: 700; border-radius: 9px; white-space: nowrap; transition: all var(--tr); display: inline-flex; align-items: center; gap: 7px; }
-.exemption-cta:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(181,42,58,.35); }
+.exemption-cta:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(160,0,0,.35); }
 
 /* ═══════════════════════════════════════════
    CTA SECTION
 ═══════════════════════════════════════════ */
 .cta-section { padding: 6rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(181,42,58,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(160,0,0,.15) 0%, transparent 65%); pointer-events: none; }
 .cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 3rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .6rem; position: relative; }
 .cta-section h2 em { font-style: normal; color: var(--lime); }
 .cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.5rem; position: relative; max-width: 540px; margin-left: auto; margin-right: auto; }
 .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 .cta-btn-main { padding: 15px 34px; background: var(--lime); color: var(--white); border-radius: 9px; font-family: var(--ff-head); font-size: .86rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
-.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,42,58,.35); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(160,0,0,.35); }
 .cta-btn-alt { padding: 15px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .86rem; font-weight: 600; transition: all var(--tr); }
 .cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
 
@@ -374,7 +373,7 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
@@ -385,7 +384,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
 .footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s; text-decoration: none; }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: #fff; transform: translateY(-2px); }
 .footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════
@@ -460,7 +459,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link act">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link act">Qualification Framework <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>
@@ -544,7 +543,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
     <div class="page-hero-meta">
       <span class="page-hero-pill">Foundation → Expert</span>
       <span class="page-hero-pill">5 Levels · 25 Modules</span>
-      <span class="page-hero-pill">Edition 1.0 · 2024</span>
+      <span class="page-hero-pill">Edition 2.0 · 2026</span>
     </div>
   </div>
   <div class="page-hero-bottom"></div>
@@ -577,12 +576,8 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 <div class="trust-bar">
   <div class="trust-bar-label">Aligned with</div>
   <div class="trust-items">
-    <span class="trust-item">ACCA Standards</span>
-    <span class="trust-item">CIMA Framework</span>
-    <span class="trust-item">CIPD Competency Model</span>
-    <span class="trust-item">Institute of Directors (IoD)</span>
-    <span class="trust-item">Competency-Based Assessment</span>
-    <span class="trust-item">Practice-Oriented Qualifications</span>
+    <span class="trust-item">Leading Professional bodies</span>
+    Qualifications</span>
   </div>
 </div>
 
@@ -602,7 +597,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <div class="level-tags">
           <span class="level-tag lime">3–6 Months</span>
           <span class="level-tag lime">5 Modules</span>
-          <span class="level-tag forest">Student Member</span>
+          <span class="level-tag lime">Student Member</span>
         </div>
       </div>
     </div>
@@ -641,7 +636,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         </ul>
       </div>
       <div class="entry-req-block" style="background:var(--forest);border-color:var(--forest-lt);">
-        <h3 style="color:var(--lime);"><span class="req-icon">🎓</span>Award on Completion</h3>
+        <h3 style="color:var(--white);"><span class="req-icon">🎓</span<span class="level-tag lime">Award on Completion</span></h3>
         <ul class="req-list">
           <li style="color:rgba(255,255,255,.7);">Certificate in Leadership and Governance</li>
           <li style="color:rgba(255,255,255,.7);">Eligible to enroll as CILG Student Member</li>
@@ -756,7 +751,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
     <!-- Progression -->
     <h3 style="font-family:var(--ff-head);font-size:.95rem;font-weight:800;color:var(--forest-lt);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">2.4 Progression from Level 1</h3>
     <div class="progression-block">
-      <h3>Progression Requirements to Level 2</h3>
+      <h3 style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Progression Requirements to Level 2</h3>
       <div class="prog-steps">
         <div class="prog-step"><div class="prog-step-num">1</div><div class="prog-step-text">Pass all 5 modules at Level 1 <strong>(minimum 50% per module)</strong></div></div>
         <div class="prog-step"><div class="prog-step-num">2</div><div class="prog-step-text">Upgrade CILG membership to <strong>Student Member</strong> upon enrollment</div></div>
@@ -784,7 +779,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <div class="level-tags">
           <span class="level-tag lime">6–9 Months</span>
           <span class="level-tag lime">5 Modules</span>
-          <span class="level-tag forest">AfCILG</span>
+          <span class="level-tag lime">AffCILG</span>
         </div>
       </div>
     </div>
@@ -815,7 +810,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <li>Completion of CILG Level 1 Foundation Certificate, <strong>OR</strong></li>
         <li>Recognized prior learning equivalent to Level 1 (subject to exemption approval)</li>
         <li>OR: Minimum of two (2) years' relevant professional experience combined with a recognized post-secondary certificate</li>
-        <li>Registration as a CILG Student Member (SCILG)</li>
+        <li>Registration as a CILG Student Member </li>
       </ul>
     </div>
 
@@ -923,7 +918,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
     <h3 style="font-family:var(--ff-head);font-size:.95rem;font-weight:800;color:var(--forest-lt);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">2.8 Progression from Level 2</h3>
     <div class="progression-block">
-      <h3>Progression Requirements to Level 3</h3>
+      <h3 style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Progression Requirements to Level 3</h3>
       <div class="prog-steps">
         <div class="prog-step"><div class="prog-step-num">1</div><div class="prog-step-text">Pass all 5 modules at Level 2 <strong>(minimum 50% per module)</strong></div></div>
         <div class="prog-step"><div class="prog-step-num">2</div><div class="prog-step-text">Submit a brief <strong>Professional Development Reflection (500 words)</strong> evidencing application of learning</div></div>
@@ -950,7 +945,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <div class="level-tags">
           <span class="level-tag lime">9–12 Months</span>
           <span class="level-tag lime">5 Modules</span>
-          <span class="level-tag forest">ACILG — Associate Member</span>
+          <span class="level-tag lime">ACILG — Associate Member</span>
         </div>
       </div>
     </div>
@@ -960,7 +955,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
       <div class="ms-body">
         <div class="ms-title">MILESTONE — Completion of Level 3 awards the designation Associate Member of CILG (ACILG)</div>
         <div class="ms-detail">Post-nominal: <strong>ACILG</strong> &nbsp;·&nbsp; Membership Grade: Associate Member &nbsp;·&nbsp; Holder is recognized as a qualified professional in leadership and governance</div>
-        <span class="ms-postn">ACILG</span>
+        <span class="level-tag lime">ACILG</span>
       </div>
     </div>
 
@@ -1098,7 +1093,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
     <h3 style="font-family:var(--ff-head);font-size:.95rem;font-weight:800;color:var(--forest-lt);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">2.12 Progression from Level 3 to Associate Member</h3>
     <div class="progression-block">
-      <h3>Progression to Associate Membership (ACILG)</h3>
+      <h3 style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Progression to Associate Membership (ACILG)</h3>
       <div class="prog-steps">
         <div class="prog-step"><div class="prog-step-num">1</div><div class="prog-step-text">Pass all 5 modules at Level 3 <strong>(minimum 50% per module)</strong></div></div>
         <div class="prog-step"><div class="prog-step-num">2</div><div class="prog-step-text">Submit a <strong>2,000-word Professional Competency Reflection</strong> linking Level 3 learning to real workplace experience</div></div>
@@ -1131,7 +1126,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <div class="level-tags">
           <span class="level-tag lime">12–18 Months</span>
           <span class="level-tag lime">5 Modules</span>
-          <span class="level-tag forest">MCILG — Full Member</span>
+          <span class="level-tag lime">MCILG — Full Member</span>
         </div>
       </div>
     </div>
@@ -1141,7 +1136,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
       <div class="ms-body">
         <div class="ms-title">MILESTONE — Completion of Level 4 awards the designation Full Member of CILG (MCILG)</div>
         <div class="ms-detail">Post-nominal: <strong>MCILG</strong> &nbsp;·&nbsp; Membership Grade: Member (Full) &nbsp;·&nbsp; Holder is a Chartered-track Senior Professional in Leadership and Governance</div>
-        <span class="ms-postn">MCILG</span>
+        <span class="level-tag lime">MCILG</span>
       </div>
     </div>
 
@@ -1170,7 +1165,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <li>Completion of CILG Level 3 Diploma (Skills Level) and current Associate Membership (ACILG), <strong>OR</strong></li>
         <li>Approved Recognition of Prior Learning (RPL) with CILG Exemptions Committee confirmation — limited to one module</li>
         <li>Minimum five (5) years of relevant professional experience, of which at least three (3) years must be in a senior leadership, governance, or executive management role</li>
-        <li>Completion of a CILG-accredited Professional Mentoring Review with an approved CILG Mentor (MCILG or FCILG designate)</li>
+        <li>Completion of a CILG-accredited Professional Mentoring Review with an approved CILG Mentor (MCILG or Fellow designate)</li>
         <li>Submission of a Professional Portfolio demonstrating senior-level leadership and governance practice</li>
       </ul>
     </div>
@@ -1279,7 +1274,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
     <h3 style="font-family:var(--ff-head);font-size:.95rem;font-weight:800;color:var(--forest-lt);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">2.16 Progression from Level 4 to Full Membership</h3>
     <div class="progression-block">
-      <h3>Progression to Full Membership (MCILG)</h3>
+      <h3 style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Progression to Full Membership (MCILG)</h3>
       <div class="prog-steps">
         <div class="prog-step"><div class="prog-step-num">1</div><div class="prog-step-text">Pass all 5 modules at Level 4 <strong>(minimum 50% per module)</strong></div></div>
         <div class="prog-step"><div class="prog-step-num">2</div><div class="prog-step-text">Complete a <strong>Viva Voce (Professional Discussion)</strong> with two CILG assessors — 45 minutes</div></div>
@@ -1289,7 +1284,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <div class="prog-step"><div class="prog-step-num">6</div><div class="prog-step-text">Recommit to <strong>CILG Code of Professional Conduct</strong></div></div>
       </div>
       <div class="prog-award">
-        <span class="prog-award-postn">MCILG</span>
+        <span class="level-tag lime">MCILG</span>
         <span class="prog-award-desc">Upon approval: Conferred as Member of the Chartered Institute of Leadership and Governance (MCILG)</span>
       </div>
     </div>
@@ -1311,9 +1306,9 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <h2 class="level-title">Expert Level</h2>
         <p class="level-qual-title" style="color:rgba(255,255,255,.55);">Chartered Professional in Leadership and Governance</p>
         <div class="level-tags">
-          <span class="level-tag lime">18–24 Months</span>
-          <span class="level-tag lime">5 Modules</span>
-          <span class="level-tag lime">FCILG — Fellow &amp; Chartered</span>
+          <span class="level-tag lime" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">18–24 Months</span>
+          <span class="level-tag lime" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">5 Modules</span>
+          <span class="level-tag lime" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7"> Fellow &amp; Chartered</span>
         </div>
       </div>
     </div>
@@ -1322,8 +1317,8 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
       <div class="ms-icon">🏆</div>
       <div class="ms-body">
         <div class="ms-title" style="color:#fff;">MILESTONE — Completion of Level 5 awards the designation Fellow of CILG (FCILG) — the Chartered designation</div>
-        <div class="ms-detail" style="color:rgba(255,255,255,.55);">Post-nominal: <strong style="color:var(--lime)">FCILG</strong> &nbsp;·&nbsp; Membership Grade: Fellow &nbsp;·&nbsp; Chartered Title: Chartered Professional in Leadership and Governance &nbsp;·&nbsp; The highest professional recognition in CILG — equivalent standing with global Chartered professionals</div>
-        <span class="ms-postn">FCILG</span>
+        <div class="ms-detail" style="color:rgba(255,255,255,.55);" <strong style="color:var(--lime)"></strong> &nbsp;·&nbsp; Membership Grade: Fellow &nbsp;·&nbsp; Chartered Title: Chartered Professional in Leadership and Governance &nbsp;·&nbsp; The highest professional recognition in CILG — equivalent standing with global Chartered professionals</div>
+        <span class="ms-postn"></span>
       </div>
     </div>
 
@@ -1347,7 +1342,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
     <h3 style="font-family:var(--ff-head);font-size:.95rem;font-weight:800;color:var(--lime-pale);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">2.18 Entry Requirements — Level 5</h3>
     <div class="entry-req-block" style="margin-bottom:2.5rem;max-width:800px;">
-      <h3><span class="req-icon">📋</span>Level 5 Entry Requirements</h3>
+      <h3><span class="req-icon" >📋</span><span style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Level 5 Entry Requirements</span></h3>
       <ul class="req-list">
         <li>Completion of CILG Level 4 Advanced Diploma and current Full Membership (MCILG)</li>
         <li>Minimum eight (8) years of progressive professional experience in leadership, governance, or executive management</li>
@@ -1365,7 +1360,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
         <div class="module-card">
           <div class="module-card-head" onclick="toggleModule(this)">
-            <div class="module-num">5.1</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7" class="module-num">5.1</div>
             <div class="module-title">Thought Leadership in Governance and Leadership</div>
             <button class="module-toggle">▲</button>
           </div>
@@ -1385,7 +1380,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
         <div class="module-card">
           <div class="module-card-head" onclick="toggleModule(this)">
-            <div class="module-num">5.2</div>
+            <div class="module-num"style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">5.2</div>
             <div class="module-title">Global Governance, Leadership, and Geopolitical Risk</div>
             <button class="module-toggle">▲</button>
           </div>
@@ -1404,7 +1399,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
         <div class="module-card">
           <div class="module-card-head" onclick="toggleModule(this)">
-            <div class="module-num">5.3</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7" class="module-num">5.3</div>
             <div class="module-title">Sustainable Leadership and Future of Governance</div>
             <button class="module-toggle">▲</button>
           </div>
@@ -1423,7 +1418,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
         <div class="module-card">
           <div class="module-card-head" onclick="toggleModule(this)">
-            <div class="module-num">5.4</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7" class="module-num">5.4</div>
             <div class="module-title">Executive Mentoring, Coaching, and Professional Development</div>
             <button class="module-toggle">▲</button>
           </div>
@@ -1442,7 +1437,7 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
 
         <div class="module-card">
           <div class="module-card-head" onclick="toggleModule(this)">
-            <div class="module-num">5.5</div>
+            <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7" class="module-num">5.5</div>
             <div class="module-title">Professional Capstone — Leadership and Governance in Practice</div>
             <button class="module-toggle">▲</button>
           </div>
@@ -1461,9 +1456,9 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
       </div>
     </div>
 
-    <h3 style="font-family:var(--ff-head);font-size:.95rem;font-weight:800;color:var(--lime-pale);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">2.20 Progression from Level 5 to Fellowship (FCILG)</h3>
-    <div class="progression-block" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);">
-      <h3>Fellowship Conferral Process (FCILG)</h3>
+    <h3 style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">2.20 Progression from Level 5 to Fellowship </h3>
+    <div class="progression-block" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7");">
+      <h3 style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Fellowship Conferral Process </h3>
       <div class="prog-steps">
         <div class="prog-step"><div class="prog-step-num">1</div><div class="prog-step-text">Pass all 5 Level 5 modules <strong>(including successful Capstone oral defense)</strong></div></div>
         <div class="prog-step"><div class="prog-step-num">2</div><div class="prog-step-text"><strong>Full membership compliance</strong> — no outstanding disciplinary matters</div></div>
@@ -1473,10 +1468,10 @@ footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); paddi
         <div class="prog-step"><div class="prog-step-num">6</div><div class="prog-step-text"><strong>Publication of FCILG designation</strong> in the CILG Official Register</div></div>
       </div>
       <div class="prog-award">
-        <span class="prog-award-postn">FCILG</span>
+        <span class="prog-award-postn"></span>
         <div>
           <div style="font-size:.8rem;color:#fff;font-weight:600;margin-bottom:.2rem;">Chartered Professional in Leadership and Governance</div>
-          <div style="font-size:.75rem;color:rgba(255,255,255,.5);">The FCILG may also use the title 'Chartered Member' of CILG in all professional communications</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.5);">The Fellow may also use the title 'Chartered Member' of CILG in all professional communications</div>
         </div>
       </div>
     </div>
