@@ -13,26 +13,26 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;
+  --bg:          #f4f2ee;
   --bg-off:      #e8e4de;
-  --forest:      #212121;
-  --forest-mid:  #2E2E2E;
-  --forest-lt:   #4A4A4A;
-  --lime:        #A00000;
-  --lime-dk:     #720000;
-  --lime-pale:   rgba(160,0,0,.1);
+  --forest:      #1e2a3a;
+  --forest-mid:  #243241;
+  --forest-lt:   #2c3e4e;
+  --lime:        #c9a84c;
+  --lime-dk:     #a8893a;
+  --lime-pale:   #fdf7e8;
   --white:       #ffffff;
   --g100:        #e8e4de;
   --g200:        #ddd6ce;
   --g300:        #c4bcb2;
   --g500:        #8b857c;
-  --text:        #212121;
+  --text:        #1e2a3a;
   --text2:       #3a4045;
   --gold:        #c9a84c;
   --gold-lt:     #e0c47a;
   --gold-pale:   #fdf7e8;
-  --navy:        #212121;
-  --navy-mid:    #2E2E2E;
+  --navy:        #1e2a3a;
+  --navy-mid:    #2c3e50;
   --blue:        #2557a7;
   --green:       #1b6b4a;
   --green-lt:    #e6f4ef;
@@ -53,10 +53,10 @@
   --ff-mono:     'JetBrains Mono', monospace;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
   --nav-h:       68px;
-  --shadow-sm:   0 1px 3px rgba(33,33,33,.08), 0 1px 2px rgba(33,33,33,.04);
-  --shadow:      0 4px 16px rgba(33,33,33,.10), 0 2px 6px rgba(33,33,33,.06);
-  --shadow-lg:   0 12px 40px rgba(33,33,33,.14), 0 4px 12px rgba(33,33,33,.08);
-  --shadow-xl:   0 24px 64px rgba(33,33,33,.18), 0 8px 20px rgba(33,33,33,.10);
+  --shadow-sm:   0 1px 3px rgba(30,42,58,.08), 0 1px 2px rgba(30,42,58,.04);
+  --shadow:      0 4px 16px rgba(30,42,58,.10), 0 2px 6px rgba(30,42,58,.06);
+  --shadow-lg:   0 12px 40px rgba(30,42,58,.14), 0 4px 12px rgba(30,42,58,.08);
+  --shadow-xl:   0 24px 64px rgba(30,42,58,.18), 0 8px 20px rgba(30,42,58,.10);
   --radius:      8px;
   --radius-lg:   14px;
   --radius-xl:   20px;
@@ -78,15 +78,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(245,244,241,0.92);
+  background: rgba(244,242,238,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(245,244,241,0.98);
-  box-shadow: 0 2px 24px rgba(33,33,33,.08);
+  background: rgba(244,242,238,0.98);
+  box-shadow: 0 2px 24px rgba(30,42,58,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -104,8 +104,8 @@ img { max-width: 100%; display: block; }
 .nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
-.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: #b52a3a !important; color: var(--white) !important; border: 1px solid #b52a3a !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: #9e1f2e !important; border-color: #9e1f2e !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -113,7 +113,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(33,33,33,.12);
+  box-shadow: 0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -131,8 +131,8 @@ img { max-width: 100%; display: block; }
 .mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
 .mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
 .mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
-.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
-.mob-cta:hover { background: var(--lime-dk); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: #b52a3a; color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: #9e1f2e; }
 
 /* ═══════════════════════════════════════════
    HERO
@@ -141,9 +141,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   min-height: 92vh;
   padding-top: var(--nav-h);
-  background:
-    linear-gradient(135deg, rgba(33,33,33,.72) 0%, rgba(33,33,33,.82) 100%),
-    url('assets/images/hero1.jpg') center/cover no-repeat;
+  background: linear-gradient(160deg, #0f1c2e 0%, #1a2d44 45%, #1e2a3a 100%);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -151,8 +149,10 @@ img { max-width: 100%; display: block; }
   content: '';
   position: absolute; inset: 0;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0px, transparent 1px, transparent 60px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0px, transparent 1px, transparent 60px);
+    radial-gradient(ellipse 70% 60% at 30% 40%, rgba(201,168,76,.07), transparent),
+    radial-gradient(ellipse 50% 50% at 80% 70%, rgba(201,168,76,.04), transparent),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.008) 0px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.008) 0px, transparent 1px, transparent 60px);
   pointer-events: none;
 }
 .hero::after {
@@ -170,7 +170,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(160,0,0,.18); border: 1px solid rgba(160,0,0,.45);
+  background: rgba(201,168,76,.18); border: 1px solid rgba(201,168,76,.45);
   color: var(--lime); padding: 5px 16px; border-radius: 40px;
   font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: 1.8rem;
@@ -181,8 +181,8 @@ img { max-width: 100%; display: block; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 .hero-crest {
   width: 90px; height: 90px;
-  background: linear-gradient(135deg, rgba(160,0,0,.2), rgba(160,0,0,.06));
-  border: 2px solid rgba(160,0,0,.35);
+  background: linear-gradient(135deg, rgba(201,168,76,.2), rgba(201,168,76,.06));
+  border: 2px solid rgba(201,168,76,.35);
   border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1.8rem;
@@ -241,7 +241,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 }
 .part-header::after {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(160,0,0,.08), transparent);
+  background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(201,168,76,.08), transparent);
   pointer-events: none;
 }
 .part-stripe { width: 8px; flex-shrink: 0; background: linear-gradient(180deg, var(--lime) 0%, var(--lime-dk) 100%); }
@@ -253,7 +253,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
   display: flex; align-items: center; justify-content: center;
   padding: 2rem 3rem; flex-shrink: 0;
   font-family: var(--ff-head); font-size: 5rem; font-weight: 800;
-  color: rgba(160,0,0,.12); letter-spacing: -.04em;
+  color: rgba(201,168,76,.12); letter-spacing: -.04em;
   border-left: 1px solid rgba(255,255,255,.06); line-height: 1;
 }
 
@@ -325,7 +325,7 @@ thead th {
   font-family: var(--ff-body); font-size: .78rem; font-weight: 600;
   letter-spacing: .06em; text-transform: uppercase;
   padding: 14px 16px; text-align: left;
-  border-bottom: 2px solid rgba(160,0,0,.3);
+  border-bottom: 2px solid rgba(201,168,76,.3);
 }
 thead th:first-child { border-radius: var(--radius-lg) 0 0 0; }
 thead th:last-child  { border-radius: 0 var(--radius-lg) 0 0; }
@@ -351,7 +351,7 @@ td:first-child { font-weight: 600; color: var(--forest-mid); }
   content: attr(data-num);
   position: absolute; top: -10px; right: 10px;
   font-family: var(--ff-head); font-size: 5rem; font-weight: 800;
-  color: rgba(33,33,33,.04); line-height: 1;
+  color: rgba(30,42,58,.04); line-height: 1;
 }
 .principle-card h4 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: .5rem; }
 .principle-card p { font-size: .87rem; color: var(--text2); line-height: 1.7; }
@@ -379,7 +379,7 @@ td:first-child { font-weight: 600; color: var(--forest-mid); }
   font-size: .75rem; font-weight: 700; letter-spacing: .06em;
   text-transform: uppercase;
 }
-.cap-badge.open   { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(114,0,0,.4); }
+.cap-badge.open   { background: var(--lime-pale); color: var(--lime-dk); border: 1px solid rgba(168,137,58,.4); }
 .cap-badge.closed { background: var(--burg-lt); color: var(--burgundy); border: 1px solid rgba(107,27,46,.2); }
 .cap-badge.partial{ background: var(--gold-pale); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
 
@@ -424,7 +424,7 @@ td:first-child { font-weight: 600; color: var(--forest-mid); }
 .decision-body { background: var(--white); padding: 1.25rem 1.5rem; }
 .decision-body p { font-size: .87rem; color: var(--text2); line-height: 1.7; }
 .d-approved  .decision-header { background: linear-gradient(135deg, var(--green), #24906A); }
-.d-condition .decision-header { background: linear-gradient(135deg, #212121, var(--forest-mid)); }
+.d-condition .decision-header { background: linear-gradient(135deg, #1e2a3a, var(--forest-mid)); }
 .d-deferred  .decision-header { background: linear-gradient(135deg, #8A6E1E, var(--gold)); }
 .d-declined  .decision-header { background: linear-gradient(135deg, var(--burgundy), #9B2742); }
 
@@ -445,7 +445,7 @@ td:first-child { font-weight: 600; color: var(--forest-mid); }
 }
 .highlight-box::after {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(160,0,0,.08), transparent);
+  background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(201,168,76,.08), transparent);
   pointer-events: none;
 }
 .highlight-box h3 { font-family: var(--ff-head); font-size: 1.1rem; color: var(--lime); font-weight: 700; margin-bottom: .75rem; position: relative; z-index: 1; }
@@ -471,7 +471,7 @@ td:first-child { font-weight: 600; color: var(--forest-mid); }
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); padding: 3rem 3rem 1.5rem; margin-top: 4rem; }
+footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); padding: 3rem 3rem 1.5rem; margin-top: 4rem; }
 .footer-inner { max-width: 1300px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .5rem; }
@@ -484,7 +484,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   color: rgba(255,255,255,.6); font-size: .85rem;
   transition: all var(--tr); text-decoration: none;
 }
-.footer-social-btn:hover { border-color: var(--lime); color: var(--lime); background: rgba(160,0,0,.08); }
+.footer-social-btn:hover { border-color: var(--lime); color: var(--lime); background: rgba(201,168,76,.08); }
 .footer-col h4 { font-size: .63rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: .8rem; }
 .footer-col a { display: block; font-size: .78rem; color: rgba(255,255,255,.7); padding: 2.5px 0; transition: color var(--tr); }
 .footer-col a:hover { color: var(--lime); }
@@ -519,7 +519,8 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   .decision-grid { grid-template-columns: 1fr; }
   .step-item { flex-direction: column; gap: 1rem; }
   .step-item::before { left: 22px; }
-}</style>
+}
+</style>
 </head>
 <body id="top">
 
@@ -613,7 +614,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">Qualifications</div>
+    <div class="mob-section-title">Qualification Framework</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
     <a href="qul.html" class="mob-link">Qualification Levels</a>
     <a href="psf.html" class="mob-link">Professional Standard Framework</a>
@@ -639,8 +640,11 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="hero-inner">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
+      Policy Document
     </div>
+    <div class="hero-crest"><span class="hero-crest-text">CILG</span></div>
     <h1>Exemption Policy</h1>
+    <p class="hero-sub">Recognition of Prior Learning, Professional Experience &amp; Equivalent Qualifications</p>
     <p class="hero-desc">A comprehensive framework governing eligibility, evidence standards, assessment criteria, and limits for candidates seeking exemption from one or more modules within the CILG Professional Qualification Framework.</p>
     <div class="hero-tags">
       <a href="#introduction" class="hero-tag">Introduction</a>
@@ -670,7 +674,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Foreword</div>
+      <div class="part-label">Foreword</div>
       <h2>Policy Overview</h2>
       <p>The CILG Exemption Policy gives effect to the principle of fairness — providing a structured, transparent, and independently assessed process through which eligible candidates may have prior qualifications, formal learning, or professional experience recognised as equivalent to CILG modules.</p>
     </div>
@@ -682,7 +686,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <p class="prose-text">Exemptions are not a concession or a shortcut. They are a recognition of genuine equivalence — verified by qualified assessors, governed by clear criteria, and subject to defined limits. The integrity of a CILG qualification depends on ensuring that every module credited to a candidate — whether through examination or through exemption — represents real professional competence.</p>
 
   <div class="highlight-box">
-    <h3>Edition 2.0 | 2026</h3>
+    <h3>Edition 1.0 | 2024</h3>
     <p>This policy has been developed with reference to internationally recognised best practices in exemptions and Recognition of Prior Learning (RPL), including frameworks applied by leading international professional bodies across accountancy, human resources, governance, and related disciplines. It is reviewed by the CILG Examinations and Standards Committee at least every three years.</p>
   </div>
 
@@ -765,7 +769,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 2</div>
+      <div class="part-label">Section 2</div>
       <h2>Guiding Principles</h2>
       <p>Twelve governing principles that guide every decision made under this Exemption Policy — from the design and administration of the system to individual application outcomes.</p>
     </div>
@@ -833,7 +837,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 4</div>
+      <div class="part-label">Section 4</div>
       <h2>Exemption Eligibility Criteria</h2>
       <p>General eligibility requirements, qualification-specific criteria for Prior Learning Exemptions, currency rules, and Professional Experience Exemption eligibility thresholds.</p>
     </div>
@@ -845,7 +849,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="info-box green">
     <div class="info-box-title">✓ All Six Requirements Must Be Met</div>
     <ul>
-      <li>The candidate must be a registered CILG member (at minimum, a Student Member — SCILG) at the time of application, or submitting simultaneously with their initial membership enrollment</li>
+      <li>The candidate must be a registered CILG member (at minimum, a Student Member) at the time of application, or submitting simultaneously with their initial membership enrollment</li>
       <li>The exemption application must be submitted before the candidate sits the examination for the module(s) in question — retrospective applications will not be considered</li>
       <li>The candidate must not have previously failed the examination for any module for which they are seeking exemption</li>
       <li>The applicable Exemption Assessment Fee must be paid in full before the application will be formally processed</li>
@@ -898,7 +902,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 5</div>
+      <div class="part-label">Section 5</div>
       <h2>Exemption Limits by Qualification Level</h2>
       <p>Absolute maximum limits on the number of modules that may be exempted at each level, ensuring every CILG graduate has completed a meaningful proportion of their qualification through CILG's own assessment processes.</p>
     </div>
@@ -986,7 +990,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 6 — Schedule A</div>
+      <div class="part-label">Section 6 — Schedule A</div>
       <h2>Recognised Qualifications, Institutions &amp; Bodies</h2>
       <p>CILG recognises qualifications from institutions and professional bodies that meet defined standards of educational quality, professional credibility, and regulatory standing. Recognition applies at the qualification level, not the institutional level.</p>
     </div>
@@ -994,7 +998,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   </div>
 
   <h2 class="section-title">6.2.1 Category A — Accredited Universities and Higher Education Institutions</h2>
-  <p class="prose-text">Degrees, diplomas, and certificates from universities and higher education institutions that are: regionally accredited in the United States ; nationally recognised and accredited by a competent authority in their home country; or members of recognised international university associations. Qualifications from Category A institutions qualify for assessment — not automatic exemption.</p>
+  <p class="prose-text">Degrees, diplomas, and certificates from universities and higher education institutions that are: regionally accredited in the United States (by bodies recognised by the US Department of Education or CHEA); nationally recognised and accredited by a competent authority in their home country; or members of recognised international university associations (AACSB, EQUIS, AMBA, or equivalent). Qualifications from Category A institutions qualify for assessment — not automatic exemption.</p>
 
   <h2 class="section-title mt-2">6.2.2 Category B — Recognised Professional Bodies</h2>
   <p class="prose-text">Qualifications and designations awarded by professional bodies that are chartered or formally recognised by a government or statutory authority in their home jurisdiction, members of recognised international federations of professional bodies, or signatories to a CILG Mutual Recognition Agreement.</p>
@@ -1041,7 +1045,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 7</div>
+      <div class="part-label">Section 7</div>
       <h2>Professional Experience Exemption</h2>
       <p>Detailed criteria, minimum experience thresholds, the Professional Experience Statement format, and verification and referee requirements for the PEE pathway.</p>
     </div>
@@ -1120,7 +1124,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 8</div>
+      <div class="part-label">Section 8</div>
       <h2>Exemption Assessment Fee Schedule</h2>
       <p>All exemption assessment fees cover administrative, quality assurance, and professional assessment costs. Fees are non-refundable once an application has been formally submitted and acknowledged by the Registrar.</p>
     </div>
@@ -1186,7 +1190,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 9</div>
+      <div class="part-label">Section 9</div>
       <h2>The Exemption Application Process</h2>
       <p>A seven-stage process — clear, structured, and efficient — with specific inputs, outputs, timelines, and responsibilities at each stage.</p>
     </div>
@@ -1326,7 +1330,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 12</div>
+      <div class="part-label">Section 12</div>
       <h2>Assessment Standards &amp; Equivalence Criteria</h2>
       <p>The structured, multi-dimensional equivalence framework applied by CILG assessors when evaluating each module exemption claim — five weighted dimensions assessed on a four-point scale.</p>
     </div>
@@ -1378,7 +1382,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 13</div>
+      <div class="part-label">Section 13</div>
       <h2>Decisions, Notifications &amp; Outcomes</h2>
       <p>Four possible decision types, notification timelines, and how exemption decisions are recorded on the official CILG transcript.</p>
     </div>
@@ -1476,7 +1480,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 16</div>
+      <div class="part-label">Section 16</div>
       <h2>Module-by-Module Exemption Map</h2>
       <p>Indicative guidance on the types of prior learning and professional experience most commonly associated with successful exemption applications for each CILG module. All decisions are made through individual assessment — no prior learning automatically confers an exemption.</p>
     </div>
@@ -1582,7 +1586,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 17</div>
+      <div class="part-label">Section 17</div>
       <h2>Mutual Recognition Agreements (MRAs)</h2>
       <p>Formal bilateral agreements between CILG and peer professional bodies providing for the recognition of specified designations or qualifications as meeting defined components of the CILG qualification framework.</p>
     </div>
@@ -1626,7 +1630,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="part-header">
     <div class="part-stripe"></div>
     <div class="part-content">
-      <div class="part-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Section 15</div>
+      <div class="part-label">Section 15</div>
       <h2>Appeals Against Exemption Decisions</h2>
       <p>The right of appeal, valid grounds for appeal, and the full appeals process for candidates who receive a decision of 'Declined' or 'Approved with Conditions' (where conditions are disputed).</p>
     </div>

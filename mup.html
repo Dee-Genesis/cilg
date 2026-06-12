@@ -13,21 +13,21 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;  /* Warm off-white — page background */
-  --bg-off:      #EAE8E4;  /* Slightly darker warm off-white */
-  --forest:      #212121;  /* Near-black — all dark surfaces, panels, table headers */
-  --forest-mid:  #2E2E2E;  /* Slightly lighter near-black — gradients, helpline panel */
-  --forest-lt:   #4A4A4A;  /* Mid-grey — secondary text, labels */
-  --lime:        #A00000;  /* Rich red — CTAs, accents, highlights */
-  --lime-dk:     #720000;  /* Deep red — hover states, borders */
-  --lime-pale:   #F5E6E6;  /* Pale red background */
+  --bg:          #F7F8F3;
+  --bg-off:      #EEEEE8;
+  --forest:      #0D2B1F;
+  --forest-mid:  #1A4030;
+  --forest-lt:   #2D6347;
+  --lime:        #C9A84C;
+  --lime-dk:     #B8932E;
+  --lime-pale:   #FDF6E3;
   --white:       #FFFFFF;
-  --g100:        #EAE8E4;
-  --g200:        #DDD9D3;
-  --g300:        #C4BCB2;
-  --g500:        #8B857C;
-  --text:        #212121;
-  --text2:       #4A4A4A;
+  --g100:        #F0F1EB;
+  --g200:        #DDDFD6;
+  --g300:        #B8BDB0;
+  --g500:        #7A8070;
+  --text:        #0D2B1F;
+  --text2:       #4A5445;
   --gold:        #C9A84C;
   --gold-lt:     #F0D080;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
@@ -52,15 +52,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(245,244,241,0.92);
+  background: rgba(247,248,243,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(245,244,241,0.98);
-  box-shadow: 0 2px 24px rgba(33,33,33,.08);
+  background: rgba(247,248,243,0.98);
+  box-shadow: 0 2px 24px rgba(13,43,31,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -78,8 +78,8 @@ img { max-width: 100%; display: block; }
 .nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
-.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: #b52a3a !important; color: #ffffff !important; border: 1px solid #b52a3a !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: #9e1f2e !important; border-color: #9e1f2e !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(33,33,33,.12);
+  box-shadow: 0 16px 48px rgba(13,43,31,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -105,8 +105,8 @@ img { max-width: 100%; display: block; }
 .mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
 .mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
 .mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
-.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
-.mob-cta:hover { background: var(--lime-dk); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: #b52a3a; color: #ffffff; font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: #9e1f2e; }
 
 /* ═══════════════════════════════════════════
    PAGE HERO
@@ -117,8 +117,7 @@ img { max-width: 100%; display: block; }
   min-height: 420px;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, rgba(33,33,33,.62), rgba(33,33,33,.75)),
-              url('assets/images/hero2.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, #0a1a12 0%, #0D2B1F 50%, #091510 100%);
   overflow: hidden;
 }
 .page-hero-inner {
@@ -131,7 +130,7 @@ img { max-width: 100%; display: block; }
 }
 .page-hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(160,0,0,.18); border: 1px solid var(--lime-dk);
+  background: rgba(201,168,76,.18); border: 1px solid var(--lime-dk);
   color: #fff; padding: 4px 14px; border-radius: 40px;
   font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: 1.2rem;
@@ -230,7 +229,7 @@ img { max-width: 100%; display: block; }
   margin-top: 1.2rem;
   padding: 11px 14px;
   background: var(--lime);
-  color: var(--white);
+  color: var(--forest);
   font-family: var(--ff-head);
   font-size: .78rem;
   font-weight: 700;
@@ -350,7 +349,7 @@ img { max-width: 100%; display: block; }
   margin: 1.5rem 0;
   border-radius: 12px;
   border: 1.5px solid var(--g200);
-  box-shadow: 0 4px 20px rgba(33,33,33,.05);
+  box-shadow: 0 4px 20px rgba(13,43,31,.05);
 }
 .pathway-table {
   width: 100%;
@@ -411,12 +410,12 @@ img { max-width: 100%; display: block; }
   align-items: flex-start;
   transition: all var(--tr);
 }
-.step-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 24px rgba(33,33,33,.07); }
+.step-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 24px rgba(13,43,31,.07); }
 .step-num {
   width: 42px;
   height: 42px;
   background: var(--lime);
-  color: var(--white);
+  color: var(--forest);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -475,7 +474,7 @@ img { max-width: 100%; display: block; }
   padding: 1.1rem 1.2rem;
   border: 1.5px solid;
 }
-.outcome-approved { background: rgba(160,0,0,.1); border-color: var(--lime-dk); }
+.outcome-approved { background: rgba(201,168,76,.1); border-color: var(--lime-dk); }
 .outcome-deferred { background: rgba(201,168,76,.08); border-color: rgba(201,168,76,.4); }
 .outcome-declined { background: rgba(200,50,50,.05); border-color: rgba(200,50,50,.2); }
 .outcome-label {
@@ -541,7 +540,7 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
 }
 .grade-pill-from { background: var(--g100); color: var(--text2); border: 1px solid var(--g200); }
-.grade-pill-to { background: var(--lime); color: var(--white); }
+.grade-pill-to { background: var(--lime); color: var(--forest); }
 .grade-pill-to.gold { background: rgba(201,168,76,.15); color: #7a5c10; border: 1px solid rgba(201,168,76,.4); }
 .grade-arrow-icon { color: var(--forest-lt); font-size: 1.1rem; }
 .grade-fee {
@@ -619,8 +618,8 @@ img { max-width: 100%; display: block; }
   font-size: .68rem;
   font-weight: 600;
   color: var(--lime);
-  background: rgba(160,0,0,.1);
-  border: 1px solid rgba(160,0,0,.2);
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.2);
   padding: 2px 9px;
   border-radius: 4px;
 }
@@ -718,20 +717,20 @@ img { max-width: 100%; display: block; }
    CTA BANNER
 ═══════════════════════════════════════════ */
 .cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(160,0,0,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(201,168,76,.15) 0%, transparent 65%); pointer-events: none; }
 .cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .6rem; position: relative; }
 .cta-section h2 em { font-style: normal; color: var(--lime); }
 .cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; max-width: 540px; margin-left: auto; margin-right: auto; }
 .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
-.cta-btn-main { padding: 15px 34px; background: var(--lime); color: var(--white); border-radius: 9px; font-family: var(--ff-head); font-size: .86rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
-.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(114,0,0,.35); }
+.cta-btn-main { padding: 15px 34px; background: var(--lime); color: var(--forest); border-radius: 9px; font-family: var(--ff-head); font-size: .86rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,.35); }
 .cta-btn-alt { padding: 15px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .86rem; font-weight: 600; transition: all var(--tr); }
 .cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; }
 
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+footer { background: #0a1f15; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
@@ -742,7 +741,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
 .footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1); text-decoration: none; }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(160,0,0,.3); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,168,76,.3); }
 .footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════
@@ -776,7 +775,8 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
 @media (max-width: 480px) {
   .postnom-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
-}</style>
+}
+</style>
 </head>
 <body>
 
@@ -870,7 +870,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">Qualifications</div>
+    <div class="mob-section-title">Qualification Framework</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
     <a href="qul.html" class="mob-link">Qualification Levels</a>
     <a href="psf.html" class="mob-link">Professional Standard Framework</a>
@@ -949,7 +949,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <!-- 1.1 -->
     <div class="policy-section" id="section-1-1">
       <h2 class="policy-h3">1.1 Purpose and Scope</h2>
-      <p class="policy-p">The CILG Membership Upgrade Policy governs the procedures, requirements, evidence standards, timelines, and conditions under which members of the Chartered Institute of Leadership and Governance (CILG) may advance from one membership grade to the next. This policy applies to all individual membership grades: from Student Member through to Fellow. It is designed to ensure that every progression reflects genuine professional achievement, maintained ethical standing, and demonstrated competence consistent with the standards expected at each grade.</p>
+      <p class="policy-p">The CILG Membership Upgrade Policy governs the procedures, requirements, evidence standards, timelines, and conditions under which members of the Chartered Institute of Leadership and Governance (CILG) may advance from one membership grade to the next. This policy applies to all individual membership grades: from Student Member through to Fellow (FCILG). It is designed to ensure that every progression reflects genuine professional achievement, maintained ethical standing, and demonstrated competence consistent with the standards expected at each grade.</p>
       <div class="policy-callout">
         <strong>Important:</strong> Membership upgrade is not automatic. Completion of a qualification level creates eligibility to apply for the corresponding membership grade; it does not confer the grade automatically. Members must formally apply, submit the required evidence, pay the applicable upgrade fee, and receive written confirmation from the CILG Registrar before the new designation may be used.
       </div>
@@ -977,7 +977,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         <table class="pathway-table">
           <thead>
             <tr>
-              <th class="nav-link act">From Grade</th>
+              <th>From Grade</th>
               <th>To Grade</th>
               <th>Qualification Required</th>
               <th>Min. Experience</th>
@@ -987,7 +987,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
           </thead>
           <tbody>
             <tr>
-              <td>Student <span class="desig-pill"></span></td>
+              <td>Student</td>
               <td>Affiliate <span class="desig-pill">AffCILG</span></td>
               <td>Level 2 Certificate</td>
               <td>None formally required</td>
@@ -1012,7 +1012,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
             </tr>
             <tr>
               <td>Full Member <span class="desig-pill">MCILG</span></td>
-              <td>Fellow <span class="desig-pill"></span></td>
+              <td>Fellow <span class="desig-pill">FCILG</span></td>
               <td>Level 5 Chartered Prof.</td>
               <td>8 years (5 senior)</td>
               <td>2 FCILG Fellows</td>
@@ -1108,25 +1108,15 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
       <div class="section-label-sm">1.5</div>
       <h2 class="policy-h2">Grade-Specific <em>Upgrade Requirements</em></h2>
 
-      <!-- SCILG → AfCILG -->
+      <!-- Student → AffCILG -->
       <div class="grade-card">
         <div class="grade-header">
           <div class="grade-from-to">
-            <span class="grade-pill grade-pill-from">Student Member </span>
+            <span class="grade-pill grade-pill-from">Student Member</span>
             <span class="grade-arrow-icon">→</span>
             <span class="grade-pill grade-pill-to">Affiliate Member · AffCILG</span>
           </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-
-          <div class="nav-link act">USD 200</div>
+          <div class="grade-fee">USD 200</div>
         </div>
         <div class="grade-body">
 
@@ -1172,7 +1162,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         </div>
       </div>
 
-      <!-- AfCILG → ACILG -->
+      <!-- AffCILG → ACILG -->
       <div class="grade-card">
         <div class="grade-header">
           <div class="grade-from-to">
@@ -1180,19 +1170,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
             <span class="grade-arrow-icon">→</span>
             <span class="grade-pill grade-pill-to">Associate Member · ACILG</span>
           </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-
-          <div class="nav-link act">USD 300</div>
+          <div class="grade-fee">USD 300</div>
         </div>
         <div class="grade-body">
 
@@ -1249,24 +1227,8 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
             <span class="grade-pill grade-pill-from">Associate Member · ACILG</span>
             <span class="grade-arrow-icon">→</span>
             <span class="grade-pill grade-pill-to">Full Member · MCILG</span>
-          </div><div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-
-          <div class="nav-link act">USD 500</div>
+          </div>
+          <div class="grade-fee">USD 500</div>
         </div>
         <div class="grade-body">
 
@@ -1294,9 +1256,9 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
               <div class="viva-label">Mandatory Oral Assessment</div>
               <div class="viva-desc">Mandatory oral assessment (45 minutes) conducted by two CILG Assessors (MCILG or FCILG grade). Assesses depth of understanding, professional judgment, and readiness for Full Member designation. A pass mark of 50% is required; result is recorded on official transcript.</div>
               <div class="viva-meta">
-                <span class="nav-link act">45 Minutes</span>
-                <span class="nav-link act">2 CILG Assessors</span>
-                <span class="nav-link act">50% Pass Mark</span>
+                <span class="viva-tag">45 Minutes</span>
+                <span class="viva-tag">2 CILG Assessors</span>
+                <span class="viva-tag">50% Pass Mark</span>
               </div>
             </div>
           </div>
@@ -1335,38 +1297,9 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
           <div class="grade-from-to">
             <span class="grade-pill grade-pill-from">Full Member · MCILG</span>
             <span class="grade-arrow-icon">→</span>
-            <span class="grade-pill grade-pill-to gold">Fellow </span>
+            <span class="grade-pill grade-pill-to gold">Fellow · FCILG</span>
           </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div><div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-<div class="gc-entry-label"> </div>
-
-
-
-
-          <div class="nav-link act" >USD 700</div>
+          <div class="grade-fee">USD 700</div>
         </div>
         <div class="grade-body">
 
@@ -1393,11 +1326,11 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
             <div class="grade-req-title">Professional Entry Interview</div>
             <div class="viva-box">
               <div class="viva-label">Mandatory Fellowship Interview</div>
-              <div class="viva-desc">Mandatory interview conducted by a panel of three (3) Fellows. Panel assesses the candidate's professional standing, contribution to the field, commitment to CILG values, and readiness for Fellowship. Outcome: Pass (with or without conditions) or Defer.</div>
+              <div class="viva-desc">Mandatory interview conducted by a panel of three (3) FCILG Fellows. Panel assesses the candidate's professional standing, contribution to the field, commitment to CILG values, and readiness for Fellowship. Outcome: Pass (with or without conditions) or Defer.</div>
               <div class="viva-meta">
-                <span class="nav-link act">60–90 Minutes</span>
-                <span class="nav-link act">3 FCILG Fellows Panel</span>
-                <span class="nav-link act">Pass / Defer Outcome</span>
+                <span class="viva-tag">60–90 Minutes</span>
+                <span class="viva-tag">3 FCILG Fellows Panel</span>
+                <span class="viva-tag">Pass / Defer Outcome</span>
               </div>
             </div>
           </div>
@@ -1421,7 +1354,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
           <div class="grade-req-group">
             <div class="grade-req-title">Referees</div>
             <ul class="grade-req-list">
-              <li>Two (2) existing Fellows who can attest to the applicant's professional standing, contribution, and suitability for Fellowship</li>
+              <li>Two (2) existing FCILG Fellows who can attest to the applicant's professional standing, contribution, and suitability for Fellowship</li>
               <li>Fellows acting as referees must not be the applicant's direct employer or a family member</li>
             </ul>
           </div>
@@ -1536,11 +1469,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         </div>
         <div class="postnom-grid">
           <div class="postnom-card">
-            <div class="postnom-desig">SCILG</div>
-            <div class="postnom-name">Student Member</div>
-          </div>
-          <div class="postnom-card">
-            <div class="postnom-desig">AfCILG</div>
+            <div class="postnom-desig">AffCILG</div>
             <div class="postnom-name">Affiliate Member</div>
           </div>
           <div class="postnom-card">
@@ -1613,7 +1542,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         <a href="index.html">Home</a>
         <a href="about.html">About CILG</a>
         <a href="mov.html">Membership</a>
-        <a href="qualifications.html">Qualifications</a>
+        <a href="qualifications.html">Qualification Framework</a>
         <a href="certifications.html">Professional Certification</a>
         <a href="standards.html">Professional Standards</a>
         <a href="news.html">News &amp; Updates</a>
@@ -1672,9 +1601,9 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <div class="footer-bottom">
       <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico · Alaska · Michigan · United States of America</span>
       <span style="display:flex;gap:1rem;align-items:center;">
-        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
         <span style="color:rgba(255,255,255,.25);">·</span>
-        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
       </span>
     </div>
   </div>

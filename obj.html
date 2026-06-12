@@ -12,21 +12,21 @@
    ROOT & RESET — FINZO PALETTE
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;  /* Warm off-white — page background */
-  --bg-off:      #EAE8E4;  /* Slightly darker warm off-white */
-  --forest:      #212121;  /* Near-black — all dark surfaces, panels, table headers */
-  --forest-mid:  #2E2E2E;  /* Slightly lighter near-black — gradients, helpline panel */
-  --forest-lt:   #4A4A4A;  /* Mid-grey — secondary text, labels */
-  --lime:        #A00000;  /* Rich red — CTAs, accents, highlights */
-  --lime-dk:     #720000;  /* Deep red — hover states, borders */
-  --lime-pale:   #F5E6E6;  /* Pale red background */
-  --white:       #FFFFFF;
-  --g100:        #EAE8E4;
-  --g200:        #DDD9D3;
-  --g300:        #C4BCB2;
-  --g500:        #8B857C;
-  --text:        #212121;
-  --text2:       #4A4A4A;
+  --bg:          #f4f2ee;
+  --bg-off:      #e8e4de;
+  --forest:      #1e2a3a;
+  --forest-mid:  #243241;
+  --forest-lt:   #2c3e4e;
+  --lime:        #b52a3a;
+  --lime-dk:     #9e1f2e;
+  --lime-pale:   #fbe9eb;
+  --white:       #ffffff;
+  --g100:        #e8e4de;
+  --g200:        #ddd6ce;
+  --g300:        #c4bcb2;
+  --g500:        #8b857c;
+  --text:        #1e2a3a;
+  --text2:       #3a4045;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -49,15 +49,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(245,244,241,0.92);
+  background: rgba(244,242,238,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(245,244,241,0.98);
-  box-shadow: 0 2px 24px rgba(33,33,33,.08);
+  background: rgba(244,242,238,0.98);
+  box-shadow: 0 2px 24px rgba(30,42,58,.08);
 }
 .nav-logo {
   display: flex; align-items: center; gap: 10px;
@@ -97,7 +97,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-cta:hover {
   background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
-  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35);
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35);
 }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
 .nav-dropdown {
@@ -106,7 +106,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(33,33,33,.12);
+  box-shadow: 0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before {
   content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px;
@@ -158,8 +158,7 @@ img { max-width: 100%; display: block; }
 ═══════════════════════════════════════════ */
 .page-hero {
   padding-top: var(--nav-h);
-  background: linear-gradient(135deg, rgba(33,33,33,.72), rgba(33,33,33,.82)),
-              url('assets/images/hero2.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, #1e2a3a 0%, #26354a 60%, #1a2535 100%);
   min-height: 380px;
   display: flex; align-items: center;
   position: relative; overflow: hidden;
@@ -167,7 +166,7 @@ img { max-width: 100%; display: block; }
 .page-hero::after {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 80% 50%, rgba(160,0,0,.12) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 80% 50%, rgba(181,42,58,.12) 0%, transparent 60%);
   pointer-events: none;
 }
 .page-hero-inner {
@@ -184,7 +183,7 @@ img { max-width: 100%; display: block; }
 .page-breadcrumb span { color: var(--lime); }
 .page-hero-label {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(160,0,0,.15); border: 1px solid rgba(160,0,0,.35);
+  background: rgba(181,42,58,.15); border: 1px solid rgba(181,42,58,.35);
   color: var(--lime); padding: 4px 14px; border-radius: 40px;
   font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: 1.2rem;
@@ -277,7 +276,7 @@ img { max-width: 100%; display: block; }
 }
 .obj-card:hover {
   border-color: var(--lime-dk);
-  box-shadow: 0 12px 40px rgba(33,33,33,.09);
+  box-shadow: 0 12px 40px rgba(30,42,58,.09);
   transform: translateY(-3px);
 }
 .obj-card:hover::before { opacity: 1; }
@@ -314,16 +313,16 @@ img { max-width: 100%; display: block; }
   padding: 2.4rem 2.4rem 2.4rem 2rem;
 }
 .obj-card.featured::before { background: var(--lime); opacity: 1; }
-.obj-card.featured .obj-number { color: rgba(160,0,0,.2); }
+.obj-card.featured .obj-number { color: rgba(181,42,58,.2); }
 .obj-card.featured:hover .obj-number { color: var(--lime); }
 .obj-card.featured .obj-title { color: #fff; }
 .obj-card.featured .obj-desc { color: rgba(255,255,255,.6); }
-.obj-card.featured:hover { border-color: var(--lime-dk); box-shadow: 0 16px 48px rgba(33,33,33,.25); }
+.obj-card.featured:hover { border-color: var(--lime-dk); box-shadow: 0 16px 48px rgba(30,42,58,.25); }
 
 /* Highlight chip on featured card */
 .obj-featured-chip {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(160,0,0,.12); border: 1px solid rgba(160,0,0,.3);
+  background: rgba(181,42,58,.12); border: 1px solid rgba(181,42,58,.3);
   color: var(--lime); padding: 3px 12px; border-radius: 30px;
   font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   margin-bottom: .75rem;
@@ -349,19 +348,19 @@ img { max-width: 100%; display: block; }
    CTA BANNER
 ═══════════════════════════════════════════ */
 .cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(160,0,0,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(181,42,58,.15) 0%, transparent 65%); pointer-events: none; }
 .cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .8rem; position: relative; }
 .cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; }
 .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 .cta-btn-main { padding: 14px 32px; background: var(--lime); color: var(--white); border-radius: 9px; font-family: var(--ff-head); font-size: .84rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
-.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(160,0,0,.35); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,42,58,.35); }
 .cta-btn-alt { padding: 14px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .84rem; font-weight: 600; transition: all var(--tr); }
 .cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; background: rgba(255,255,255,.06); }
 
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
@@ -378,7 +377,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   color: rgba(255,255,255,.45); transition: all .25s cubic-bezier(.4,0,.2,1);
   text-decoration: none;
 }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(160,0,0,.3); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(181,42,58,.3); }
 .footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════
@@ -507,7 +506,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">Qualifications</div>
+    <div class="mob-section-title">Qualification Framework</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
     <a href="qul.html" class="mob-link">Qualification Levels</a>
     <a href="psf.html" class="mob-link">Professional Standard Framework</a>
@@ -531,8 +530,17 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
 <!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-inner">
-    
-   
+    <div class="page-breadcrumb">
+      <a href="index.html">Home</a>
+      ›
+      <a href="about.html">About</a>
+      ›
+      <span>Strategic Objectives</span>
+    </div>
+    <div class="page-hero-label" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">
+      <span class="page-hero-label-dot"></span>
+      Strategic Framework
+    </div>
     <h1>Strategic Objectives</h1>
     <p>The specific, measurable outcomes through which CILG achieves its vision and fulfils its mission — the operational translation of institutional purpose into institutional action.</p>
   </div>
@@ -567,7 +575,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
       <div class="obj-card featured">
         <div class="obj-number">01</div>
         <div class="obj-body">
-          <div class="obj-featured-chip">Foundation Objective</div>
+          <div class="obj-featured-chip" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Foundation Objective</div>
           <div class="obj-title">Global Qualification Excellence</div>
           <p class="obj-desc">Maintain and continuously enhance a qualification framework that is benchmarked against international best practice, is rigorously assessed, and produces governance professionals whose competence is recognised and respected by employers, boards, and peer professional bodies globally.</p>
         </div>
@@ -698,7 +706,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         <a href="index.html">Home</a>
         <a href="about.html">About CILG</a>
         <a href="membership.html">Membership</a>
-        <a href="qualifications.html">Qualifications</a>
+        <a href="qualifications.html">Qualification Framework</a>
         <a href="certifications.html">Professional Certification</a>
         <a href="standards.html">Professional Standards</a>
         <a href="faq.html">FAQs</a>
@@ -752,9 +760,9 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <div class="footer-bottom">
       <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
       <span style="display:flex;gap:1rem;align-items:center;">
-        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
         <span style="color:rgba(255,255,255,.25);">·</span>
-        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
       </span>
     </div>
   </div>

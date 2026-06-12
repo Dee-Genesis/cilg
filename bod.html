@@ -12,20 +12,20 @@
    ROOT & RESET — CILG PALETTE
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;
+  --bg:          #f4f2ee;
   --bg-off:      #e8e4de;
-  --forest:      #212121;
-  --forest-mid:  #2E2E2E;
-  --forest-lt:   #4A4A4A;
-  --lime:        #A00000;
-  --lime-dk:     #720000;
-  --lime-pale:   rgba(160,0,0,.1);
+  --forest:      #1e2a3a;
+  --forest-mid:  #26374d;
+  --forest-lt:   #3a5068;
+  --lime:        #b52a3a;
+  --lime-dk:     #951e2c;
+  --lime-pale:   #f7e8ea;
   --white:       #FFFFFF;
   --g100:        #f0ede8;
   --g200:        #e8e4de;
   --g300:        #c4bfb8;
   --g500:        #8a847c;
-  --text:        #212121;
+  --text:        #1e2a3a;
   --text2:       #4a4540;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
@@ -49,15 +49,15 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(245,244,241,0.92);
+  background: rgba(244,242,238,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
 .nav.scrolled {
   height: 58px;
-  background: rgba(245,244,241,0.98);
-  box-shadow: 0 2px 24px rgba(33,33,33,.08);
+  background: rgba(244,242,238,0.98);
+  box-shadow: 0 2px 24px rgba(30,42,58,.08);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
 }
 .nav-cta:hover {
   background: var(--lime-dk) !important; border-color: var(--lime-dk) !important;
-  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(160,0,0,.35);
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(181,42,58,.35);
 }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
@@ -95,7 +95,7 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(33,33,33,.12);
+  box-shadow: 0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -131,7 +131,7 @@ img { max-width: 100%; display: block; }
 }
 .page-hero::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(160,0,0,.1) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 70% 50%, rgba(181,42,58,.1) 0%, transparent 60%);
   pointer-events: none;
 }
 .page-hero-inner {
@@ -196,13 +196,13 @@ img { max-width: 100%; display: block; }
 }
 .president-card::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 20% 50%, rgba(160,0,0,.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 20% 50%, rgba(181,42,58,.08) 0%, transparent 60%);
   pointer-events: none;
 }
-.president-card:hover { border-color: rgba(160,0,0,.3); background: rgba(255,255,255,.09); }
+.president-card:hover { border-color: rgba(181,42,58,.3); background: rgba(255,255,255,.09); }
 .president-avatar {
   width: 100px; height: 100px; flex-shrink: 0;
-  background: rgba(160,0,0,.15); border: 2px solid rgba(160,0,0,.35);
+  background: rgba(181,42,58,.15); border: 2px solid rgba(181,42,58,.35);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--ff-head); font-size: 1.6rem; font-weight: 800; color: var(--lime);
@@ -211,7 +211,7 @@ img { max-width: 100%; display: block; }
 .president-info { position: relative; z-index: 1; }
 .president-role-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(160,0,0,.15); border: 1px solid rgba(160,0,0,.3);
+  background: rgba(181,42,58,.15); border: 1px solid rgba(181,42,58,.3);
   padding: 4px 12px; border-radius: 40px;
   font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   color: var(--lime); margin-bottom: 1rem;
@@ -237,7 +237,7 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(90deg, var(--lime-dk), var(--lime));
   transform: scaleX(0); transform-origin: left; transition: transform var(--tr);
 }
-.board-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 32px rgba(33,33,33,.1); transform: translateY(-3px); }
+.board-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 32px rgba(30,42,58,.1); transform: translateY(-3px); }
 .board-card:hover::before { transform: scaleX(1); }
 .board-avatar {
   width: 60px; height: 60px;
@@ -263,7 +263,7 @@ img { max-width: 100%; display: block; }
   border-radius: 14px; padding: 1.8rem 1.6rem;
   transition: all var(--tr);
 }
-.mandate-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 28px rgba(33,33,33,.08); transform: translateY(-3px); }
+.mandate-card:hover { border-color: var(--lime-dk); box-shadow: 0 8px 28px rgba(30,42,58,.08); transform: translateY(-3px); }
 .mandate-icon { width: 42px; height: 42px; background: var(--lime-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
 .mandate-title { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: var(--forest); margin-bottom: .4rem; }
 .mandate-desc { font-size: .78rem; color: var(--text2); line-height: 1.7; }
@@ -274,12 +274,12 @@ img { max-width: 100%; display: block; }
 .cta-band-section { padding: 5rem 3rem; background: var(--forest); }
 .cta-band {
   max-width: 1260px; margin: 0 auto;
-  background: rgba(160,0,0,.1); border: 1.5px solid rgba(160,0,0,.25);
+  background: rgba(181,42,58,.1); border: 1.5px solid rgba(181,42,58,.25);
   border-radius: 16px; padding: 3rem 3.5rem;
   display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
   position: relative; overflow: hidden;
 }
-.cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(160,0,0,.08) 0%, transparent 60%); pointer-events: none; }
+.cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(181,42,58,.08) 0%, transparent 60%); pointer-events: none; }
 .cta-band-text { position: relative; }
 .cta-band-label { font-family: var(--ff-head); font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -.02em; display: block; margin-bottom: .4rem; }
 .cta-band-sub { font-size: .88rem; color: rgba(255,255,255,.5); }
@@ -292,7 +292,7 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); padding: 4rem 3rem 2rem; }
+footer { background: #111c28; border-top: 1px solid rgba(255,255,255,.07); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: #c9a84c; letter-spacing: -.02em; margin-bottom: .75rem; }
@@ -337,7 +337,8 @@ footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); paddi
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; text-align: center; }
   footer { padding: 3rem 1.2rem 1.5rem; }
-}</style>
+}
+</style>
 </head>
 <body>
 
@@ -431,7 +432,7 @@ footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); paddi
     <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">Qualifications</div>
+    <div class="mob-section-title">Qualification Framework</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
     <a href="qul.html" class="mob-link">Qualification Levels</a>
     <a href="psf.html" class="mob-link">Professional Standard Framework</a>
@@ -466,6 +467,7 @@ footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); paddi
         <span class="hero-breadcrumb-sep">›</span>
         <span class="hero-breadcrumb-cur">Board of Governors</span>
       </div>
+      <div class="hero-label"><span>Governance &amp; Leadership</span></div>
       <h1>Board of Governors</h1>
       <p class="page-hero-desc">The Board of Governors of CILG comprises distinguished professionals and scholars providing strategic oversight, professional direction, and institutional accountability — collectively stewarding CILG's mission for a world of inspired, capable leadership.</p>
     </div>
@@ -517,12 +519,16 @@ footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); paddi
 <section class="president-section" id="president">
   <div class="section-inner">
     <div class="section-label">Board Leadership</div>
-    <h2 class="section-h2">President of the Board</h2>
+    <h2 class="section-h2" >President of the Board</h2>
     <p class="section-lead">The President chairs the Board of Governors and provides executive leadership to the Institute, ensuring the organisation fulfils its mission and strategic objectives.</p>
 
-    <div class="president-card ">
+    <div class="president-card fade-up">
+      <div class="board-avatar">TB</div>
       <div class="president-info">
-        
+        <div class="president-role-badge" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">
+          <span style="width:5px;height:5px;background:var(--lime);border-radius:50%;display:inline-block"></span>
+          President — Board of Governors
+        </div>
         <div class="president-name">Dr. Tamer Badwy</div>
         <div class="president-title">President, Board of Governors<br>Chartered Institute of Leadership and Governance (CILG)</div>
       </div>
@@ -639,7 +645,7 @@ footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); paddi
         <a href="index.html">Home</a>
         <a href="about.html">About CILG</a>
         <a href="membership.html">Membership</a>
-        <a href="qualifications.html">Qualifications</a>
+        <a href="qualifications.html">Qualification Framework</a>
         <a href="certifications.html">Professional Certification</a>
         <a href="standards.html">Professional Standards</a>
         <a href="faq.html">FAQs</a>
@@ -691,9 +697,9 @@ footer { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,.07); paddi
     <div class="footer-bottom">
       <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
       <span style="display:flex;gap:1rem;align-items:center;">
-        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
         <span style="color:rgba(255,255,255,.25);">·</span>
-        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
       </span>
     </div>
   </div>

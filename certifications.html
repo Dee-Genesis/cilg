@@ -12,20 +12,23 @@
    ROOT & RESET — CILG PALETTE
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;
+  --bg:          #f4f2ee;
   --bg-off:      #e8e4de;
-  --forest:      #212121;
-  --forest-mid:  #2E2E2E;
-  --forest-lt:   #4A4A4A;
-  --lime:        #A00000;
-  --lime-dk:     #720000;
-  --lime-pale:   rgba(160,0,0,.1);
+  --forest:      #1e2a3a;
+  --forest-mid:  #26374d;
+  --forest-lt:   #2e4560;
+  --lime:        #b52a3a;
+  --lime-dk:     #921e2c;
+  --lime-pale:   #f5dde0;
+  --gold:        #c9a227;
+  --gold-dk:     #a8841a;
+  --gold-pale:   #faf3dc;
   --white:       #FFFFFF;
   --g100:        #f4f2ee;
   --g200:        #e8e4de;
   --g300:        #c9bfb0;
   --g500:        #8a8070;
-  --text:        #212121;
+  --text:        #1e2a3a;
   --text2:       #4a4035;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
@@ -54,7 +57,7 @@ html{scroll-behavior:smooth;font-size:16px}
 body{font-family:var(--ff-body);background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--g100)}
-::-webkit-scrollbar-thumb{background:var(--lime-dk);border-radius:3px}
+::-webkit-scrollbar-thumb{background:var(--gold-dk);border-radius:3px}
 a{text-decoration:none}
 img{max-width:100%;display:block}
 
@@ -66,12 +69,12 @@ img{max-width:100%;display:block}
   height:var(--nav-h);
   display:flex;align-items:center;
   padding:0 3rem;
-  background:rgba(245,244,241,0.92);
+  background:rgba(244,242,238,0.92);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--g200);
   transition:all var(--tr);
 }
-.nav.scrolled{height:58px;background:rgba(245,244,241,0.98);box-shadow:0 2px 24px rgba(33,33,33,.08)}
+.nav.scrolled{height:58px;background:rgba(244,242,238,0.98);box-shadow:0 2px 24px rgba(30,42,58,.08)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .nav-logo img{height:38px;width:auto}
 .nav-logo-fallback{font-family:var(--ff-head);font-size:1.2rem;font-weight:800;color:var(--forest);letter-spacing:-.01em;line-height:1}
@@ -94,7 +97,7 @@ img{max-width:100%;display:block}
   border:1px solid var(--lime) !important;border-radius:8px !important;
   font-weight:700 !important;transition:all var(--tr) !important;
 }
-.nav-cta:hover{background:var(--lime-dk) !important;border-color:var(--lime-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(160,0,0,.35)}
+.nav-cta:hover{background:var(--lime-dk) !important;border-color:var(--lime-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(181,42,58,.35)}
 .nav-item:hover .nav-cta{transform:none;box-shadow:none}
 .nav-dropdown{
   position:absolute;top:calc(100% + 8px);left:50%;
@@ -102,7 +105,7 @@ img{max-width:100%;display:block}
   background:var(--white);border:1px solid var(--g200);
   border-radius:12px;padding:6px;min-width:210px;
   opacity:0;pointer-events:none;transition:all var(--tr);
-  box-shadow:0 16px 48px rgba(33,33,33,.12);
+  box-shadow:0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before{content:'';position:absolute;bottom:100%;left:0;right:0;height:12px}
 .nav-item:hover .nav-dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
@@ -134,58 +137,46 @@ img{max-width:100%;display:block}
 .page-hero{
   padding-top:calc(var(--nav-h) + 4rem);
   padding-bottom:4rem;
-  background:linear-gradient(160deg,#0d0d0d 0%,#212121 55%,#050a0f 100%);
+  background:var(--forest);
   position:relative;overflow:hidden;
-}
-.page-hero::before{
-  content:'';position:absolute;inset:0;
-  background-image:
-    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0px,transparent 1px,transparent 72px),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0px,transparent 1px,transparent 72px);
-  pointer-events:none;
-}
-.page-hero::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 70% at 50% 110%,rgba(160,0,0,.1) 0%,transparent 65%);
-  pointer-events:none;
 }
 .page-hero-inner{max-width:1260px;margin:0 auto;padding:0 3rem;position:relative;z-index:2;text-align:center}
 .page-hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(160,0,0,.12);border:1px solid rgba(160,0,0,.3);
-  color:var(--lime);padding:6px 20px;border-radius:40px;
+  background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);
+  color:var(--gold);padding:6px 20px;border-radius:40px;
   font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
   margin-bottom:1.5rem;
 }
-.page-hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--lime);border-radius:50%;animation:blink 2s ease infinite}
+.page-hero-eyebrow::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;animation:blink 2s ease infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .page-hero-seal{
   width:88px;height:88px;border-radius:16px;
-  background:linear-gradient(135deg,rgba(160,0,0,.2),rgba(160,0,0,.06));
-  border:2px solid rgba(160,0,0,.35);
+  background:linear-gradient(135deg,rgba(201,162,39,.2),rgba(201,162,39,.06));
+  border:2px solid rgba(201,162,39,.35);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 1.5rem;box-shadow:0 8px 32px rgba(160,0,0,.12);
+  margin:0 auto 1.5rem;box-shadow:0 8px 32px rgba(201,162,39,.12);
 }
-.page-hero-seal-text{font-family:var(--ff-head);font-size:1.6rem;font-weight:800;color:var(--lime);letter-spacing:.04em}
+.page-hero-seal-text{font-family:var(--ff-head);font-size:1.6rem;font-weight:800;color:var(--gold);letter-spacing:.04em}
 .page-hero h1{font-family:var(--ff-head);font-size:clamp(2rem,4.5vw,3.6rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.03em;margin-bottom:.7rem}
 .page-hero-sub{font-family:var(--ff-head);font-size:clamp(.95rem,1.8vw,1.2rem);color:rgba(201,168,76,.8);font-style:italic;margin-bottom:1.2rem}
 .page-hero-desc{font-size:.95rem;color:rgba(255,255,255,.55);max-width:640px;margin:0 auto 2.5rem;line-height:1.9}
 .page-hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap}
 .page-hero-stat-num{font-family:var(--ff-head);font-size:2.2rem;font-weight:800;color:#c9a84c;line-height:1}
 .page-hero-stat-lbl{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.25rem}
-.page-hero-rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--lime),transparent);margin:2.5rem auto 0}
+.page-hero-rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:2.5rem auto 0}
 
 /* ═══════════════════════════════════════════
    CERT INDEX
 ═══════════════════════════════════════════ */
-.cert-index-section{background:var(--forest);padding:5rem 3rem;border-bottom:1px solid rgba(160,0,0,.1)}
+.cert-index-section{background:var(--forest);padding:5rem 3rem;border-bottom:1px solid rgba(201,162,39,.1)}
 .cert-index-inner{max-width:1260px;margin:0 auto}
 .section-label{
   display:inline-flex;align-items:center;gap:8px;
   font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--lime);margin-bottom:.8rem;
+  color:var(--gold);margin-bottom:.8rem;
 }
-.section-label::before{content:'';width:18px;height:2px;background:var(--lime);border-radius:2px}
+.section-label::before{content:'';width:18px;height:2px;background:var(--gold);border-radius:2px}
 .cert-index-title{font-family:var(--ff-head);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:800;color:#fff;margin-bottom:.5rem;letter-spacing:-.03em}
 .cert-index-sub{font-size:.88rem;color:rgba(255,255,255,.4);margin-bottom:2.5rem}
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
@@ -196,11 +187,11 @@ img{max-width:100%;display:block}
   display:flex;align-items:center;gap:1rem;
   position:relative;overflow:hidden;
 }
-.cert-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tile-clr,var(--lime));opacity:.7;transition:opacity var(--tr)}
+.cert-tile::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tile-clr,var(--gold));opacity:.7;transition:opacity var(--tr)}
 .cert-tile:hover{background:rgba(255,255,255,.07);transform:translateX(4px)}
 .cert-tile:hover::before{opacity:1}
 .cert-tile-num{font-family:var(--ff-head);font-size:.72rem;color:rgba(255,255,255,.3);flex-shrink:0;width:24px}
-.cert-tile-code{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:2px}
+.cert-tile-code{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
 .cert-tile-name{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.8);line-height:1.4}
 
 /* ═══════════════════════════════════════════
@@ -224,7 +215,7 @@ img{max-width:100%;display:block}
 .cert-acorn{
   width:96px;height:96px;border-radius:14px;flex-shrink:0;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(33,33,33,.12);
+  box-shadow:0 4px 20px rgba(30,42,58,.12);
 }
 .cert-acorn-abbr{font-family:var(--ff-head);font-size:1rem;font-weight:800;color:#fff;letter-spacing:.04em}
 .cert-acorn-line{width:36px;height:1px;background:rgba(255,255,255,.3);margin:4px 0}
@@ -255,10 +246,10 @@ img{max-width:100%;display:block}
 }
 .elig-icon{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
 .outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
-.outcome-tag{font-size:.8rem;padding:.5rem .75rem;border-radius:6px;background:var(--lime-pale);border:1px solid rgba(160,0,0,.3);color:var(--forest);font-weight:600;line-height:1.45}
+.outcome-tag{font-size:.8rem;padding:.5rem .75rem;border-radius:6px;background:var(--gold-pale);border:1px solid rgba(201,162,39,.3);color:var(--forest);font-weight:600;line-height:1.45}
 
 /* sidebar */
-.scard{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem;margin-bottom:1.1rem;box-shadow:0 2px 12px rgba(33,33,33,.05)}
+.scard{background:var(--white);border:1.5px solid var(--g200);border-radius:12px;padding:1.3rem;margin-bottom:1.1rem;box-shadow:0 2px 12px rgba(30,42,58,.05)}
 .scard-head{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--g200)}
 .scard-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--g200);gap:1rem}
 .scard-row:last-child{border-bottom:none}
@@ -289,29 +280,29 @@ img{max-width:100%;display:block}
 .gen-card p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.8}
 .gen-card ul{list-style:none;margin-top:.7rem}
 .gen-card ul li{font-size:.83rem;color:rgba(255,255,255,.6);padding:3px 0;padding-left:14px;position:relative;line-height:1.6}
-.gen-card ul li::before{content:'›';position:absolute;left:0;color:var(--lime);font-weight:700}
+.gen-card ul li::before{content:'›';position:absolute;left:0;color:var(--gold);font-weight:700}
 
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4rem 3rem 2rem}
+footer{background:#0d141e;border-top:1px solid rgba(255,255,255,.12);padding:4rem 3rem 2rem}
 .footer-inner{max-width:1260px;margin:0 auto}
 .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
 .footer-brand h3{font-family:var(--ff-head);font-size:1.3rem;font-weight:800;color:#c9a84c;letter-spacing:-.02em;margin-bottom:.75rem}
 .footer-brand p{font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.8}
 .footer-col h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem}
 .footer-col a{display:block;font-size:.78rem;color:rgba(255,255,255,.75);padding:3px 0;transition:color var(--tr)}
-.footer-col a:hover{color:var(--lime)}
+.footer-col a:hover{color:var(--gold)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.72rem;color:rgba(255,255,255,.5)}
 .footer-social{display:flex;gap:.65rem;align-items:center;margin-top:1.4rem}
 .footer-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);transition:all .25s cubic-bezier(.4,0,.2,1);text-decoration:none}
-.footer-social a:hover{background:var(--lime);border-color:var(--lime);color:#fff;transform:translateY(-2px);box-shadow:0 6px 18px rgba(160,0,0,.3)}
+.footer-social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,162,39,.3)}
 .footer-social a svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
 
 /* scroll-to-top */
-.st{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--lime);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(160,0,0,.4);transition:all var(--tr);opacity:0;visibility:hidden;z-index:100}
+.st{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(201,162,39,.4);transition:all var(--tr);opacity:0;visibility:hidden;z-index:100}
 .st.on{opacity:1;visibility:visible}
-.st:hover{background:var(--lime-dk);transform:translateY(-3px)}
+.st:hover{background:var(--gold-dk);transform:translateY(-3px)}
 
 /* ═══════════════════════════════════════════
    RESPONSIVE
@@ -430,7 +421,7 @@ footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4re
     <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">Qualifications</div>
+    <div class="mob-section-title">Qualification Framework</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
     <a href="qul.html" class="mob-link">Qualification Levels</a>
     <a href="psf.html" class="mob-link">Professional Standard Framework</a>
@@ -457,6 +448,8 @@ footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4re
 ═══════════════════════════════════════ -->
 <section class="page-hero">
   <div class="page-hero-inner">
+    <div class="page-hero-eyebrow">16 Professional Certifications</div>
+    <div class="page-hero-seal"><span class="page-hero-seal-text">CILG</span></div>
     <h1>Professional Certification<br>Programmes</h1>
     <p class="page-hero-sub">Chartered Institute of Leadership and Governance</p>
     <p class="page-hero-desc">A suite of sixteen globally recognised professional certifications designed for practitioners who lead organisations, govern institutions, drive strategy, and shape the future of professional practice — aligned to international chartered body standards.</p>
@@ -474,26 +467,26 @@ footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4re
 ═══════════════════════════════════════ -->
 <section class="cert-index-section" id="cert-index">
   <div class="cert-index-inner">
-    <div class="section-label" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">Certification Suite</div>
+    <div class="section-label">Certification Suite</div>
     <div class="cert-index-title">All Certification Programmes</div>
     <div class="cert-index-sub">Click any certification to navigate directly to the full programme write-up</div>
     <div class="cert-grid">
-      <a href="#caigp"  class="cert-tile" style="--tile-clr:var(--c1)"><span class="cert-tile-num">01</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CAIGP</div><div class="cert-tile-name">Certified AI Governance Professional</div></div></a>
-      <a href="#chrm"   class="cert-tile" style="--tile-clr:var(--c2)"><span class="cert-tile-num">02</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CHRM</div><div class="cert-tile-name">Certified Human Resource Manager</div></div></a>
-      <a href="#csol"   class="cert-tile" style="--tile-clr:var(--c3)"><span class="cert-tile-num">03</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CSOL</div><div class="cert-tile-name">Certified Strategic Organizational Leadership</div></div></a>
-      <a href="#cpage"  class="cert-tile" style="--tile-clr:var(--c4)"><span class="cert-tile-num">04</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CPAGE</div><div class="cert-tile-name">Certified Public Administration &amp; Governance Expert</div></div></a>
-      <a href="#cpm"    class="cert-tile" style="--tile-clr:var(--c5)"><span class="cert-tile-num">05</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CPM</div><div class="cert-tile-name">Certified Project Manager</div></div></a>
-      <a href="#clgp"   class="cert-tile" style="--tile-clr:var(--c6)"><span class="cert-tile-num">06</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CLGP</div><div class="cert-tile-name">Certified Leadership Governance Professional</div></div></a>
-      <a href="#ccrm"   class="cert-tile" style="--tile-clr:var(--c7)"><span class="cert-tile-num">07</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CCRM</div><div class="cert-tile-name">Certified Corporate Risk Manager</div></div></a>
-      <a href="#ceem"   class="cert-tile" style="--tile-clr:var(--c8)"><span class="cert-tile-num">08</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CEEM</div><div class="cert-tile-name">Certified ESG &amp; Environmental Manager</div></div></a>
-      <a href="#cdgp"   class="cert-tile" style="--tile-clr:var(--c9)"><span class="cert-tile-num">09</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CDGP</div><div class="cert-tile-name">Certified Data Governance Professional</div></div></a>
-      <a href="#csmp"   class="cert-tile" style="--tile-clr:var(--c10)"><span class="cert-tile-num">10</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CSMP</div><div class="cert-tile-name">Certified Strategy &amp; Management Professional</div></div></a>
-      <a href="#cppm"   class="cert-tile" style="--tile-clr:var(--c11)"><span class="cert-tile-num">11</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CPPM</div><div class="cert-tile-name">Certified Policy &amp; Public Management Professional</div></div></a>
-      <a href="#cethm"  class="cert-tile" style="--tile-clr:var(--c12)"><span class="cert-tile-num">12</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CETHM</div><div class="cert-tile-name">Certified Ethics &amp; Compliance Professional</div></div></a>
-      <a href="#cdtl"   class="cert-tile" style="--tile-clr:var(--c13)"><span class="cert-tile-num">13</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CDTL</div><div class="cert-tile-name">Certified Digital Transformation Leader</div></div></a>
-      <a href="#ccsp"   class="cert-tile" style="--tile-clr:var(--c14)"><span class="cert-tile-num">14</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CCSP</div><div class="cert-tile-name">Certified Change &amp; Strategy Professional</div></div></a>
-      <a href="#cnlp"   class="cert-tile" style="--tile-clr:var(--c15)"><span class="cert-tile-num">15</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CNLP</div><div class="cert-tile-name">Certified Non-Profit Leadership Professional</div></div></a>
-      <a href="#cwlp"   class="cert-tile" style="--tile-clr:var(--c16)"><span class="cert-tile-num">16</span><div><div class="cert-tile-code" class="part-header" style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:1.2rem;line-height:1.7">CWLP</div><div class="cert-tile-name">Certified Women in Leadership Professional</div></div></a>
+      <a href="#caigp"  class="cert-tile" style="--tile-clr:var(--c1)"><span class="cert-tile-num">01</span><div><div class="cert-tile-code">CAIGP</div><div class="cert-tile-name">Certified AI Governance Professional</div></div></a>
+      <a href="#chrm"   class="cert-tile" style="--tile-clr:var(--c2)"><span class="cert-tile-num">02</span><div><div class="cert-tile-code">CHRM</div><div class="cert-tile-name">Certified Human Resource Manager</div></div></a>
+      <a href="#csol"   class="cert-tile" style="--tile-clr:var(--c3)"><span class="cert-tile-num">03</span><div><div class="cert-tile-code">CSOL</div><div class="cert-tile-name">Certified Strategic Organizational Leadership</div></div></a>
+      <a href="#cpage"  class="cert-tile" style="--tile-clr:var(--c4)"><span class="cert-tile-num">04</span><div><div class="cert-tile-code">CPAGE</div><div class="cert-tile-name">Certified Public Administration &amp; Governance Expert</div></div></a>
+      <a href="#cpm"    class="cert-tile" style="--tile-clr:var(--c5)"><span class="cert-tile-num">05</span><div><div class="cert-tile-code">CPM</div><div class="cert-tile-name">Certified Project Manager</div></div></a>
+      <a href="#clgp"   class="cert-tile" style="--tile-clr:var(--c6)"><span class="cert-tile-num">06</span><div><div class="cert-tile-code">CLGP</div><div class="cert-tile-name">Certified Leadership Governance Professional</div></div></a>
+      <a href="#ccrm"   class="cert-tile" style="--tile-clr:var(--c7)"><span class="cert-tile-num">07</span><div><div class="cert-tile-code">CCRM</div><div class="cert-tile-name">Certified Corporate Risk Manager</div></div></a>
+      <a href="#ceem"   class="cert-tile" style="--tile-clr:var(--c8)"><span class="cert-tile-num">08</span><div><div class="cert-tile-code">CEEM</div><div class="cert-tile-name">Certified ESG &amp; Environmental Manager</div></div></a>
+      <a href="#cdgp"   class="cert-tile" style="--tile-clr:var(--c9)"><span class="cert-tile-num">09</span><div><div class="cert-tile-code">CDGP</div><div class="cert-tile-name">Certified Data Governance Professional</div></div></a>
+      <a href="#csmp"   class="cert-tile" style="--tile-clr:var(--c10)"><span class="cert-tile-num">10</span><div><div class="cert-tile-code">CSMP</div><div class="cert-tile-name">Certified Strategy &amp; Management Professional</div></div></a>
+      <a href="#cppm"   class="cert-tile" style="--tile-clr:var(--c11)"><span class="cert-tile-num">11</span><div><div class="cert-tile-code">CPPM</div><div class="cert-tile-name">Certified Policy &amp; Public Management Professional</div></div></a>
+      <a href="#cethm"  class="cert-tile" style="--tile-clr:var(--c12)"><span class="cert-tile-num">12</span><div><div class="cert-tile-code">CETHM</div><div class="cert-tile-name">Certified Ethics &amp; Compliance Professional</div></div></a>
+      <a href="#cdtl"   class="cert-tile" style="--tile-clr:var(--c13)"><span class="cert-tile-num">13</span><div><div class="cert-tile-code">CDTL</div><div class="cert-tile-name">Certified Digital Transformation Leader</div></div></a>
+      <a href="#ccsp"   class="cert-tile" style="--tile-clr:var(--c14)"><span class="cert-tile-num">14</span><div><div class="cert-tile-code">CCSP</div><div class="cert-tile-name">Certified Change &amp; Strategy Professional</div></div></a>
+      <a href="#cnlp"   class="cert-tile" style="--tile-clr:var(--c15)"><span class="cert-tile-num">15</span><div><div class="cert-tile-code">CNLP</div><div class="cert-tile-name">Certified Non-Profit Leadership Professional</div></div></a>
+      <a href="#cwlp"   class="cert-tile" style="--tile-clr:var(--c16)"><span class="cert-tile-num">16</span><div><div class="cert-tile-code">CWLP</div><div class="cert-tile-name">Certified Women in Leadership Professional</div></div></a>
     </div>
   </div>
 </section>
@@ -1473,14 +1466,14 @@ footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4re
 ═══════════════════════════════════════ -->
 <section class="gen-section" id="general">
   <div class="gen-inner">
-    <div class="section-label" style="color:var(--lime);justify-content:center">Universal Standards</div>
+    <div class="section-label" style="color:var(--gold);justify-content:center">Universal Standards</div>
     <div class="gen-title">General Standards Applicable to All 16 Certifications</div>
     <div class="gen-sub">Common policies, standards, and provisions that apply across the entire CILG certification suite</div>
     <div class="gen-grid">
       <div class="gen-card">
         <div class="gen-card-icon">📊</div>
         <h3>Universal Grading Scale</h3>
-        <p>All 16 certifications use a competency-referenced grading scale consistent with international professional body standards (ACCA, CIPD, ICSA, IoD, CMI):</p>
+        <p>All 16 certifications use a competency-referenced grading scale consistent with internationally recognised professional bodies' standards:</p>
         <ul>
           <li><strong>Distinction:</strong> 80–100% — Exceptional mastery</li>
           <li><strong>Merit:</strong> 70–79% — High professional competence</li>
@@ -1563,13 +1556,9 @@ footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4re
       <div class="gen-card">
         <div class="gen-card-icon">🌍</div>
         <h3>Global Recognition and MRAs</h3>
-        <p>CILG certifications are recognised globally through a growing network of Mutual Recognition Agreements with peer professional bodies:</p>
+        <p>CILG certifications are recognised globally through a growing network of Mutual Recognition Agreements with leading internationally recognised professional bodies:</p>
         <ul>
-          <li>IoD (Institute of Directors)</li>
-          <li>ICSA (The Governance Institute)</li>
-          <li>CMI (Chartered Management Institute)</li>
-          <li>IRM (Institute of Risk Management)</li>
-          <li>CIPD (HR professionals)</li>
+          <li>A growing portfolio of Mutual Recognition Agreements with leading internationally recognised professional bodies across governance, management, HR, and risk disciplines</li>
           <li>Full MRA directory at www.cilg.org/mra</li>
         </ul>
       </div>
@@ -1616,7 +1605,7 @@ footer{background:#0D0D0D;border-top:1px solid rgba(255,255,255,.12);padding:4re
         <a href="index.html">Home</a>
         <a href="about.html">About CILG</a>
         <a href="membership.html">Membership</a>
-        <a href="qualifications.html">Qualifications</a>
+        <a href="qualifications.html">Qualification Framework</a>
         <a href="certifications.html">Professional Certification</a>
         <a href="standards.html">Professional Standards</a>
         <a href="faq.html">FAQs</a>

@@ -13,14 +13,14 @@
    ROOT & RESET — CILG PALETTE (matches index.html)
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;  /* warm-white */
+  --bg:          #F4F2EE;  /* warm-white */
   --bg-off:      #E8E4DE;  /* warm-grey */
-  --navy:        #212121;
-  --navy-mid:    #2E2E2E;
-  --navy-lt:     #4A4A4A;
-  --crimson:     #A00000;
-  --crimson-dk:  #720000;
-  --crimson-pale:rgba(160,0,0,.1);
+  --navy:        #1E2A3A;
+  --navy-mid:    #2A3A50;
+  --navy-lt:     #3A4E6B;
+  --crimson:     #B52A3A;
+  --crimson-dk:  #9E202E;
+  --crimson-pale:#FDE8E8;
   --gold:        #C9A84C;
   --gold-dk:     #B8963A;
   --gold-pale:   #FEF5E6;
@@ -29,7 +29,7 @@
   --g200:        #E2DFD9;
   --g300:        #C5C1B8;
   --g500:        #8A857A;
-  --text:        #212121;
+  --text:        #1E2A3A;
   --text2:       #4A4742;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
@@ -38,10 +38,10 @@
   --r:           8px;
   --rl:          14px;
   --rxl:         22px;
-  --sh0: 0 1px 4px rgba(33,33,33,.06);
-  --sh1: 0 4px 20px rgba(33,33,33,.10);
-  --sh2: 0 12px 48px rgba(33,33,33,.13);
-  --sh3: 0 24px 80px rgba(33,33,33,.17);
+  --sh0: 0 1px 4px rgba(30,42,58,.06);
+  --sh1: 0 4px 20px rgba(30,42,58,.10);
+  --sh2: 0 12px 48px rgba(30,42,58,.13);
+  --sh3: 0 24px 80px rgba(30,42,58,.17);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -60,12 +60,12 @@ img { max-width: 100%; display: block; }
   height:var(--nav-h);
   display:flex;align-items:center;
   padding:0 3rem;
-  background:rgba(245,244,241,0.92);
+  background:rgba(244,242,238,0.92);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--g200);
   transition:all var(--tr);
 }
-.nav.scrolled{height:58px;background:rgba(245,244,241,0.98);box-shadow:0 2px 24px rgba(33,33,33,.08)}
+.nav.scrolled{height:58px;background:rgba(244,242,238,0.98);box-shadow:0 2px 24px rgba(30,42,58,.08)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .nav-logo img{height:38px;width:auto}
 .nav-logo-fallback{font-family:var(--ff-head);font-size:1.2rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;line-height:1}
@@ -88,7 +88,7 @@ img { max-width: 100%; display: block; }
   border:1px solid var(--crimson) !important;border-radius:8px !important;
   font-weight:700 !important;transition:all var(--tr) !important;
 }
-.nav-cta:hover{background:var(--crimson-dk) !important;border-color:var(--crimson-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(160,0,0,.35)}
+.nav-cta:hover{background:var(--crimson-dk) !important;border-color:var(--crimson-dk) !important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(181,42,58,.35)}
 .nav-item:hover .nav-cta{transform:none;box-shadow:none}
 .nav-dropdown{
   position:absolute;top:calc(100% + 8px);left:50%;
@@ -96,7 +96,7 @@ img { max-width: 100%; display: block; }
   background:var(--white);border:1px solid var(--g200);
   border-radius:12px;padding:6px;min-width:210px;
   opacity:0;pointer-events:none;transition:all var(--tr);
-  box-shadow:0 16px 48px rgba(33,33,33,.12);
+  box-shadow:0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before{content:'';position:absolute;bottom:100%;left:0;right:0;height:12px}
 .nav-item:hover .nav-dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
@@ -134,7 +134,7 @@ img { max-width: 100%; display: block; }
   background:
     radial-gradient(ellipse 60% 55% at 50% 100%, rgba(45,99,71,.15), transparent 62%),
     radial-gradient(ellipse 35% 40% at 85% 10%, rgba(201,168,76,.08), transparent 55%),
-    linear-gradient(168deg, #050a0f 0%, #212121 55%, #000505 100%);
+    linear-gradient(168deg, #0B1C2A 0%, #1E2A3A 55%, #081018 100%);
 }
 .hero::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
@@ -144,7 +144,7 @@ img { max-width: 100%; display: block; }
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(160,0,0,.1); border: 1px solid rgba(160,0,0,.28);
+  background: rgba(181,42,58,.1); border: 1px solid rgba(181,42,58,.28);
   color: var(--crimson); padding: 5px 18px; border-radius: 40px;
   font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
   margin-bottom: 1.5rem; animation: heroUp .8s ease both; position: relative;
@@ -492,7 +492,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--ff-head); font-size: .9rem; font-weight: 700; letter-spacing: .02em;
   transition: all var(--tr);
 }
-.form-submit:hover { background: var(--navy-lt); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(33,33,33,.2); }
+.form-submit:hover { background: var(--navy-lt); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(30,42,58,.2); }
 .form-submit-lime {
   display: inline-flex; align-items: center; gap: .6rem;
   padding: .9rem 2.5rem; background: var(--gold); color: var(--navy);
@@ -605,7 +605,7 @@ footer {
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
+      <span class="nav-link">Qualification Framework <span class="arrow"></span></span>
       <div class="nav-dropdown">
         <a href="qualifications.html">Professional Qualification Framework</a>
         <a href="qul.html">Qualification Levels</a>

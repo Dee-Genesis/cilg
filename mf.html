@@ -13,23 +13,23 @@
    ROOT & RESET
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #F5F4F1;  /* Warm off-white — page background */
-  --bg-off:      #EAE8E4;  /* Slightly darker warm off-white */
-  --forest:      #212121;  /* Near-black — all dark surfaces, panels, table headers */
-  --forest-mid:  #2E2E2E;  /* Slightly lighter near-black — gradients, helpline panel */
-  --forest-lt:   #4A4A4A;  /* Mid-grey — secondary text, labels */
-  --lime:        #A00000;  /* Rich red — CTAs, accents, highlights */
-  --lime-dk:     #720000;  /* Deep red — hover states, borders */
-  --lime-pale:   #F5E6E6;  /* Pale red background */
-  --white:       #FFFFFF;
-  --g100:        #EAE8E4;
-  --g200:        #DDD9D3;
-  --g300:        #C4BCB2;
-  --g500:        #8B857C;
-  --text:        #212121;
-  --text2:       #4A4A4A;
-  --gold:        #C9A84C;
-  --gold-lt:     #E0C47A;
+  --bg:          #f4f2ee;
+  --bg-off:      #e8e4de;
+  --forest:      #1e2a3a;
+  --forest-mid:  #243241;
+  --forest-lt:   #2c3e4e;
+  --lime:        #c9a84c;
+  --lime-dk:     #b8932e;
+  --lime-pale:   #fdf6e3;
+  --white:       #ffffff;
+  --g100:        #e8e4de;
+  --g200:        #ddd6ce;
+  --g300:        #c4bcb2;
+  --g500:        #8b857c;
+  --text:        #1e2a3a;
+  --text2:       #3a4045;
+  --gold:        #c9a84c;
+  --gold-lt:     #e0c47a;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
   --tr:          .25s cubic-bezier(.4,0,.2,1);
@@ -52,12 +52,12 @@ img { max-width: 100%; display: block; }
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(245,244,241,0.92);
+  background: rgba(244,242,238,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200);
   transition: all var(--tr);
 }
-.nav.scrolled { height: 58px; background: rgba(245,244,241,0.98); box-shadow: 0 2px 24px rgba(33,33,33,.08); }
+.nav.scrolled { height: 58px; background: rgba(244,242,238,0.98); box-shadow: 0 2px 24px rgba(30,42,58,.08); }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
 .nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
@@ -69,10 +69,10 @@ img { max-width: 100%; display: block; }
 .nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
-.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: var(--lime) !important; color: var(--white) !important; border: 1px solid var(--lime) !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
+.nav-cta { margin-left: .5rem; padding: 8px 18px !important; background: #b52a3a !important; color: var(--white) !important; border: 1px solid #b52a3a !important; border-radius: 8px !important; font-weight: 700 !important; transition: all var(--tr) !important; }
+.nav-cta:hover { background: #9e1f2e !important; border-color: #9e1f2e !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
 .nav-item:hover .nav-cta { transform: none; box-shadow: none; }
-.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 210px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(33,33,33,.12); }
+.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 6px; min-width: 210px; opacity: 0; pointer-events: none; transition: all var(--tr); box-shadow: 0 16px 48px rgba(30,42,58,.12); }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 .nav-dropdown a { display: block; padding: 7px 12px; border-radius: 7px; font-size: .74rem; font-weight: 500; color: var(--text2); transition: all var(--tr); white-space: nowrap; }
@@ -88,8 +88,8 @@ img { max-width: 100%; display: block; }
 .mob-section-title { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g300); padding: 0 4px; margin-bottom: .5rem; }
 .mob-link { display: block; padding: 10px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; color: var(--text2); transition: all var(--tr); border: 1px solid transparent; }
 .mob-link:hover { color: var(--forest); background: var(--g100); border-color: var(--g200); }
-.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
-.mob-cta:hover { background: var(--lime-dk); }
+.mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: #b52a3a; color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
+.mob-cta:hover { background: #9e1f2e; }
 
 /* ═══════════════════════════════════════════
    PAGE HERO
@@ -100,12 +100,11 @@ img { max-width: 100%; display: block; }
   min-height: 400px;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, rgba(33,33,33,.60), rgba(33,33,33,.76)),
-              url('assets/images/hero3.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, #111c2a 0%, #1e2a3a 50%, #162030 100%);
   overflow: hidden;
 }
 .page-hero-inner { max-width: 1260px; margin: 0 auto; padding: 5rem 3rem 4.5rem; width: 100%; position: relative; z-index: 2; }
-.page-hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(160,0,0,.18); border: 1px solid var(--lime-dk); color: #fff; padding: 4px 14px; border-radius: 40px; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.page-hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(201,168,76,.18); border: 1px solid var(--lime-dk); color: #fff; padding: 4px 14px; border-radius: 40px; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.2rem; }
 .page-hero-badge-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
 .page-hero h1 { font-family: var(--ff-head); font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.07; margin-bottom: 1rem; max-width: 760px; }
@@ -168,7 +167,7 @@ img { max-width: 100%; display: block; }
 /* ═══════════════════════════════════════════
    FEE TABLES
 ═══════════════════════════════════════════ */
-.fee-table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 14px; border: 1.5px solid var(--g200); box-shadow: 0 4px 20px rgba(33,33,33,.05); }
+.fee-table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 14px; border: 1.5px solid var(--g200); box-shadow: 0 4px 20px rgba(30,42,58,.05); }
 .fee-table { width: 100%; border-collapse: collapse; font-size: .82rem; background: var(--white); min-width: 620px; }
 .fee-table thead { background: var(--forest); }
 .fee-table thead th { padding: 14px 18px; text-align: left; font-family: var(--ff-head); font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); white-space: nowrap; }
@@ -186,7 +185,7 @@ img { max-width: 100%; display: block; }
 .fee-table tbody td:first-child { font-weight: 700; color: var(--forest); }
 .fee-amount { font-family: var(--ff-head); font-size: .95rem; font-weight: 800; color: var(--forest); letter-spacing: -.02em; white-space: nowrap; }
 .desig-pill { display: inline-block; background: var(--g100); color: var(--forest-lt); font-size: .6rem; font-weight: 800; letter-spacing: .1em; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--g200); margin-left: 4px; }
-.featured-row .desig-pill { background: rgba(160,0,0,.1); color: var(--lime); border-color: rgba(160,0,0,.2); }
+.featured-row .desig-pill { background: rgba(201,168,76,.1); color: var(--lime); border-color: rgba(201,168,76,.2); }
 .notes-cell { font-size: .75rem; color: var(--g500); line-height: 1.55; max-width: 280px; }
 .featured-row .notes-cell { color: rgba(255,255,255,.5); }
 
@@ -215,7 +214,7 @@ img { max-width: 100%; display: block; }
 .corp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.4rem 0; }
 .corp-card { background: var(--white); border: 1.5px solid var(--g200); border-radius: 16px; padding: 1.6rem 1.4rem; position: relative; overflow: hidden; transition: all var(--tr); }
 .corp-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--g200); transition: background var(--tr); }
-.corp-card:hover { border-color: var(--lime-dk); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(33,33,33,.08); }
+.corp-card:hover { border-color: var(--lime-dk); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(30,42,58,.08); }
 .corp-card:hover::before { background: var(--lime-dk); }
 .corp-tier-label { font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--forest-lt); margin-bottom: .4rem; }
 .corp-tier-name { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 800; color: var(--forest); letter-spacing: -.02em; margin-bottom: .3rem; }
@@ -247,8 +246,8 @@ img { max-width: 100%; display: block; }
 ═══════════════════════════════════════════ */
 .concession-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; margin: 1.4rem 0; }
 .concession-card { background: var(--white); border: 1.5px solid var(--g200); border-radius: 14px; padding: 1.4rem 1.5rem; transition: all var(--tr); position: relative; overflow: hidden; }
-.concession-card::after { content: ''; position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: radial-gradient(circle at top right, rgba(160,0,0,.15) 0%, transparent 70%); }
-.concession-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 24px rgba(33,33,33,.07); }
+.concession-card::after { content: ''; position: absolute; top: 0; right: 0; width: 60px; height: 60px; background: radial-gradient(circle at top right, rgba(201,168,76,.15) 0%, transparent 70%); }
+.concession-card:hover { border-color: var(--lime-dk); box-shadow: 0 6px 24px rgba(30,42,58,.07); }
 .concession-icon { font-size: 1.6rem; margin-bottom: .7rem; }
 .concession-title { font-family: var(--ff-head); font-size: .92rem; font-weight: 700; color: var(--forest); margin-bottom: .35rem; letter-spacing: -.01em; }
 .concession-pct { display: inline-block; background: var(--lime); color: var(--white); font-family: var(--ff-head); font-size: 1.1rem; font-weight: 800; padding: 2px 12px; border-radius: 6px; margin-bottom: .6rem; letter-spacing: -.03em; }
@@ -287,20 +286,20 @@ img { max-width: 100%; display: block; }
    CTA BANNER
 ═══════════════════════════════════════════ */
 .cta-section { padding: 5rem 3rem; background: var(--forest); text-align: center; position: relative; overflow: hidden; }
-.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(160,0,0,.15) 0%, transparent 65%); pointer-events: none; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, rgba(201,168,76,.15) 0%, transparent 65%); pointer-events: none; }
 .cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; margin-bottom: .6rem; position: relative; }
 .cta-section h2 em { font-style: normal; color: var(--lime); }
 .cta-section p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.2rem; position: relative; max-width: 540px; margin-left: auto; margin-right: auto; }
 .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 .cta-btn-main { padding: 15px 34px; background: var(--lime); color: var(--white); border-radius: 9px; font-family: var(--ff-head); font-size: .86rem; font-weight: 700; letter-spacing: -.01em; transition: all var(--tr); }
-.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(160,0,0,.35); }
+.cta-btn-main:hover { background: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,.35); }
 .cta-btn-alt { padding: 15px 28px; background: transparent; color: rgba(255,255,255,.8); border: 1.5px solid rgba(255,255,255,.2); border-radius: 9px; font-size: .86rem; font-weight: 600; transition: all var(--tr); }
 .cta-btn-alt:hover { border-color: rgba(255,255,255,.55); color: #fff; }
 
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
+footer { background: #1e2a3a; border-top: 1px solid rgba(255,255,255,.12); padding: 4rem 3rem 2rem; }
 .footer-inner { max-width: 1260px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
 .footer-brand h3 { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 800; color: var(--lime); letter-spacing: -.02em; margin-bottom: .75rem; }
@@ -311,7 +310,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.5); }
 .footer-social { display: flex; gap: .65rem; align-items: center; margin-top: 1.4rem; }
 .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.45); transition: all .25s; text-decoration: none; }
-.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(160,0,0,.3); }
+.footer-social a:hover { background: var(--lime); border-color: var(--lime); color: var(--forest); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(201,168,76,.3); }
 .footer-social a svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
 /* ═══════════════════════════════════════════
@@ -447,7 +446,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <a href="cod.html" class="mob-link">Code of Conduct</a>
   </div>
   <div class="mob-section">
-    <div class="mob-section-title">Qualifications</div>
+    <div class="mob-section-title">Qualification Framework</div>
     <a href="qualifications.html" class="mob-link">Qualification Framework</a>
     <a href="qul.html" class="mob-link">Qualification Levels</a>
     <a href="psf.html" class="mob-link">Professional Standard Framework</a>
@@ -474,6 +473,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
   <div class="page-hero-inner">
     <div class="page-hero-badge">
       <span class="page-hero-badge-dot"></span>
+      Membership Policy
     </div>
     <h1>Membership <em>Fee Schedule</em></h1>
     <p class="page-hero-sub">Standard fee schedule for CILG membership upgrades, annual subscriptions, corporate membership, and professional services — reviewed annually by the Finance Committee and ratified by the Board of Governors.</p>
@@ -595,7 +595,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         <table class="fee-table">
           <thead>
             <tr>
-              <th class="desig-pill">Membership Grade</th>
+              <th>Membership Grade</th>
               <th>Designation</th>
               <th>Upgrade / Application Fee (USD)</th>
               <th>Notes</th>
@@ -604,7 +604,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
           <tbody>
             <tr>
               <td>Student Member</td>
-              <td><span class="desig-pill">-</span></td>
+              <td><span class="desig-pill">—</span></td>
               <td><span class="fee-amount">USD 50</span></td>
               <td class="notes-cell">Initial enrollment/registration fee; paid once on first enrollment</td>
             </tr>
@@ -622,8 +622,8 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
             </tr>
             <tr class="featured-row">
               <td>Full Member</td>
-              <td><span class="corp-tier-desig">MCILG </span></td>
-              <td><span class="corp-tier-desig">USD 500</span></td>
+              <td><span class="desig-pill">MCILG</span></td>
+              <td><span class="fee-amount">USD 500</span></td>
               <td class="notes-cell">Payable on application to upgrade from Associate to Full Member; includes Viva Voce administration</td>
             </tr>
             <tr>
@@ -676,7 +676,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         <table class="fee-table">
           <thead>
             <tr>
-              <th><spa class="corp-tier-desig"n>Membership Grade </span></th>
+              <th>Membership Grade</th>
               <th>Designation</th>
               <th>Annual Subscription (USD)</th>
               <th>Payment Frequency</th>
@@ -686,7 +686,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
           <tbody>
             <tr class="waived-row">
               <td>Student Member</td>
-              <td><span class="desig-pill">-</span></td>
+              <td><span class="desig-pill">—</span></td>
               <td><span class="fee-amount" style="color:var(--g500);font-size:.82rem;font-weight:600">No annual subscription</span></td>
               <td class="notes-cell">N/A — maintained by active module enrollment</td>
               <td class="notes-cell">Enrollment fee USD 50 (one-time)</td>
@@ -707,8 +707,8 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
             </tr>
             <tr class="featured-row">
               <td>Full Member</td>
-              <td><span class="corp-tier-desig">MCILG</span></td>
-              <td><span class="corp-tier-desig">USD 60/year</span></td>
+              <td><span class="desig-pill">MCILG</span></td>
+              <td><span class="fee-amount">USD 60/year</span></td>
               <td class="notes-cell">Annually (or monthly installments of USD 5.00)</td>
               <td class="notes-cell">Includes full Members' Portal and research library access</td>
             </tr>
@@ -1033,7 +1033,7 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
         <a href="index.html">Home</a>
         <a href="about.html">About CILG</a>
         <a href="mov.html">Membership</a>
-        <a href="qualifications.html">Qualifications</a>
+        <a href="qualifications.html">Qualification Framework</a>
         <a href="certifications.html">Professional Certification</a>
         <a href="standards.html">Professional Standards</a>
         <a href="news.html">News &amp; Updates</a>
@@ -1085,9 +1085,9 @@ footer { background: #212121; border-top: 1px solid rgba(255,255,255,.12); paddi
     <div class="footer-bottom">
       <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico · Alaska · Michigan · United States of America</span>
       <span style="display:flex;gap:1rem;align-items:center;">
-        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
+        <a href="privacy-policy.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Privacy Policy</a>
         <span style="color:rgba(255,255,255,.25);">·</span>
-        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
+        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
       </span>
     </div>
   </div>

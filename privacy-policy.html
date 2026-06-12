@@ -8,23 +8,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-/* ===== ROOT ===== */
+/* ===== ROOT ===== GOLD ACCENT (#C8A951) instead of crimson, except portal button */
 :root {
-  --bg:          #F5F4F1;
-  --bg-off:      #ece9e4;
-  --forest:      #212121;
-  --forest-mid:  #2E2E2E;
-  --forest-lt:   #4A4A4A;
-  --lime:        #A00000;
-  --lime-dk:     #720000;
-  --lime-pale:   #fce8e8;
+  --bg:          #f4f2ee;
+  --bg-off:      #e8e4de;
+  --forest:      #1e2a3a;
+  --forest-mid:  #243241;
+  --forest-lt:   #2c3e4e;
+  --gold:        #C8A951;
+  --gold-dk:     #A3863A;
+  --gold-pale:   #FCF6E8;
+  --lime:        #b52a3a;     /* keep for portal button only */
+  --lime-dk:     #9e1f2e;
+  --lime-pale:   #fbe9eb;
   --white:       #ffffff;
   --g100:        #e8e4de;
   --g200:        #ddd6ce;
   --g300:        #c4bcb2;
   --g500:        #8b857c;
-  --text:        #212121;
-  --text2:       #3a3a3a;
+  --text:        #1e2a3a;
+  --text2:       #3a4045;
   --red:         #c0392b;
   --ff-head:     'Bricolage Grotesque', system-ui, sans-serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
@@ -36,7 +39,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.75; overflow-x: hidden; }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--g100); }
-::-webkit-scrollbar-thumb { background: var(--lime-dk); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--gold-dk); border-radius: 3px; }
 a { text-decoration: none; }
 img { max-width: 100%; display: block; }
 
@@ -45,10 +48,10 @@ img { max-width: 100%; display: block; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--nav-h); display: flex; align-items: center;
   padding: 0 3rem;
-  background: rgba(245,244,241,0.92); backdrop-filter: blur(20px);
+  background: rgba(244,242,238,0.92); backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--g200); transition: all var(--tr);
 }
-.nav.scrolled { height: 58px; background: rgba(245,244,241,0.98); box-shadow: 0 2px 24px rgba(33,33,33,.08); }
+.nav.scrolled { height: 58px; background: rgba(244,242,238,0.98); box-shadow: 0 2px 24px rgba(30,42,58,.08); }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo img { height: 38px; width: auto; }
 .nav-logo-fallback { font-family: var(--ff-head); font-size: 1.2rem; font-weight: 800; color: var(--forest); letter-spacing: -.01em; line-height: 1; }
@@ -65,20 +68,21 @@ img { max-width: 100%; display: block; }
 .nav-link:hover, .nav-link.act { color: var(--forest); background: var(--g100); border-color: var(--g200); }
 .nav-link .arrow { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3.5px solid currentColor; transition: transform var(--tr); opacity: .6; }
 .nav-item:hover .arrow { transform: rotate(180deg); }
+/* portal button stays CRIMSON as requested */
 .nav-cta {
   margin-left: .5rem; padding: 8px 18px !important;
   background: var(--lime) !important; color: var(--white) !important;
   border: 1px solid var(--lime) !important; border-radius: 8px !important;
   font-weight: 700 !important; transition: all var(--tr) !important;
 }
-.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(114,0,0,.35); }
+.nav-cta:hover { background: var(--lime-dk) !important; border-color: var(--lime-dk) !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(158,31,46,.35); }
 .nav-dropdown {
   position: absolute; top: calc(100% + 8px); left: 50%;
   transform: translateX(-50%) translateY(6px);
   background: var(--white); border: 1px solid var(--g200);
   border-radius: 12px; padding: 6px; min-width: 210px;
   opacity: 0; pointer-events: none; transition: all var(--tr);
-  box-shadow: 0 16px 48px rgba(33,33,33,.12);
+  box-shadow: 0 16px 48px rgba(30,42,58,.12);
 }
 .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; right: 0; height: 12px; }
 .nav-item:hover .nav-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -105,7 +109,7 @@ img { max-width: 100%; display: block; }
 .mob-cta { display: block; width: 100%; padding: 14px; margin-top: 1rem; background: var(--lime); color: var(--white); font-weight: 700; font-size: .9rem; letter-spacing: .02em; border-radius: 10px; text-align: center; transition: all var(--tr); }
 .mob-cta:hover { background: var(--lime-dk); }
 
-/* ===== TOC SIDEBAR ===== */
+/* ===== TOC SIDEBAR (gold accents) ===== */
 .toc-sidebar {
   position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
   z-index: 100; display: flex; flex-direction: column; gap: 6px;
@@ -114,7 +118,7 @@ img { max-width: 100%; display: block; }
   width: 8px; height: 8px; border-radius: 50%; background: var(--g300);
   transition: all var(--tr); cursor: pointer; position: relative;
 }
-.toc-dot.active { background: var(--lime-dk); transform: scale(1.4); }
+.toc-dot.active { background: var(--gold-dk); transform: scale(1.4); }
 .toc-dot:hover { background: var(--forest-lt); }
 .toc-dot::before {
   content: attr(data-label);
@@ -126,40 +130,31 @@ img { max-width: 100%; display: block; }
 }
 .toc-dot:hover::before { opacity: 1; }
 
-/* ===== HERO ===== */
+/* ===== HERO (solid color, no pattern) ===== */
 .page-hero {
   padding-top: calc(var(--nav-h) + 5rem);
   padding-bottom: 5rem;
-  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 60%, #3a3a3a 100%);
+  background: var(--forest); /* solid dark forest */
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-.page-hero::before {
-  content:''; position:absolute; inset:0; pointer-events:none;
-  background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(160,0,0,.12) 0%, transparent 65%);
-}
-.page-hero::after {
-  content:''; position:absolute; top:-120px; right:-120px;
-  width:550px; height:550px; border-radius:50%;
-  border:80px solid rgba(160,0,0,.04); pointer-events:none;
-}
 .page-hero-inner { position:relative; z-index:1; max-width:800px; margin:0 auto; padding:0 2rem; }
 .page-hero-label {
   display:inline-flex; align-items:center; gap:6px;
-  background:rgba(160,0,0,.15); border:1px solid rgba(160,0,0,.35);
-  color:var(--lime); padding:4px 16px; border-radius:40px;
+  background:rgba(200,169,81,.15); border:1px solid rgba(200,169,81,.35);
+  color:var(--gold); padding:4px 16px; border-radius:40px;
   font-size:.65rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
   margin-bottom:1.5rem;
 }
-.page-hero-label span { width:5px; height:5px; background:var(--lime); border-radius:50%; animation:pulse 2s infinite; }
+.page-hero-label span { width:5px; height:5px; background:var(--gold); border-radius:50%; animation:pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.2} }
 .page-hero h1 {
   font-family:var(--ff-head); font-size:clamp(2.2rem,5vw,3.8rem);
   font-weight:800; color:#fff; letter-spacing:-.03em; line-height:1.1;
   margin-bottom:1.2rem;
 }
-.page-hero h1 span { color: var(--lime); }
+.page-hero h1 span { color: var(--gold); }
 .page-hero-sub {
   font-size:1rem; color:rgba(255,255,255,.65); line-height:1.8;
   max-width:580px; margin:0 auto 2rem;
@@ -176,9 +171,9 @@ img { max-width: 100%; display: block; }
   border: 1.5px solid rgba(255,255,255,.25); color: rgba(255,255,255,.85); cursor: pointer;
   transition: all var(--tr); background: rgba(255,255,255,.06);
 }
-.hero-tab:hover { background: var(--lime); color: var(--white); border-color: var(--lime); }
+.hero-tab:hover { background: var(--gold); color: var(--forest); border-color: var(--gold); }
 
-/* ===== SHARED SECTIONS ===== */
+/* ===== SHARED SECTIONS (gold accents) ===== */
 .section { padding: 6rem 3rem; background: var(--bg); }
 .section-alt { background: var(--bg-off); }
 .section-dark { background: var(--forest); color: #fff; }
@@ -188,45 +183,41 @@ img { max-width: 100%; display: block; }
   color: var(--forest-lt); margin-bottom: .7rem;
   display: flex; align-items: center; gap: 8px;
 }
-.section-label::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
-.section-dark .section-label { color: var(--lime); }
-.section-dark .section-label::before { background: var(--lime); }
+.section-label::before { content: ''; width: 18px; height: 2px; background: var(--gold-dk); border-radius: 2px; }
+.section-dark .section-label { color: var(--gold); }
+.section-dark .section-label::before { background: var(--gold); }
 .section-h2 {
   font-family: var(--ff-head); font-size: clamp(1.7rem, 3vw, 2.4rem);
   font-weight: 800; color: var(--forest); letter-spacing: -.03em;
   line-height: 1.15; margin-bottom: 1.5rem;
-  padding-bottom: .9rem; border-bottom: 2px solid var(--lime);
+  padding-bottom: .9rem; border-bottom: 2px solid var(--gold);
 }
-.section-dark .section-h2 { color: #fff; border-bottom-color: rgba(160,0,0,.4); }
+.section-dark .section-h2 { color: #fff; border-bottom-color: rgba(200,169,81,.5); }
 
-/* ===== CONTENT TYPOGRAPHY ===== */
+/* ===== CONTENT ===== */
 .tc-body p { font-size: .97rem; color: var(--text2); line-height: 1.9; margin-bottom: 1.2rem; }
-.tc-body p:last-child { margin-bottom: 0; }
 .tc-body h3 {
   font-family: var(--ff-head); font-size: 1.2rem; font-weight: 700;
   color: var(--forest); margin: 2.5rem 0 .9rem; display: flex; align-items: center; gap: 10px;
 }
 .tc-body h3::before {
-  content: ''; width: 4px; height: 1.1em; background: var(--lime-dk);
+  content: ''; width: 4px; height: 1.1em; background: var(--gold-dk);
   border-radius: 2px; flex-shrink: 0; display: inline-block;
 }
 .tc-body ul, .tc-body ol { margin-left: 1.5rem; margin-bottom: 1.2rem; }
 .tc-body li { font-size: .95rem; color: var(--text2); line-height: 1.85; margin-bottom: .5rem; }
 .tc-body strong { color: var(--forest); font-weight: 700; }
-.tc-body a { color: var(--forest-lt); font-weight: 600; border-bottom: 1px solid var(--lime-dk); transition: color var(--tr); }
-.tc-body a:hover { color: var(--forest); }
+.tc-body a { color: var(--forest-lt); font-weight: 600; border-bottom: 1px solid var(--gold-dk); transition: color var(--tr); }
+.tc-body a:hover { color: var(--gold-dk); }
 
 /* ===== NOTICE / INFO BOXES ===== */
 .notice-box {
-  border-left: 4px solid var(--lime-dk); background: var(--lime-pale);
+  border-left: 4px solid var(--gold-dk); background: var(--gold-pale);
   border-radius: 0 10px 10px 0; padding: 1.2rem 1.5rem; margin: 1.5rem 0;
 }
 .notice-box p { font-size: .9rem; color: var(--text); line-height: 1.8; margin-bottom: .4rem; }
-.notice-box p:last-child { margin-bottom: 0; }
-.notice-box strong { color: var(--forest); }
 .notice-box.alert { border-left-color: #e67e22; background: #fef9ef; }
-.notice-box.alert p { color: #7a4a10; }
-.notice-box.dark { background: rgba(33,33,33,.06); border-color: var(--forest-lt); }
+.notice-box.dark { background: rgba(30,42,58,.06); border-color: var(--forest-lt); }
 
 /* ===== TOC PANEL ===== */
 .toc-panel {
@@ -238,10 +229,8 @@ img { max-width: 100%; display: block; }
   letter-spacing: .14em; text-transform: uppercase; color: var(--forest-lt);
   margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
 }
-.toc-panel-title::before { content: ''; width: 18px; height: 2px; background: var(--lime-dk); border-radius: 2px; }
-.toc-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: .4rem;
-}
+.toc-panel-title::before { content: ''; width: 18px; height: 2px; background: var(--gold-dk); border-radius: 2px; }
+.toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
 .toc-link {
   display: flex; align-items: center; gap: 8px;
   padding: 7px 10px; border-radius: 7px; font-size: .82rem;
@@ -251,8 +240,8 @@ img { max-width: 100%; display: block; }
 .toc-link:hover { background: var(--g100); border-color: var(--g200); color: var(--forest); }
 .toc-link-num {
   width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
-  background: var(--lime-pale); border: 1px solid var(--lime-dk);
-  font-size: .62rem; font-weight: 800; color: var(--lime-dk);
+  background: var(--gold-pale); border: 1px solid var(--gold-dk);
+  font-size: .62rem; font-weight: 800; color: var(--gold-dk);
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -261,12 +250,8 @@ img { max-width: 100%; display: block; }
   background: var(--white); border: 1.5px solid var(--g200);
   border-radius: 14px; padding: 2rem; margin: 2rem 0;
 }
-.definition-box h4 {
-  font-family: var(--ff-head); font-size: 1rem; font-weight: 700;
-  color: var(--forest); margin-bottom: 1rem;
-}
+.definition-box h4 { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--forest); margin-bottom: 1rem; }
 .def-item { display: flex; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--g200); }
-.def-item:last-child { border-bottom: none; padding-bottom: 0; }
 .def-term { font-size: .88rem; font-weight: 700; color: var(--forest); min-width: 160px; flex-shrink: 0; }
 .def-desc { font-size: .88rem; color: var(--text2); line-height: 1.8; }
 
@@ -276,19 +261,14 @@ img { max-width: 100%; display: block; }
   border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem;
 }
 .info-card h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--forest); margin-bottom: .8rem; }
-.info-card p { font-size: .92rem; color: var(--text2); line-height: 1.85; margin-bottom: .7rem; }
-.info-card p:last-child { margin-bottom: 0; }
-.info-card ul { margin-left: 1.4rem; }
-.info-card li { font-size: .92rem; color: var(--text2); line-height: 1.85; margin-bottom: .4rem; }
 
 /* ===== DECLARATION BOX ===== */
 .declaration-box {
   background: var(--forest); color: #fff; border-radius: 14px; padding: 2.5rem;
-  border-left: 5px solid var(--lime); margin: 2rem 0;
+  border-left: 5px solid var(--gold); margin: 2rem 0;
 }
-.declaration-box h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--lime); margin-bottom: 1.2rem; }
-.declaration-box p { font-size: .92rem; color: rgba(255,255,255,.8); line-height: 1.9; margin-bottom: .8rem; }
-.declaration-box p:last-child { margin-bottom: 0; }
+.declaration-box h4 { font-family: var(--ff-head); font-size: 1.1rem; font-weight: 700; color: var(--gold); margin-bottom: 1.2rem; }
+.declaration-box p { font-size: .92rem; color: rgba(255,255,255,.8); line-height: 1.9; }
 
 /* ===== DATA TABLE ===== */
 .data-table {
@@ -301,13 +281,9 @@ img { max-width: 100%; display: block; }
   font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
   padding: .9rem 1.2rem; text-align: left;
 }
-.data-table td {
-  padding: .85rem 1.2rem; font-size: .88rem; color: var(--text2);
-  border-bottom: 1px solid var(--g200); line-height: 1.7; vertical-align: top;
-}
+.data-table td { padding: .85rem 1.2rem; font-size: .88rem; color: var(--text2); border-bottom: 1px solid var(--g200); }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:nth-child(even) td { background: var(--g100); }
-.data-table td strong { color: var(--forest); }
 
 /* ===== RIGHTS GRID ===== */
 .rights-grid {
@@ -318,10 +294,8 @@ img { max-width: 100%; display: block; }
   border-radius: 12px; padding: 1.4rem;
   transition: border-color var(--tr), box-shadow var(--tr);
 }
-.right-card:hover { border-color: var(--lime-dk); box-shadow: 0 4px 18px rgba(33,33,33,.07); }
-.right-card-icon {
-  font-size: 1.6rem; margin-bottom: .6rem;
-}
+.right-card:hover { border-color: var(--gold-dk); box-shadow: 0 4px 18px rgba(30,42,58,.07); }
+.right-card-icon { font-size: 1.6rem; margin-bottom: .6rem; }
 .right-card h4 { font-family: var(--ff-head); font-size: .95rem; font-weight: 700; color: var(--forest); margin-bottom: .4rem; }
 .right-card p { font-size: .82rem; color: var(--text2); line-height: 1.75; }
 
@@ -329,32 +303,35 @@ img { max-width: 100%; display: block; }
 .cta-section {
   padding: 6rem 3rem; background: var(--forest); color: #fff; text-align: center; position: relative; overflow: hidden;
 }
-.cta-section::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(160,0,0,.1) 0%, transparent 65%);
-}
 .cta-section-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
 .cta-section h2 { font-family: var(--ff-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: #fff; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1rem; }
-.cta-section h2 span { color: var(--lime); }
+.cta-section h2 span { color: var(--gold); }
 .cta-section p { font-size: 1rem; color: rgba(255,255,255,.65); line-height: 1.8; margin-bottom: 2.5rem; }
-.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--lime); color: var(--white); font-family: var(--ff-body); font-size: .88rem; font-weight: 700; border-radius: 10px; transition: all var(--tr); border: 2px solid var(--lime); }
-.btn-primary:hover { background: var(--lime-dk); border-color: var(--lime-dk); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(114,0,0,.4); }
-.btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: rgba(255,255,255,.85); font-family: var(--ff-body); font-size: .88rem; font-weight: 600; border-radius: 10px; border: 2px solid rgba(255,255,255,.25); transition: all var(--tr); }
-.btn-outline:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); color: #fff; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+  background: var(--gold); color: var(--forest); font-weight: 700; border-radius: 10px;
+  transition: all var(--tr); border: 2px solid var(--gold);
+}
+.btn-primary:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(163,134,58,.4); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+  background: transparent; color: rgba(255,255,255,.85); font-weight: 600;
+  border-radius: 10px; border: 2px solid rgba(255,255,255,.25);
+}
+.btn-outline:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
 
 /* ===== FOOTER ===== */
-footer { background: #0D0D0D; color: rgba(255,255,255,.7); padding: 5rem 3rem 2rem; }
+footer { background: var(--forest); color: rgba(255,255,255,.7); padding: 5rem 3rem 2rem; }
 .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1.2fr; gap: 3rem; margin-bottom: 3rem; }
 footer h4 { font-family: var(--ff-head); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #fff; margin-bottom: 1.2rem; }
 .footer-col a { display: block; font-size: .8rem; color: rgba(255,255,255,.6); margin-bottom: .55rem; transition: color var(--tr); }
-.footer-col a:hover { color: var(--lime); }
+.footer-col a:hover { color: var(--gold); }
 .footer-brand p { font-size: .82rem; line-height: 1.85; color: rgba(255,255,255,.5); margin-bottom: 1.5rem; max-width: 280px; }
 .footer-socials { display: flex; gap: .6rem; flex-wrap: wrap; }
 .footer-socials a { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.07); display: flex; align-items: center; justify-content: center; transition: all var(--tr); }
-.footer-socials a:hover { background: var(--lime); }
+.footer-socials a:hover { background: var(--gold); }
 .footer-socials svg { width: 14px; height: 14px; fill: rgba(255,255,255,.65); transition: fill var(--tr); }
-.footer-socials a:hover svg { fill: #fff; }
+.footer-socials a:hover svg { fill: var(--forest); }
 .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: .72rem; color: rgba(255,255,255,.35); }
 
 /* ===== RESPONSIVE ===== */
@@ -377,89 +354,55 @@ footer h4 { font-family: var(--ff-head); font-size: .78rem; font-weight: 800; le
   .nav { padding: 0 1.2rem; }
   .page-hero { padding: calc(var(--nav-h) + 3rem) 1.2rem 3.5rem; }
   .section, .cta-section { padding: 4rem 1.2rem; }
-  .page-hero-meta { gap: 1rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   footer { padding: 3rem 1.2rem 1.5rem; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .cta-btns { flex-direction: column; align-items: center; }
   .def-item { flex-direction: column; gap: .4rem; }
-  .def-term { min-width: auto; }
   .rights-grid { grid-template-columns: 1fr; }
-  .data-table { font-size: .8rem; }
-  .data-table th, .data-table td { padding: .7rem .8rem; }
-}</style>
+}
+</style>
 </head>
 <body>
 
-<!-- ══════════════ NAVIGATION ══════════════ -->
+<!-- ========== NAVIGATION (portal button crimson) ========== -->
 <nav class="nav" id="mainNav">
   <a href="index.html" class="nav-logo">
     <img src="assets/icons/cilg-logo.png" alt="CILG Logo"
       onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="nav-logo-fallback" style="display:none">
-      CILG
-      <span class="nav-logo-sub">Leadership &amp; Governance</span>
-    </div>
+    <div class="nav-logo-fallback" style="display:none">CILG<span class="nav-logo-sub">Leadership &amp; Governance</span></div>
   </a>
   <div class="nav-sep"></div>
-  <nav class="nav-links">
+  <div class="nav-links">
     <a href="index.html" class="nav-link act">Home</a>
-    <div class="nav-item">
-      <span class="nav-link">About <span class="arrow"></span></span>
-      <div class="nav-dropdown">
-        <a href="about.html">Institute Overview</a>
-        <a href="vms.html">Vision &amp; Mission</a>
-        <a href="ves.html">Values &amp; Ethics</a>
-        <a href="obj.html">Objectives</a>
-        <a href="bod.html">Board of Governors</a>
-        <a href="cd.html">Country Directors</a>
-        <a href="gp.html">Global Presence</a>
-      </div>
+    <div class="nav-item"><span class="nav-link">About <span class="arrow"></span></span>
+      <div class="nav-dropdown"><a href="about.html">Institute Overview</a><a href="vms.html">Vision &amp; Mission</a><a href="ves.html">Values &amp; Ethics</a><a href="obj.html">Objectives</a><a href="bod.html">Board of Governors</a><a href="cd.html">Country Directors</a><a href="gp.html">Global Presence</a></div>
     </div>
-    <div class="nav-item">
-      <span class="nav-link">Membership <span class="arrow"></span></span>
-      <div class="nav-dropdown">
-        <a href="mov.html">Overview</a>
-        <a href="mg.html">Membership Grades</a>
-        <a href="mup.html">Membership Upgrade</a>
-        <a href="mf.html">Membership Fees</a>
-        <a href="cpd.html">Continuous Professional Development</a>
-        <a href="cod.html">Code of Conduct</a>
-      </div>
+    <div class="nav-item"><span class="nav-link">Membership <span class="arrow"></span></span>
+      <div class="nav-dropdown"><a href="mov.html">Overview</a><a href="mg.html">Membership Grades</a><a href="mup.html">Upgrade</a><a href="mf.html">Fees</a><a href="cpd.html">CPD</a><a href="cod.html">Code of Conduct</a></div>
     </div>
-    <div class="nav-item">
-      <span class="nav-link">Qualifications <span class="arrow"></span></span>
-      <div class="nav-dropdown">
-        <a href="qualifications.html">Professional Qualification Framework</a>
-        <a href="qul.html">Qualification Levels</a>
-        <a href="psf.html">Professional Standard Framework</a>
-        <a href="exp.html">Exemption Policy</a>
-      </div>
+    <div class="nav-item"><span class="nav-link">Qualification Framework <span class="arrow"></span></span>
+      <div class="nav-dropdown"><a href="qualifications.html">Framework</a><a href="qul.html">Levels</a><a href="psf.html">Standards</a><a href="exp.html">Exemptions</a></div>
     </div>
     <a href="certifications.html" class="nav-link">Professional Certification</a>
-    <div class="nav-item">
-      <span class="nav-link">Resources <span class="arrow"></span></span>
-      <div class="nav-dropdown">
-        <a href="news.html">News &amp; Updates</a>
-        <a href="cev.html">Certificate Verification Guidelines</a>
-        <a href="faq.html">FAQs</a>
-      </div>
+    <div class="nav-item"><span class="nav-link">Resources <span class="arrow"></span></span>
+      <div class="nav-dropdown"><a href="news.html">News</a><a href="cev.html">Verification Guidelines</a><a href="faq.html">FAQs</a></div>
     </div>
-    <div class="nav-item">
-      <span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
-      <div class="nav-dropdown" style="min-width:190px">
-        <a href="appn.html">Application Portal</a>
-        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
-      </div>
+    <div class="nav-item"><span class="nav-link nav-cta">Portal <span class="arrow"></span></span>
+      <div class="nav-dropdown" style="min-width:190px"><a href="appn.html">Application Portal</a><a href="https://cilgglobal.org/cilg/user/" target="_blank">Verification Portal</a></div>
     </div>
-  </nav>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+  </div>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="mob-link">Home</a>
+  <div class="mob-section"><div class="mob-section-title">About</div><a href="about.html">Overview</a><a href="vms.html">Vision</a><a href="ves.html">Ethics</a><a href="obj.html">Objectives</a><a href="bod.html">Board</a><a href="cd.html">Directors</a></div>
+  <div class="mob-section"><div class="mob-section-title">Membership</div><a href="mov.html">Overview</a><a href="mg.html">Grades</a><a href="mf.html">Fees</a><a href="cpd.html">CPD</a></div>
+  <div class="mob-section"><div class="mob-section-title">Qualification Framework</div><a href="qualifications.html">Framework</a><a href="qul.html">Levels</a><a href="psf.html">Standards</a></div>
+  <div class="mob-section"><div class="mob-section-title">Resources</div><a href="certifications.html">Certification</a><a href="news.html">News</a><a href="cev.html">Verification</a><a href="faq.html">FAQs</a></div>
+  <div class="mob-section"><div class="mob-section-title">Portal</div><a href="appn.html">Application Portal</a><a href="https://cilgglobal.org/cilg/user/">Verification Portal</a></div>
+  <a href="appn.html" class="mob-cta">Apply for Membership →</a>
+</div>
 
-
-<!-- TOC Sidebar Dots -->
+<!-- TOC DOTS -->
 <div class="toc-sidebar" id="tocSidebar">
   <div class="toc-dot active" data-label="Introduction"        data-target="sec-intro"></div>
   <div class="toc-dot"        data-label="Information We Collect" data-target="sec-collect"></div>
@@ -475,706 +418,71 @@ footer h4 { font-family: var(--ff-head); font-size: .78rem; font-weight: 800; le
   <div class="toc-dot"        data-label="Contact"             data-target="sec-contact"></div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     PAGE HERO
-═══════════════════════════════════════ -->
-<section class="page-hero" id="hero">
+<!-- HERO solid background -->
+<section class="page-hero">
   <div class="page-hero-inner">
     <div class="page-hero-label"><span></span> Legal &amp; Governance Documents</div>
     <h1>Privacy <span>Policy</span></h1>
     <p class="page-hero-sub">Your privacy matters to us. This Policy explains how the Chartered Institute of Leadership and Governance collects, uses, protects, and shares your personal data, and sets out your rights under applicable data protection law.</p>
-    <div class="hero-tabs">
-      <a href="#sec-collect"     class="hero-tab">Data We Collect</a>
-      <a href="#sec-use"         class="hero-tab">How We Use Your Data</a>
-      <a href="#sec-rights"      class="hero-tab">Your Rights</a>
-      <a href="#sec-cookies"     class="hero-tab">Cookies</a>
-      <a href="#sec-contact"     class="hero-tab">Contact &amp; Complaints</a>
-    </div>
-    <div class="page-hero-meta">
-      <div class="page-hero-meta-item">📅 <strong>Effective Date:</strong> 1 January 2025</div>
-      <div class="page-hero-meta-item">🔄 <strong>Last Reviewed:</strong> June 2026</div>
-      <div class="page-hero-meta-item">📄 <strong>Version:</strong> 2.1</div>
-      <div class="page-hero-meta-item">⚖️ <strong>Jurisdiction:</strong> United States of America</div>
-    </div>
+    <div class="hero-tabs"><a href="#sec-collect" class="hero-tab">Data We Collect</a><a href="#sec-use" class="hero-tab">How We Use Your Data</a><a href="#sec-rights" class="hero-tab">Your Rights</a><a href="#sec-cookies" class="hero-tab">Cookies</a><a href="#sec-contact" class="hero-tab">Contact</a></div>
+    <div class="page-hero-meta"><div class="page-hero-meta-item">📅 <strong>Effective:</strong> 1 January 2025</div><div class="page-hero-meta-item">🔄 <strong>Reviewed:</strong> June 2026</div><div class="page-hero-meta-item">⚖️ <strong>Jurisdiction:</strong> USA</div></div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     SECTION 1 — INTRODUCTION
-═══════════════════════════════════════ -->
-<section class="section" id="sec-intro">
-  <div class="section-inner">
-    <div class="section-label">Section 1</div>
-    <h2 class="section-h2">Introduction</h2>
+<!-- SECTION 1: INTRODUCTION -->
+<section class="section" id="sec-intro"><div class="section-inner"><div class="section-label">Section 1</div><h2 class="section-h2">Introduction</h2>
+<div class="toc-panel"><div class="toc-panel-title">On This Page — Contents</div><div class="toc-grid"><a href="#sec-intro" class="toc-link"><span class="toc-link-num">1</span> Introduction</a><a href="#sec-collect" class="toc-link"><span class="toc-link-num">2</span> Information We Collect</a><a href="#sec-use" class="toc-link"><span class="toc-link-num">3</span> How We Use Data</a><a href="#sec-legal" class="toc-link"><span class="toc-link-num">4</span> Legal Basis</a><a href="#sec-sharing" class="toc-link"><span class="toc-link-num">5</span> Sharing &amp; Disclosure</a><a href="#sec-retention" class="toc-link"><span class="toc-link-num">6</span> Retention</a><a href="#sec-rights" class="toc-link"><span class="toc-link-num">7</span> Your Rights</a><a href="#sec-cookies" class="toc-link"><span class="toc-link-num">8</span> Cookies</a><a href="#sec-security" class="toc-link"><span class="toc-link-num">9</span> Security</a><a href="#sec-international" class="toc-link"><span class="toc-link-num">10</span> International</a><a href="#sec-children" class="toc-link"><span class="toc-link-num">11</span> Children</a><a href="#sec-contact" class="toc-link"><span class="toc-link-num">12</span> Contact</a></div></div>
+<div class="tc-body"><p>The <strong>Chartered Institute of Leadership and Governance</strong> ("CILG", "we", "our") is committed to protecting personal data of members, applicants, website visitors, and other users. This Privacy Policy explains what we collect, how we use it, retention, and your rights. It applies to our website at <a href="https://www.cilgglobal.org">www.cilgglobal.org</a>, member portals, and all services. Read alongside our <a href="terms.html">Terms of Use</a> and <a href="membership.html">Membership Framework</a>.</p><div class="notice-box"><p><strong>Policy Updates:</strong> Material changes will be notified to members via email. Continued use after notice constitutes acceptance.</p></div><p>CILG acts as <strong>data controller</strong>. Third-party processors operate under data processing agreements.</p></div></div></section>
 
-    <div class="toc-panel">
-      <div class="toc-panel-title">On This Page — Table of Contents</div>
-      <div class="toc-grid">
-        <a href="#sec-intro"          class="toc-link"><span class="toc-link-num">1</span> Introduction</a>
-        <a href="#sec-collect"        class="toc-link"><span class="toc-link-num">2</span> Information We Collect</a>
-        <a href="#sec-use"            class="toc-link"><span class="toc-link-num">3</span> How We Use Your Information</a>
-        <a href="#sec-legal"          class="toc-link"><span class="toc-link-num">4</span> Legal Basis for Processing</a>
-        <a href="#sec-sharing"        class="toc-link"><span class="toc-link-num">5</span> Sharing &amp; Disclosure</a>
-        <a href="#sec-retention"      class="toc-link"><span class="toc-link-num">6</span> Data Retention</a>
-        <a href="#sec-rights"         class="toc-link"><span class="toc-link-num">7</span> Your Rights</a>
-        <a href="#sec-cookies"        class="toc-link"><span class="toc-link-num">8</span> Cookies &amp; Tracking</a>
-        <a href="#sec-security"       class="toc-link"><span class="toc-link-num">9</span> Data Security</a>
-        <a href="#sec-international"  class="toc-link"><span class="toc-link-num">10</span> International Transfers</a>
-        <a href="#sec-children"       class="toc-link"><span class="toc-link-num">11</span> Children's Privacy</a>
-        <a href="#sec-contact"        class="toc-link"><span class="toc-link-num">12</span> Contact &amp; Complaints</a>
-      </div>
-    </div>
+<!-- SECTION 2: INFORMATION WE COLLECT -->
+<section class="section section-alt" id="sec-collect"><div class="section-inner"><div class="section-label">Section 2</div><h2 class="section-h2">Information We Collect</h2><div class="tc-body"><p>Categories include:</p><h3>2.1 Directly Provided</h3><ul><li>Full name, title, address, email, phone</li><li>Date of birth, nationality</li><li>Professional background, qualifications, references</li><li>Payment information (processed securely)</li></ul><h3>2.2 Automatically</h3><ul><li>IP address, browser type, pages visited, device data</li><li>Cookie data (see Section 8)</li></ul><h3>2.3 Third Parties</h3><ul><li>Professional references, verification from regulatory bodies, public professional profiles, partner institutions</li></ul><div class="notice-box dark"><p><strong>Special Category Data:</strong> Not collected unless strictly necessary and with explicit consent or lawful basis.</p></div></div></div></section>
 
-    <div class="tc-body">
-      <p>The <strong>Chartered Institute of Leadership and Governance</strong> ("CILG", "we", "our", or "us") is committed to protecting the personal data of all individuals who interact with the Institute — whether as members, applicants, students, website visitors, event participants, or other users of our services.</p>
+<!-- SECTION 3: USE OF DATA -->
+<section class="section" id="sec-use"><div class="section-inner"><div class="section-label">Section 3</div><h2 class="section-h2">How We Use Your Information</h2><div class="tc-body"><table class="data-table"><thead><tr><th>Purpose</th><th>Description</th></tr></thead><tbody><tr><td>Membership Admin</td><td>Applications, credentials, renewals, register</td></tr><tr><td>Qualifications & Certification</td><td>Enrolment, assessments, certificates, CPD</td></tr><tr><td>Communications</td><td>Administrative notices, renewals, updates</td></tr><tr><td>Public Register & Verification</td><td>Verification Portal listing</td></tr><tr><td>Events & Training</td><td>Conferences, webinars, CPD events</td></tr><tr><td>Financial Transactions</td><td>Fee processing, financial records</td></tr><tr><td>Legal Compliance</td><td>Regulatory obligations, legal proceedings</td></tr><tr><td>Disciplinary Proceedings</td><td>Investigations, conduct reviews</td></tr><tr><td>Website Improvement</td><td>Analytics, security, user experience</td></tr><tr><td>Marketing</td><td>Where consented or legitimate interest</td></tr></tbody></table></div></div></section>
 
-      <p>This Privacy Policy explains what personal information we collect, the purposes for which we use it, how long we keep it, and with whom we may share it. It also describes the rights you hold over your personal data and how to exercise those rights.</p>
+<!-- SECTION 4: LEGAL BASIS -->
+<section class="section section-alt" id="sec-legal"><div class="section-inner"><div class="section-label">Section 4</div><h2 class="section-h2">Legal Basis for Processing</h2><div class="definition-box"><h4>Processing Grounds</h4><div class="def-item"><span class="def-term">Contract</span><span class="def-desc">Membership or qualification administration.</span></div><div class="def-item"><span class="def-term">Legal Obligation</span><span class="def-desc">Financial records, regulatory compliance.</span></div><div class="def-item"><span class="def-term">Legitimate Interests</span><span class="def-desc">Public register, improvements, member communications.</span></div><div class="def-item"><span class="def-term">Consent</span><span class="def-desc">Marketing, special categories where applicable.</span></div><div class="def-item"><span class="def-term">Public Task</span><span class="def-desc">Professional standards body functions.</span></div></div></div></section>
 
-      <p>This Policy applies to all personal data processed by CILG through our website at <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">www.cilgglobal.org</a>, our membership and application portals, digital communications, and all services delivered to members and the public. It should be read alongside our <a href="terms.html">Terms of Use</a> and the <a href="membership.html">Membership Framework</a>.</p>
+<!-- SECTION 5: SHARING -->
+<section class="section" id="sec-sharing"><div class="section-inner"><div class="section-label">Section 5</div><h2 class="section-h2">Sharing & Disclosure</h2><div class="tc-body"><p>We do not sell your data. Sharing occurs with: service providers (payment, email, hosting, assessment platforms), public register (name, grade, status via verification portal), legal/regulatory authorities, and professional conduct committees. No commercial transfer.</p><div class="notice-box alert"><p><strong>No Sale:</strong> CILG does not sell personal data to third parties.</p></div></div></div></section>
 
-      <div class="notice-box">
-        <p><strong>Policy Updates:</strong> We may update this Privacy Policy from time to time. Where changes are material, we will notify existing members via their registered email address. The date of the most recent revision is shown at the top of this page. Continued use of CILG services after notification of changes constitutes acceptance of the revised Policy.</p>
-      </div>
+<!-- SECTION 6: RETENTION -->
+<section class="section section-alt" id="sec-retention"><div class="section-inner"><div class="section-label">Section 6</div><h2 class="section-h2">Data Retention</h2><table class="data-table"><thead><tr><th>Category</th><th>Period</th><th>Rationale</th></tr></thead><tbody><tr><td>Active membership records</td><td>Duration + 7 years</td><td>Legal & audit</td></tr><tr><td>Qualification records</td><td>Indefinite</td><td>Lifetime verification</td></tr><tr><td>Unsuccessful applications</td><td>2 years</td><td>Appeals process</td></tr><tr><td>Financial records</td><td>7 years</td><td>Tax compliance</td></tr><tr><td>Disciplinary records</td><td>10 years</td><td>Accountability</td></tr><tr><td>Website analytics</td><td>26 months</td><td>Performance review</td></tr></tbody></table></div></section>
 
-      <p>CILG acts as the <strong>data controller</strong> in respect of the personal data it collects and processes. Where we engage third-party service providers to process data on our behalf, we do so under appropriate data processing agreements that require those parties to protect your information in accordance with applicable law.</p>
-    </div>
-  </div>
-</section>
+<!-- SECTION 7: YOUR RIGHTS -->
+<section class="section" id="sec-rights"><div class="section-inner"><div class="section-label">Section 7</div><h2 class="section-h2">Your Rights</h2><div class="rights-grid"><div class="right-card"><div class="right-card-icon">📋</div><h4>Right of Access</h4><p>Request a copy of your data.</p></div><div class="right-card"><div class="right-card-icon">✏️</div><h4>Rectification</h4><p>Correct inaccurate data.</p></div><div class="right-card"><div class="right-card-icon">🗑️</div><h4>Erasure</h4><p>Request deletion where lawful.</p></div><div class="right-card"><div class="right-card-icon">⏸️</div><h4>Restriction</h4><p>Limit processing in certain cases.</p></div><div class="right-card"><div class="right-card-icon">📦</div><h4>Portability</h4><p>Receive data in machine-readable format.</p></div><div class="right-card"><div class="right-card-icon">🚫</div><h4>Object</h4><p>Object to direct marketing or legitimate interests.</p></div></div><div class="notice-box"><p><strong>Exercise Rights:</strong> Email <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>. Response within 30 days.</p></div></div></section>
 
-<!-- ═══════════════════════════════════════
-     SECTION 2 — INFORMATION WE COLLECT
-═══════════════════════════════════════ -->
-<section class="section section-alt" id="sec-collect">
-  <div class="section-inner">
-    <div class="section-label">Section 2</div>
-    <h2 class="section-h2">Information We Collect</h2>
-    <div class="tc-body">
-      <p>We collect personal information through a variety of channels depending on your relationship with CILG. The categories of personal data we may collect and process include the following.</p>
+<!-- SECTION 8: COOKIES -->
+<section class="section section-alt" id="sec-cookies"><div class="section-inner"><div class="section-label">Section 8</div><h2 class="section-h2">Cookies & Tracking</h2><div class="tc-body"><p>We use necessary, functional, analytics (Google Analytics), and optional marketing cookies. Manage via browser settings or consent tool. Disabling may affect functionality.</p></div></div></section>
 
-      <h3>2.1 Information You Provide Directly</h3>
-      <p>This includes data you submit when creating an account, applying for membership, registering for a qualification or event, contacting us, or completing any online form:</p>
-      <ul>
-        <li>Full name, title, and preferred name;</li>
-        <li>Postal address, email address, and telephone number;</li>
-        <li>Date of birth and nationality;</li>
-        <li>Professional background, employment history, and educational qualifications;</li>
-        <li>Copies of identification documents, academic certificates, and professional references;</li>
-        <li>Payment and billing information (processed securely via our payment providers);</li>
-        <li>Communications sent to us, including enquiries, complaints, and feedback.</li>
-      </ul>
+<!-- SECTION 9: SECURITY -->
+<section class="section" id="sec-security"><div class="section-inner"><div class="section-label">Section 9</div><h2 class="section-h2">Data Security</h2><div class="tc-body"><p>TLS encryption, PCI-DSS payment processing, ISO 27001 hosting, access controls, regular training. Breach notification provided as required by law.</p></div></div></section>
 
-      <h3>2.2 Information We Collect Automatically</h3>
-      <p>When you access our websites or digital portals, we may automatically collect certain technical data:</p>
-      <ul>
-        <li>IP address, browser type, and operating system;</li>
-        <li>Pages visited, time spent on pages, and referral sources;</li>
-        <li>Device identifiers and session data;</li>
-        <li>Cookie and tracking data (see <a href="#sec-cookies">Section 8</a> for details).</li>
-      </ul>
+<!-- SECTION 10: INTERNATIONAL TRANSFERS -->
+<section class="section section-alt" id="sec-international"><div class="section-inner"><div class="section-label">Section 10</div><h2 class="section-h2">International Transfers</h2><div class="tc-body"><p>Data transferred to USA and other jurisdictions where CILG or its service providers operate. Safeguards include adequacy decisions, Standard Contractual Clauses, or your consent.</p></div></div></section>
 
-      <h3>2.3 Information from Third Parties</h3>
-      <p>In some cases we may receive personal data about you from third parties, including:</p>
-      <ul>
-        <li>Professional references submitted in support of a membership or qualification application;</li>
-        <li>Verification data from regulatory bodies, professional registries, or licensing authorities;</li>
-        <li>Publicly available professional profiles (e.g. LinkedIn) where relevant to the assessment of an application;</li>
-        <li>Partner organisations and accreditation bodies with whom CILG maintains formal arrangements.</li>
-      </ul>
+<!-- SECTION 11: CHILDREN -->
+<section class="section" id="sec-children"><div class="section-inner"><div class="section-label">Section 11</div><h2 class="section-h2">Children's Privacy</h2><div class="tc-body"><p>Services are for adults. Under 18 requires parental consent for Student programmes. Contact us if data collected without consent.</p></div></div></section>
 
-      <div class="notice-box dark">
-        <p><strong>Special Category Data:</strong> We do not routinely collect sensitive personal data (such as health information, racial or ethnic origin, or political opinions) unless this is strictly necessary for a specific, identified purpose and we have obtained your explicit consent or have another lawful basis for doing so.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SECTION 12: CONTACT & COMPLAINTS -->
+<section class="section section-alt" id="sec-contact"><div class="section-inner"><div class="section-label">Section 12</div><h2 class="section-h2">Contact & Complaints</h2><div class="declaration-box"><h4>Data Protection Contact</h4><p>Chartered Institute of Leadership and Governance<br>2222 W. Grand River Ave STE A, Okemos, MI 48864, USA</p><p>📧 <strong>privacy@cilgglobal.org</strong><br>📞 +1 (575) 329-8396</p><p>Response within 5 business days, full resolution within 30 days.</p></div><div class="tc-body"><p>You may lodge a complaint with your local supervisory authority (e.g., ICO for UK, state attorney general for US residents).</p><div class="notice-box"><p><strong>Version:</strong> 2.1 | Last reviewed: June 2026</p></div></div></div></section>
 
-<!-- ═══════════════════════════════════════
-     SECTION 3 — HOW WE USE YOUR INFORMATION
-═══════════════════════════════════════ -->
-<section class="section" id="sec-use">
-  <div class="section-inner">
-    <div class="section-label">Section 3</div>
-    <h2 class="section-h2">How We Use Your Information</h2>
-    <div class="tc-body">
-      <p>We use the personal data we collect only for legitimate purposes directly connected to our role as a professional body. The principal purposes for which we process your data are as follows.</p>
+<!-- CTA SECTION -->
+<section class="cta-section"><div class="cta-section-inner"><h2>Questions About Your <span>Privacy?</span></h2><p>Our privacy team is ready to assist with data rights or concerns.</p><div class="cta-btns"><a href="mailto:privacy@cilgglobal.org" class="btn-primary">✉️ Contact Privacy Team</a><a href="terms.html" class="btn-outline">📄 Terms of Use</a></div></div></section>
 
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Purpose</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Membership Administration</strong></td>
-            <td>Processing applications, issuing membership credentials, managing renewals, and maintaining the CILG Member Register.</td>
-          </tr>
-          <tr>
-            <td><strong>Qualification &amp; Certification</strong></td>
-            <td>Enrolling candidates, administering assessments, issuing certificates, and managing CPD records.</td>
-          </tr>
-          <tr>
-            <td><strong>Communications</strong></td>
-            <td>Sending administrative notices, renewal reminders, policy updates, and other information material to your relationship with CILG.</td>
-          </tr>
-          <tr>
-            <td><strong>Public Register &amp; Verification</strong></td>
-            <td>Publishing your name, credential, and membership status on the CILG public register and Verification Portal.</td>
-          </tr>
-          <tr>
-            <td><strong>Events &amp; Training</strong></td>
-            <td>Organising and delivering conferences, workshops, webinars, and professional development programmes.</td>
-          </tr>
-          <tr>
-            <td><strong>Financial Transactions</strong></td>
-            <td>Processing membership fees, examination fees, and event registration payments, and maintaining financial records.</td>
-          </tr>
-          <tr>
-            <td><strong>Legal Compliance</strong></td>
-            <td>Meeting our obligations under applicable law, responding to legal proceedings, and co-operating with regulatory authorities.</td>
-          </tr>
-          <tr>
-            <td><strong>Disciplinary Proceedings</strong></td>
-            <td>Investigating complaints, conducting professional conduct reviews, and maintaining records of disciplinary outcomes.</td>
-          </tr>
-          <tr>
-            <td><strong>Website &amp; Portal Improvement</strong></td>
-            <td>Analysing usage patterns to improve the functionality, security, and user experience of our digital platforms.</td>
-          </tr>
-          <tr>
-            <td><strong>Marketing &amp; Newsletters</strong></td>
-            <td>Sending news, publications, and promotional content where you have opted in or where we have a legitimate interest in keeping you informed of relevant developments.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>We will not use your personal data for purposes that are incompatible with those listed above without first seeking your consent or establishing another lawful basis for doing so.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 4 — LEGAL BASIS
-═══════════════════════════════════════ -->
-<section class="section section-alt" id="sec-legal">
-  <div class="section-inner">
-    <div class="section-label">Section 4</div>
-    <h2 class="section-h2">Legal Basis for Processing</h2>
-    <div class="tc-body">
-      <p>Where data protection law requires us to identify a legal basis for processing your personal data, we rely on one or more of the following grounds depending on the nature of the processing activity.</p>
-    </div>
-
-    <div class="definition-box">
-      <h4>Processing Grounds</h4>
-      <div class="def-item">
-        <span class="def-term">Contract</span>
-        <span class="def-desc">Processing is necessary to perform a contract to which you are party, or to take steps at your request before entering into a contract — for example, administering your membership or delivering a qualification programme.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Legal Obligation</span>
-        <span class="def-desc">Processing is necessary for compliance with a legal obligation to which CILG is subject — for example, maintaining financial records or co-operating with regulatory authorities.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Legitimate Interests</span>
-        <span class="def-desc">Processing is necessary for our legitimate interests as a professional body, such as maintaining the integrity of our public register, improving our digital services, or communicating relevant professional news to members, provided these interests are not overridden by your rights.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Consent</span>
-        <span class="def-desc">Where we rely on your consent — for example, for optional marketing communications or special category data — we will ask for your explicit agreement. You may withdraw your consent at any time without affecting the lawfulness of prior processing.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Public Task</span>
-        <span class="def-desc">Certain processing activities are undertaken in the exercise of our functions as a recognised professional standards body, including the maintenance of public registers of professional credentials.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Vital Interests</span>
-        <span class="def-desc">In exceptional circumstances, we may process personal data to protect the vital interests of an individual where other legal bases are not applicable — for example, in a medical emergency at a CILG event.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 5 — SHARING & DISCLOSURE
-═══════════════════════════════════════ -->
-<section class="section" id="sec-sharing">
-  <div class="section-inner">
-    <div class="section-label">Section 5</div>
-    <h2 class="section-h2">Sharing &amp; Disclosure of Personal Data</h2>
-    <div class="tc-body">
-      <p>We do not sell, rent, or trade your personal data to third parties. We may share your information only in the limited circumstances described below.</p>
-
-      <h3>5.1 Service Providers</h3>
-      <p>We engage trusted third-party organisations to provide services on our behalf. These include:</p>
-      <ul>
-        <li>Payment processors for the secure handling of membership and examination fees;</li>
-        <li>Email and communications platforms for the delivery of administrative and marketing messages;</li>
-        <li>Hosting and cloud infrastructure providers for the operation of our websites and portals;</li>
-        <li>Assessment and e-learning platforms used in the delivery of CILG qualifications;</li>
-        <li>Event management systems for the organisation of conferences and professional development activities.</li>
-      </ul>
-      <p>All service providers are required to process your data only in accordance with our instructions and to maintain appropriate technical and organisational security measures.</p>
-
-      <h3>5.2 Public Register</h3>
-      <p>As a professional body, CILG maintains a public register of its members. By accepting membership, you consent to your full name, membership grade, credential designations, and membership status (active, suspended, or lapsed) being accessible to the public via the <a href="cev.html">CILG Verification Portal</a>. If you have specific concerns about publication of your details, please contact us at <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>.</p>
-
-      <h3>5.3 Legal and Regulatory Disclosure</h3>
-      <p>We may disclose your personal data where required to do so by applicable law, court order, or regulatory authority, or where we reasonably believe such disclosure is necessary to protect the rights, property, or safety of CILG, its members, or the public.</p>
-
-      <h3>5.4 Professional Conduct Proceedings</h3>
-      <p>In the context of a disciplinary or professional conduct investigation, personal data relating to the subject of the complaint and any witnesses or complainants may be shared with members of the CILG Professional Standards Committee and relevant legal advisers on a strictly confidential basis.</p>
-
-      <div class="notice-box alert">
-        <p><strong>No Sale of Data:</strong> CILG does not engage in the sale or commercial transfer of personal data to third parties for marketing or commercial purposes. Any sharing of data with partner organisations is subject to strict contractual safeguards and is limited to what is necessary for the specific purpose.</p>
-      </div>
-
-      <h3>5.5 Business Transfers</h3>
-      <p>In the unlikely event that CILG undergoes a restructuring, merger, or transfer of its functions to a successor body, your personal data may be transferred as part of that process. We will notify affected individuals in advance and ensure that appropriate data protection obligations are maintained by any successor organisation.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 6 — RETENTION
-═══════════════════════════════════════ -->
-<section class="section section-alt" id="sec-retention">
-  <div class="section-inner">
-    <div class="section-label">Section 6</div>
-    <h2 class="section-h2">Data Retention</h2>
-    <div class="tc-body">
-      <p>We retain personal data only for as long as is necessary to fulfil the purposes for which it was collected, or as required by applicable law or professional standards obligations. The following general retention periods apply.</p>
-    </div>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Data Category</th>
-          <th>Retention Period</th>
-          <th>Rationale</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Active membership records</strong></td>
-          <td>Duration of membership + 7 years</td>
-          <td>Legal compliance, audit purposes, and professional record integrity.</td>
-        </tr>
-        <tr>
-          <td><strong>Qualification &amp; certification records</strong></td>
-          <td>Indefinite (permanent archive)</td>
-          <td>Professional credentials must remain verifiable throughout a member's career.</td>
-        </tr>
-        <tr>
-          <td><strong>Unsuccessful applications</strong></td>
-          <td>2 years from date of decision</td>
-          <td>To enable appeals and re-application processes.</td>
-        </tr>
-        <tr>
-          <td><strong>Financial &amp; payment records</strong></td>
-          <td>7 years from transaction date</td>
-          <td>Statutory accounting and tax compliance obligations.</td>
-        </tr>
-        <tr>
-          <td><strong>Disciplinary records</strong></td>
-          <td>10 years from resolution</td>
-          <td>Professional standards accountability and regulatory obligations.</td>
-        </tr>
-        <tr>
-          <td><strong>Event registration data</strong></td>
-          <td>3 years from the event</td>
-          <td>For CPD logging and event history purposes.</td>
-        </tr>
-        <tr>
-          <td><strong>Website analytics data</strong></td>
-          <td>26 months on a rolling basis</td>
-          <td>Industry-standard period for digital analytics and performance review.</td>
-        </tr>
-        <tr>
-          <td><strong>Marketing opt-in records</strong></td>
-          <td>Until consent is withdrawn + 1 year</td>
-          <td>Compliance with consent management requirements.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="tc-body">
-      <p>After the applicable retention period, personal data is securely deleted or anonymised. Where anonymisation is used in preference to deletion, the resulting data no longer constitutes personal data and may be retained and used for research or statistical purposes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 7 — YOUR RIGHTS
-═══════════════════════════════════════ -->
-<section class="section" id="sec-rights">
-  <div class="section-inner">
-    <div class="section-label">Section 7</div>
-    <h2 class="section-h2">Your Rights</h2>
-    <div class="tc-body">
-      <p>Depending on your location and the applicable data protection framework, you may hold one or more of the following rights in respect of your personal data held by CILG. We are committed to honouring these rights promptly and without undue bureaucracy.</p>
-    </div>
-
-    <div class="rights-grid">
-      <div class="right-card">
-        <div class="right-card-icon">📋</div>
-        <h4>Right of Access</h4>
-        <p>You may request a copy of the personal data we hold about you, together with information about how it is processed. This is commonly known as a Subject Access Request (SAR).</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">✏️</div>
-        <h4>Right to Rectification</h4>
-        <p>You may request correction of any inaccurate or incomplete personal data we hold about you. We encourage members to keep their profile details current through the Member Portal.</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">🗑️</div>
-        <h4>Right to Erasure</h4>
-        <p>In certain circumstances, you may request that we delete your personal data. This right is not absolute and may be outweighed by our legal obligations or legitimate interests as a professional body.</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">⏸️</div>
-        <h4>Right to Restriction</h4>
-        <p>You may ask us to restrict the processing of your data — for example, while the accuracy of the data is being contested or an objection is pending.</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">📦</div>
-        <h4>Right to Portability</h4>
-        <p>Where processing is based on your consent or a contract, you may request that we provide your data in a structured, machine-readable format for transfer to another organisation.</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">🚫</div>
-        <h4>Right to Object</h4>
-        <p>You may object to processing carried out on the basis of our legitimate interests, or to the use of your data for direct marketing purposes. We will cease marketing immediately on receipt of an objection.</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">🤖</div>
-        <h4>Automated Decision-Making</h4>
-        <p>You have the right not to be subject to decisions made solely by automated means where those decisions have a significant legal or similar effect on you. CILG does not currently use fully automated decision-making in its membership processes.</p>
-      </div>
-      <div class="right-card">
-        <div class="right-card-icon">↩️</div>
-        <h4>Right to Withdraw Consent</h4>
-        <p>Where processing is based on your consent, you may withdraw that consent at any time without affecting the lawfulness of processing carried out before the withdrawal.</p>
-      </div>
-    </div>
-
-    <div class="tc-body">
-      <div class="notice-box">
-        <p><strong>How to Exercise Your Rights:</strong> To exercise any of the rights listed above, please submit your request in writing to <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>. We will acknowledge your request within 5 business days and respond in full within 30 calendar days (or within any shorter period required by applicable law). We may need to verify your identity before processing a request.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 8 — COOKIES
-═══════════════════════════════════════ -->
-<section class="section section-alt" id="sec-cookies">
-  <div class="section-inner">
-    <div class="section-label">Section 8</div>
-    <h2 class="section-h2">Cookies &amp; Tracking Technologies</h2>
-    <div class="tc-body">
-      <p>Our website and digital portals use cookies and similar tracking technologies to enhance your browsing experience, analyse traffic patterns, and support the secure operation of our platforms. This section explains what cookies are, which types we use, and how you can manage your preferences.</p>
-
-      <h3>8.1 What Are Cookies?</h3>
-      <p>Cookies are small text files placed on your device by a web server when you visit a website. They allow the site to remember your preferences and actions over time, and to distinguish your browser from others visiting the site.</p>
-
-      <h3>8.2 Categories of Cookies We Use</h3>
-    </div>
-
-    <div class="definition-box">
-      <h4>Cookie Types</h4>
-      <div class="def-item">
-        <span class="def-term">Strictly Necessary</span>
-        <span class="def-desc">Essential for the operation of our website and portals — for example, session authentication, security tokens, and load balancing. These cannot be disabled without affecting functionality.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Functional</span>
-        <span class="def-desc">Used to remember your preferences, such as language settings and accessibility choices, to provide a more personalised experience across repeat visits.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Analytics &amp; Performance</span>
-        <span class="def-desc">Allow us to measure and improve the performance of our website by collecting anonymised data on pages visited, time on site, and error occurrences. We use Google Analytics and comparable tools for this purpose.</span>
-      </div>
-      <div class="def-item">
-        <span class="def-term">Marketing &amp; Targeting</span>
-        <span class="def-desc">Used only where you have provided explicit consent, these cookies allow us to deliver relevant content and communications. We do not use third-party advertising networks to track your activity outside our own platforms.</span>
-      </div>
-    </div>
-
-    <div class="tc-body">
-      <h3>8.3 Managing Your Cookie Preferences</h3>
-      <p>You can manage your cookie preferences at any time through our on-site consent management tool, which is displayed when you first visit our website. You may also control cookies through your browser settings; however, disabling certain cookies may affect the functionality of our platforms. Instructions for managing cookies in common browsers are available via your browser's help documentation.</p>
-      <p>Please note that strictly necessary cookies cannot be disabled as they are integral to the secure operation of our services.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 9 — SECURITY
-═══════════════════════════════════════ -->
-<section class="section" id="sec-security">
-  <div class="section-inner">
-    <div class="section-label">Section 9</div>
-    <h2 class="section-h2">Data Security</h2>
-    <div class="tc-body">
-      <p>The security of your personal data is a priority for CILG. We implement appropriate technical and organisational measures to protect your information against unauthorised access, accidental loss, destruction, alteration, or disclosure.</p>
-
-      <h3>9.1 Technical Safeguards</h3>
-      <ul>
-        <li>All data transmitted between your device and our servers is encrypted using TLS (Transport Layer Security);</li>
-        <li>Member portal access is protected by secure authentication controls, including password hashing and session management;</li>
-        <li>Payment data is processed exclusively through PCI-DSS compliant payment gateways — CILG does not store card numbers or financial credentials on its own systems;</li>
-        <li>Our hosting infrastructure is maintained within ISO 27001-certified data centres with physical and environmental security controls.</li>
-      </ul>
-
-      <h3>9.2 Organisational Measures</h3>
-      <ul>
-        <li>Access to personal data is restricted to CILG staff and authorised contractors who have a legitimate need to access it in the course of their duties;</li>
-        <li>All personnel with access to personal data receive data protection training commensurate with their role;</li>
-        <li>We conduct periodic reviews of our data processing activities and security practices.</li>
-      </ul>
-
-      <div class="notice-box alert">
-        <p><strong>Data Breach Notification:</strong> In the event of a personal data breach that is likely to result in a risk to your rights and freedoms, we will notify affected individuals without undue delay and in accordance with the requirements of applicable data protection law. You may also report a suspected breach or security concern to us at <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>.</p>
-      </div>
-
-      <p>While we take all reasonable precautions, no internet transmission or electronic storage system is completely secure. We encourage you to use strong, unique passwords for your CILG portal account and to contact us immediately if you suspect any unauthorised access to your account.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 10 — INTERNATIONAL TRANSFERS
-═══════════════════════════════════════ -->
-<section class="section section-alt" id="sec-international">
-  <div class="section-inner">
-    <div class="section-label">Section 10</div>
-    <h2 class="section-h2">International Data Transfers</h2>
-    <div class="tc-body">
-      <p>CILG is a global professional body with members and operations across multiple jurisdictions. As a result, your personal data may be transferred to, and stored or processed in, countries other than your country of residence.</p>
-
-      <p>Where such transfers occur, we take steps to ensure that your data receives an equivalent level of protection as it does in your home jurisdiction. The mechanisms we rely on for international transfers include:</p>
-
-      <ul>
-        <li><strong>Adequacy decisions</strong> issued by relevant data protection authorities recognising the destination country's level of protection;</li>
-        <li><strong>Standard Contractual Clauses (SCCs)</strong> approved by applicable supervisory authorities, incorporated into our agreements with international service providers;</li>
-        <li><strong>Binding Corporate Rules</strong> or equivalent intra-group data transfer mechanisms where applicable;</li>
-        <li><strong>Your explicit consent</strong>, in circumstances where no other appropriate safeguard applies.</li>
-      </ul>
-
-      <p>CILG's primary operational and data hosting infrastructure is based in the United States of America. Members located outside the USA should be aware that their data will be transferred to and processed within the USA in the ordinary course of membership administration.</p>
-
-      <div class="notice-box dark">
-        <p><strong>Queries on International Transfers:</strong> If you would like further information about the specific safeguards applied to the transfer of your personal data, or a copy of the relevant transfer mechanism, please contact us at <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 11 — CHILDREN'S PRIVACY
-═══════════════════════════════════════ -->
-<section class="section" id="sec-children">
-  <div class="section-inner">
-    <div class="section-label">Section 11</div>
-    <h2 class="section-h2">Children's Privacy</h2>
-    <div class="tc-body">
-      <p>CILG's services are designed for and directed at professional adults. We do not knowingly collect or process personal data from individuals under the age of 18 without the verified consent of a parent or legal guardian.</p>
-
-      <p>Individuals under 18 may only participate in CILG Student programmes under the following conditions:</p>
-      <ul>
-        <li>Prior written consent from a parent or legal guardian must be obtained and retained by CILG before enrolment;</li>
-        <li>Data collected from minors is limited to what is strictly necessary for the educational programme in question;</li>
-        <li>A parent or guardian may at any time request access to, rectification of, or deletion of their child's personal data by contacting us at <a href="mailto:privacy@cilgglobal.org">privacy@cilgglobal.org</a>.</li>
-      </ul>
-
-      <p>If you believe that we have inadvertently collected personal data from a child under the age of 18 without appropriate consent, please contact us immediately so that we can take appropriate steps, including deletion of the data where required.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SECTION 12 — CONTACT & COMPLAINTS
-═══════════════════════════════════════ -->
-<section class="section section-alt" id="sec-contact">
-  <div class="section-inner">
-    <div class="section-label">Section 12</div>
-    <h2 class="section-h2">Contact &amp; Complaints</h2>
-    <div class="tc-body">
-      <p>If you have any questions, concerns, or requests relating to this Privacy Policy or CILG's processing of your personal data, you are encouraged to contact us in the first instance using the details below. We aim to resolve all enquiries promptly and transparently.</p>
-    </div>
-
-    <div class="declaration-box">
-      <h4>Data Protection Contact</h4>
-      <p><strong>Chartered Institute of Leadership and Governance</strong><br>
-      Attn: Data Protection Officer<br>
-      2222 W. Grand River Ave STE A<br>
-      Okemos, MI 48864, United States of America</p>
-      <p>📧 <strong style="color:#fff;">privacy@cilgglobal.org</strong><br>
-      📞 <strong style="color:#fff;">+1 (575) 329-8396</strong><br>
-      🌐 <a href="https://www.cilgglobal.org" target="_blank" rel="noopener" style="color:var(--lime);border-bottom:1px solid rgba(200,241,53,.4);">www.cilgglobal.org</a></p>
-      <p>We will acknowledge your correspondence within <strong style="color:#fff;">5 business days</strong> and endeavour to provide a full response within <strong style="color:#fff;">30 calendar days</strong>.</p>
-    </div>
-
-    <div class="tc-body">
-      <h3>12.1 Supervisory Authority Complaints</h3>
-      <p>If you are not satisfied with our response to your enquiry or complaint, or if you believe that CILG is processing your personal data in breach of applicable law, you have the right to lodge a complaint with the relevant data protection supervisory authority in your country of residence or place of work.</p>
-
-      <div class="info-card">
-        <h4>United States Residents</h4>
-        <p>While the USA does not yet have a single federal data protection authority, certain state privacy laws — including the California Consumer Privacy Act (CCPA) — may give you additional rights. Residents of states with applicable privacy legislation may contact CILG to exercise rights under those laws. We will respond to all such requests in accordance with the relevant statutory requirements.</p>
-      </div>
-
-      <div class="info-card">
-        <h4>UK &amp; European Economic Area Residents</h4>
-        <p>If you are located in the UK or EEA and believe your data has been processed in contravention of the UK GDPR or EU GDPR, you may lodge a complaint with the Information Commissioner's Office (ICO) in the UK at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>, or with the supervisory authority in your EU member state of habitual residence.</p>
-      </div>
-
-      <h3>12.2 Changes to This Policy</h3>
-      <p>CILG reserves the right to amend this Privacy Policy at any time. All updates will be published on this page with a revised effective date. Where changes are material, we will provide prior notice to existing members via their registered email address. We encourage you to review this Policy periodically to stay informed of any updates.</p>
-
-      <div class="notice-box">
-        <p><strong>Last Reviewed:</strong> June 2026 &nbsp;|&nbsp; <strong>Version:</strong> 2.1 &nbsp;|&nbsp; <strong>Next Scheduled Review:</strong> January 2027</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     CTA
-═══════════════════════════════════════ -->
-<section class="cta-section">
-  <div class="cta-section-inner">
-    <h2>Questions About Your <span>Privacy?</span></h2>
-    <p>Our team is ready to help you understand how your data is used and to assist you in exercising your rights. Reach out to us at any time.</p>
-    <div class="cta-btns">
-      <a href="mailto:privacy@cilgglobal.org" class="btn-primary">✉️ Contact Privacy Team</a>
-      <a href="terms.html" class="btn-outline">📄 Terms of Use</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
-<footer>
-  <div style="max-width:1280px;margin:0 auto;">
-    <div class="footer-grid">
-      <div class="footer-col footer-brand">
-        <h4>Chartered Institute of Leadership &amp; Governance</h4>
-        <p>A globally recognised professional body dedicated to advancing the standards of leadership and governance across all sectors and regions.</p>
-        <div class="footer-socials">
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-          <a href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-          <a href="https://www.whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="about.html">About CILG</a>
-        <a href="membership.html">Membership</a>
-        <a href="qualifications.html">Qualifications</a>
-        <a href="certifications.html">Professional Certification</a>
-        <a href="faq.html">FAQs</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>About the Institute</h4>
-        <a href="about.html">Institute Overview</a>
-        <a href="about.html#vision">Vision &amp; Mission</a>
-        <a href="about.html#values">Values &amp; Ethics</a>
-        <a href="obj.html">Objectives</a>
-        <a href="bod.html">Board of Governors</a>
-        <a href="cd.html">Country Directors</a>
-        <a href="about.html#presence">Global Presence</a>
-        <a href="privacy-policy.html" style="color:var(--lime);">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Member Portal</h4>
-        <a href="appn.html">Application Portal</a>
-        <a href="https://cilgglobal.org/cilg/user/" target="_blank" rel="noopener">Verification Portal</a>
-        <a href="membership.html#apply">Apply for Membership</a>
-        <a href="cev.html">Certificate Verification Guidelines</a>
-        <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1)">
-          <div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.6rem">Office Hours (ET)</div>
-          <div style="font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.85">
-            Mon – Fri: 9:00 AM – 5:00 PM<br>
-            Sat – Sun: Closed<br>
-            <span style="color:rgba(255,255,255,.35);font-size:.7rem">Online portal available 24/7</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4><a href="contact.html">Contact Us</a></h4>
-        <a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a>
-                <a href="tel:+15753298396" style="margin-top:.4rem">📞 +1 (575) 329-8396</a>
-        <a href="https://www.cilgglobal.org" target="_blank" rel="noopener">🌐 www.cilgglobal.org</a>
-        <div style="margin-top:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.7">
-          2222 W. Grand River Ave STE A<br>
-          Okemos, MI 48864<br>
-          United States of America<br>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved. Registered Professional Body: New Mexico, Alaska, Michigan, United States of America</span>
-      <span style="display:flex;gap:1rem;align-items:center;">
-        <a href="privacy-policy.html" style="color:var(--lime);font-size:.72rem;">Privacy Policy</a>
-        <span style="color:rgba(255,255,255,.25);">·</span>
-        <a href="terms.html" style="color:rgba(255,255,255,.6);font-size:.72rem;transition:color .25s;" onmouseover="this.style.color='#C8F135'" onmouseout="this.style.color='rgba(255,255,255,.6)'">Terms of Use</a>
-      </span>
-    </div>
-  </div>
-</footer>
+<!-- FOOTER -->
+<footer><div style="max-width:1280px;margin:0 auto;"><div class="footer-grid"><div class="footer-col footer-brand"><h4>Chartered Institute of Leadership & Governance</h4><p>A globally recognised professional body dedicated to advancing leadership and governance standards.</p><div class="footer-socials"><a href="#"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="#"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231z"/></svg></a></div></div><div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About</a><a href="membership.html">Membership</a><a href="qualifications.html">Qualification Framework</a><a href="faq.html">FAQs</a></div><div class="footer-col"><h4>Legal</h4><a href="privacy-policy.html" style="color:var(--gold);">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="cev.html">Verification Guidelines</a></div><div class="footer-col"><h4>Contact</h4><a href="mailto:info@cilgglobal.org">info@cilgglobal.org</a><a href="tel:+15753298396">📞 +1 (575) 329-8396</a><div style="margin-top:1rem;font-size:.72rem;">2222 W. Grand River Ave STE A<br>Okemos, MI 48864 USA</div></div></div><div class="footer-bottom"><span>© 2026 Chartered Institute of Leadership and Governance. All Rights Reserved.</span><span><a href="privacy-policy.html" style="color:var(--gold);">Privacy Policy</a> · <a href="terms.html">Terms</a></span></div></div></footer>
 
 <script>
-// NAV SCROLL
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
-
-// HAMBURGER
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  const open = hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  hamburger.classList.remove('open');
-  mobileMenu.classList.remove('open');
-  document.body.style.overflow = '';
-}));
-
-// TOC DOTS — scroll & active state
+const nav = document.getElementById('mainNav'); window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+const hamburger = document.getElementById('hamburger'); const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { const open = hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; });
+if(mobileMenu) mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }));
 const dots = document.querySelectorAll('.toc-dot');
-dots.forEach(dot => {
-  dot.addEventListener('click', () => {
-    const target = document.getElementById(dot.dataset.target);
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-const sections = Array.from(dots).map(d => document.getElementById(d.dataset.target)).filter(Boolean);
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      dots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
-    }
-  });
-}, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
-sections.forEach(s => obs.observe(s));
+dots.forEach(dot => dot.addEventListener('click', () => { const target = document.getElementById(dot.dataset.target); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+const sectionsArr = Array.from(dots).map(d => document.getElementById(d.dataset.target)).filter(Boolean);
+const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting) { dots.forEach(d => d.classList.toggle('active', d.dataset.target === entry.target.id)); } }); }, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+sectionsArr.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
